@@ -71,12 +71,12 @@ export function Navbar() {
             {personal.monogram}
             <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-gold-400 ring-2 ring-ink-950" />
           </span>
-          <span className="hidden flex-col leading-tight sm:flex">
+          <span className="hidden min-w-0 flex-col leading-tight sm:flex">
             <span className="font-display text-sm font-semibold text-white">
               {personal.name}
             </span>
-            <span className="text-[11px] text-zinc-500">
-              E-commerce · AI · Automation
+            <span className="max-w-[11rem] truncate text-[11px] text-zinc-500 lg:max-w-[17rem]">
+              {personal.shortTitle}
             </span>
           </span>
         </a>

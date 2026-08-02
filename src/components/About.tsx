@@ -1,23 +1,5 @@
-import { personal, strengths, idealClients } from "@/data/content";
+import { personal, strengths, idealClients, principles } from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
-
-const workingPrinciples: { icon: "target" | "shield" | "trend"; title: string; desc: string }[] = [
-  {
-    icon: "target",
-    title: "Business-first",
-    desc: "Systems are designed around how your business actually runs.",
-  },
-  {
-    icon: "shield",
-    title: "Private by default",
-    desc: "Your data, processes and financials stay private and controlled.",
-  },
-  {
-    icon: "trend",
-    title: "Practical results",
-    desc: "Every build is judged by time saved, clarity gained and decisions improved.",
-  },
-];
 
 export function About() {
   return (
@@ -43,12 +25,7 @@ export function About() {
               {personal.positioning}
             </p>
             <p className="mt-4 text-base leading-relaxed text-zinc-400">
-              I started on the operational side of online business — working
-              with real listings, real orders, real fees and real payouts across
-              multiple marketplaces. That experience shapes everything I build:
-              dashboards that track true profit, workflows that remove
-              repetitive work, and internal tools that match how a business
-              actually operates.
+              {personal.professionalSummary}
             </p>
 
             {/* Highlighted quote */}
@@ -65,7 +42,7 @@ export function About() {
 
             {/* Working principles */}
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {workingPrinciples.map((pr) => (
+              {principles.map((pr) => (
                 <div
                   key={pr.title}
                   className="flex flex-col items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4"

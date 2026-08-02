@@ -17,9 +17,7 @@ export function Footer() {
               </span>
             </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-400">
-              {personal.title}. Helping online sellers and growing businesses
-              improve operations, automate repetitive work and build smarter
-              ERP, CRM and AI-powered systems.
+              {personal.heroSub}
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {personal.markets.slice(0, 4).map((m) => (
