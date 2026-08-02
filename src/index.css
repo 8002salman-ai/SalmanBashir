@@ -22,6 +22,34 @@
   --color-gold-500: #f59e0b;
 }
 
+/* Theme system — the @theme block above defines the base tokens; the
+   scopes below swap them per theme. Unlayered rules win over the layered
+   Tailwind theme, so these drive the actual rendered colors. */
+:root,
+[data-theme="smoky"] {
+  --color-ink-950: #0e0e11;
+  --color-ink-900: #15151a;
+  --color-ink-800: #1d1d23;
+  --color-ink-700: #27272f;
+  --color-ink-600: #33333c;
+}
+
+[data-theme="ink"] {
+  --color-ink-950: #070708;
+  --color-ink-900: #0b0b0d;
+  --color-ink-800: #121215;
+  --color-ink-700: #1a1a1f;
+  --color-ink-600: #26262d;
+}
+
+[data-theme="slate"] {
+  --color-ink-950: #14161c;
+  --color-ink-900: #1b1e26;
+  --color-ink-800: #242834;
+  --color-ink-700: #2f3442;
+  --color-ink-600: #3d4355;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
@@ -111,6 +139,12 @@ body {
   .mask-fade-edges {
     -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
     mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  .bg-texture {
+    background-image:
+      radial-gradient(1100px 700px at 15% -5%, rgba(255, 255, 255, 0.045), transparent 60%),
+      radial-gradient(900px 650px at 85% 110%, rgba(255, 255, 255, 0.03), transparent 55%);
   }
 
   .text-gradient {

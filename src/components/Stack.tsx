@@ -3,7 +3,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function Stack() {
   return (
-    <section id="stack" className="relative py-20 sm:py-28">
+    <section id="stack" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
@@ -19,8 +19,8 @@ export function Stack() {
         </Reveal>
 
         {/* Marketplace Experience */}
-        <Reveal className="mt-14">
-          <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7 sm:p-9">
+        <Reveal className="mt-10">
+          <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-5 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <Icon name="store" className="h-5 w-5 text-brand-300" />
@@ -36,11 +36,11 @@ export function Stack() {
               Hands-on working experience across these platforms — listings,
               inventory, pricing, buyer support and payout workflows.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-wrap gap-2.5">
               {marketplaces.map((m) => (
                 <span
                   key={m}
-                  className="group flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all hover:border-brand-500/30 hover:bg-brand-500/10 hover:text-white"
+                  className="group flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-sm font-medium text-zinc-300 transition-all hover:border-brand-500/30 hover:bg-brand-500/10 hover:text-white"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-400 transition-transform group-hover:scale-125" />
                   {m}
@@ -51,10 +51,10 @@ export function Stack() {
         </Reveal>
 
         {/* AI capabilities + Tools */}
-        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
           {/* AI-assisted capabilities */}
           <Reveal>
-            <div className="h-full rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7 sm:p-9">
+            <div className="h-full rounded-3xl border border-white/[0.07] bg-white/[0.02] p-5 sm:p-6">
               <div className="flex items-center gap-2">
                 <Icon name="cpu" className="h-5 w-5 text-brand-300" />
                 <h3 className="font-display text-lg font-semibold text-white">
@@ -65,7 +65,7 @@ export function Stack() {
                 Practical, hands-on working experience applying AI to real
                 business workflows.
               </p>
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {aiCapabilities.map((c) => (
                   <span
                     key={c}
@@ -80,7 +80,7 @@ export function Stack() {
 
           {/* Tech stack */}
           <Reveal delay={80}>
-            <div className="h-full rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7 sm:p-9">
+            <div className="h-full rounded-3xl border border-white/[0.07] bg-white/[0.02] p-5 sm:p-6">
               <div className="flex items-center gap-2">
                 <Icon name="settings" className="h-5 w-5 text-brand-300" />
                 <h3 className="font-display text-lg font-semibold text-white">
@@ -90,7 +90,7 @@ export function Stack() {
               <p className="mt-2 text-sm text-zinc-400">
                 The tools behind the systems I build and run.
               </p>
-              <div className="mt-6 space-y-5">
+              <div className="mt-4 space-y-4">
                 {techStack.map((cat) => (
                   <div key={cat.category}>
                     <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">

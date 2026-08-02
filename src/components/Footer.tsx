@@ -3,7 +3,7 @@ import { Icon } from "@/components/ui";
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.06] py-12">
+    <footer className="relative border-t border-white/[0.06] py-10">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -16,10 +16,10 @@ export function Footer() {
                 {personal.name}
               </span>
             </a>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-400">
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-zinc-400">
               {personal.heroSub}
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2">
               {personal.markets.slice(0, 4).map((m) => (
                 <span
                   key={m}
@@ -29,7 +29,7 @@ export function Footer() {
                 </span>
               ))}
             </div>
-            <div className="mt-5 flex flex-wrap items-center gap-2">
+            <div className="mt-4 flex flex-wrap items-center gap-2">
               {contact.github && (
                 <a
                   href={contact.github}
@@ -60,7 +60,7 @@ export function Footer() {
             <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
               Navigate
             </p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-2.5">
               {navLinks.map((l) => (
                 <li key={l.href}>
                   <a
@@ -79,7 +79,7 @@ export function Footer() {
             <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
               Get in touch
             </p>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-3 space-y-3">
               <li className="flex items-center gap-2.5 text-sm text-zinc-400">
                 <Icon name="location" className="h-4 w-4 text-brand-400" />
                 {personal.location}
@@ -102,7 +102,7 @@ export function Footer() {
             </ul>
             <a
               href="#contact"
-              className="mt-5 inline-flex items-center gap-2 rounded-xl bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/[0.08]"
+              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/[0.08]"
             >
               Book a Consultation
               <Icon name="arrow" className="h-4 w-4" />
@@ -110,7 +110,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-6 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-5 sm:flex-row">
           <p className="text-xs text-zinc-500">
             © {new Date().getFullYear()} {personal.name}. All rights reserved.
           </p>

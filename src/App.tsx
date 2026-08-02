@@ -39,7 +39,7 @@ function ScrollProgress() {
 
 export default function App() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-ink-950 text-zinc-200">
+    <div className="relative min-h-screen overflow-x-hidden bg-ink-950 bg-texture text-zinc-200">
       <a href="#main" className="skip-link">
         Skip to main content
       </a>

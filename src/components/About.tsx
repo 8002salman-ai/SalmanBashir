@@ -3,9 +3,9 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 sm:py-28">
+    <section id="about" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left: professional summary */}
           <Reveal>
             <SectionHeading
@@ -21,15 +21,15 @@ export function About() {
               }
             />
 
-            <p className="mt-5 text-base leading-relaxed text-zinc-400">
+            <p className="mt-4 text-base leading-relaxed text-zinc-400">
               {personal.positioning}
             </p>
-            <p className="mt-4 text-base leading-relaxed text-zinc-400">
+            <p className="mt-3 text-base leading-relaxed text-zinc-400">
               {personal.professionalSummary}
             </p>
 
             {/* Highlighted quote */}
-            <blockquote className="relative mt-8 overflow-hidden rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-transparent p-6">
+            <blockquote className="relative mt-6 overflow-hidden rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-transparent p-5">
               <Icon
                 name="message"
                 className="absolute -right-3 -top-3 h-16 w-16 text-brand-500/10"
@@ -41,11 +41,11 @@ export function About() {
             </blockquote>
 
             {/* Working principles */}
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <div className="mt-6 grid gap-2.5 sm:grid-cols-3">
               {principles.map((pr) => (
                 <div
                   key={pr.title}
-                  className="flex flex-col items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4"
+                  className="flex flex-col items-start gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3.5"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-brand-300">
                     <Icon name={pr.icon} className="h-4 w-4" />
@@ -65,20 +65,20 @@ export function About() {
 
           {/* Right: strengths + ideal clients */}
           <Reveal delay={100}>
-            <div className="space-y-5 lg:sticky lg:top-24">
+            <div className="space-y-4 lg:sticky lg:top-24">
               {/* Strengths */}
-              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7">
+              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-5">
                 <div className="flex items-center gap-2">
                   <Icon name="bolt" className="h-5 w-5 text-gold-300" />
                   <h3 className="font-display text-lg font-semibold text-white">
                     Core Strengths
                   </h3>
                 </div>
-                <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
                   {strengths.map((s) => (
                     <div
                       key={s}
-                      className="flex items-center gap-2.5 rounded-xl border border-white/[0.05] bg-white/[0.02] px-3 py-2.5"
+                      className="flex items-center gap-2.5 rounded-xl border border-white/[0.05] bg-white/[0.02] px-3 py-2"
                     >
                       <Icon
                         name="check"
@@ -92,14 +92,14 @@ export function About() {
               </div>
 
               {/* Ideal clients */}
-              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7">
+              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-5">
                 <div className="flex items-center gap-2">
                   <Icon name="users" className="h-5 w-5 text-brand-300" />
                   <h3 className="font-display text-lg font-semibold text-white">
                     Who I Help
                   </h3>
                 </div>
-                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                <div className="mt-3 grid gap-1.5 sm:grid-cols-2">
                   {idealClients.map((c) => (
                     <div
                       key={c}

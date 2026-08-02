@@ -89,11 +89,11 @@ export function SectionHeading({
       {eyebrow && (
         <Eyebrow className={align === "center" ? "mx-auto" : ""}>{eyebrow}</Eyebrow>
       )}
-      <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[2.6rem] md:leading-[1.1]">
+      <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[2.5rem] md:leading-[1.1]">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
+        <p className="mt-3 text-base leading-relaxed text-zinc-400 sm:text-lg">
           {description}
         </p>
       )}

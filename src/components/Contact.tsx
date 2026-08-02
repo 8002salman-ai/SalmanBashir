@@ -63,30 +63,30 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-20 sm:py-28">
+    <section id="contact" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-transparent p-7 sm:p-12 lg:p-16">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-transparent p-6 sm:p-8 lg:p-10">
           {/* glow */}
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-500/15 blur-[100px]" />
             <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-gold-500/10 blur-[100px]" />
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-2">
             {/* Left: CTA copy */}
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-brand-300">
                 Let's Work Together
               </span>
-              <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                 Let's build systems around your{" "}
                 <span className="text-gradient-brand">real business</span>
               </h2>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-400">
+              <p className="mt-3 max-w-md text-base leading-relaxed text-zinc-400">
                 {personal.statement}
               </p>
 
-              <div className="mt-8 space-y-4">
+              <div className="mt-6 space-y-3">
                 <div className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-brand-300">
                     <Icon name="location" className="h-5 w-5" />
@@ -164,7 +164,7 @@ export function Contact() {
                 )}
               </div>
 
-              <p className="mt-8 flex items-start gap-2.5 text-xs leading-relaxed text-zinc-500">
+              <p className="mt-6 flex items-start gap-2.5 text-xs leading-relaxed text-zinc-500">
                 <Icon
                   name="shield"
                   className="mt-0.5 h-4 w-4 shrink-0 text-brand-400"
@@ -176,7 +176,7 @@ export function Contact() {
 
             {/* Right: form */}
             <Reveal delay={100}>
-              <div className="rounded-2xl border border-white/[0.08] bg-ink-950/50 p-6 backdrop-blur sm:p-8">
+              <div className="rounded-2xl border border-white/[0.08] bg-ink-950/50 p-5 backdrop-blur sm:p-6">
                 {sent ? (
                   <div className="flex h-full flex-col items-center justify-center py-12 text-center">
                     <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300">
@@ -201,8 +201,8 @@ export function Contact() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid gap-4 sm:grid-cols-2">
+                  <form onSubmit={handleSubmit} className="space-y-3">
+                    <div className="grid gap-3 sm:grid-cols-2">
                       <Field
                         label="Name"
                         name="name"
@@ -238,7 +238,7 @@ export function Contact() {
                         autoComplete="off"
                       />
                     </div>
-                    <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="grid gap-3 sm:grid-cols-2">
                       <Select
                         label="Service"
                         name="service"

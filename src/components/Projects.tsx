@@ -15,7 +15,7 @@ function PreviewPlaceholder({ icon }: { icon: IconName }) {
     <div
       role="img"
       aria-label="Project preview coming soon"
-      className="flex h-full min-h-[9rem] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-4 text-center"
+      className="flex h-full min-h-[8rem] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-4 text-center"
     >
       <Icon name={icon} className="h-7 w-7 text-zinc-500" />
       <p className="text-xs font-medium text-zinc-500">
@@ -27,7 +27,7 @@ function PreviewPlaceholder({ icon }: { icon: IconName }) {
 
 export function Projects() {
   return (
-    <section id="projects" className="relative py-20 sm:py-28">
+    <section id="projects" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
@@ -43,14 +43,14 @@ export function Projects() {
         </Reveal>
 
         {/* Featured project */}
-        <Reveal className="mt-14">
+        <Reveal className="mt-10">
           <article className="group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-transparent">
             <div className="pointer-events-none absolute inset-0 -z-10">
               <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-500/15 blur-[100px]" />
               <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-gold-500/10 blur-[100px]" />
             </div>
 
-            <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-300">
@@ -67,15 +67,15 @@ export function Projects() {
                   </span>
                 </div>
 
-                <h3 className="mt-5 font-display text-2xl font-semibold text-white sm:text-3xl">
+                <h3 className="mt-4 font-display text-2xl font-semibold text-white sm:text-3xl">
                   {featured.name}
                 </h3>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-zinc-400 sm:text-base">
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-zinc-400 sm:text-base">
                   {featured.desc}
                 </p>
 
                 {featured.role && (
-                  <div className="mt-5 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+                  <div className="mt-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3.5">
                     <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
                       My Role
                     </p>
@@ -85,7 +85,7 @@ export function Projects() {
                   </div>
                 )}
 
-                <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                <ul className="mt-5 grid gap-2 sm:grid-cols-2">
                   {featured.highlights.map((h) => (
                     <li
                       key={h}
@@ -101,7 +101,7 @@ export function Projects() {
                   ))}
                 </ul>
 
-                <div className="mt-7 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap gap-2">
                   {featured.tech.map((t) => (
                     <span
                       key={t}
@@ -122,13 +122,13 @@ export function Projects() {
         </Reveal>
 
         {/* Rest of projects */}
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {rest.map((p, i) => (
             <Reveal key={p.name} delay={(i % 4) * 70}>
-              <article className="group flex h-full flex-col rounded-2xl border border-white/[0.07] bg-white/[0.02] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.04]">
+              <article className="group flex h-full flex-col rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.04]">
                 <PreviewPlaceholder icon={p.icon} />
 
-                <div className="mt-5 flex items-center justify-between gap-2">
+                <div className="mt-4 flex items-center justify-between gap-2">
                   <span
                     className={cn(
                       "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border",
@@ -142,14 +142,14 @@ export function Projects() {
                   </span>
                 </div>
 
-                <h4 className="mt-4 font-display text-lg font-semibold text-white">
+                <h4 className="mt-3 font-display text-lg font-semibold text-white">
                   {p.name}
                 </h4>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
                   {p.desc}
                 </p>
 
-                <div className="mt-auto pt-4">
+                <div className="mt-auto pt-3">
                   <div className="flex flex-wrap gap-1.5">
                     {p.tech.slice(0, 4).map((t) => (
                       <span

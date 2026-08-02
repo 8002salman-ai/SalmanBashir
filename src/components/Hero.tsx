@@ -9,7 +9,7 @@ const profileFacts: { icon: "location" | "globe" | "calendar"; label: string; va
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pt-28 sm:pt-32">
+    <section id="home" className="relative overflow-hidden pt-24 sm:pt-28">
       {/* Background layers */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-grid mask-fade-b opacity-60" />
@@ -19,7 +19,7 @@ export function Hero() {
       </div>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           {/* Left: copy */}
           <div className="animate-fade-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-zinc-300 backdrop-blur">
@@ -30,15 +30,15 @@ export function Hero() {
               {personal.heroBadge}
             </div>
 
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.2rem]">
+            <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3rem]">
               <span className="text-gradient">{personal.heroHeading}</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
               {personal.heroSub}
             </p>
 
-            <p className="mt-5 flex flex-wrap items-center gap-2 text-sm font-medium text-zinc-300">
+            <p className="mt-3 flex flex-wrap items-center gap-2 text-sm font-medium text-zinc-300">
               <Icon
                 name="badge"
                 className="h-4 w-4 shrink-0 text-brand-400"
@@ -47,10 +47,10 @@ export function Hero() {
               {personal.heroCredibility}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-ink-950 transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                className="group inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-ink-950 transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
               >
                 View My Work
                 <Icon
@@ -60,20 +60,20 @@ export function Hero() {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/30 hover:bg-white/[0.06]"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-4 py-2.5 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/30 hover:bg-white/[0.06]"
               >
                 Work With Me
               </a>
             </div>
 
             {/* Stats */}
-            <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] sm:grid-cols-4">
+            <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] sm:grid-cols-4">
               {stats.map((s) => (
-                <div key={s.label} className="bg-ink-950/40 p-4">
-                  <dt className="font-display text-2xl font-semibold text-white">
+                <div key={s.label} className="bg-ink-950/40 p-3">
+                  <dt className="font-display text-xl font-semibold text-white">
                     {s.value}
                   </dt>
-                  <dd className="mt-1 text-xs leading-snug text-zinc-500">
+                  <dd className="mt-0.5 text-xs leading-snug text-zinc-500">
                     {s.label}
                   </dd>
                 </div>
@@ -88,7 +88,7 @@ export function Hero() {
 
               <div className="animate-float overflow-hidden rounded-2xl border border-white/10 bg-ink-900/80 shadow-2xl backdrop-blur-xl">
                 {/* header */}
-                <div className="relative bg-gradient-to-br from-brand-500/15 via-transparent to-gold-500/10 p-6">
+                <div className="relative bg-gradient-to-br from-brand-500/15 via-transparent to-gold-500/10 p-5">
                   <div className="pointer-events-none absolute inset-0 bg-dots opacity-20" />
                   <div className="flex items-center gap-4">
                     <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 font-display text-lg font-bold text-ink-950 shadow-lg shadow-brand-500/30">
@@ -101,13 +101,13 @@ export function Hero() {
                       <p className="text-xs text-zinc-400">{personal.role}</p>
                     </div>
                   </div>
-                  <p className="mt-4 text-xs leading-relaxed text-zinc-400">
+                  <p className="mt-3 text-xs leading-relaxed text-zinc-400">
                     {personal.tagline}
                   </p>
                 </div>
 
                 {/* body */}
-                <div className="space-y-3 border-t border-white/[0.06] p-6">
+                <div className="space-y-2.5 border-t border-white/[0.06] p-5">
                   {profileFacts.map((f) => (
                     <div key={f.label} className="flex items-center gap-3">
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-brand-300">
@@ -124,7 +124,7 @@ export function Hero() {
                     </div>
                   ))}
 
-                  <div className="mt-3 flex flex-wrap gap-2">
+                  <div className="mt-2.5 flex flex-wrap gap-2">
                     <a
                       href={`mailto:${contact.email}`}
                       className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
@@ -161,12 +161,12 @@ export function Hero() {
         </div>
 
         {/* Trust strip */}
-        <div className="mt-16 border-y border-white/[0.06] py-5">
-          <p className="mb-4 text-center text-xs uppercase tracking-[0.2em] text-zinc-600">
+        <div className="mt-12 border-y border-white/[0.06] py-4">
+          <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-zinc-600">
             A combination most consultants don't bring
           </p>
           <div className="mask-fade-edges overflow-hidden">
-            <div className="flex w-max animate-marquee items-center gap-10">
+            <div className="flex w-max animate-marquee items-center gap-8">
               {[...trustItems, ...trustItems].map((item, i) => (
                 <span
                   key={i}

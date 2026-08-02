@@ -3,7 +3,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function Journey() {
   return (
-    <section id="journey" className="relative py-20 sm:py-28">
+    <section id="journey" className="relative py-14 sm:py-20">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/4 top-1/2 h-[320px] w-[320px] -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[120px]" />
       </div>
@@ -22,8 +22,8 @@ export function Journey() {
           />
         </Reveal>
 
-        <div className="mx-auto mt-16 max-w-3xl">
-          <ol className="relative space-y-10 border-l border-white/[0.08] pl-8 sm:pl-10">
+        <div className="mx-auto mt-12 max-w-3xl">
+          <ol className="relative space-y-8 border-l border-white/[0.08] pl-8 sm:pl-10">
             {journey.map((item, i) => (
               <Reveal as="li" key={item.title} delay={i * 90} className="relative">
                 <span className="absolute -left-8 top-1.5 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-brand-400 ring-4 ring-brand-500/15 sm:-left-10" />
@@ -35,10 +35,10 @@ export function Journey() {
                     {item.role}
                   </span>
                 </div>
-                <h3 className="mt-3 font-display text-xl font-semibold text-white">
+                <h3 className="mt-2 font-display text-xl font-semibold text-white">
                   {item.title}
                 </h3>
-                <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
                   {item.points.map((pt) => (
                     <li
                       key={pt}
@@ -59,7 +59,7 @@ export function Journey() {
 
           {/* Quote + values */}
           <Reveal delay={120}>
-            <blockquote className="mt-12 rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-transparent p-6 text-center">
+            <blockquote className="mt-10 rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-transparent p-5 text-center">
               <Icon
                 name="badge"
                 className="mx-auto h-8 w-8 text-brand-400"
@@ -72,11 +72,11 @@ export function Journey() {
           </Reveal>
 
           <Reveal delay={160}>
-            <div className="mt-6 text-center">
+            <div className="mt-5 text-center">
               <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 Values I Work By
               </p>
-              <div className="mt-3 flex flex-wrap justify-center gap-2">
+              <div className="mt-2 flex flex-wrap justify-center gap-2">
                 {values.map((v) => (
                   <span
                     key={v}
