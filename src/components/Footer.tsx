@@ -1,0 +1,91 @@
+import { personal, navLinks } from "@/data/content";
+import { Icon } from "@/components/ui";
+
+export function Footer() {
+  return (
+    <footer className="relative border-t border-white/[0.06] py-12">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <a href="#home" className="flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400 to-brand-600 font-display text-sm font-bold text-ink-950">
+                SB
+              </span>
+              <span className="font-display text-base font-semibold text-white">
+                Salman Bashir
+              </span>
+            </a>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-400">
+              {personal.title}. Helping online sellers and growing businesses
+              improve operations, automate repetitive work and build smarter
+              ERP, CRM and AI-powered systems.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {personal.markets.slice(0, 4).map((m) => (
+                <span
+                  key={m}
+                  className="rounded-md border border-white/[0.06] bg-white/[0.02] px-2 py-1 text-[11px] text-zinc-500"
+                >
+                  {m}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Nav */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Navigate
+            </p>
+            <ul className="mt-4 space-y-2.5">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-sm text-zinc-400 transition-colors hover:text-white"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Get in touch
+            </p>
+            <ul className="mt-4 space-y-3">
+              <li className="flex items-center gap-2.5 text-sm text-zinc-400">
+                <Icon name="location" className="h-4 w-4 text-brand-400" />
+                {personal.location}
+              </li>
+              <li className="flex items-center gap-2.5 text-sm text-zinc-400">
+                <Icon name="mail2" className="h-4 w-4 text-brand-400" />
+                Available for projects
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              className="mt-5 inline-flex items-center gap-2 rounded-xl bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/[0.08]"
+            >
+              Book a Consultation
+              <Icon name="arrow" className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-6 sm:flex-row">
+          <p className="text-xs text-zinc-500">
+            © {new Date().getFullYear()} {personal.name}. All rights reserved.
+          </p>
+          <p className="text-xs text-zinc-600">
+            Built around real business problems — not hype.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
