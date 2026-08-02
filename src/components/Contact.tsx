@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { personal, contact } from "@/data/content";
 import { Reveal, Icon } from "@/components/ui";
 
@@ -9,6 +10,7 @@ const serviceOptions = [
   "ERP and Internal Tool Prototyping",
   "Marketplace Integration Planning",
   "SOP and Business Process Design",
+  "Online training session",
   "Other / Not sure yet",
 ];
 
@@ -20,7 +22,7 @@ const budgetOptions = [
   "Not sure yet",
 ];
 
-export function Contact() {
+export function ContactSection() {
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -65,97 +67,97 @@ export function Contact() {
   return (
     <section id="contact" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-transparent p-6 sm:p-8 lg:p-10">
+        <div className="relative overflow-hidden rounded-[2rem] border border-edge-strong bg-gradient-to-br from-panel to-transparent p-6 sm:p-8 lg:p-10">
           {/* glow */}
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-500/15 blur-[100px]" />
-            <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-gold-500/10 blur-[100px]" />
+            <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-gold-accent/10 blur-[100px]" />
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Left: CTA copy */}
             <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-brand-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-accent-strong">
                 Let's Work Together
               </span>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-strong sm:text-4xl">
                 Let's build systems around your{" "}
                 <span className="text-gradient-brand">real business</span>
               </h2>
-              <p className="mt-3 max-w-md text-base leading-relaxed text-zinc-400">
+              <p className="mt-3 max-w-md text-base leading-relaxed text-muted">
                 {personal.statement}
               </p>
 
               <div className="mt-6 space-y-3">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-brand-300">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-edge bg-panel text-accent-strong">
                     <Icon name="location" className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-xs uppercase tracking-wide text-zinc-500">
+                    <p className="text-xs uppercase tracking-wide text-faint">
                       Location
                     </p>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-strong">
                       {personal.location}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-brand-300">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-edge bg-panel text-accent-strong">
                     <Icon name="globe" className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-xs uppercase tracking-wide text-zinc-500">
+                    <p className="text-xs uppercase tracking-wide text-faint">
                       Working with
                     </p>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-strong">
                       {personal.markets.join(" · ")}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-brand-300">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-edge bg-panel text-accent-strong">
                     <Icon name="mail2" className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-xs uppercase tracking-wide text-zinc-500">
+                    <p className="text-xs uppercase tracking-wide text-faint">
                       Email
                     </p>
                     <a
                       href={`mailto:${contact.email}`}
-                      className="text-sm font-medium text-brand-300 transition-colors hover:text-brand-200"
+                      className="text-sm font-medium text-accent-strong transition-colors hover:text-accent"
                     >
                       {contact.email}
                     </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-brand-300">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-edge bg-panel text-accent-strong">
                     <Icon name="calendar" className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-xs uppercase tracking-wide text-zinc-500">
+                    <p className="text-xs uppercase tracking-wide text-faint">
                       Availability
                     </p>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-strong">
                       {contact.availability}
                     </p>
                   </div>
                 </div>
                 {contact.github && (
                   <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-brand-300">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-edge bg-panel text-accent-strong">
                       <Icon name="external" className="h-5 w-5" />
                     </span>
                     <div>
-                      <p className="text-xs uppercase tracking-wide text-zinc-500">
+                      <p className="text-xs uppercase tracking-wide text-faint">
                         GitHub
                       </p>
                       <a
                         href={contact.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium text-brand-300 transition-colors hover:text-brand-200"
+                        className="text-sm font-medium text-accent-strong transition-colors hover:text-accent"
                       >
                         github.com/8002salman-ai
                       </a>
@@ -164,30 +166,40 @@ export function Contact() {
                 )}
               </div>
 
-              <p className="mt-6 flex items-start gap-2.5 text-xs leading-relaxed text-zinc-500">
+              <p className="mt-6 flex items-start gap-2.5 text-xs leading-relaxed text-faint">
                 <Icon
                   name="shield"
-                  className="mt-0.5 h-4 w-4 shrink-0 text-brand-400"
+                  className="mt-0.5 h-4 w-4 shrink-0 text-accent"
                 />
                 Your details stay private. I only use the information you share
                 to respond to your inquiry — nothing is stored or shared.
+              </p>
+
+              <p className="mt-4 text-sm text-muted">
+                Prefer a structured conversation?{" "}
+                <Link
+                  to="/book"
+                  className="font-semibold text-accent-strong hover:text-accent"
+                >
+                  Book a consultation →
+                </Link>
               </p>
             </Reveal>
 
             {/* Right: form */}
             <Reveal delay={100}>
-              <div className="rounded-2xl border border-white/[0.08] bg-ink-950/50 p-5 backdrop-blur sm:p-6">
+              <div className="rounded-2xl border border-edge bg-bg/50 p-5 backdrop-blur sm:p-6">
                 {sent ? (
                   <div className="flex h-full flex-col items-center justify-center py-12 text-center">
-                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/15 text-accent-strong">
                       <Icon name="mail2" className="h-7 w-7" strokeWidth={1.8} />
                     </span>
-                    <h3 className="mt-5 font-display text-xl font-semibold text-white">
+                    <h3 className="mt-5 font-display text-xl font-semibold text-strong">
                       Your email app should now be open
                     </h3>
-                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-zinc-400">
+                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">
                       A message has been pre-filled for you — send it to{" "}
-                      <span className="font-medium text-white">
+                      <span className="font-medium text-strong">
                         {contact.email}
                       </span>{" "}
                       and I'll get back to you shortly.
@@ -195,7 +207,7 @@ export function Contact() {
                     <button
                       type="button"
                       onClick={() => setSent(false)}
-                      className="mt-6 text-sm font-medium text-brand-300 hover:text-brand-200"
+                      className="mt-6 text-sm font-medium text-accent-strong hover:text-accent"
                     >
                       Write another message
                     </button>
@@ -255,7 +267,7 @@ export function Contact() {
                     <div>
                       <label
                         htmlFor="message"
-                        className="mb-1.5 block text-xs font-medium text-zinc-400"
+                        className="mb-1.5 block text-xs font-medium text-muted"
                       >
                         Message
                       </label>
@@ -264,12 +276,12 @@ export function Contact() {
                         name="message"
                         rows={4}
                         placeholder="Describe your business and what you'd like to improve..."
-                        className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm text-white placeholder:text-zinc-600 outline-none transition-colors focus:border-brand-500/50 focus:bg-white/[0.05]"
+                        className="w-full resize-none rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong placeholder:text-faint outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-ink-950 transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                      className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
                     >
                       Send Message
                       <Icon
@@ -277,7 +289,7 @@ export function Contact() {
                         className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                       />
                     </button>
-                    <p className="text-center text-[11px] leading-relaxed text-zinc-600">
+                    <p className="text-center text-[11px] leading-relaxed text-faint">
                       Submitting opens your email app with a pre-filled message
                       to {contact.email}.
                     </p>
@@ -309,11 +321,11 @@ function Field({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-xs font-medium text-zinc-400"
+        className="mb-1.5 block text-xs font-medium text-muted"
       >
         {label}
         {required && (
-          <span className="text-brand-300" aria-hidden="true">
+          <span className="text-accent-strong" aria-hidden="true">
             {" "}
             *
           </span>
@@ -325,7 +337,7 @@ function Field({
         name={name}
         placeholder={placeholder}
         required={required}
-        className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm text-white placeholder:text-zinc-600 outline-none transition-colors focus:border-brand-500/50 focus:bg-white/[0.05]"
+        className="w-full rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong placeholder:text-faint outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong"
       />
     </div>
   );
@@ -346,7 +358,7 @@ function Select({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-xs font-medium text-zinc-400"
+        className="mb-1.5 block text-xs font-medium text-muted"
       >
         {label}
       </label>
@@ -354,13 +366,13 @@ function Select({
         id={name}
         name={name}
         defaultValue=""
-        className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm text-white outline-none transition-colors focus:border-brand-500/50 focus:bg-white/[0.05]"
+        className="w-full rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong"
       >
-        <option value="" disabled className="bg-ink-900 text-white">
+        <option value="" disabled className="bg-bg-soft text-strong">
           {placeholder}
         </option>
         {options.map((opt) => (
-          <option key={opt} className="bg-ink-900 text-white">
+          <option key={opt} className="bg-bg-soft text-strong">
             {opt}
           </option>
         ))}

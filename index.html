@@ -8,24 +8,35 @@
     <title>Salman Bashir | E-commerce Operations & Business Automation Consultant</title>
     <meta
       name="description"
-      content="Salman Bashir is an e-commerce operations and business automation consultant. I help online sellers organize marketplace operations, track real profit, improve workflows and turn scattered business processes into clear, practical systems — across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress."
+      content="Salman Bashir is an e-commerce operations and business automation consultant. I help online sellers organize marketplace operations, understand real profit, improve workflows and turn scattered business processes into clear, practical systems — across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress."
     />
     <meta name="author" content="Salman Bashir" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://salmanbashir.vercel.app/" />
 
     <!-- Theme -->
-    <meta name="theme-color" content="#0e0e11" />
+    <meta name="theme-color" content="#040405" />
     <meta name="color-scheme" content="dark" />
 
     <script>
       (function () {
         try {
           var t = localStorage.getItem("sb-theme");
-          if (t !== "smoky" && t !== "ink" && t !== "slate") t = "smoky";
+          if (t !== "dark" && t !== "light" && t !== "system") t = "dark";
           document.documentElement.dataset.theme = t;
+          if (t === "system") {
+            var m = document.querySelector('meta[name="theme-color"]');
+            if (m) {
+              m.setAttribute(
+                "content",
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "#040405"
+                  : "#f5f6f8",
+              );
+            }
+          }
         } catch (e) {
-          document.documentElement.dataset.theme = "smoky";
+          document.documentElement.dataset.theme = "dark";
         }
       })();
     </script>
@@ -98,10 +109,10 @@
   <body>
     <div id="root">
       <noscript>
-        <main style="max-width: 48rem; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; color: #e4e4e7; background: #070708;">
+        <main style="max-width: 48rem; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; color: #e5e5e9; background: #040405;">
           <h1>Salman Bashir — E-commerce Operations & Business Automation Consultant</h1>
-          <p>I help online sellers organize marketplace operations, track real profit, improve workflows and turn scattered business processes into clear, practical systems.</p>
-          <p>Based in Pakistan. Working with businesses across the USA, the UK, the UAE, Pakistan and international online businesses.</p>
+          <p>I help online sellers organize marketplace operations, understand real profit, improve workflows and turn scattered business processes into clear, practical systems.</p>
+          <p>Based in Pakistan and available for remote work, consulting and training with clients connected to the United States, the United Kingdom, Norway, Sweden and international online markets.</p>
           <p>This portfolio requires JavaScript. Please enable it to explore my services, projects and working process.</p>
         </main>
       </noscript>

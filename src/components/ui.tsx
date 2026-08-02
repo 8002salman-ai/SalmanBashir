@@ -56,7 +56,7 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-brand-300",
+        "inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-accent-strong",
         className,
       )}
     >
@@ -89,11 +89,11 @@ export function SectionHeading({
       {eyebrow && (
         <Eyebrow className={align === "center" ? "mx-auto" : ""}>{eyebrow}</Eyebrow>
       )}
-      <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[2.5rem] md:leading-[1.1]">
+      <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-strong sm:text-4xl md:text-[2.5rem] md:leading-[1.1]">
         {title}
       </h2>
       {description && (
-        <p className="mt-3 text-base leading-relaxed text-zinc-400 sm:text-lg">
+        <p className="mt-3 text-base leading-relaxed text-muted sm:text-lg">
           {description}
         </p>
       )}

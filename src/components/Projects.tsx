@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { projects } from "@/data/content";
 import { Reveal, SectionHeading, Icon, type IconName } from "@/components/ui";
 import { cn } from "@/utils/cn";
@@ -6,8 +7,8 @@ const featured = projects.find((p) => p.featured) ?? projects[0];
 const rest = projects.filter((p) => !p.featured);
 
 const accentClasses = {
-  brand: "border-brand-500/20 bg-brand-500/10 text-brand-300",
-  gold: "border-gold-500/20 bg-gold-500/10 text-gold-300",
+  brand: "border-brand-500/20 bg-brand-500/10 text-accent-strong",
+  gold: "border-gold-accent/25 bg-gold-accent/10 text-gold-accent",
 };
 
 function PreviewPlaceholder({ icon }: { icon: IconName }) {
@@ -15,17 +16,16 @@ function PreviewPlaceholder({ icon }: { icon: IconName }) {
     <div
       role="img"
       aria-label="Project preview coming soon"
-      className="flex h-full min-h-[8rem] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-4 text-center"
+      className="flex h-full min-h-[8rem] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-edge-strong bg-panel p-4 text-center"
     >
-      <Icon name={icon} className="h-7 w-7 text-zinc-500" />
-      <p className="text-xs font-medium text-zinc-500">
-        Project preview coming soon
-      </p>
+      <Icon name={icon} className="h-7 w-7 text-faint" />
+      <p className="text-xs font-medium text-faint">Project preview coming soon</p>
     </div>
   );
 }
 
-export function Projects() {
+export function ProjectsSection({ limit }: { limit?: number }) {
+  const visible = limit ? rest.slice(0, limit) : rest;
   return (
     <section id="projects" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -44,42 +44,42 @@ export function Projects() {
 
         {/* Featured project */}
         <Reveal className="mt-10">
-          <article className="group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-transparent">
+          <article className="group relative overflow-hidden rounded-3xl border border-edge-strong bg-gradient-to-br from-panel to-transparent">
             <div className="pointer-events-none absolute inset-0 -z-10">
               <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-500/15 blur-[100px]" />
-              <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-gold-500/10 blur-[100px]" />
+              <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-gold-accent/10 blur-[100px]" />
             </div>
 
             <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-300">
+                  <span className="rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-medium text-accent-strong">
                     Featured Project
                   </span>
                   {featured.status && (
-                    <span className="flex items-center gap-1.5 rounded-full border border-gold-500/30 bg-gold-500/10 px-3 py-1 text-xs font-medium text-gold-300">
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold-400" />
+                    <span className="flex items-center gap-1.5 rounded-full border border-gold-accent/30 bg-gold-accent/10 px-3 py-1 text-xs font-medium text-gold-accent">
+                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold-accent" />
                       {featured.status}
                     </span>
                   )}
-                  <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-zinc-400">
+                  <span className="rounded-full border border-edge bg-panel px-3 py-1 text-xs font-medium text-muted">
                     {featured.type}
                   </span>
                 </div>
 
-                <h3 className="mt-4 font-display text-2xl font-semibold text-white sm:text-3xl">
+                <h3 className="mt-4 font-display text-2xl font-semibold text-strong sm:text-3xl">
                   {featured.name}
                 </h3>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-zinc-400 sm:text-base">
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
                   {featured.desc}
                 </p>
 
                 {featured.role && (
-                  <div className="mt-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3.5">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
+                  <div className="mt-4 rounded-xl border border-edge bg-panel p-3.5">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-faint">
                       My Role
                     </p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-zinc-300">
+                    <p className="mt-1.5 text-sm leading-relaxed text-soft">
                       {featured.role}
                     </p>
                   </div>
@@ -89,11 +89,11 @@ export function Projects() {
                   {featured.highlights.map((h) => (
                     <li
                       key={h}
-                      className="flex items-start gap-2.5 text-sm text-zinc-300"
+                      className="flex items-start gap-2.5 text-sm text-soft"
                     >
                       <Icon
                         name="check"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-400"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-accent"
                         strokeWidth={2.2}
                       />
                       {h}
@@ -105,11 +105,21 @@ export function Projects() {
                   {featured.tech.map((t) => (
                     <span
                       key={t}
-                      className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-xs font-medium text-zinc-400"
+                      className="rounded-lg border border-edge bg-panel px-2.5 py-1 text-xs font-medium text-muted"
                     >
                       {t}
                     </span>
                   ))}
+                </div>
+
+                <div className="mt-6">
+                  <Link
+                    to={`/projects/${featured.slug}`}
+                    className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                  >
+                    View Project
+                    <Icon name="arrow" className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
 
@@ -123,9 +133,12 @@ export function Projects() {
 
         {/* Rest of projects */}
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {rest.map((p, i) => (
+          {visible.map((p, i) => (
             <Reveal key={p.name} delay={(i % 4) * 70}>
-              <article className="group flex h-full flex-col rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.04]">
+              <Link
+                to={`/projects/${p.slug}`}
+                className="group flex h-full flex-col rounded-2xl border border-edge bg-panel p-5 transition-all duration-300 hover:-translate-y-1 hover:border-edge-strong hover:bg-panel-strong"
+              >
                 <PreviewPlaceholder icon={p.icon} />
 
                 <div className="mt-4 flex items-center justify-between gap-2">
@@ -137,15 +150,15 @@ export function Projects() {
                   >
                     <Icon name={p.icon} className="h-5 w-5" />
                   </span>
-                  <span className="text-right text-[11px] font-medium leading-tight text-zinc-600">
+                  <span className="text-right text-[11px] font-medium leading-tight text-faint">
                     {p.type}
                   </span>
                 </div>
 
-                <h4 className="mt-3 font-display text-lg font-semibold text-white">
+                <h4 className="mt-3 font-display text-lg font-semibold text-strong">
                   {p.name}
                 </h4>
-                <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
                   {p.desc}
                 </p>
 
@@ -154,17 +167,29 @@ export function Projects() {
                     {p.tech.slice(0, 4).map((t) => (
                       <span
                         key={t}
-                        className="rounded-md border border-white/[0.06] bg-white/[0.02] px-2 py-0.5 text-[10px] font-medium text-zinc-500"
+                        className="rounded-md border border-edge bg-panel px-2 py-0.5 text-[10px] font-medium text-faint"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>
+
+        {limit && rest.length > limit && (
+          <Reveal className="mt-8 text-center">
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
+            >
+              View all projects
+              <Icon name="arrow" className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        )}
       </div>
     </section>
   );

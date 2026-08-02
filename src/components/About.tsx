@@ -1,7 +1,7 @@
 import { personal, strengths, idealClients, principles } from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
-export function About() {
+export function AboutSection() {
   return (
     <section id="about" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -21,10 +21,10 @@ export function About() {
               }
             />
 
-            <p className="mt-4 text-base leading-relaxed text-zinc-400">
+            <p className="mt-4 text-base leading-relaxed text-muted">
               {personal.positioning}
             </p>
-            <p className="mt-3 text-base leading-relaxed text-zinc-400">
+            <p className="mt-3 text-base leading-relaxed text-muted">
               {personal.professionalSummary}
             </p>
 
@@ -35,7 +35,7 @@ export function About() {
                 className="absolute -right-3 -top-3 h-16 w-16 text-brand-500/10"
                 strokeWidth={1.2}
               />
-              <p className="font-display text-lg font-semibold leading-snug text-white">
+              <p className="font-display text-lg font-semibold leading-snug text-strong">
                 {personal.aboutQuote}
               </p>
             </blockquote>
@@ -45,16 +45,16 @@ export function About() {
               {principles.map((pr) => (
                 <div
                   key={pr.title}
-                  className="flex flex-col items-start gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3.5"
+                  className="flex flex-col items-start gap-2.5 rounded-xl border border-edge bg-panel p-3.5"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-brand-300">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-accent-strong">
                     <Icon name={pr.icon} className="h-4 w-4" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-sm font-semibold text-strong">
                       {pr.title}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+                    <p className="mt-1 text-xs leading-relaxed text-muted">
                       {pr.desc}
                     </p>
                   </div>
@@ -67,10 +67,10 @@ export function About() {
           <Reveal delay={100}>
             <div className="space-y-4 lg:sticky lg:top-24">
               {/* Strengths */}
-              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-5">
+              <div className="rounded-3xl border border-edge bg-panel p-5">
                 <div className="flex items-center gap-2">
-                  <Icon name="bolt" className="h-5 w-5 text-gold-300" />
-                  <h3 className="font-display text-lg font-semibold text-white">
+                  <Icon name="bolt" className="h-5 w-5 text-gold-accent" />
+                  <h3 className="font-display text-lg font-semibold text-strong">
                     Core Strengths
                   </h3>
                 </div>
@@ -78,24 +78,24 @@ export function About() {
                   {strengths.map((s) => (
                     <div
                       key={s}
-                      className="flex items-center gap-2.5 rounded-xl border border-white/[0.05] bg-white/[0.02] px-3 py-2"
+                      className="flex items-center gap-2.5 rounded-xl border border-edge bg-panel-strong px-3 py-2"
                     >
                       <Icon
                         name="check"
-                        className="h-4 w-4 shrink-0 text-brand-400"
+                        className="h-4 w-4 shrink-0 text-accent"
                         strokeWidth={2.2}
                       />
-                      <span className="text-sm text-zinc-300">{s}</span>
+                      <span className="text-sm text-soft">{s}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Ideal clients */}
-              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-5">
+              <div className="rounded-3xl border border-edge bg-panel p-5">
                 <div className="flex items-center gap-2">
-                  <Icon name="users" className="h-5 w-5 text-brand-300" />
-                  <h3 className="font-display text-lg font-semibold text-white">
+                  <Icon name="users" className="h-5 w-5 text-accent" />
+                  <h3 className="font-display text-lg font-semibold text-strong">
                     Who I Help
                   </h3>
                 </div>
@@ -103,11 +103,11 @@ export function About() {
                   {idealClients.map((c) => (
                     <div
                       key={c}
-                      className="flex items-start gap-2 text-sm text-zinc-400"
+                      className="flex items-start gap-2 text-sm text-muted"
                     >
                       <Icon
                         name="check"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-400"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-accent"
                         strokeWidth={2.2}
                       />
                       {c}

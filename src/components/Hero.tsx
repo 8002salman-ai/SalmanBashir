@@ -1,20 +1,29 @@
+import { Link } from "react-router-dom";
 import { personal, stats, trustItems, contact } from "@/data/content";
 import { Icon } from "@/components/ui";
 
-const profileFacts: { icon: "location" | "globe" | "calendar"; label: string; value: string }[] = [
+const profileFacts: {
+  icon: "location" | "globe" | "calendar";
+  label: string;
+  value: string;
+}[] = [
   { icon: "location", label: "Based in", value: personal.location },
-  { icon: "globe", label: "Working with", value: personal.markets.slice(0, 4).join(" · ") },
+  {
+    icon: "globe",
+    label: "Working with",
+    value: personal.markets.slice(0, 4).join(" · "),
+  },
   { icon: "calendar", label: "Availability", value: "Remote · International" },
 ];
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pt-24 sm:pt-28">
+    <section className="relative overflow-hidden pb-14 pt-24 sm:pb-20 sm:pt-28">
       {/* Background layers */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-grid mask-fade-b opacity-60" />
         <div className="absolute left-1/2 top-[-10%] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-brand-500/20 blur-[140px] animate-pulse-glow" />
-        <div className="absolute right-[5%] top-[20%] h-[320px] w-[320px] rounded-full bg-gold-500/10 blur-[120px]" />
+        <div className="absolute right-[5%] top-[20%] h-[320px] w-[320px] rounded-full bg-gold-accent/10 blur-[120px]" />
         <div className="absolute left-[2%] top-[40%] h-[280px] w-[280px] rounded-full bg-brand-400/10 blur-[100px]" />
       </div>
 
@@ -22,7 +31,7 @@ export function Hero() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           {/* Left: copy */}
           <div className="animate-fade-up">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-zinc-300 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-edge bg-panel px-3.5 py-1.5 text-xs font-medium text-soft backdrop-blur">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-400" />
@@ -30,50 +39,57 @@ export function Hero() {
               {personal.heroBadge}
             </div>
 
-            <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3rem]">
+            <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-strong sm:text-5xl lg:text-[3rem]">
               <span className="text-gradient">{personal.heroHeading}</span>
             </h1>
 
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
               {personal.heroSub}
             </p>
 
-            <p className="mt-3 flex flex-wrap items-center gap-2 text-sm font-medium text-zinc-300">
+            <p className="mt-3 flex flex-wrap items-center gap-2 text-sm font-medium text-soft">
               <Icon
                 name="badge"
-                className="h-4 w-4 shrink-0 text-brand-400"
+                className="h-4 w-4 shrink-0 text-accent"
                 strokeWidth={1.8}
               />
               {personal.heroCredibility}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a
-                href="#projects"
-                className="group inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-ink-950 transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+              <Link
+                to="/projects"
+                className="group inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
               >
                 View My Work
                 <Icon
                   name="arrow"
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                 />
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-4 py-2.5 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/30 hover:bg-white/[0.06]"
+              </Link>
+              <Link
+                to="/book"
+                className="inline-flex items-center gap-2 rounded-xl border border-edge-strong bg-panel px-4 py-2.5 text-sm font-semibold text-strong backdrop-blur transition-all hover:border-brand-500/40 hover:bg-panel-strong"
               >
-                Work With Me
-              </a>
+                Book a Consultation
+              </Link>
+              <Link
+                to="/training"
+                className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-accent-strong transition-colors hover:text-accent"
+              >
+                <Icon name="book" className="h-4 w-4" />
+                Explore Training
+              </Link>
             </div>
 
             {/* Stats */}
-            <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] sm:grid-cols-4">
+            <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-edge bg-panel-strong sm:grid-cols-4">
               {stats.map((s) => (
-                <div key={s.label} className="bg-ink-950/40 p-3">
-                  <dt className="font-display text-xl font-semibold text-white">
+                <div key={s.label} className="bg-bg/40 p-3">
+                  <dt className="font-display text-xl font-semibold text-strong">
                     {s.value}
                   </dt>
-                  <dd className="mt-0.5 text-xs leading-snug text-zinc-500">
+                  <dd className="mt-0.5 text-xs leading-snug text-faint">
                     {s.label}
                   </dd>
                 </div>
@@ -84,40 +100,49 @@ export function Hero() {
           {/* Right: operator profile card */}
           <div className="relative animate-fade-up [animation-delay:120ms]">
             <div className="relative mx-auto max-w-md">
-              <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/20 via-transparent to-gold-500/20 blur-2xl" />
+              <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/20 via-transparent to-gold-accent/20 blur-2xl" />
 
-              <div className="animate-float overflow-hidden rounded-2xl border border-white/10 bg-ink-900/80 shadow-2xl backdrop-blur-xl">
+              <div className="animate-float overflow-hidden rounded-2xl border border-edge-strong bg-bg-soft/80 shadow-2xl backdrop-blur-xl">
                 {/* header */}
-                <div className="relative bg-gradient-to-br from-brand-500/15 via-transparent to-gold-500/10 p-5">
+                <div className="relative bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/10 p-5">
                   <div className="pointer-events-none absolute inset-0 bg-dots opacity-20" />
                   <div className="flex items-center gap-4">
-                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 font-display text-lg font-bold text-ink-950 shadow-lg shadow-brand-500/30">
-                      {personal.monogram}
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl shadow-lg shadow-brand-500/30">
+                      <img
+                        src="/branding/salman-urdu-logo-dark.svg"
+                        alt=""
+                        className="logo-theme-dark h-full w-full"
+                      />
+                      <img
+                        src="/branding/salman-urdu-logo-light.svg"
+                        alt=""
+                        className="logo-theme-light h-full w-full"
+                      />
                     </span>
                     <div>
-                      <p className="font-display text-lg font-semibold text-white">
+                      <p className="font-display text-lg font-semibold text-strong">
                         {personal.name}
                       </p>
-                      <p className="text-xs text-zinc-400">{personal.role}</p>
+                      <p className="text-xs text-muted">{personal.role}</p>
                     </div>
                   </div>
-                  <p className="mt-3 text-xs leading-relaxed text-zinc-400">
-                    {personal.tagline}
+                  <p className="mt-3 text-xs leading-relaxed text-muted">
+                    {personal.supportingIdentity}
                   </p>
                 </div>
 
                 {/* body */}
-                <div className="space-y-2.5 border-t border-white/[0.06] p-5">
+                <div className="space-y-2.5 border-t border-edge p-5">
                   {profileFacts.map((f) => (
                     <div key={f.label} className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-brand-300">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-edge bg-panel text-accent-strong">
                         <Icon name={f.icon} className="h-4 w-4" />
                       </span>
                       <div>
-                        <p className="text-[10px] uppercase tracking-wide text-zinc-500">
+                        <p className="text-[10px] uppercase tracking-wide text-faint">
                           {f.label}
                         </p>
-                        <p className="text-sm font-medium text-white">
+                        <p className="text-sm font-medium text-strong">
                           {f.value}
                         </p>
                       </div>
@@ -127,7 +152,7 @@ export function Hero() {
                   <div className="mt-2.5 flex flex-wrap gap-2">
                     <a
                       href={`mailto:${contact.email}`}
-                      className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                      className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-on-accent transition-colors hover:bg-brand-400"
                     >
                       <Icon name="mail2" className="h-4 w-4" />
                       Email Me
@@ -137,7 +162,7 @@ export function Hero() {
                         href={contact.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/30"
+                        className="inline-flex items-center gap-2 rounded-xl border border-edge-strong bg-panel px-4 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40"
                       >
                         GitHub
                         <Icon name="external" className="h-4 w-4" />
@@ -148,11 +173,11 @@ export function Hero() {
               </div>
 
               {/* floating chip */}
-              <div className="absolute -left-6 top-1/3 hidden animate-float [animation-delay:1.5s] rounded-xl border border-white/10 bg-ink-900/90 px-3 py-2 shadow-xl backdrop-blur sm:block">
-                <p className="text-[10px] uppercase tracking-wide text-zinc-500">
+              <div className="absolute -left-6 top-1/3 hidden animate-float [animation-delay:1.5s] rounded-xl border border-edge bg-bg-soft/90 px-3 py-2 shadow-xl backdrop-blur sm:block">
+                <p className="text-[10px] uppercase tracking-wide text-faint">
                   Currently Building
                 </p>
-                <p className="text-xs font-semibold text-brand-300">
+                <p className="text-xs font-semibold text-accent-strong">
                   Embani ERP
                 </p>
               </div>
@@ -161,8 +186,8 @@ export function Hero() {
         </div>
 
         {/* Trust strip */}
-        <div className="mt-12 border-y border-white/[0.06] py-4">
-          <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-zinc-600">
+        <div className="mt-12 border-y border-edge py-4">
+          <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-faint">
             A combination most consultants don't bring
           </p>
           <div className="mask-fade-edges overflow-hidden">
@@ -170,7 +195,7 @@ export function Hero() {
               {[...trustItems, ...trustItems].map((item, i) => (
                 <span
                   key={i}
-                  className="flex items-center gap-3 whitespace-nowrap text-sm font-medium text-zinc-400"
+                  className="flex items-center gap-3 whitespace-nowrap text-sm font-medium text-muted"
                 >
                   <Icon
                     name="badge"

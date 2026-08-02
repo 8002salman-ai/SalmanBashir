@@ -1,7 +1,7 @@
 import { process } from "@/data/content";
 import { Reveal, SectionHeading } from "@/components/ui";
 
-export function HowIWork() {
+export function HowIWorkSection() {
   return (
     <section id="process" className="relative py-14 sm:py-20">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-dots opacity-40" />
@@ -27,13 +27,13 @@ export function HowIWork() {
             {process.map((p, i) => (
               <Reveal key={p.step} delay={i * 80}>
                 <div className="relative">
-                  <div className="relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-brand-500/25 bg-ink-900 font-display text-lg font-bold text-brand-300 shadow-lg shadow-brand-500/10">
+                  <div className="relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-brand-500/25 bg-bg-soft font-display text-lg font-bold text-accent-strong shadow-lg shadow-brand-500/10">
                     {p.step}
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-white">
+                  <h3 className="font-display text-lg font-semibold text-strong">
                     {p.title}
                   </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted">
                     {p.desc}
                   </p>
                 </div>
