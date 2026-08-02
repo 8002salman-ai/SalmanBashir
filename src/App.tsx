@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { Problems } from "@/components/Problems";
+import { About } from "@/components/About";
 import { Services } from "@/components/Services";
 import { Projects } from "@/components/Projects";
-import { HowIWork } from "@/components/HowIWork";
 import { Stack } from "@/components/Stack";
-import { CaseStudies } from "@/components/CaseStudies";
-import { About } from "@/components/About";
+import { HowIWork } from "@/components/HowIWork";
+import { Journey } from "@/components/Journey";
+import { Credibility } from "@/components/Credibility";
 import { Contact } from "@/components/Contact";
+import { Resume } from "@/components/Resume";
 import { Footer } from "@/components/Footer";
 
 function ScrollProgress() {
@@ -39,18 +40,22 @@ function ScrollProgress() {
 export default function App() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-ink-950 text-zinc-200">
+      <a href="#main" className="skip-link">
+        Skip to main content
+      </a>
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main id="main">
         <Hero />
-        <Problems />
+        <About />
         <Services />
         <Projects />
-        <HowIWork />
         <Stack />
-        <CaseStudies />
-        <About />
+        <HowIWork />
+        <Journey />
+        <Credibility />
         <Contact />
+        <Resume />
       </main>
       <Footer />
     </div>

@@ -1,316 +1,240 @@
+import type { IconName } from "@/components/ui";
+
 export const personal = {
   name: "Salman Bashir",
-  title: "AI-Powered E-commerce & Business Automation Consultant",
-  shortTitle: "AI, E-commerce & Business Automation",
-  location: "Lahore, Pakistan",
-  markets: ["Pakistan", "USA", "UK", "UAE", "International online businesses"],
-  statement:
-    "I help e-commerce businesses replace scattered spreadsheets, repetitive work and disconnected tools with practical AI automation, custom dashboards and smarter business systems.",
-  heroHeading: "AI and E-commerce Systems Built Around Real Business Problems",
+  monogram: "SB",
+  title: "E-commerce Operations & Business Automation Consultant",
+  shortTitle: "E-commerce · Marketplace Systems · Business Automation",
+  role: "E-commerce Operations & Business Automation Consultant",
+  tagline:
+    "Online Business Operator · Marketplace Systems Builder · AI-Assisted Product Creator",
+  location: "Pakistan",
+  markets: ["USA", "UK", "UAE", "Pakistan", "International online businesses"],
+  heroHeading: "E-commerce Operations, Marketplace Systems & Business Automation",
   heroSub:
-    "I help online sellers and growing businesses improve operations, automate repetitive work and build smarter ERP, CRM and AI-powered systems. From marketplace management and inventory to custom dashboards, AI integration and business automation — every solution is built around practical results, control and return on investment.",
+    "I help online sellers organize marketplace operations, track real profit, improve workflows and turn scattered business processes into clear, practical systems.",
+  heroCredibility:
+    "Hands-on experience across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress.",
+  heroBadge: "Available for remote projects and international collaboration",
   positioning:
-    "An experienced e-commerce operator and AI-assisted business systems builder who understands both business problems and modern technology.",
+    "A Pakistan-based online business operator with hands-on marketplace experience — across listings, inventory, sales, fees, profit reporting and payouts — who moved toward ERP workflows, dashboards, integrations and AI-assisted product development.",
+  aboutQuote:
+    "I do not build technology for the sake of technology. I build around the way a real business works.",
+  journeyQuote:
+    "Build with honesty. Work with discipline. Create something that improves real lives.",
+  statement:
+    "I help e-commerce businesses replace scattered spreadsheets, repetitive work and disconnected tools with practical systems, workflows and AI-assisted product development.",
+};
+
+/* Verified contact channels. Fiverr and LinkedIn stay empty until
+   real URLs are provided — never invent public profile links. */
+export const contact = {
+  email: "salmanbashir80@gmail.com",
+  github: "https://github.com/8002salman-ai",
+  fiverr: "",
+  linkedin: "",
+  availability: "Available for remote projects and international collaboration",
 };
 
 export const stats = [
   { value: "5+", label: "Years in E-commerce Operations" },
-  { value: "7", label: "Marketplaces Managed" },
-  { value: "10+", label: "Business Systems & Tools Built" },
-  { value: "Multi", label: "Company ERP Architecture" },
+  { value: "6", label: "Marketplaces Managed" },
+  { value: "5+", label: "Products & Systems Built" },
+  { value: "Multi", label: "Company ERP & BI Architecture" },
 ];
 
 export const trustItems = [
-  "E-commerce Operations",
-  "AI Automation",
-  "Custom Business Software",
-  "ERP & CRM Systems",
-  "Real Marketplace Experience",
-  "Business Owner's Thinking",
+  "Marketplace Operations",
+  "Profit & COGS",
+  "Google Sheets",
+  "ERP Workflows",
+  "Marketplace Integrations",
+  "AI-Assisted Development",
 ];
 
-export const problems = [
-  {
-    title: "No clear sales record",
-    desc: "Sales data scattered across spreadsheets, WhatsApp and marketplace panels — no single source of truth.",
-    icon: "chart",
-  },
-  {
-    title: "Profit vs cash confusion",
-    desc: "The gap between booked profit and actual cash in hand is unclear, making decisions risky.",
-    icon: "cash",
-  },
-  {
-    title: "Partner payout disputes",
-    desc: "Profit sharing, investment recovery and withdrawal eligibility create friction and mistrust.",
-    icon: "users",
-  },
-  {
-    title: "Scattered inventory",
-    desc: "Stock is spread across marketplaces and folders with no real-time quantity or value tracking.",
-    icon: "box",
-  },
-  {
-    title: "Multiple marketplaces unmanaged",
-    desc: "eBay, Amazon, Etsy, TikTok Shop and others operate in silos with no consolidated view.",
-    icon: "globe",
-  },
-  {
-    title: "Customer inquiries missed",
-    desc: "Messages, disputes and follow-ups fall through the cracks across channels.",
-    icon: "mail",
-  },
-  {
-    title: "Manual reports waste time",
-    desc: "Hours spent compiling reports that should be generated automatically from live data.",
-    icon: "clock",
-  },
-  {
-    title: "AI cost without control",
-    desc: "AI APIs are running but usage, cost and model routing are not monitored or optimised.",
-    icon: "cpu",
-  },
+/* Hands-on experience areas — presented as evidence, not invented numbers. */
+export const credibility = [
+  "Product sourcing",
+  "Listings",
+  "Inventory",
+  "Sales",
+  "Marketplace fees",
+  "Taxes",
+  "COGS",
+  "Profit reporting",
+  "Payout reconciliation",
+  "Team workflows",
+  "SOPs",
+  "Google Sheets",
+  "ERP workflows",
+  "Marketplace integrations",
+  "AI-assisted product development",
 ];
 
-export const services = [
+export type Service = {
+  title: string;
+  desc: string;
+  points: string[];
+  icon: IconName;
+};
+
+export const services: Service[] = [
   {
-    title: "AI Business Consultancy",
-    desc: "Identifying where AI genuinely saves time and money — and where it is just unnecessary expense.",
-    points: ["AI opportunity audit", "ROI assessment", "Practical use-cases"],
-    icon: "spark",
-  },
-  {
-    title: "E-commerce Operations Consultancy",
-    desc: "Improving marketplace operations, listings, inventory, pricing, shipping, support and payouts.",
-    points: ["Marketplace operations", "Pricing & margin", "Payout systems"],
+    title: "E-commerce Operations Review",
+    desc: "A practical look at how your marketplace operations actually run — listings, pricing, margin, fees, inventory and payout workflows — with clear, prioritised improvements.",
+    points: ["Marketplace operations audit", "Fees, margin & pricing review", "Inventory and payout workflows"],
     icon: "cart",
   },
   {
-    title: "AI Automation",
-    desc: "Reducing repetitive business work with AI agents, APIs and automated workflows.",
-    points: ["AI agents", "Workflow automation", "API integration"],
-    icon: "bolt",
-  },
-  {
-    title: "ERP & CRM Systems",
-    desc: "Planning and building custom ERP, CRM, dashboards and internal management tools.",
-    points: ["Custom ERP", "CRM integration", "Role & permission engines"],
-    icon: "layers",
-  },
-  {
-    title: "E-commerce Website Development",
-    desc: "Building retail, wholesale, product catalogue and professional consultation websites.",
-    points: ["Retail & wholesale", "Product catalogues", "Consultation sites"],
-    icon: "globe",
-  },
-  {
-    title: "AI Integration",
-    desc: "Connecting OpenAI, Claude, Gemini, OpenRouter and local models with existing systems.",
-    points: ["Multi-model routing", "OpenRouter setup", "Failover logic"],
-    icon: "cpu",
-  },
-  {
-    title: "Business Dashboard Development",
-    desc: "Bringing sales, expenses, profit, inventory, partners and payouts into one clear dashboard.",
-    points: ["Live dashboards", "Profit tracking", "Partner reporting"],
+    title: "Profit and COGS Dashboards",
+    desc: "Dashboards that track real profit — sales, COGS, fees, tax and expenses — so you can see what you actually earn, not just what you sell.",
+    points: ["True profit tracking", "COGS and fee breakdowns", "Payout and expense clarity"],
     icon: "chart",
   },
   {
-    title: "Digital Business Setup",
-    desc: "GitHub, Vercel, Supabase, domains, Cloudflare, business email and deployment setup.",
-    points: ["Domain & DNS", "Cloudflare & Vercel", "Email routing"],
-    icon: "settings",
+    title: "Marketplace Workflow Automation",
+    desc: "Automation around listings, orders, inventory, support and reporting to cut repetitive manual work across your channels.",
+    points: ["Order and listing workflows", "Inventory sync planning", "Support and reporting automation"],
+    icon: "bolt",
   },
   {
-    title: "Marketplace Growth & Management",
-    desc: "Operations across eBay, Depop, Amazon, Etsy, Mercari, TikTok Shop and more.",
-    points: ["Multi-channel ops", "Listing optimisation", "Account management"],
-    icon: "store",
+    title: "ERP and Internal Tool Prototyping",
+    desc: "Practical prototypes of ERP workflows and internal tools built around the way your business actually operates — from roles to payouts.",
+    points: ["Internal tool prototypes", "Role and workflow design", "Data structure planning"],
+    icon: "layers",
   },
   {
-    title: "AI Strategy Session",
-    desc: "One-to-one consultation to identify current problems, costs and automation opportunities.",
-    points: ["1:1 consultation", "Problem mapping", "Action roadmap"],
-    icon: "compass",
+    title: "Marketplace Integration Planning",
+    desc: "Clear plans for connecting marketplaces, Google Sheets and internal systems — without over-engineering or unnecessary cost.",
+    points: ["Marketplace API planning", "Google Sheets & ERP connections", "Integration roadmaps"],
+    icon: "globe",
+  },
+  {
+    title: "SOP and Business Process Design",
+    desc: "Documented, repeatable processes for your team — clear SOPs and workflows that make operations predictable and scalable.",
+    points: ["SOP documentation", "Team workflow design", "Process improvements"],
+    icon: "file",
   },
 ];
 
-export const projects = [
+export type Project = {
+  name: string;
+  type: string;
+  tech: string[];
+  desc: string;
+  highlights: string[];
+  role?: string;
+  status?: string;
+  accent: "brand" | "gold";
+  icon: IconName;
+  featured?: boolean;
+};
+
+export const projects: Project[] = [
   {
-    name: "Embani LLC ERP / SpotAware",
-    type: "Multi-company ERP & Business Intelligence Platform",
-    tech: ["Next.js", "Supabase", "Stripe", "Vercel", "AI APIs"],
-    desc: "A multi-company business intelligence and operations platform connecting sales, inventory, partners, payouts, purchasing, marketplaces, AI providers and Google Workspace in one system.",
+    name: "Embani ERP",
+    type: "E-commerce ERP & Profit Tracking Platform",
+    tech: ["Next.js", "Supabase", "Google Sheets", "Marketplace APIs"],
+    desc: "E-commerce accounting, profit tracking, marketplace sales, COGS, fees, tax, inventory, expenses, payroll, payouts, Google Sheets and eBay integration workflows.",
+    role: "Product vision, business requirements, marketplace logic, financial workflows, UX direction, testing and AI-assisted development.",
+    status: "Active Development",
     highlights: [
-      "Multi-company architecture with company isolation",
-      "Role & permission engine for owner, partner and staff access",
-      "AI Control Center with multi-provider routing and failover",
-      "Marketplace dashboards with profit, payout and investment tracking",
+      "Profit and COGS tracking",
+      "Marketplace sales, fees and tax workflows",
+      "Inventory, expenses, payroll and payouts",
+      "Google Sheets and eBay integration workflows",
     ],
     accent: "brand",
+    icon: "layers",
     featured: true,
   },
   {
-    name: "Himalayan Koh",
-    type: "E-commerce & Wholesale Business Website",
-    tech: ["Next.js", "React", "Tailwind", "Vercel"],
-    desc: "An e-commerce and wholesale business website with retail and wholesale structure, dealer workflows and ERP/CRM integration planning.",
-    highlights: [
-      "Store design with product and category pages",
-      "Retail and wholesale structure with dealer workflows",
-      "Purchase request and approval flows",
-      "ERP and CRM integration planning",
-    ],
-    accent: "gold",
-  },
-  {
-    name: "WATPRO Consultants",
-    type: "Professional Consultancy Website",
-    tech: ["Next.js", "Vercel", "Cloudflare", "GitHub"],
-    desc: "A professional consultancy website for Dr. Waseem Ali Tipu with custom domain, Cloudflare setup, admin portal and email routing.",
-    highlights: [
-      "Website development and professional profile content",
-      "Custom domain, Cloudflare and Vercel deployment",
-      "Admin portal and contact form",
-      "Email routing and forwarding",
-    ],
-    accent: "brand",
-  },
-  {
-    name: "Ehtisabi Self-Assessment Platform",
-    type: "Islamic Self-Assessment & Quran Worksheet Platform",
-    tech: ["Next.js", "Supabase", "Vercel", "RTL Editor"],
-    desc: "A large structured content platform with Quran-based worksheets, 30 Para structure, thousands of ayat, admin dashboard and bilingual AI tools.",
-    highlights: [
-      "30 Para structure with thousands of ayat management",
-      "Urdu and Arabic content with RTL editor",
-      "Roman Urdu to Urdu tools and AI Urdu writing assistance",
-      "Excel/document imports, search, filtering and auto-save",
-    ],
-    accent: "gold",
-  },
-  {
-    name: "Quran AI Personal",
-    type: "AI-powered Quran & Islamic Knowledge App",
+    name: "SpotAware",
+    type: "Business Operations & Workflow Platform",
     tech: ["Next.js", "Supabase", "Vercel", "AI APIs"],
-    desc: "An AI-powered Quran and Sunnah Q&A application with chat, follow-up questions, user authentication and multi-provider AI support.",
+    desc: "A business operations and workflow platform designed to keep sales, inventory, partners and daily operations in one clear system.",
     highlights: [
-      "Quran and Sunnah Q&A with AI chat",
-      "Follow-up question workflows",
-      "User authentication and admin controls",
-      "Multiple AI providers with user API keys",
+      "Operations and workflow structure",
+      "Role-based access planning",
+      "Data organised around real business flow",
     ],
     accent: "brand",
+    icon: "cpu",
   },
   {
-    name: "SentinelPK",
-    type: "Pakistan-focused News & Intelligence Dashboard",
-    tech: ["Next.js", "AI APIs", "Vercel"],
-    desc: "A real-time style dashboard for Pakistan and world news with AI analysis, AI chat, intelligence maps and opportunities.",
+    name: "Himalayan Koh",
+    type: "E-commerce & Retailer Experience",
+    tech: ["E-commerce", "Product Catalogues", "Operations"],
+    desc: "Hands-on e-commerce and retailer experience — product research, listings, inventory and sales workflows built around real marketplace operations.",
     highlights: [
-      "Pakistan and world news with live feed",
-      "AI analysis and AI chat",
-      "Social, video and maps intelligence",
-      "Immigration information and opportunities",
+      "Product research and listings",
+      "Inventory and order workflows",
+      "Retailer and marketplace operations",
     ],
     accent: "gold",
+    icon: "store",
   },
   {
-    name: "8002PDF",
-    type: "Online Utility Tools Platform",
-    tech: ["Next.js", "Client-side Processing", "Vercel"],
-    desc: "An online utility tools platform with PDF, image, QR, barcode, text, calculator and AI image tools — all processed client-side.",
+    name: "Multi-Marketplace Operations",
+    type: "Hands-on Marketplace Operations",
+    tech: ["eBay", "Depop", "Mercari", "Etsy", "TikTok Shop"],
+    desc: "Hands-on experience running sales across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress — listings, inventory, fees, support, payouts and reporting.",
     highlights: [
-      "PDF, image, QR, barcode and text tools",
-      "Client-side processing with memory cleanup",
-      "PDF-to-image conversion and error handling",
-      "Tool auditing and deployment",
+      "Listings, pricing and inventory",
+      "Fees, payouts and profit reporting",
+      "Buyer support and account management",
+    ],
+    accent: "gold",
+    icon: "cart",
+  },
+  {
+    name: "Google Sheets Sales Workspace",
+    type: "Sales Data Workspace",
+    tech: ["Google Sheets", "Google Workspace", "Data Workflows"],
+    desc: "A controlled sales workspace with safe imports, monthly tabs and review before import — keeping sales data organised, reviewed and safe.",
+    highlights: [
+      "Controlled sales imports",
+      "Monthly tabs and review before import",
+      "Data safety and organisation",
     ],
     accent: "brand",
-  },
-  {
-    name: "Neural Wealth",
-    type: "Faceless YouTube & Content Brand",
-    tech: ["Content Strategy", "AI Tools", "YouTube"],
-    desc: "A planned faceless YouTube and content brand focused on AI tools, online money, business, productivity, investing and future trends.",
-    highlights: [
-      "AI tools and online money content",
-      "Business, productivity and investing focus",
-      "Faceless content brand strategy",
-      "Handle: @NeuralWealth",
-    ],
-    accent: "gold",
-  },
-];
-
-export const caseStudies = [
-  {
-    title: "AI Infrastructure & Integration",
-    client: "Embani LLC ERP",
-    outcome:
-      "Built an AI Control Center with multi-provider routing, failover logic, health monitoring and cost control — turning scattered AI API usage into a managed, resilient system.",
-    metrics: [
-      { label: "AI Providers", value: "Multiple" },
-      { label: "Routing Mode", value: "Paid + Free" },
-      { label: "Failover", value: "Automated" },
-    ],
-    tags: ["OpenRouter", "Multi-model", "Health Monitoring", "Failover"],
-  },
-  {
-    title: "Multi-company ERP & Dashboards",
-    client: "SpotAware Platform",
-    outcome:
-      "Designed a multi-company ERP with isolated data, role-based access, marketplace dashboards and partner profit/payout systems — giving owners a real-time business picture.",
-    metrics: [
-      { label: "Companies", value: "Multi" },
-      { label: "Marketplaces", value: "Unified" },
-      { label: "Dashboards", value: "Live" },
-    ],
-    tags: ["ERP", "Dashboards", "Profit Tracking", "Payouts"],
-  },
-  {
-    title: "Professional Consultancy Website",
-    client: "WATPRO Consultants",
-    outcome:
-      "Delivered a complete professional website with custom domain, Cloudflare, Vercel deployment, admin portal, contact form and business email routing.",
-    metrics: [
-      { label: "Domain", value: "Custom" },
-      { label: "Email", value: "Routed" },
-      { label: "Deployment", value: "Automated" },
-    ],
-    tags: ["Website", "Cloudflare", "Vercel", "Email"],
+    icon: "sheet",
   },
 ];
 
 export const process = [
   {
     step: "01",
-    title: "Understand the Business",
-    desc: "I start with the real problems — how sales, inventory, partners and cash actually flow today. No theory, no generic audits.",
+    title: "Understand",
+    desc: "How sales, inventory, fees, payouts and team workflows actually run today — from the operator's side, not from theory.",
   },
   {
     step: "02",
-    title: "Map the System",
-    desc: "I design the architecture: data model, roles, dashboards, automations and AI integration points — built around your operations.",
+    title: "Map",
+    desc: "Document the current process and the data behind it — where profit is hidden and where work repeats.",
   },
   {
     step: "03",
-    title: "Build & Integrate",
-    desc: "I build the tools, dashboards and AI workflows, integrating marketplaces, ERP, CRM and AI providers into one coherent system.",
+    title: "Simplify",
+    desc: "Remove what doesn't need to exist and design a simpler flow around the real business.",
   },
   {
     step: "04",
-    title: "Optimise for ROI",
-    desc: "Every system is measured against practical results — time saved, costs controlled, decisions improved and growth unlocked.",
+    title: "Build",
+    desc: "Build the dashboards, workflows and systems practically, incrementally and around real operations.",
+  },
+  {
+    step: "05",
+    title: "Test and Improve",
+    desc: "Validate with real data and real users, then iterate until the system genuinely saves time and effort.",
   },
 ];
 
 export const marketplaces = [
   "eBay",
-  "Amazon",
-  "Etsy",
   "Depop",
   "Mercari",
+  "Etsy",
   "TikTok Shop",
   "AliExpress",
 ];
@@ -318,105 +242,95 @@ export const marketplaces = [
 export const techStack = [
   {
     category: "Development & Deployment",
-    items: ["GitHub", "Vercel", "Supabase", "Next.js", "React", "Vite", "Tailwind CSS", "TypeScript", "Prisma", "PostgreSQL", "Stripe", "Cloudflare", "Node.js", "npm"],
+    items: ["Google Sheets", "Supabase", "GitHub", "Vercel", "Next.js", "Node.js"],
   },
   {
-    category: "AI & Automation",
-    items: ["ChatGPT", "Codex", "Claude Code", "Cursor", "Cline", "Gemini", "OpenRouter", "Ollama", "Qwen"],
+    category: "Marketplace & Data",
+    items: ["Marketplace APIs", "eBay integration workflows", "Google Sheets automation"],
   },
   {
-    category: "Business & Collaboration",
-    items: ["Google Workspace", "Gmail Integration", "Domain & DNS", "Email Routing", "Marketplace Operations", "ERP & CRM Workflows"],
+    category: "AI-Assisted Development",
+    items: ["Claude Code", "Codex", "VS Code"],
   },
 ];
 
 export const aiCapabilities = [
-  "AI business workflow planning",
-  "AI-powered customer support systems",
-  "AI-assisted product description generation",
-  "AI listing optimization",
-  "AI research assistants",
-  "Business data analysis",
-  "AI provider and model selection",
-  "AI API integration",
-  "OpenRouter integration",
-  "Multi-model AI routing",
-  "AI usage and cost monitoring",
-  "AI health monitoring",
+  "AI-assisted product development",
+  "AI-assisted dashboard and tool building",
+  "Practical AI use-case planning",
+  "AI-assisted reporting workflows",
+  "AI provider selection guidance",
   "Automated document processing",
-  "Urdu and English AI writing tools",
-  "AI-powered admin dashboards",
-  "Internal business knowledge assistants",
-  "Marketplace automation planning",
-  "AI agents for operational tasks",
+  "AI-assisted SOP and content writing",
+  "AI-assisted admin tool workflows",
 ];
 
 export const strengths = [
-  "Real business understanding",
-  "E-commerce operational experience",
-  "Fast problem-solving",
-  "Leadership under pressure",
-  "Calculated risk-taking",
-  "Strong business instinct",
-  "AI-assisted product building",
-  "Complex workflows to simple systems",
-  "Bridge between technical & non-technical teams",
-  "Practical ROI thinking",
+  "Hands-on marketplace experience",
+  "Business operator's understanding",
+  "Real profit and COGS thinking",
+  "Practical, incremental builds",
+  "Complex workflows made simple",
+  "Bridge between business and technology",
+  "AI-assisted product development",
   "Independent project execution",
-  "Long-term vision",
+  "Long-term thinking",
 ];
 
 export const values = [
   "Honesty",
-  "Loyalty",
+  "Ownership",
   "Discipline",
-  "Faith",
-  "Practical results",
-  "Family security",
-  "Financial independence",
-  "Helping others",
-  "Long-term impact",
+  "Practical Thinking",
+  "Long-Term Impact",
 ];
 
-export const experience = [
+export const journey = [
   {
-    role: "E-commerce Executive",
-    company: "LuxEdge & Basco",
-    period: "2020 — Present",
+    period: "2019 — 2020",
+    title: "Started in online operations support",
+    role: "Online Support Assistant · Freelance / Remote",
     points: [
-      "Product research and listings",
-      "Inventory management and order processing",
-      "Customer support and buyer communication",
-      "Pricing updates and marketplace account management",
-      "Data organization and business operations",
-      "Online sales workflows and document management",
+      "Data entry and product information management",
+      "File handling and listing support",
+      "Online research and customer communication",
+      "Administrative support",
     ],
   },
   {
-    role: "Online Support Assistant",
-    company: "Freelance / Remote",
-    period: "2019 — 2020",
+    period: "2020 — Present",
+    title: "Hands-on e-commerce operations",
+    role: "E-commerce Executive · LuxEdge & Basco",
     points: [
-      "Data entry and product information management",
-      "File handling and basic graphic/listing support",
-      "Online research and customer communication",
-      "Administrative support",
+      "Product research, listings and pricing",
+      "Inventory and order processing",
+      "Buyer communication and support",
+      "Marketplace account management",
+    ],
+  },
+  {
+    period: "Present",
+    title: "Business systems, ERP workflows & AI-assisted development",
+    role: "Independent · Project-based · Remote",
+    points: [
+      "Profit, COGS and payout workflows",
+      "ERP and internal tool prototyping",
+      "Marketplace integrations and automation",
+      "AI-assisted product development",
     ],
   },
 ];
 
 export const idealClients = [
-  "Small and medium e-commerce businesses",
-  "Marketplace sellers",
-  "Multi-channel online sellers",
+  "Marketplace sellers and online businesses",
+  "Multi-channel sellers",
   "Importers and exporters",
-  "Wholesale businesses",
-  "Consultants and professional service providers",
+  "Wholesale and retailer businesses",
   "Family-owned businesses",
-  "Businesses using spreadsheets and WhatsApp for operations",
-  "Startups needing an MVP",
-  "Businesses wanting custom ERP or CRM",
-  "Companies wanting practical AI integration",
+  "Businesses running on spreadsheets and WhatsApp",
+  "Businesses wanting real profit visibility",
+  "Businesses wanting ERP or internal tools",
+  "Businesses needing marketplace automation",
   "Overseas Pakistani business owners",
 ];
 
@@ -424,7 +338,8 @@ export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
-  { label: "Case Studies", href: "#case-studies" },
   { label: "Process", href: "#process" },
+  { label: "Journey", href: "#journey" },
+  { label: "Resume", href: "#resume" },
   { label: "Contact", href: "#contact" },
 ];

@@ -102,7 +102,7 @@ export function SectionHeading({
 }
 
 /* Icon system */
-const paths: Record<string, ReactNode> = {
+const paths = {
   chart: (
     <>
       <path d="M3 3v18h18" />
@@ -199,6 +199,7 @@ const paths: Record<string, ReactNode> = {
     </>
   ),
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  "arrow-up": <path d="M12 19V5M6 11l6-6 6 6" />,
   check: <path d="M20 6 9 17l-5-5" />,
   location: (
     <>
@@ -218,14 +219,88 @@ const paths: Record<string, ReactNode> = {
       <path d="M3 10h18M8 2v4M16 2v4" />
     </>
   ),
-};
+  sheet: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M3 9h18M3 15h18M9 3v18" />
+    </>
+  ),
+  briefcase: (
+    <>
+      <rect x="2" y="7" width="20" height="14" rx="2" />
+      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+      <path d="M2 13h20" />
+    </>
+  ),
+  book: (
+    <>
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+    </>
+  ),
+  file: (
+    <>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <path d="M14 2v6h6M9 13h6M9 17h6" />
+    </>
+  ),
+  external: (
+    <>
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <path d="M15 3h6v6M10 14 21 3" />
+    </>
+  ),
+  shield: (
+    <>
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  ),
+  target: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1" />
+    </>
+  ),
+  trend: (
+    <>
+      <path d="M22 7 13.5 15.5 8.5 10.5 2 17" />
+      <path d="M16 7h6v6" />
+    </>
+  ),
+  message: (
+    <>
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </>
+  ),
+  send: (
+    <>
+      <path d="m22 2-7 20-4-9-9-4z" />
+      <path d="M22 2 11 13" />
+    </>
+  ),
+  star: (
+    <>
+      <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z" />
+    </>
+  ),
+  badge: (
+    <>
+      <circle cx="12" cy="8" r="6" />
+      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+    </>
+  ),
+} as const;
+
+export type IconName = keyof typeof paths;
 
 export function Icon({
   name,
   className,
   strokeWidth = 1.6,
 }: {
-  name: string;
+  name: IconName;
   className?: string;
   strokeWidth?: number;
 }) {
@@ -240,30 +315,7 @@ export function Icon({
       className={className}
       aria-hidden="true"
     >
-      {paths[name] ?? paths.spark}
+      {paths[name]}
     </svg>
-  );
-}
-
-export function Card({
-  children,
-  className,
-  hover = true,
-}: {
-  children: ReactNode;
-  className?: string;
-  hover?: boolean;
-}) {
-  return (
-    <div
-      className={cn(
-        "group relative rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 backdrop-blur-sm transition-all duration-300",
-        hover &&
-          "hover:border-brand-500/30 hover:bg-white/[0.04] hover:shadow-[0_20px_60px_-25px_rgba(16,185,129,0.4)]",
-        className,
-      )}
-    >
-      {children}
-    </div>
   );
 }

@@ -1,21 +1,39 @@
-import { personal, strengths, values, experience, idealClients } from "@/data/content";
+import { personal, strengths, idealClients } from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
+
+const workingPrinciples: { icon: "target" | "shield" | "trend"; title: string; desc: string }[] = [
+  {
+    icon: "target",
+    title: "Business-first",
+    desc: "Systems are designed around how your business actually runs.",
+  },
+  {
+    icon: "shield",
+    title: "Private by default",
+    desc: "Your data, processes and financials stay private and controlled.",
+  },
+  {
+    icon: "trend",
+    title: "Practical results",
+    desc: "Every build is judged by time saved, clarity gained and decisions improved.",
+  },
+];
 
 export function About() {
   return (
     <section id="about" className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          {/* Left: intro + portrait card */}
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Left: professional summary */}
           <Reveal>
             <SectionHeading
               align="left"
               eyebrow="About Salman"
               title={
                 <>
-                  E-commerce operator &{" "}
+                  Business experience first.{" "}
                   <span className="text-gradient-brand">
-                    AI-assisted systems builder
+                    Technology built around it.
                   </span>
                 </>
               }
@@ -25,93 +43,52 @@ export function About() {
               {personal.positioning}
             </p>
             <p className="mt-4 text-base leading-relaxed text-zinc-400">
-              Based in {personal.location}, working with businesses across{" "}
-              {personal.markets.slice(0, 4).join(", ")} and beyond. I focus on
-              project-based, independent and result-focused work — building
-              systems, automation and business-building projects rather than
-              routine employment.
+              I started on the operational side of online business — working
+              with real listings, real orders, real fees and real payouts across
+              multiple marketplaces. That experience shapes everything I build:
+              dashboards that track true profit, workflows that remove
+              repetitive work, and internal tools that match how a business
+              actually operates.
             </p>
 
-            {/* Values */}
-            <div className="mt-8">
-              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                Personal Values
+            {/* Highlighted quote */}
+            <blockquote className="relative mt-8 overflow-hidden rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-transparent p-6">
+              <Icon
+                name="message"
+                className="absolute -right-3 -top-3 h-16 w-16 text-brand-500/10"
+                strokeWidth={1.2}
+              />
+              <p className="font-display text-lg font-semibold leading-snug text-white">
+                {personal.aboutQuote}
               </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {values.map((v) => (
-                  <span
-                    key={v}
-                    className="rounded-lg border border-white/[0.07] bg-white/[0.02] px-3 py-1.5 text-xs font-medium text-zinc-300"
-                  >
-                    {v}
-                  </span>
-                ))}
-              </div>
-            </div>
+            </blockquote>
 
-            {/* Ideal clients */}
-            <div className="mt-8">
-              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                Ideal Clients
-              </p>
-              <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                {idealClients.map((c) => (
-                  <div
-                    key={c}
-                    className="flex items-start gap-2 text-sm text-zinc-400"
-                  >
-                    <Icon
-                      name="check"
-                      className="mt-0.5 h-4 w-4 shrink-0 text-brand-400"
-                      strokeWidth={2.2}
-                    />
-                    {c}
+            {/* Working principles */}
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {workingPrinciples.map((pr) => (
+                <div
+                  key={pr.title}
+                  className="flex flex-col items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-brand-300">
+                    <Icon name={pr.icon} className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      {pr.title}
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+                      {pr.desc}
+                    </p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </Reveal>
 
-          {/* Right: experience + strengths */}
+          {/* Right: strengths + ideal clients */}
           <Reveal delay={100}>
-            <div className="space-y-5">
-              {/* Experience */}
-              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7">
-                <div className="flex items-center gap-2">
-                  <Icon name="compass" className="h-5 w-5 text-brand-300" />
-                  <h3 className="font-display text-lg font-semibold text-white">
-                    Professional Experience
-                  </h3>
-                </div>
-                <div className="mt-6 space-y-6">
-                  {experience.map((exp) => (
-                    <div key={exp.role} className="relative pl-6">
-                      <span className="absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full bg-brand-400 ring-4 ring-brand-500/15" />
-                      <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-                        <h4 className="font-display text-base font-semibold text-white">
-                          {exp.role}
-                        </h4>
-                        <span className="text-xs font-medium text-brand-300">
-                          {exp.period}
-                        </span>
-                      </div>
-                      <p className="text-sm text-zinc-500">{exp.company}</p>
-                      <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-                        {exp.points.map((pt) => (
-                          <li
-                            key={pt}
-                            className="flex items-start gap-2 text-xs text-zinc-400"
-                          >
-                            <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-zinc-600" />
-                            {pt}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
+            <div className="space-y-5 lg:sticky lg:top-24">
               {/* Strengths */}
               <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7">
                 <div className="flex items-center gap-2">
@@ -132,6 +109,31 @@ export function About() {
                         strokeWidth={2.2}
                       />
                       <span className="text-sm text-zinc-300">{s}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Ideal clients */}
+              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7">
+                <div className="flex items-center gap-2">
+                  <Icon name="users" className="h-5 w-5 text-brand-300" />
+                  <h3 className="font-display text-lg font-semibold text-white">
+                    Who I Help
+                  </h3>
+                </div>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  {idealClients.map((c) => (
+                    <div
+                      key={c}
+                      className="flex items-start gap-2 text-sm text-zinc-400"
+                    >
+                      <Icon
+                        name="check"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-400"
+                        strokeWidth={2.2}
+                      />
+                      {c}
                     </div>
                   ))}
                 </div>

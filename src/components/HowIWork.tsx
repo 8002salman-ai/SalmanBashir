@@ -15,17 +15,17 @@ export function HowIWork() {
                 <span className="text-gradient-brand">problem to system</span>
               </>
             }
-            description="Project-based, independent and result-focused. I work with small smart teams and build around your real operations — not generic templates."
+            description="Project-based, independent and result-focused. I work around your real operations — not generic templates."
           />
         </Reveal>
 
         <div className="relative mt-14">
           {/* connecting line */}
-          <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-brand-500/30 to-transparent lg:block" />
+          <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-brand-500/30 to-transparent md:block" />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {process.map((p, i) => (
-              <Reveal key={p.step} delay={i * 90}>
+              <Reveal key={p.step} delay={i * 80}>
                 <div className="relative">
                   <div className="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-brand-500/25 bg-ink-900 font-display text-lg font-bold text-brand-300 shadow-lg shadow-brand-500/10">
                     {p.step}

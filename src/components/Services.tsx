@@ -19,7 +19,7 @@ export function Services() {
                 <span className="text-gradient-brand">practical results</span>
               </>
             }
-            description="From AI strategy to custom ERP systems — every service is designed to give you control, clarity and a measurable return on investment."
+            description="From marketplace operations reviews to profit dashboards and ERP prototyping — every service is built around the way your business actually runs."
           />
         </Reveal>
 
@@ -61,31 +61,20 @@ export function Services() {
                     </li>
                   ))}
                 </ul>
+
+                <a
+                  href="#contact"
+                  className="group/link mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-brand-300 transition-colors hover:text-brand-200"
+                >
+                  Discuss This Service
+                  <Icon
+                    name="arrow"
+                    className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5"
+                  />
+                </a>
               </article>
             </Reveal>
           ))}
-
-          {/* CTA tile */}
-          <Reveal delay={140}>
-            <article className="flex h-full flex-col justify-between rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-transparent p-6">
-              <div>
-                <h3 className="font-display text-lg font-semibold text-white">
-                  Not sure what you need?
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-                  Book a strategy session and I'll help you map the right
-                  systems for your business.
-                </p>
-              </div>
-              <a
-                href="#contact"
-                className="mt-5 inline-flex items-center gap-2 self-start rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-400"
-              >
-                Book a Strategy Session
-                <Icon name="arrow" className="h-4 w-4" />
-              </a>
-            </article>
-          </Reveal>
         </div>
       </div>
     </section>

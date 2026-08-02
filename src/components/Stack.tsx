@@ -7,28 +7,34 @@ export function Stack() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="Platforms & Technology"
+            eyebrow="Marketplace Experience & Tools"
             title={
               <>
-                Marketplaces, AI models and{" "}
-                <span className="text-gradient-brand">tools I work with</span>
+                Hands-on working experience,{" "}
+                <span className="text-gradient-brand">not a skills list</span>
               </>
             }
-            description="Real operational experience across major marketplaces — paired with a modern, AI-assisted technical stack for building business systems."
+            description="These are the marketplaces I've operated on and the tools I use to build systems — presented as experience, without fake skill percentages."
           />
         </Reveal>
 
-        {/* Marketplaces */}
+        {/* Marketplace Experience */}
         <Reveal className="mt-14">
           <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7 sm:p-9">
-            <div className="flex items-center gap-2">
-              <Icon name="store" className="h-5 w-5 text-brand-300" />
-              <h3 className="font-display text-lg font-semibold text-white">
-                E-commerce Marketplaces
-              </h3>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <Icon name="store" className="h-5 w-5 text-brand-300" />
+                <h3 className="font-display text-lg font-semibold text-white">
+                  Marketplace Experience
+                </h3>
+              </div>
+              <span className="rounded-full border border-brand-500/25 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-300">
+                Operations · Listings · Support · Payouts
+              </span>
             </div>
             <p className="mt-2 text-sm text-zinc-400">
-              Direct operational experience across these platforms.
+              Hands-on working experience across these platforms — listings,
+              inventory, pricing, buyer support and payout workflows.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {marketplaces.map((m) => (
@@ -44,19 +50,20 @@ export function Stack() {
           </div>
         </Reveal>
 
-        {/* AI capabilities + Tech stack */}
+        {/* AI capabilities + Tools */}
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
-          {/* AI capabilities */}
+          {/* AI-assisted capabilities */}
           <Reveal>
             <div className="h-full rounded-3xl border border-white/[0.07] bg-white/[0.02] p-7 sm:p-9">
               <div className="flex items-center gap-2">
                 <Icon name="cpu" className="h-5 w-5 text-brand-300" />
                 <h3 className="font-display text-lg font-semibold text-white">
-                  AI Consultancy Capabilities
+                  AI-Assisted Capabilities
                 </h3>
               </div>
               <p className="mt-2 text-sm text-zinc-400">
-                Practical AI use-cases for real business workflows.
+                Practical, hands-on working experience applying AI to real
+                business workflows.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {aiCapabilities.map((c) => (
@@ -77,11 +84,11 @@ export function Stack() {
               <div className="flex items-center gap-2">
                 <Icon name="settings" className="h-5 w-5 text-brand-300" />
                 <h3 className="font-display text-lg font-semibold text-white">
-                  Technical Stack & Tools
+                  Tools & Platforms
                 </h3>
               </div>
               <p className="mt-2 text-sm text-zinc-400">
-                AI-assisted product building — not traditional software engineering.
+                The tools behind the systems I build and run.
               </p>
               <div className="mt-6 space-y-5">
                 {techStack.map((cat) => (
