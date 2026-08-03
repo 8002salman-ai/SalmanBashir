@@ -22,8 +22,25 @@ const budgetOptions = [
   "Not sure yet",
 ];
 
+const meetingMethods = ["Zoom", "Google Meet", "Custom meeting method"];
+
+const socialMeta: { key: string; label: string; icon: "youtube" | "github" | "linkedin" | "x" | "instagram" | "fiverr" | "facebook" | "tiktok" }[] = [
+  { key: "youtube", label: "YouTube", icon: "youtube" },
+  { key: "github", label: "GitHub", icon: "github" },
+  { key: "linkedin", label: "LinkedIn", icon: "linkedin" },
+  { key: "x", label: "X / Twitter", icon: "x" },
+  { key: "instagram", label: "Instagram", icon: "instagram" },
+  { key: "fiverr", label: "Fiverr", icon: "fiverr" },
+  { key: "facebook", label: "Facebook", icon: "facebook" },
+  { key: "tiktok", label: "TikTok", icon: "tiktok" },
+];
+
 export function ContactSection() {
   const [sent, setSent] = useState(false);
+
+  const socialLinks = socialMeta
+    .map((s) => ({ ...s, url: contact.socials[s.key] }))
+    .filter((s) => Boolean(s.url));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,9 +53,11 @@ export function ContactSection() {
     const name = String(fd.get("name") ?? "");
     const email = String(fd.get("email") ?? "");
     const business = String(fd.get("business") ?? "");
+    const country = String(fd.get("country") ?? "");
     const marketplace = String(fd.get("marketplace") ?? "");
     const service = String(fd.get("service") ?? "");
     const budget = String(fd.get("budget") ?? "");
+    const method = String(fd.get("method") ?? "");
     const message = String(fd.get("message") ?? "");
 
     const subject = `Project inquiry${name ? ` from ${name}` : ""}`;
@@ -46,9 +65,11 @@ export function ContactSection() {
       name && `Name: ${name}`,
       email && `Email: ${email}`,
       business && `Business: ${business}`,
+      country && `Country: ${country}`,
       marketplace && `Marketplace(s): ${marketplace}`,
       service && `Service: ${service}`,
       budget && `Budget: ${budget}`,
+      method && `Preferred meeting method: ${method}`,
       message && "",
       message && message,
     ]
@@ -144,23 +165,26 @@ export function ContactSection() {
                     </p>
                   </div>
                 </div>
-                {contact.github && (
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-edge bg-panel text-accent-strong">
-                      <Icon name="external" className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <p className="text-xs uppercase tracking-wide text-faint">
-                        GitHub
-                      </p>
-                      <a
-                        href={contact.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-medium text-accent-strong transition-colors hover:text-accent"
-                      >
-                        github.com/8002salman-ai
-                      </a>
+                {socialLinks.length > 0 && (
+                  <div className="rounded-2xl border border-edge bg-panel p-4">
+                    <p className="text-xs uppercase tracking-wide text-faint">
+                      Find me online
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {socialLinks.map((s) => (
+                        <a
+                          key={s.key}
+                          href={s.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={s.label}
+                          title={s.label}
+                          className="inline-flex items-center gap-2 rounded-lg border border-edge bg-panel-strong px-3 py-2 text-xs font-medium text-muted transition-colors hover:border-edge-strong hover:text-strong"
+                        >
+                          <Icon name={s.icon} className="h-4 w-4" />
+                          {s.label}
+                        </a>
+                      ))}
                     </div>
                   </div>
                 )}
@@ -229,11 +253,18 @@ export function ContactSection() {
                         required
                       />
                     </div>
-                    <Field
-                      label="Business"
-                      name="business"
-                      placeholder="Your business name"
-                    />
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <Field
+                        label="Business"
+                        name="business"
+                        placeholder="Your business name"
+                      />
+                      <Field
+                        label="Country"
+                        name="country"
+                        placeholder="Your country"
+                      />
+                    </div>
                     <Field
                       label="Marketplace"
                       name="marketplace"
@@ -264,6 +295,12 @@ export function ContactSection() {
                         placeholder="Select a range"
                       />
                     </div>
+                    <Select
+                      label="Preferred meeting method"
+                      name="method"
+                      options={meetingMethods}
+                      placeholder="Zoom, Google Meet or custom"
+                    />
                     <div>
                       <label
                         htmlFor="message"
@@ -283,7 +320,7 @@ export function ContactSection() {
                       type="submit"
                       className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
                     >
-                      Send Message
+                      Send Project Details
                       <Icon
                         name="send"
                         className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

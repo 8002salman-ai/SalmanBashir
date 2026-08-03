@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom";
 import { personal, contact, navLinks } from "@/data/content";
-import { Icon } from "@/components/ui";
+import { Icon, type IconName } from "@/components/ui";
 import { LogoMark } from "@/components/Logo";
 
+const socialMeta: { key: string; label: string; icon: IconName }[] = [
+  { key: "youtube", label: "YouTube", icon: "youtube" },
+  { key: "github", label: "GitHub", icon: "github" },
+  { key: "linkedin", label: "LinkedIn", icon: "linkedin" },
+  { key: "x", label: "X / Twitter", icon: "x" },
+  { key: "instagram", label: "Instagram", icon: "instagram" },
+  { key: "fiverr", label: "Fiverr", icon: "fiverr" },
+  { key: "facebook", label: "Facebook", icon: "facebook" },
+  { key: "tiktok", label: "TikTok", icon: "tiktok" },
+];
+
 export function Footer() {
+  const socialLinks = socialMeta
+    .map((s) => ({ ...s, url: contact.socials[s.key] }))
+    .filter((s) => Boolean(s.url));
+
   return (
     <footer className="relative border-t border-edge py-10">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -32,28 +47,20 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              {contact.github && (
+              {socialLinks.map((s) => (
                 <a
-                  href={contact.github}
+                  key={s.key}
+                  href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={s.label}
+                  title={s.label}
                   className="inline-flex items-center gap-2 rounded-lg border border-edge bg-panel px-3 py-2 text-xs font-medium text-muted transition-colors hover:border-edge-strong hover:text-strong"
                 >
-                  GitHub
-                  <Icon name="external" className="h-3.5 w-3.5" />
+                  <Icon name={s.icon} className="h-3.5 w-3.5" />
+                  {s.label}
                 </a>
-              )}
-              {contact.fiverr && (
-                <a
-                  href={contact.fiverr}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-gold-accent/30 bg-gold-accent/10 px-3 py-2 text-xs font-medium text-gold-accent transition-colors hover:border-gold-accent/50"
-                >
-                  Fiverr
-                  <Icon name="external" className="h-3.5 w-3.5" />
-                </a>
-              )}
+              ))}
             </div>
           </div>
 

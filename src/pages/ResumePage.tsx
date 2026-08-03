@@ -9,7 +9,7 @@ export function ResumePage() {
     <>
       <Seo
         title="Resume | Salman Bashir — E-commerce Operations & Business Systems"
-        description="A resume built from real work: marketplace operations, business systems, ERP workflows and AI-assisted development — described honestly in broad phases."
+        description="A detailed resume is being prepared and will be available here. In the meantime, request a tailored overview of relevant work by email or during a call."
         path="/resume"
       />
       <PageHero
@@ -20,21 +20,56 @@ export function ResumePage() {
             <span className="text-gradient-brand">real work</span>
           </>
         }
-        description={resume.summary}
+        description="The full resume is being prepared. Until it's ready, you can see the honest professional phases and skills below, or request a tailored overview directly."
       />
 
       <section className="relative pb-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-6 lg:grid-cols-3">
-            {/* Phases */}
+          {/* Coming soon card */}
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl border border-edge-strong bg-gradient-to-br from-panel to-transparent p-8 text-center sm:p-12">
+              <div className="pointer-events-none absolute inset-0 -z-10">
+                <div className="absolute left-1/2 top-[-40%] h-64 w-96 -translate-x-1/2 rounded-full bg-brand-500/10 blur-[100px]" />
+              </div>
+              <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-brand-500/25 bg-brand-500/10 text-accent-strong">
+                <Icon name="file" className="h-8 w-8" strokeWidth={1.6} />
+              </span>
+              <h2 className="mt-5 font-display text-2xl font-semibold tracking-tight text-strong sm:text-3xl">
+                Resume Coming Soon
+              </h2>
+              <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted sm:text-base">
+                {resume.comingSoon}
+              </p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={`mailto:${contact.email}?subject=${encodeURIComponent(
+                    "Resume / work overview request",
+                  )}`}
+                  className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                >
+                  Request My Resume
+                  <Icon name="mail2" className="h-4 w-4" />
+                </a>
+                <Link
+                  to="/book"
+                  className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-3 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
+                >
+                  Book a Call
+                  <Icon name="calendar" className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Honest phases preview */}
+          <div className="mt-6 grid gap-6 lg:grid-cols-3">
             <Reveal className="lg:col-span-2">
               <div className="h-full rounded-3xl border border-edge bg-panel p-6 sm:p-8">
                 <h2 className="font-display text-xl font-semibold text-strong">
                   Professional Phases
                 </h2>
                 <p className="mt-1 text-xs text-faint">
-                  Broad phases rather than exact dates — see the honesty note
-                  below.
+                  Broad phases rather than exact dates — described honestly.
                 </p>
                 <ol className="mt-6 space-y-7 border-l border-edge pl-6">
                   {resume.phases.map((phase) => (
@@ -70,7 +105,6 @@ export function ResumePage() {
               </div>
             </Reveal>
 
-            {/* Skills */}
             <Reveal delay={80}>
               <div className="h-full rounded-3xl border border-edge bg-panel p-6 sm:p-8">
                 <h2 className="font-display text-xl font-semibold text-strong">
@@ -98,43 +132,6 @@ export function ResumePage() {
               </div>
             </Reveal>
           </div>
-
-          {/* Honesty note + CTA */}
-          <Reveal className="mt-6">
-            <div className="rounded-3xl border border-brand-500/20 bg-brand-500/[0.06] p-6 sm:p-8">
-              <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="shield" className="h-5 w-5 text-accent" />
-                    <h2 className="font-display text-lg font-semibold text-strong">
-                      An honest note
-                    </h2>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {resume.note}
-                  </p>
-                </div>
-                <div className="flex flex-col items-start gap-3 sm:flex-row lg:flex-col xl:flex-row xl:items-center">
-                  <a
-                    href={`mailto:${contact.email}?subject=${encodeURIComponent(
-                      "Resume / work overview request",
-                    )}`}
-                    className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
-                  >
-                    Request My Resume
-                    <Icon name="mail2" className="h-4 w-4" />
-                  </a>
-                  <Link
-                    to="/book"
-                    className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-3 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
-                  >
-                    Book a Call
-                    <Icon name="calendar" className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
     </>

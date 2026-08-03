@@ -18,18 +18,31 @@ export function BookPage() {
 
     const name = String(fd.get("name") ?? "");
     const email = String(fd.get("email") ?? "");
-    const type = String(fd.get("type") ?? "");
+    const country = String(fd.get("country") ?? "");
     const business = String(fd.get("business") ?? "");
-    const message = String(fd.get("message") ?? "");
+    const service = String(fd.get("service") ?? "");
+    const date = String(fd.get("date") ?? "");
+    const time = String(fd.get("time") ?? "");
+    const timezone = String(fd.get("timezone") ?? "");
+    const duration = String(fd.get("duration") ?? "");
+    const method = String(fd.get("method") ?? "");
+    const notes = String(fd.get("notes") ?? "");
 
     const subject = `Booking request${name ? ` from ${name}` : ""}`;
     const body = [
+      `Booking status: pending review (not confirmed until approved)`,
       name && `Name: ${name}`,
       email && `Email: ${email}`,
-      type && `I'm interested in: ${type}`,
+      country && `Country: ${country}`,
       business && `Business: ${business}`,
-      message && "",
-      message && message,
+      service && `Service: ${service}`,
+      date && `Preferred date: ${date}`,
+      time && `Preferred time: ${time}`,
+      timezone && `Time zone: ${timezone}`,
+      duration && `Session duration: ${duration}`,
+      method && `Meeting method: ${method}`,
+      notes && "",
+      notes && `Notes: ${notes}`,
     ]
       .filter(Boolean)
       .join("\n");
@@ -47,7 +60,7 @@ export function BookPage() {
     <>
       <Seo
         title="Book a Consultation | Salman Bashir — E-commerce Operations & Automation"
-        description="Book a consultation call, scoped project work or online training. Tell me where your operations are today and what you want to change."
+        description="Book a consultation call, project work or online training. Choose a session, share your details and send the request — approved bookings get meeting details after review."
         path="/book"
       />
       <PageHero
@@ -61,36 +74,52 @@ export function BookPage() {
         description={book.intro}
       />
 
-      {/* Options */}
       <section className="relative pb-16">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-3 sm:grid-cols-3">
-            {book.options.map((o, i) => (
-              <Reveal key={o.title} delay={i * 80}>
-                <div className="flex h-full flex-col rounded-2xl border border-edge bg-panel p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:bg-panel-strong">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-gradient-to-br from-brand-500/15 to-brand-500/5 text-accent-strong">
-                    <Icon name={o.icon} className="h-6 w-6" />
+          {/* Status banner — no booking is confirmed before approval */}
+          <Reveal>
+            <div className="flex items-start gap-3 rounded-2xl border border-gold-accent/25 bg-gold-accent/[0.08] p-4 text-sm text-soft">
+              <Icon
+                name="shield"
+                className="mt-0.5 h-5 w-5 shrink-0 text-gold-accent"
+              />
+              <p>{book.statusNote}</p>
+            </div>
+          </Reveal>
+
+          {/* Consultation types */}
+          <Reveal className="mt-8">
+            <h2 className="font-display text-xl font-semibold text-strong">
+              Choose your session
+            </h2>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {book.consultations.map((c, i) => (
+                <Reveal key={c.title} delay={(i % 4) * 60}>
+                  <div className="flex h-full flex-col rounded-2xl border border-edge bg-panel p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:bg-panel-strong">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-gradient-to-br from-brand-500/15 to-brand-500/5 text-accent-strong">
+                      <Icon name={c.icon} className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-4 font-display text-base font-semibold leading-snug text-strong">
+                      {c.title}
+                    </h3>
+                    <p className="mt-1 inline-flex items-center gap-1.5 text-xs font-medium text-accent-strong">
+                      <Icon name="clock" className="h-3.5 w-3.5" />
+                      {c.length}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                      {c.desc}
+                    </p>
                   </div>
-                  <h2 className="mt-4 font-display text-lg font-semibold text-strong">
-                    {o.title}
-                  </h2>
-                  <p className="mt-1 inline-flex items-center gap-1.5 text-xs font-medium text-accent-strong">
-                    <Icon name="clock" className="h-3.5 w-3.5" />
-                    {o.length}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {o.desc}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+                </Reveal>
+              ))}
+            </div>
+          </Reveal>
 
           {/* Process */}
-          <Reveal className="mt-8">
+          <Reveal className="mt-10">
             <div className="rounded-3xl border border-edge bg-panel p-6 sm:p-8">
               <h2 className="font-display text-xl font-semibold text-strong">
-                What happens next
+                How booking works
               </h2>
               <div className="mt-6 grid gap-6 sm:grid-cols-3">
                 {book.process.map((p) => (
@@ -107,20 +136,37 @@ export function BookPage() {
                   </div>
                 ))}
               </div>
+              <ul className="mt-6 grid gap-2 border-t border-edge pt-5 sm:grid-cols-2">
+                {book.whatToExpect.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 text-sm text-soft"
+                  >
+                    <Icon
+                      name="check"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                      strokeWidth={2.2}
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
 
-          {/* Form */}
-          <Reveal className="mt-8">
+          {/* Booking form */}
+          <Reveal className="mt-10">
             <div className="overflow-hidden rounded-3xl border border-edge-strong bg-gradient-to-br from-panel to-transparent p-6 sm:p-8 lg:p-10">
-              <div className="grid gap-8 lg:grid-cols-2">
+              <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div>
                   <h2 className="font-display text-2xl font-semibold tracking-tight text-strong sm:text-3xl">
-                    Start with a short message
+                    Send your booking request
                   </h2>
                   <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-                    Sharing a few lines now means we can use the first call for
-                    real discussion instead of introductions.
+                    Fill in the details below. Your request goes to my public
+                    inbox, I review it personally, and approved sessions get a
+                    meeting link — Zoom, Google Meet or a custom method — after
+                    approval. No booking is confirmed before that.
                   </p>
                   <ul className="mt-6 space-y-3">
                     {book.whatToExpect.map((item) => (
@@ -167,24 +213,28 @@ export function BookPage() {
                         Your email app should now be open
                       </h3>
                       <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">
-                        A booking request has been pre-filled for you. Send it
-                        and I'll come back with next steps.
+                        Your booking request has been pre-filled. Send it and I'll
+                        review it personally — the booking is{" "}
+                        <span className="font-medium text-strong">
+                          pending review
+                        </span>{" "}
+                        until I reply with approval and meeting details.
                       </p>
                       <button
                         type="button"
                         onClick={() => setSent(false)}
                         className="mt-6 text-sm font-medium text-accent-strong hover:text-accent"
                       >
-                        Write another message
+                        Send another request
                       </button>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-3">
                       <div className="grid gap-3 sm:grid-cols-2">
                         <BookField
-                          label="Name"
+                          label="Client name"
                           name="name"
-                          placeholder="Your name"
+                          placeholder="Your full name"
                           required
                         />
                         <BookField
@@ -195,21 +245,72 @@ export function BookPage() {
                           required
                         />
                       </div>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <BookField
+                          label="Country"
+                          name="country"
+                          placeholder="e.g., United States"
+                        />
+                        <BookField
+                          label="Business"
+                          name="business"
+                          placeholder="Business name (optional)"
+                        />
+                      </div>
                       <BookSelect
-                        label="I'm interested in"
-                        name="type"
-                        options={[
-                          "Consultation call",
-                          "Project work",
-                          "Online training",
-                          "Not sure yet",
-                        ]}
-                        placeholder="Select an option"
+                        label="Service"
+                        name="service"
+                        options={book.consultations.map((c) => c.title)}
+                        placeholder="Select a session"
                       />
-                      <BookField
-                        label="Business"
-                        name="business"
-                        placeholder="Your business name (optional)"
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <div>
+                          <label
+                            htmlFor="date"
+                            className="mb-1.5 block text-xs font-medium text-muted"
+                          >
+                            Preferred date
+                          </label>
+                          <input
+                            id="date"
+                            name="date"
+                            type="date"
+                            className="w-full rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong [color-scheme:dark]"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="time"
+                            className="mb-1.5 block text-xs font-medium text-muted"
+                          >
+                            Preferred time
+                          </label>
+                          <input
+                            id="time"
+                            name="time"
+                            type="time"
+                            className="w-full rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong [color-scheme:dark]"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <BookField
+                          label="Time zone"
+                          name="timezone"
+                          placeholder="e.g., EST, GMT+5"
+                        />
+                        <BookSelect
+                          label="Session duration"
+                          name="duration"
+                          options={book.durations}
+                          placeholder="Select duration"
+                        />
+                      </div>
+                      <BookSelect
+                        label="Meeting method"
+                        name="method"
+                        options={book.meetingMethods}
+                        placeholder="Zoom, Google Meet or custom"
                       />
                       {/* Honeypot — humans leave this empty */}
                       <div className="hidden" aria-hidden="true">
@@ -224,16 +325,16 @@ export function BookPage() {
                       </div>
                       <div>
                         <label
-                          htmlFor="message"
+                          htmlFor="notes"
                           className="mb-1.5 block text-xs font-medium text-muted"
                         >
-                          What would you like to work on?
+                          Notes
                         </label>
                         <textarea
-                          id="message"
-                          name="message"
+                          id="notes"
+                          name="notes"
                           rows={4}
-                          placeholder="Tell me a little about your business and your goals..."
+                          placeholder="Anything you'd like me to know before the session..."
                           className="w-full resize-none rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong placeholder:text-faint outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong"
                         />
                       </div>
@@ -248,8 +349,9 @@ export function BookPage() {
                         />
                       </button>
                       <p className="text-center text-[11px] leading-relaxed text-faint">
-                        Submitting opens your email app with a pre-filled
-                        message to {contact.email}.
+                        Submitting opens your email app with a pre-filled request
+                        to {contact.email}. Your booking stays pending review until
+                        I confirm it.
                       </p>
                     </form>
                   )}

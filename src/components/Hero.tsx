@@ -157,15 +157,15 @@ export function Hero() {
                       <Icon name="mail2" className="h-4 w-4" />
                       Email Me
                     </a>
-                    {contact.github && (
+                    {contact.socials.github && (
                       <a
-                        href={contact.github}
+                        href={contact.socials.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-xl border border-edge-strong bg-panel px-4 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40"
                       >
                         GitHub
-                        <Icon name="external" className="h-4 w-4" />
+                        <Icon name="github" className="h-4 w-4" />
                       </a>
                     )}
                   </div>

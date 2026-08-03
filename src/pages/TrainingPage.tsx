@@ -1,26 +1,26 @@
 import { Link } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
 import { Seo } from "@/components/Seo";
-import { training } from "@/data/content";
-import { Reveal, Icon } from "@/components/ui";
+import { training, trainingFormats, contact } from "@/data/content";
+import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function TrainingPage() {
   return (
     <>
       <Seo
-        title="Training | Salman Bashir — Marketplace Operations, Profit & Automation"
-        description="Practical online training for sellers: marketplace operations foundations, profit & COGS made clear, Google Sheets systems, workflow automation and AI-assisted product workflows."
+        title="Training | Salman Bashir — Practical Marketplace & Business Systems Training"
+        description="Practical online training built from hands-on marketplace experience: eBay, Depop, Mercari, multi-marketplace operations and online business systems — 1:1, small group, recorded or live."
         path="/training"
       />
       <PageHero
         eyebrow="Training"
         title={
           <>
-            Learn the operations that{" "}
-            <span className="text-gradient-brand">protect your profit</span>
+            Practical training from{" "}
+            <span className="text-gradient-brand">hands-on operations</span>
           </>
         }
-        description="Practical, hands-on training for online sellers — not theory. Sessions are built from real marketplace operations and can be 1:1, small group, live or recorded."
+        description="Training built from real marketplace work — not theory and not hype. Sessions cover the marketplaces you actually sell on and the systems that keep your profit honest, with no invented certificates or success statistics."
       />
 
       <section className="relative pb-16">
@@ -38,17 +38,12 @@ export function TrainingPage() {
                   <p className="mt-2 text-sm leading-relaxed text-muted">
                     {t.desc}
                   </p>
-                  <ul className="mt-3 space-y-1.5 border-t border-edge pt-3">
+                  <ul className="mt-3 flex flex-wrap gap-1.5 border-t border-edge pt-3">
                     {t.points.map((pt) => (
                       <li
                         key={pt}
-                        className="flex items-start gap-2 text-xs text-muted"
+                        className="rounded-md border border-edge bg-panel-strong px-2 py-1 text-[11px] font-medium text-soft"
                       >
-                        <Icon
-                          name="check"
-                          className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent"
-                          strokeWidth={2.2}
-                        />
                         {pt}
                       </li>
                     ))}
@@ -64,64 +59,82 @@ export function TrainingPage() {
             ))}
           </div>
 
-          <Reveal className="mt-8">
-            <div className="rounded-3xl border border-edge bg-panel p-6 sm:p-8">
-              <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-                <div>
-                  <h2 className="font-display text-2xl font-semibold tracking-tight text-strong">
-                    How training works
-                  </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">
-                    Every session starts with your situation. I adapt the
-                    material to your marketplaces, your products and your
-                    current systems — and I keep everything practical enough to
-                    use the same day.
-                  </p>
-                  <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                    {[
-                      "Starts with your actual setup",
-                      "Hands-on, not just slides",
-                      "1:1 or small group",
-                      "Live or recorded",
-                      "No locked-in commitments",
-                      "Honest about what's worth doing",
-                    ].map((pt) => (
-                      <li
-                        key={pt}
-                        className="flex items-start gap-2 text-sm text-soft"
-                      >
-                        <Icon
-                          name="check"
-                          className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                          strokeWidth={2.2}
-                        />
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
+          {/* Formats */}
+          <Reveal className="mt-10">
+            <SectionHeading
+              align="left"
+              eyebrow="Training Formats"
+              title={
+                <>
+                  Learn in the format that{" "}
+                  <span className="text-gradient-brand">fits your team</span>
+                </>
+              }
+            />
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {trainingFormats.map((f) => (
+                <div
+                  key={f}
+                  className="flex items-center gap-3 rounded-2xl border border-edge bg-panel p-4"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-accent-strong">
+                    <Icon name="check" className="h-4 w-4" strokeWidth={2.2} />
+                  </span>
+                  <p className="text-sm font-medium text-strong">{f}</p>
                 </div>
-                <div className="flex flex-col items-center gap-3 rounded-2xl border border-brand-500/20 bg-brand-500/[0.07] p-6 text-center">
-                  <Icon
-                    name="book"
-                    className="h-8 w-8 text-accent"
-                    strokeWidth={1.6}
-                  />
-                  <p className="font-display text-lg font-semibold text-strong">
-                    Ready to get started?
-                  </p>
-                  <p className="text-sm leading-relaxed text-muted">
-                    Tell me what you want to learn and I'll suggest the right
-                    format.
-                  </p>
-                  <Link
-                    to="/book"
-                    className="mt-2 inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
-                  >
-                    Book a Session
-                    <Icon name="arrow" className="h-4 w-4" />
-                  </Link>
-                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* CTAs */}
+          <Reveal className="mt-10">
+            <div className="rounded-3xl border border-edge-strong bg-gradient-to-br from-panel to-transparent p-6 sm:p-8">
+              <div className="grid gap-3 sm:grid-cols-3">
+                <Link
+                  to="/book"
+                  className="group flex flex-col items-center gap-2 rounded-2xl border border-brand-500/25 bg-brand-500/10 p-6 text-center transition-all hover:border-brand-500/50 hover:bg-brand-500/15"
+                >
+                  <Icon name="calendar" className="h-7 w-7 text-accent-strong" />
+                  <span className="font-display text-base font-semibold text-strong">
+                    Book Private Training
+                  </span>
+                  <span className="text-xs text-muted">
+                    Pick a session and send a booking request
+                  </span>
+                </Link>
+                <a
+                  href={`mailto:${contact.email}?subject=${encodeURIComponent(
+                    "Training plan request",
+                  )}&body=${encodeURIComponent(
+                    "Hi Salman,\n\nI'm interested in a training plan. Here is a little about my business and what I'd like to learn:\n\n- Marketplaces:\n- Experience level:\n- Training goals:\n",
+                  )}`}
+                  className="group flex flex-col items-center gap-2 rounded-2xl border border-edge bg-panel p-6 text-center transition-all hover:border-gold-accent/40 hover:bg-panel-strong"
+                >
+                  <Icon name="book" className="h-7 w-7 text-gold-accent" />
+                  <span className="font-display text-base font-semibold text-strong">
+                    Request a Training Plan
+                  </span>
+                  <span className="text-xs text-muted">
+                    Get a suggested curriculum for your goals
+                  </span>
+                </a>
+                <Link
+                  to="/contact"
+                  className="group flex flex-col items-center gap-2 rounded-2xl border border-edge bg-panel p-6 text-center transition-all hover:border-gold-accent/40 hover:bg-panel-strong"
+                >
+                  <Icon name="users" className="h-7 w-7 text-gold-accent" />
+                  <span className="font-display text-base font-semibold text-strong">
+                    Ask About Group Sessions
+                  </span>
+                  <span className="text-xs text-muted">
+                    Small group or custom team training
+                  </span>
+                </Link>
               </div>
+              <p className="mt-6 text-center text-xs text-faint">
+                No certificates, student counts, reviews or success statistics
+                are invented — every session is practical and honest.
+              </p>
             </div>
           </Reveal>
         </div>

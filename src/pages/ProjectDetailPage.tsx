@@ -9,6 +9,25 @@ const accentClasses = {
   gold: "border-gold-accent/25 bg-gold-accent/10 text-gold-accent",
 };
 
+function ScreenshotPlaceholder({ icon, name }: { icon: IconName; name: string }) {
+  return (
+    <div
+      role="img"
+      aria-label={`${name} screenshots coming soon`}
+      className="flex h-full min-h-[14rem] flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-edge-strong bg-panel p-6 text-center"
+    >
+      <Icon name={icon} className="h-8 w-8 text-faint" />
+      <p className="font-display text-base font-semibold text-strong">
+        Project preview coming soon
+      </p>
+      <p className="max-w-xs text-xs leading-relaxed text-faint">
+        Real screenshots will appear here once available. No simulated or fake
+        software images are shown.
+      </p>
+    </div>
+  );
+}
+
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const project = projects.find((p) => p.slug === slug);
@@ -108,44 +127,74 @@ export function ProjectDetailPage() {
       <section className="relative pb-16">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-            {/* Overview */}
+            {/* Left column */}
             <Reveal>
               <div className="space-y-5">
-                <div className="rounded-3xl border border-edge bg-panel p-6 sm:p-8">
-                  <h2 className="font-display text-xl font-semibold text-strong">
-                    Overview
-                  </h2>
-                  <p className="mt-3 text-base leading-relaxed text-muted">
-                    {project.overview ?? project.desc}
-                  </p>
-                </div>
+                <DetailCard title="Overview">
+                  <p>{project.overview ?? project.desc}</p>
+                </DetailCard>
+
+                {project.businessProblem && (
+                  <DetailCard title="Business Problem">
+                    <p>{project.businessProblem}</p>
+                  </DetailCard>
+                )}
+
+                {project.solution && (
+                  <DetailCard title="Solution">
+                    <p>{project.solution}</p>
+                  </DetailCard>
+                )}
+
+                {project.caseStudy && (
+                  <DetailCard title="Case Study">
+                    <p>{project.caseStudy}</p>
+                  </DetailCard>
+                )}
 
                 {project.role && (
-                  <div className="rounded-3xl border border-edge bg-panel p-6 sm:p-8">
-                    <h2 className="font-display text-xl font-semibold text-strong">
-                      My Role
-                    </h2>
-                    <p className="mt-3 text-sm leading-relaxed text-soft sm:text-base">
-                      {project.role}
-                    </p>
-                  </div>
+                  <DetailCard title="Salman's Role">
+                    <p>{project.role}</p>
+                  </DetailCard>
                 )}
               </div>
             </Reveal>
 
-            {/* Focus + highlights */}
+            {/* Right column */}
             <Reveal delay={80}>
               <div className="space-y-5">
-                <div className="rounded-3xl border border-edge bg-panel p-6 sm:p-8">
-                  <h2 className="font-display text-xl font-semibold text-strong">
-                    What I Focused On
-                  </h2>
-                  <ul className="mt-4 space-y-3">
-                    {(project.focusPoints ?? []).map((fp) => (
-                      <li
-                        key={fp}
-                        className="flex items-start gap-3 text-sm text-soft"
+                <DetailCard title="Technology">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-lg border border-edge bg-panel-strong px-2.5 py-1 text-xs font-medium text-soft"
                       >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </DetailCard>
+
+                <DetailCard title="Capabilities">
+                  <ul className="space-y-3">
+                    {(project.capabilities ?? []).map((c) => (
+                      <li key={c} className="flex items-start gap-3 text-sm text-soft">
+                        <Icon
+                          name="check"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                          strokeWidth={2.2}
+                        />
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                </DetailCard>
+
+                <DetailCard title="What I Focused On">
+                  <ul className="space-y-3">
+                    {(project.focusPoints ?? []).map((fp) => (
+                      <li key={fp} className="flex items-start gap-3 text-sm text-soft">
                         <Icon
                           name="check"
                           className="mt-0.5 h-4 w-4 shrink-0 text-accent"
@@ -155,34 +204,67 @@ export function ProjectDetailPage() {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </DetailCard>
 
-                <div className="rounded-3xl border border-edge bg-panel p-6 sm:p-8">
-                  <h2 className="font-display text-xl font-semibold text-strong">
-                    Highlights
-                  </h2>
-                  <ul className="mt-4 space-y-3">
-                    {project.highlights.map((h) => (
-                      <li
-                        key={h}
-                        className="flex items-start gap-3 text-sm text-soft"
-                      >
-                        <Icon
-                          name="badge"
-                          className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                          strokeWidth={1.6}
-                        />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <DetailCard title="Honest Status">
+                  <div className="flex items-center gap-2 text-sm text-soft">
+                    <Icon name="shield" className="h-4 w-4 shrink-0 text-accent" />
+                    {project.status ??
+                      "Described honestly — no invented users, customers or performance figures."}
+                  </div>
+                </DetailCard>
               </div>
             </Reveal>
           </div>
 
+          {/* Screenshots */}
+          <Reveal className="mt-8">
+            <div>
+              <h2 className="font-display text-xl font-semibold text-strong">
+                Screenshots
+              </h2>
+              <p className="mt-1 text-sm text-muted">
+                Real screenshots only. Until they're available, this preview is
+                shown instead.
+              </p>
+              <div className="mt-4">
+                <ScreenshotPlaceholder icon={icon} name={project.name} />
+              </div>
+            </div>
+          </Reveal>
+
+          {/* CTA */}
+          <Reveal className="mt-8">
+            <div className="flex flex-col items-center gap-4 rounded-3xl border border-edge-strong bg-gradient-to-br from-panel to-transparent p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+              <div>
+                <h2 className="font-display text-lg font-semibold text-strong">
+                  Want something like this for your business?
+                </h2>
+                <p className="mt-1 text-sm text-muted">
+                  Tell me where your operations are today and we'll find the
+                  right starting point.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Link
+                  to="/book"
+                  className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                >
+                  Book a Consultation
+                  <Icon name="arrow" className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-3 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
+                >
+                  Send a Message
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+
           {/* Next project */}
-          <Reveal className="mt-10">
+          <Reveal className="mt-8">
             <Link
               to={`/projects/${next.slug}`}
               className="group flex items-center justify-between gap-4 rounded-3xl border border-edge bg-panel p-6 transition-colors hover:border-brand-500/30 hover:bg-panel-strong"
@@ -204,5 +286,20 @@ export function ProjectDetailPage() {
         </div>
       </section>
     </>
+  );
+}
+
+function DetailCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-3xl border border-edge bg-panel p-6 sm:p-8">
+      <h2 className="font-display text-xl font-semibold text-strong">{title}</h2>
+      <div className="mt-3 text-base leading-relaxed text-muted">{children}</div>
+    </div>
   );
 }

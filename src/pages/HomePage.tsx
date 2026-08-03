@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Hero } from "@/components/Hero";
 import { ServicesSection } from "@/components/Services";
+import { ConsultingSection } from "@/components/ConsultingSection";
 import { ProjectsSection } from "@/components/Projects";
 import { HowIWorkSection } from "@/components/HowIWork";
 import { JourneySection } from "@/components/Journey";
@@ -58,6 +59,7 @@ export function HomePage() {
       />
       <Hero />
       <ServicesSection />
+      <ConsultingSection />
       <ProjectsSection limit={3} />
       <HowIWorkSection />
       <JourneySection />
