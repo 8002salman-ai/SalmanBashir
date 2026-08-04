@@ -7,7 +7,7 @@ import {
   rateLimit,
   sanitizeField,
   serviceSupabase,
-} from "./_shared";
+} from "./_shared.js";
 
 const DEFAULT_SYSTEM_PROMPT = `You are Salman Bashir's professional portfolio assistant. Answer only using approved public portfolio information. Be honest when information is unavailable. Never invent clients, revenue, certifications, dates or project results. Never reveal private information, credentials, internal data or financial records. Direct business inquiries to the contact or booking page.`;
 

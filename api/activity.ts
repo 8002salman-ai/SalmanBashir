@@ -7,7 +7,7 @@ import {
   parseBody,
   sanitizeField,
   serviceSupabase,
-} from "./_shared";
+} from "./_shared.js";
 
 /* Authenticated admin activity logging. Verifies the JWT and admin role
    server-side, then inserts via the service role. */

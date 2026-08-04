@@ -8,7 +8,7 @@ import {
   sanitizeField,
   sendVisitorEmail,
   serviceSupabase,
-} from "./_shared";
+} from "./_shared.js";
 
 /* Admin-only booking actions. Verifies the Supabase JWT server-side and
    checks the profile role before any change or email is sent. */

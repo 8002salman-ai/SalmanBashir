@@ -12,7 +12,7 @@ import {
   sendAdminEmail,
   sendVisitorEmail,
   serviceSupabase,
-} from "./_shared";
+} from "./_shared.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") return BAD(res, "Method not allowed", 405);
