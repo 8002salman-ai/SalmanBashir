@@ -6,3 +6,6 @@ dist/
 .DS_Store
 
 .apitest/
+.env
+.env.local
+.env.*
