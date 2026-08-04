@@ -52,20 +52,20 @@ export function Navbar() {
           aria-label="Salman Bashir — home"
           className="group flex items-center gap-3"
         >
-          <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-xl shadow-lg shadow-brand-500/20">
+          <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl shadow-lg shadow-brand-500/20">
             <LogoMark className="block h-full w-full" />
           </span>
           <span className="hidden min-w-0 flex-col leading-tight sm:flex">
-            <span className="font-display text-sm font-semibold text-strong">
+            <span className="font-display text-base font-semibold tracking-tight text-strong">
               {personal.name}
             </span>
-            <span className="max-w-[11rem] truncate text-[11px] text-faint lg:max-w-[17rem]">
-              {personal.title}
+            <span className="max-w-[13rem] truncate text-[11px] text-faint lg:max-w-[17rem]">
+              {personal.supportingIdentity}
             </span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-0.5 lg:flex">
+        <div className="hidden items-center gap-0.5 xl:flex">
           {navLinks.map((link) => (
             <NavLink
               key={link.href}
@@ -73,7 +73,7 @@ export function Navbar() {
               aria-current={isActive(link.href) ? "true" : undefined}
               className={({ isActive: a }) =>
                 cn(
-                  "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                  "rounded-lg px-2.5 py-2 text-sm font-medium transition-colors",
                   a || isActive(link.href)
                     ? "text-accent-strong"
                     : "text-muted hover:text-strong",
@@ -99,7 +99,7 @@ export function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-edge-strong text-soft transition-colors hover:text-strong lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-edge-strong text-soft transition-colors hover:text-strong xl:hidden"
           >
             <svg
               viewBox="0 0 24 24"
@@ -123,8 +123,8 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={cn(
-          "overflow-hidden border-t border-edge bg-bg/95 backdrop-blur-xl transition-all duration-300 lg:hidden",
-          open ? "max-h-[28rem]" : "max-h-0 border-t-0",
+          "overflow-hidden border-t border-edge bg-bg/95 backdrop-blur-xl transition-all duration-300 xl:hidden",
+          open ? "max-h-[32rem]" : "max-h-0 border-t-0",
         )}
       >
         <div className="space-y-1 px-5 py-4">

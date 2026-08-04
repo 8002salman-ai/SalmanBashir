@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { Hero } from "@/components/Hero";
-import { ServicesSection } from "@/components/Services";
-import { ConsultingSection } from "@/components/ConsultingSection";
-import { ProjectsSection } from "@/components/Projects";
-import { HowIWorkSection } from "@/components/HowIWork";
-import { JourneySection } from "@/components/Journey";
+import { CoreStrength } from "@/components/CoreStrength";
 import { CredibilitySection } from "@/components/Credibility";
-import { StackSection } from "@/components/Stack";
-import { ContactSection } from "@/components/Contact";
+import { BusinessPillars } from "@/components/BusinessPillars";
+import { MarketplacePreview } from "@/components/MarketplacePreview";
+import { BusinessCards } from "@/components/BusinessCards";
+import { SourcingPreview } from "@/components/SourcingPreview";
+import { TrainingPreview } from "@/components/TrainingPreview";
+import { OpportunitySeats } from "@/components/OpportunitySeats";
+import { JourneySection } from "@/components/Journey";
+import { TeamPreview } from "@/components/TeamPreview";
 import { Seo, JsonLd, SITE } from "@/components/Seo";
 import { Reveal, Icon } from "@/components/ui";
 
@@ -54,7 +56,7 @@ export function HomePage() {
   return (
     <>
       <Seo
-        title="Salman Bashir | E-commerce Operations & Business Automation Consultant"
+        title="Salman Bashir | Marketplace Operations, Sourcing, Training & Business Systems"
         description="E-commerce operations and business automation consultant. I help online sellers organize marketplace operations, understand real profit, improve workflows and turn scattered processes into clear, practical systems."
       />
       <JsonLd
@@ -63,7 +65,7 @@ export function HomePage() {
           "@type": "ProfessionalService",
           name: "Salman Bashir",
           description:
-            "E-commerce operations and business automation consulting, marketplace systems, profit & COGS tracking, workflow automation, ERP prototyping and online training.",
+            "Marketplace operations, sourcing, training and business systems consulting built around real e-commerce operations.",
           url: `${SITE}/`,
           image: `${SITE}/og-image.png`,
           priceRange: "$$",
@@ -73,16 +75,26 @@ export function HomePage() {
             addressCountry: "PK",
           },
           sameAs: [
-            "https://www.youtube.com/@salmanbashir",
-            "https://github.com/salmanbashir",
-            "https://www.linkedin.com/in/salmanbashir",
-            "https://twitter.com/salmanbashir",
-            "https://www.instagram.com/salmanbashir",
-            "https://www.fiverr.com/salmanbashir",
-            "https://www.facebook.com/salmanbashir",
-            "https://www.tiktok.com/@salmanbashir",
+            "https://www.youtube.com/@TheAIWithSalman",
+            "https://github.com/8002salman-ai",
           ],
           makesOffer: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Marketplace services",
+                url: `${SITE}/marketplace-services`,
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Sourcing & freight planning",
+                url: `${SITE}/sourcing-freight`,
+              },
+            },
             {
               "@type": "Offer",
               itemOffered: {
@@ -99,27 +111,21 @@ export function HomePage() {
                 url: `${SITE}/training`,
               },
             },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Operations & automation projects",
-                url: `${SITE}/services`,
-              },
-            },
           ],
         }}
       />
       <Hero />
-      <ServicesSection />
-      <ConsultingSection />
-      <ProjectsSection limit={3} />
-      <HowIWorkSection />
-      <JourneySection />
+      <CoreStrength />
       <CredibilitySection />
-      <StackSection />
+      <BusinessPillars />
+      <MarketplacePreview />
+      <BusinessCards />
+      <SourcingPreview />
+      <TrainingPreview />
+      <OpportunitySeats />
+      <JourneySection />
+      <TeamPreview />
       <BookCta />
-      <ContactSection />
     </>
   );
 }

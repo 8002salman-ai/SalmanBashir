@@ -1,28 +1,24 @@
 import { Link } from "react-router-dom";
-import { personal, stats, trustItems, contact } from "@/data/content";
-import { Icon } from "@/components/ui";
+import { personal, stats, contact, profileCard } from "@/data/content";
+import { Icon, type IconName } from "@/components/ui";
 
 const profileFacts: {
-  icon: "location" | "globe" | "calendar";
+  icon: IconName;
   label: string;
   value: string;
 }[] = [
-  { icon: "location", label: "Based in", value: personal.location },
-  {
-    icon: "globe",
-    label: "Working with",
-    value: personal.markets.slice(0, 4).join(" · "),
-  },
-  { icon: "calendar", label: "Availability", value: "Remote · International" },
+  { icon: "cpu", label: "Current focus", value: profileCard.currentFocus },
+  { icon: "location", label: "Location", value: personal.location },
+  { icon: "calendar", label: "Availability", value: profileCard.availability },
 ];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-14 pt-24 sm:pb-20 sm:pt-28">
+    <section className="relative overflow-hidden pb-14 pt-24 sm:pb-20 sm:pt-32">
       {/* Background layers */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-grid mask-fade-b opacity-60" />
-        <div className="absolute left-1/2 top-[-10%] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-brand-500/20 blur-[140px] animate-pulse-glow" />
+        <div className="absolute left-1/2 top-[-10%] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-brand-500/20 blur-[140px]" />
         <div className="absolute right-[5%] top-[20%] h-[320px] w-[320px] rounded-full bg-gold-accent/10 blur-[120px]" />
         <div className="absolute left-[2%] top-[40%] h-[280px] w-[280px] rounded-full bg-brand-400/10 blur-[100px]" />
       </div>
@@ -39,9 +35,15 @@ export function Hero() {
               {personal.heroBadge}
             </div>
 
-            <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-strong sm:text-5xl lg:text-[3rem]">
+            <p className="mt-5 font-display text-xl font-semibold tracking-tight text-accent-strong sm:text-2xl">
+              {personal.name}
+            </p>
+
+            <h1 className="mt-2 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-strong sm:text-5xl lg:text-[3rem]">
               <span className="text-gradient">{personal.heroHeading}</span>
             </h1>
+
+            <p className="mt-3 font-medium text-soft">{personal.tagline}</p>
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
               {personal.heroSub}
@@ -58,10 +60,10 @@ export function Hero() {
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link
-                to="/projects"
+                to="/services"
                 className="group inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
               >
-                View My Work
+                Explore Services
                 <Icon
                   name="arrow"
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -78,7 +80,7 @@ export function Hero() {
                 className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-accent-strong transition-colors hover:text-accent"
               >
                 <Icon name="book" className="h-4 w-4" />
-                Explore Training
+                View Training
               </Link>
             </div>
 
@@ -97,7 +99,7 @@ export function Hero() {
             </dl>
           </div>
 
-          {/* Right: operator profile card */}
+          {/* Right: profile card */}
           <div className="relative animate-fade-up [animation-delay:120ms]">
             <div className="relative mx-auto max-w-md">
               <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/20 via-transparent to-gold-accent/20 blur-2xl" />
@@ -107,17 +109,12 @@ export function Hero() {
                 <div className="relative bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/10 p-5">
                   <div className="pointer-events-none absolute inset-0 bg-dots opacity-20" />
                   <div className="flex items-center gap-4">
-                    <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl shadow-lg shadow-brand-500/30">
-                      <img
-                        src="/branding/salman-urdu-logo-dark.svg"
-                        alt=""
-                        className="logo-theme-dark h-full w-full"
-                      />
-                      <img
-                        src="/branding/salman-urdu-logo-light.svg"
-                        alt=""
-                        className="logo-theme-light h-full w-full"
-                      />
+                    <span
+                      className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-dashed border-edge-strong bg-panel font-display text-xl font-semibold text-faint"
+                      role="img"
+                      aria-label={profileCard.photoAlt}
+                    >
+                      {personal.monogram}
                     </span>
                     <div>
                       <p className="font-display text-lg font-semibold text-strong">
@@ -133,16 +130,20 @@ export function Hero() {
 
                 {/* body */}
                 <div className="space-y-2.5 border-t border-edge p-5">
+                  <p className="rounded-xl border border-edge bg-panel p-3 text-xs leading-relaxed text-muted">
+                    {profileCard.message}
+                  </p>
+
                   {profileFacts.map((f) => (
                     <div key={f.label} className="flex items-center gap-3">
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-edge bg-panel text-accent-strong">
                         <Icon name={f.icon} className="h-4 w-4" />
                       </span>
-                      <div>
+                      <div className="min-w-0">
                         <p className="text-[10px] uppercase tracking-wide text-faint">
                           {f.label}
                         </p>
-                        <p className="text-sm font-medium text-strong">
+                        <p className="truncate text-sm font-medium text-strong">
                           {f.value}
                         </p>
                       </div>
@@ -181,30 +182,6 @@ export function Hero() {
                   Embani ERP
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust strip */}
-        <div className="mt-12 border-y border-edge py-4">
-          <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-faint">
-            A combination most consultants don't bring
-          </p>
-          <div className="mask-fade-edges overflow-hidden">
-            <div className="flex w-max animate-marquee items-center gap-8">
-              {[...trustItems, ...trustItems].map((item, i) => (
-                <span
-                  key={i}
-                  className="flex items-center gap-3 whitespace-nowrap text-sm font-medium text-muted"
-                >
-                  <Icon
-                    name="badge"
-                    className="h-4 w-4 shrink-0 text-brand-500/70"
-                    strokeWidth={1.8}
-                  />
-                  {item}
-                </span>
-              ))}
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { personal, contact, navLinks } from "@/data/content";
+import { personal, contact, footerLinks } from "@/data/content";
 import { Icon, type IconName } from "@/components/ui";
 import { LogoMark } from "@/components/Logo";
 
@@ -70,7 +70,7 @@ export function Footer() {
               Navigate
             </p>
             <ul className="mt-3 space-y-2.5">
-              {navLinks.map((l) => (
+              {footerLinks.map((l) => (
                 <li key={l.href}>
                   <Link
                     to={l.href}
@@ -80,22 +80,6 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  to="/resume"
-                  className="text-sm text-muted transition-colors hover:text-strong"
-                >
-                  Resume
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/privacy"
-                  className="text-sm text-muted transition-colors hover:text-strong"
-                >
-                  Privacy
-                </Link>
-              </li>
             </ul>
           </div>
 

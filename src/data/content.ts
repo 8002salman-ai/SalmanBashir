@@ -7,8 +7,10 @@ export const personal = {
   shortTitle: "E-commerce Operations · Marketplace Systems · Automation",
   role: "E-commerce Operations & Business Automation Consultant",
   supportingIdentity:
-    "Online Business Operator · Marketplace Systems Builder · AI-Assisted Product Creator",
+    "Marketplace Operator · Sourcing Specialist · Systems Builder · Trainer",
   tagline: "Built by experience. Driven by purpose.",
+  coreMessage:
+    "I understand the operation first. Then I build the system around it.",
   statement:
     "I turn real marketplace challenges into practical systems, clear workflows and smarter business decisions.",
   location: "Pakistan",
@@ -23,7 +25,7 @@ export const personal = {
   locationLine:
     "Based in Pakistan and available for remote work, consulting and training with clients connected to the United States, United Kingdom, Norway, Sweden and international online markets.",
   heroHeading:
-    "E-commerce Operations, Marketplace Systems & Business Automation",
+    "Marketplace Operations, Sourcing, Training & Business Systems",
   heroSub:
     "I help online sellers organize marketplace operations, understand real profit, improve workflows and turn scattered business processes into clear, practical systems.",
   heroCredibility:
@@ -967,8 +969,297 @@ export const idealClients = [
 export const navLinks = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Marketplace", href: "/marketplace-services" },
+  { label: "Sourcing", href: "/sourcing-freight" },
+  { label: "Business", href: "/business-relationships" },
+  { label: "Training", href: "/training" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
+];
+
+export const footerLinks = [
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Marketplace Services", href: "/marketplace-services" },
+  { label: "Sourcing & Freight", href: "/sourcing-freight" },
+  { label: "Business Relationships", href: "/business-relationships" },
   { label: "Training", href: "/training" },
   { label: "Projects", href: "/projects" },
   { label: "Journey", href: "/journey" },
+  { label: "Team", href: "/team" },
+  { label: "Community", href: "/community" },
   { label: "Contact", href: "/contact" },
+  { label: "Book a Consultation", href: "/book" },
+  { label: "Resume", href: "/resume" },
+  { label: "Privacy", href: "/privacy" },
+];
+
+/* Phase-1 homepage & business hub content */
+
+export const profileCard = {
+  photoAlt: "Salman Bashir portrait placeholder",
+  message:
+    "I work hands-on across marketplaces first, then build the systems around the way the business really runs.",
+  currentFocus: "Embani ERP — internal operations prototype",
+  availability: "Remote consulting · Project work · Online training",
+};
+
+export type StrengthCard = {
+  icon: IconName;
+  title: string;
+  desc: string;
+  points: string[];
+};
+
+export const coreStrengths: StrengthCard[] = [
+  {
+    icon: "layers",
+    title: "Marketplace Operations",
+    desc: "Running real listings, inventory and sales across multiple marketplaces every day.",
+    points: ["Listings & optimization", "Inventory control", "Orders & payouts"],
+  },
+  {
+    icon: "chart",
+    title: "Profit & COGS",
+    desc: "Tracking true cost so decisions are made on real margin, not surface revenue.",
+    points: ["Fee & tax mapping", "COGS tracking", "Profit reporting"],
+  },
+  {
+    icon: "bolt",
+    title: "Workflow Automation",
+    desc: "Replacing repetitive manual steps with structured workflows and connected tools.",
+    points: ["Process mapping", "Google Sheets systems", "Tool integrations"],
+  },
+  {
+    icon: "cpu",
+    title: "Business Systems & ERP",
+    desc: "Planning internal tools and ERP prototypes that match how the business actually runs.",
+    points: ["ERP workflow design", "Dashboard planning", "AI-assisted prototyping"],
+  },
+];
+
+export const businessPillars: {
+  icon: IconName;
+  title: string;
+  desc: string;
+  href: string;
+}[] = [
+  {
+    icon: "cart",
+    title: "Marketplace Services",
+    desc: "Operations, profit tracking, automation and systems for online sellers.",
+    href: "/marketplace-services",
+  },
+  {
+    icon: "box",
+    title: "Sourcing & Freight",
+    desc: "Sourcing research, supplier coordination and freight planning notes.",
+    href: "/sourcing-freight",
+  },
+  {
+    icon: "briefcase",
+    title: "Business Relationships",
+    desc: "Ongoing operational support and project-based collaborations.",
+    href: "/business-relationships",
+  },
+  {
+    icon: "book",
+    title: "Training",
+    desc: "Structured training for sellers, operators and growing teams.",
+    href: "/training",
+  },
+];
+
+export const marketplacePreview: StrengthCard[] = [
+  {
+    icon: "cart",
+    title: "Multi-Marketplace Listings",
+    desc: "Organize listings, variations and inventory across the platforms you actually sell on.",
+    points: ["Listing structure", "Catalog hygiene", "Channel planning"],
+  },
+  {
+    icon: "chart",
+    title: "Profit & COGS Reporting",
+    desc: "See real margin per product after fees, tax, shipping and cost of goods.",
+    points: ["Fee mapping", "COGS tracking", "Profit dashboards"],
+  },
+  {
+    icon: "bolt",
+    title: "Workflow Automation",
+    desc: "Remove repetitive manual steps with structured sheets, scripts and integrations.",
+    points: ["Process mapping", "Sheets systems", "Tool connections"],
+  },
+  {
+    icon: "settings",
+    title: "ERP & Integration Planning",
+    desc: "Prototype internal tools and ERP workflows that fit how your team and money move.",
+    points: ["ERP workflows", "Data structure", "Prototype builds"],
+  },
+];
+
+export type BusinessCard = {
+  name: string;
+  type: string;
+  status: "Active Development" | "Planning" | "Placeholder" | "Live";
+  desc: string;
+  href?: string;
+  note: string;
+};
+
+export const businessCards: BusinessCard[] = [
+  {
+    name: "Embani ERP",
+    type: "Internal operations project",
+    status: "Active Development",
+    desc: "An internal operations prototype for inventory, sales and profit workflows.",
+    href: "/projects/embani-erp",
+    note: "Built around the way a real business works.",
+  },
+  {
+    name: "Himalayan Koh",
+    type: "Business relationship",
+    status: "Planning",
+    desc: "A planned collaboration around marketplace and sourcing operations.",
+    href: "/business-relationships",
+    note: "Details shared when the scope is finalized.",
+  },
+  {
+    name: "Shin Dev",
+    type: "Marketplace brand",
+    status: "Placeholder",
+    desc: "A placeholder card for a future marketplace brand and storefront.",
+    note: "Card reserved — launching when ready.",
+  },
+  {
+    name: "Fiverr",
+    type: "Service channel",
+    status: "Placeholder",
+    desc: "A planned service channel for marketplace and automation work.",
+    note: "Profile will be linked when live.",
+  },
+  {
+    name: "Salman Bashir Consulting",
+    type: "Consulting practice",
+    status: "Live",
+    desc: "Consulting, systems and training built around real marketplace operations.",
+    href: "/services",
+    note: "Consulting and project work available now.",
+  },
+];
+
+export const sourcingPreview: StrengthCard[] = [
+  {
+    icon: "globe",
+    title: "Sourcing Research",
+    desc: "Structured research on products, suppliers and markets before committing.",
+    points: ["Product research", "Supplier shortlists", "Cost analysis"],
+  },
+  {
+    icon: "box",
+    title: "Freight & Logistics Notes",
+    desc: "Practical notes on routes, costs and documents — operational guidance, not a license.",
+    points: ["Route planning", "Cost comparison", "Document checklists"],
+  },
+  {
+    icon: "sheet",
+    title: "Supplier Scorecards",
+    desc: "Track supplier performance, quotes and reliability in one place.",
+    points: ["Quote tracking", "Lead-time history", "Quality notes"],
+  },
+];
+
+export const trainingPreview: StrengthCard[] = [
+  {
+    icon: "cart",
+    title: "Marketplace Seller Basics",
+    desc: "The operational side of selling: listings, orders, inventory and payouts.",
+    points: ["Listing setup", "Order handling", "Payout basics"],
+  },
+  {
+    icon: "chart",
+    title: "Profit & COGS Fundamentals",
+    desc: "Understand what a sale really costs and how to read real margin.",
+    points: ["Fees & tax", "COGS mapping", "Profit sheets"],
+  },
+  {
+    icon: "sheet",
+    title: "Google Sheets Operations",
+    desc: "Build practical sheets for sales tracking, inventory and reporting.",
+    points: ["Formulas", "Dashboards", "Templates"],
+  },
+  {
+    icon: "cpu",
+    title: "AI-Assisted Product Development",
+    desc: "Use AI tools responsibly in research, design and product planning.",
+    points: ["Prompt workflows", "Research", "Prototyping"],
+  },
+  {
+    icon: "settings",
+    title: "ERP Workflow Fundamentals",
+    desc: "The concepts behind ERP workflows for teams moving off spreadsheets.",
+    points: ["Master data", "Process flows", "Reporting"],
+  },
+  {
+    icon: "bolt",
+    title: "Automation Foundations",
+    desc: "Where to automate, what to keep manual, and how to structure it.",
+    points: ["Automation audit", "Tool choices", "SOPs"],
+  },
+];
+
+export const opportunitySeats: {
+  icon: IconName;
+  title: string;
+  desc: string;
+  cta: string;
+  href: string;
+}[] = [
+  {
+    icon: "users",
+    title: "Opportunity Seats",
+    desc: "Limited spots for consulting and project engagements each month so every client gets real attention.",
+    cta: "Reserve a seat",
+    href: "/book",
+  },
+  {
+    icon: "cpu",
+    title: "Practice Lab",
+    desc: "A planned space for experiments, prototypes and applied learning — coming soon.",
+    cta: "Visit the lab",
+    href: "/community",
+  },
+];
+
+export type TeamRole = {
+  role: string;
+  desc: string;
+  placeholder: boolean;
+};
+
+export const teamRoles: TeamRole[] = [
+  {
+    role: "Founder & Lead Consultant",
+    desc: "Salman Bashir — operator, systems builder and trainer.",
+    placeholder: false,
+  },
+  {
+    role: "Marketplace Operations",
+    desc: "Role reserved for a future operations specialist.",
+    placeholder: true,
+  },
+  {
+    role: "Sourcing & Freight",
+    desc: "Role reserved for a future sourcing and logistics coordinator.",
+    placeholder: true,
+  },
+  {
+    role: "Automation & Systems",
+    desc: "Role reserved for a future automation and systems builder.",
+    placeholder: true,
+  },
+  {
+    role: "Community & Training",
+    desc: "Role reserved for a future community and training lead.",
+    placeholder: true,
+  },
 ];

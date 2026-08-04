@@ -11,6 +11,11 @@ import { ResumePage } from "@/pages/ResumePage";
 import { ContactPage } from "@/pages/ContactPage";
 import { BookPage } from "@/pages/BookPage";
 import { PrivacyPage } from "@/pages/PrivacyPage";
+import { MarketplaceServicesPage } from "@/pages/MarketplaceServicesPage";
+import { SourcingFreightPage } from "@/pages/SourcingFreightPage";
+import { BusinessRelationshipsPage } from "@/pages/BusinessRelationshipsPage";
+import { TeamPage } from "@/pages/TeamPage";
+import { CommunityPage } from "@/pages/CommunityPage";
 import { AdminLoginPage } from "@/pages/admin/AdminLoginPage";
 import { AdminDashboardPage } from "@/pages/admin/AdminDashboardPage";
 import { AdminGuard } from "@/components/admin/AdminGuard";
@@ -29,6 +34,11 @@ export default function App() {
         <Route path="/resume" element={<ResumePage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/book" element={<BookPage />} />
+        <Route path="/marketplace-services" element={<MarketplaceServicesPage />} />
+        <Route path="/sourcing-freight" element={<SourcingFreightPage />} />
+        <Route path="/business-relationships" element={<BusinessRelationshipsPage />} />
+        <Route path="/team" element={<TeamPage />} />
+        <Route path="/community" element={<CommunityPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="*" element={<HomePage />} />
       </Route>

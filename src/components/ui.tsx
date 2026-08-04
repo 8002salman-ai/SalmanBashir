@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { cn } from "@/utils/cn";
 
 /* Reveal on scroll */
@@ -364,5 +365,153 @@ export function Icon({
     >
       {paths[name]}
     </svg>
+  );
+}
+
+/* Status badge — consistent tone for "Active / Planning / Live / Placeholder" */
+const statusTones = {
+  live: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
+  active: "border-brand-500/30 bg-brand-500/10 text-accent-strong",
+  planning: "border-gold-accent/30 bg-gold-accent/10 text-gold-accent",
+  placeholder: "border-edge-strong bg-panel text-faint",
+} as const;
+
+export function StatusBadge({
+  tone,
+  children,
+  className,
+}: {
+  tone: keyof typeof statusTones;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium",
+        statusTones[tone],
+        className,
+      )}
+    >
+      <span className="h-1.5 w-1.5 rounded-full bg-current opacity-80" />
+      {children}
+    </span>
+  );
+}
+
+/* Accordion — keyboard accessible disclosure */
+export function Accordion({
+  items,
+  className,
+}: {
+  items: { question: string; answer: ReactNode }[];
+  className?: string;
+}) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  return (
+    <div className={cn("divide-y divide-edge overflow-hidden rounded-2xl border border-edge bg-panel", className)}>
+      {items.map((item, i) => {
+        const open = openIndex === i;
+        return (
+          <div key={i}>
+            <h3>
+              <button
+                type="button"
+                aria-expanded={open}
+                aria-controls={`acc-panel-${i}`}
+                id={`acc-button-${i}`}
+                onClick={() => setOpenIndex(open ? null : i)}
+                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold text-strong transition-colors hover:text-accent-strong sm:text-base"
+              >
+                {item.question}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-edge text-muted transition-transform duration-300",
+                    open && "rotate-45 border-brand-500/40 text-accent-strong",
+                  )}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+                    <path d="M12 5v14M5 12h14" strokeLinecap="round" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            <div
+              id={`acc-panel-${i}`}
+              role="region"
+              aria-labelledby={`acc-button-${i}`}
+              className={cn(
+                "grid transition-all duration-300",
+                open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+              )}
+            >
+              <div className="overflow-hidden">
+                <div className="px-5 pb-5 text-sm leading-relaxed text-muted">
+                  {item.answer}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* CtaCard — consistent call-to-action block used across internal pages */
+export function CtaCard({
+  eyebrow,
+  title,
+  description,
+  ctaLabel,
+  ctaHref,
+}: {
+  eyebrow?: string;
+  title: ReactNode;
+  description?: ReactNode;
+  ctaLabel: string;
+  ctaHref: string;
+}) {
+  return (
+    <section className="relative py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl border border-edge-strong bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/10 p-8 sm:p-10">
+            <div className="pointer-events-none absolute inset-0 -z-10">
+              <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand-500/20 blur-[90px]" />
+              <div className="absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-gold-accent/10 blur-[90px]" />
+            </div>
+            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+              <div>
+                {eyebrow && (
+                  <p className="text-xs font-semibold uppercase tracking-wider text-accent-strong">
+                    {eyebrow}
+                  </p>
+                )}
+                <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-strong sm:text-3xl">
+                  {title}
+                </h2>
+                {description && (
+                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+                    {description}
+                  </p>
+                )}
+              </div>
+              <Link
+                to={ctaHref}
+                className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+              >
+                {ctaLabel}
+                <Icon
+                  name="arrow"
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
 }
