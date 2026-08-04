@@ -1,6 +1,6 @@
 import { PageHero } from "@/components/PageHero";
 import { JourneySection } from "@/components/Journey";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { Link } from "react-router-dom";
 import { personal } from "@/data/content";
 import { Reveal, Icon } from "@/components/ui";
@@ -13,6 +13,7 @@ export function JourneyPage() {
         description="A practical transition from hands-on marketplace operations to business systems, ERP workflows and AI-assisted product development — described honestly in broad phases."
         path="/journey"
       />
+    <BreadcrumbJsonLd items={[{ name: "Journey", path: "/journey" }]} />
       <PageHero
         eyebrow="My Journey"
         title={

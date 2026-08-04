@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { personal, contact } from "@/data/content";
+import { submitContact } from "@/lib/api";
 import { Reveal, Icon } from "@/components/ui";
 
 const serviceOptions = [
@@ -37,12 +38,15 @@ const socialMeta: { key: string; label: string; icon: "youtube" | "github" | "li
 
 export function ContactSection() {
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [lastEmail, setLastEmail] = useState("");
 
   const socialLinks = socialMeta
     .map((s) => ({ ...s, url: contact.socials[s.key] }))
     .filter((s) => Boolean(s.url));
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const fd = new FormData(form);
@@ -60,29 +64,28 @@ export function ContactSection() {
     const method = String(fd.get("method") ?? "");
     const message = String(fd.get("message") ?? "");
 
-    const subject = `Project inquiry${name ? ` from ${name}` : ""}`;
-    const body = [
-      name && `Name: ${name}`,
-      email && `Email: ${email}`,
-      business && `Business: ${business}`,
-      country && `Country: ${country}`,
-      marketplace && `Marketplace(s): ${marketplace}`,
-      service && `Service: ${service}`,
-      budget && `Budget: ${budget}`,
-      method && `Preferred meeting method: ${method}`,
-      message && "",
-      message && message,
-    ]
-      .filter(Boolean)
-      .join("\n");
+    setSubmitting(true);
+    setSubmitError("");
+    const result = await submitContact({
+      name,
+      email,
+      business,
+      country,
+      marketplace,
+      service,
+      budget,
+      meetingMethod: method,
+      message,
+    });
+    setSubmitting(false);
 
-    const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailto;
-    form.reset();
-    setSent(true);
+    if (result.ok) {
+      setLastEmail(email);
+      form.reset();
+      setSent(true);
+    } else {
+      setSubmitError(result.message);
+    }
   };
 
   return (
@@ -216,17 +219,15 @@ export function ContactSection() {
                 {sent ? (
                   <div className="flex h-full flex-col items-center justify-center py-12 text-center">
                     <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/15 text-accent-strong">
-                      <Icon name="mail2" className="h-7 w-7" strokeWidth={1.8} />
+                      <Icon name="check" className="h-7 w-7" strokeWidth={2} />
                     </span>
                     <h3 className="mt-5 font-display text-xl font-semibold text-strong">
-                      Your email app should now be open
+                      Message sent
                     </h3>
                     <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">
-                      A message has been pre-filled for you — send it to{" "}
-                      <span className="font-medium text-strong">
-                        {contact.email}
-                      </span>{" "}
-                      and I'll get back to you shortly.
+                      Thanks — your message is on its way. I'll reply to{" "}
+                      <span className="font-medium text-strong">{lastEmail}</span>{" "}
+                      shortly.
                     </p>
                     <button
                       type="button"
@@ -316,19 +317,29 @@ export function ContactSection() {
                         className="w-full resize-none rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong placeholder:text-faint outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong"
                       />
                     </div>
+                    {submitError && (
+                      <p
+                        role="alert"
+                        className="rounded-lg border border-red-800 bg-red-950/40 px-3 py-2 text-xs text-red-300"
+                      >
+                        {submitError} Please try again or email {contact.email} directly.
+                      </p>
+                    )}
                     <button
                       type="submit"
-                      className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                      disabled={submitting}
+                      className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30 disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Send Project Details
-                      <Icon
-                        name="send"
-                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
+                      {submitting ? "Sending…" : "Send Project Details"}
+                      {!submitting && (
+                        <Icon
+                          name="send"
+                          className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
+                      )}
                     </button>
                     <p className="text-center text-[11px] leading-relaxed text-faint">
-                      Submitting opens your email app with a pre-filled message
-                      to {contact.email}.
+                      Sent securely to {contact.email} — never shared.
                     </p>
                   </form>
                 )}

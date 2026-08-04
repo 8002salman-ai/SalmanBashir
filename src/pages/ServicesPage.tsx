@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/PageHero";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { services } from "@/data/content";
 import { Link } from "react-router-dom";
 import { Reveal, Icon } from "@/components/ui";
@@ -18,6 +18,7 @@ export function ServicesPage() {
         description="E-commerce operations reviews, profit and COGS dashboards, marketplace workflow automation, AI-assisted ERP prototyping, integration planning and SOP design — built around how your business actually runs."
         path="/services"
       />
+    <BreadcrumbJsonLd items={[{ name: "Services", path: "/services" }]} />
       <PageHero
         eyebrow="Services"
         title={

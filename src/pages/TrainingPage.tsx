@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { training, trainingFormats, contact } from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
@@ -12,6 +12,7 @@ export function TrainingPage() {
         description="Practical online training built from hands-on marketplace experience: eBay, Depop, Mercari, multi-marketplace operations and online business systems — 1:1, small group, recorded or live."
         path="/training"
       />
+    <BreadcrumbJsonLd items={[{ name: "Training", path: "/training" }]} />
       <PageHero
         eyebrow="Training"
         title={

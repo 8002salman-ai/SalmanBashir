@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { projects } from "@/data/content";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { Reveal, Icon, type IconName } from "@/components/ui";
 import { cn } from "@/utils/cn";
 
@@ -67,6 +67,12 @@ export function ProjectDetailPage() {
         title={`${project.name} | Salman Bashir — Projects`}
         description={project.desc}
         path={`/projects/${project.slug}`}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Projects", path: "/projects" },
+          { name: project.name, path: `/projects/${project.slug}` },
+        ]}
       />
       {/* Hero */}
       <section className="relative overflow-hidden pb-10 pt-24 sm:pb-14 sm:pt-32">

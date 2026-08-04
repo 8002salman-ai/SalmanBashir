@@ -1,6 +1,6 @@
 import { PageHero } from "@/components/PageHero";
 import { ProjectsSection } from "@/components/Projects";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 
 export function ProjectsPage() {
   return (
@@ -10,6 +10,7 @@ export function ProjectsPage() {
         description="Systems built around real business problems: an e-commerce ERP platform, a business operations platform, multi-marketplace operations and Google Sheets sales workspaces — described honestly."
         path="/projects"
       />
+    <BreadcrumbJsonLd items={[{ name: "Projects", path: "/projects" }]} />
       <PageHero
         eyebrow="Projects"
         title={

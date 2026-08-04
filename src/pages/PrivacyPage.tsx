@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/PageHero";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { privacy, contact } from "@/data/content";
 import { Reveal, Icon } from "@/components/ui";
 
@@ -11,6 +11,7 @@ export function PrivacyPage() {
         description="A simple, honest privacy policy for salmanbashir.vercel.app — no data selling, no ads, no third-party tracking."
         path="/privacy"
       />
+    <BreadcrumbJsonLd items={[{ name: "Privacy", path: "/privacy" }]} />
       <PageHero
         eyebrow="Privacy"
         title={

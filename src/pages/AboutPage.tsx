@@ -2,7 +2,7 @@ import { PageHero } from "@/components/PageHero";
 import { AboutSection } from "@/components/About";
 import { StackSection } from "@/components/Stack";
 import { CredibilitySection } from "@/components/Credibility";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { personal } from "@/data/content";
 
 export function AboutPage() {
@@ -13,6 +13,7 @@ export function AboutPage() {
         description="Business experience first, technology built around it. Learn how Salman Bashir turns real marketplace challenges into practical systems, clear workflows and smarter business decisions."
         path="/about"
       />
+    <BreadcrumbJsonLd items={[{ name: "About", path: "/about" }]} />
       <PageHero
         eyebrow="About"
         title={

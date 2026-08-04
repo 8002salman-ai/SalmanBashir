@@ -8,7 +8,7 @@ import { JourneySection } from "@/components/Journey";
 import { CredibilitySection } from "@/components/Credibility";
 import { StackSection } from "@/components/Stack";
 import { ContactSection } from "@/components/Contact";
-import { Seo } from "@/components/Seo";
+import { Seo, JsonLd, SITE } from "@/components/Seo";
 import { Reveal, Icon } from "@/components/ui";
 
 function BookCta() {
@@ -56,6 +56,59 @@ export function HomePage() {
       <Seo
         title="Salman Bashir | E-commerce Operations & Business Automation Consultant"
         description="E-commerce operations and business automation consultant. I help online sellers organize marketplace operations, understand real profit, improve workflows and turn scattered processes into clear, practical systems."
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "Salman Bashir",
+          description:
+            "E-commerce operations and business automation consulting, marketplace systems, profit & COGS tracking, workflow automation, ERP prototyping and online training.",
+          url: `${SITE}/`,
+          image: `${SITE}/og-image.png`,
+          priceRange: "$$",
+          areaServed: "Worldwide",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "PK",
+          },
+          sameAs: [
+            "https://www.youtube.com/@salmanbashir",
+            "https://github.com/salmanbashir",
+            "https://www.linkedin.com/in/salmanbashir",
+            "https://twitter.com/salmanbashir",
+            "https://www.instagram.com/salmanbashir",
+            "https://www.fiverr.com/salmanbashir",
+            "https://www.facebook.com/salmanbashir",
+            "https://www.tiktok.com/@salmanbashir",
+          ],
+          makesOffer: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Consulting",
+                url: `${SITE}/book`,
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Online training",
+                url: `${SITE}/training`,
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Operations & automation projects",
+                url: `${SITE}/services`,
+              },
+            },
+          ],
+        }}
       />
       <Hero />
       <ServicesSection />

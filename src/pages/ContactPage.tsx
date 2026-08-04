@@ -1,6 +1,6 @@
 import { PageHero } from "@/components/PageHero";
 import { ContactSection } from "@/components/Contact";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 
 export function ContactPage() {
   return (
@@ -10,6 +10,7 @@ export function ContactPage() {
         description="Get in touch about marketplace operations, profit dashboards, workflow automation, ERP prototyping or online training. Based in Pakistan, working remotely with clients internationally."
         path="/contact"
       />
+    <BreadcrumbJsonLd items={[{ name: "Contact", path: "/contact" }]} />
       <PageHero
         eyebrow="Contact"
         title={

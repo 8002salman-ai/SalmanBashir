@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { resume, contact } from "@/data/content";
 import { Reveal, Icon } from "@/components/ui";
 
@@ -12,6 +12,7 @@ export function ResumePage() {
         description="A detailed resume is being prepared and will be available here. In the meantime, request a tailored overview of relevant work by email or during a call."
         path="/resume"
       />
+    <BreadcrumbJsonLd items={[{ name: "Resume", path: "/resume" }]} />
       <PageHero
         eyebrow="Resume"
         title={

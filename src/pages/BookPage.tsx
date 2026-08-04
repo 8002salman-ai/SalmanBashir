@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
-import { Seo } from "@/components/Seo";
+import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { book, contact } from "@/data/content";
+import { submitBooking } from "@/lib/api";
 import { Reveal, Icon } from "@/components/ui";
 
 export function BookPage() {
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const fd = new FormData(form);
@@ -28,32 +31,29 @@ export function BookPage() {
     const method = String(fd.get("method") ?? "");
     const notes = String(fd.get("notes") ?? "");
 
-    const subject = `Booking request${name ? ` from ${name}` : ""}`;
-    const body = [
-      `Booking status: pending review (not confirmed until approved)`,
-      name && `Name: ${name}`,
-      email && `Email: ${email}`,
-      country && `Country: ${country}`,
-      business && `Business: ${business}`,
-      service && `Service: ${service}`,
-      date && `Preferred date: ${date}`,
-      time && `Preferred time: ${time}`,
-      timezone && `Time zone: ${timezone}`,
-      duration && `Session duration: ${duration}`,
-      method && `Meeting method: ${method}`,
-      notes && "",
-      notes && `Notes: ${notes}`,
-    ]
-      .filter(Boolean)
-      .join("\n");
+    setSubmitting(true);
+    setSubmitError("");
+    const result = await submitBooking({
+      name,
+      email,
+      country,
+      business,
+      service,
+      preferredDate: date,
+      preferredTime: time,
+      timezone,
+      duration,
+      meetingMethod: method,
+      notes,
+    });
+    setSubmitting(false);
 
-    const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailto;
-    form.reset();
-    setSent(true);
+    if (result.ok) {
+      form.reset();
+      setSent(true);
+    } else {
+      setSubmitError(result.message);
+    }
   };
 
   return (
@@ -63,6 +63,7 @@ export function BookPage() {
         description="Book a consultation call, project work or online training. Choose a session, share your details and send the request — approved bookings get meeting details after review."
         path="/book"
       />
+    <BreadcrumbJsonLd items={[{ name: "Book a consultation", path: "/book" }]} />
       <PageHero
         eyebrow="Book"
         title={
@@ -207,18 +208,18 @@ export function BookPage() {
                   {sent ? (
                     <div className="flex h-full flex-col items-center justify-center py-12 text-center">
                       <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/15 text-accent-strong">
-                        <Icon name="calendar" className="h-7 w-7" strokeWidth={1.8} />
+                        <Icon name="check" className="h-7 w-7" strokeWidth={2} />
                       </span>
                       <h3 className="mt-5 font-display text-xl font-semibold text-strong">
-                        Your email app should now be open
+                        Request received
                       </h3>
                       <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">
-                        Your booking request has been pre-filled. Send it and I'll
-                        review it personally — the booking is{" "}
+                        Your booking request has been sent and is{" "}
                         <span className="font-medium text-strong">
                           pending review
-                        </span>{" "}
-                        until I reply with approval and meeting details.
+                        </span>
+                        . I'll reply to confirm availability and share meeting
+                        details once approved.
                       </p>
                       <button
                         type="button"
@@ -338,20 +339,31 @@ export function BookPage() {
                           className="w-full resize-none rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong placeholder:text-faint outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong"
                         />
                       </div>
+                      {submitError && (
+                        <p
+                          role="alert"
+                          className="rounded-lg border border-red-800 bg-red-950/40 px-3 py-2 text-xs text-red-300"
+                        >
+                          {submitError} Please try again or email {contact.email} directly.
+                        </p>
+                      )}
                       <button
                         type="submit"
-                        className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                        disabled={submitting}
+                        className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30 disabled:cursor-not-allowed disabled:opacity-60"
                       >
-                        Send Booking Request
-                        <Icon
-                          name="send"
-                          className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        />
+                        {submitting ? "Sending…" : "Send Booking Request"}
+                        {!submitting && (
+                          <Icon
+                            name="send"
+                            className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          />
+                        )}
                       </button>
                       <p className="text-center text-[11px] leading-relaxed text-faint">
-                        Submitting opens your email app with a pre-filled request
-                        to {contact.email}. Your booking stays pending review until
-                        I confirm it.
+                        Your request goes to {contact.email} and stays{" "}
+                        <span className="text-strong">pending review</span> until I
+                        confirm it with meeting details.
                       </p>
                     </form>
                   )}

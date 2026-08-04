@@ -11,6 +11,9 @@ import { ResumePage } from "@/pages/ResumePage";
 import { ContactPage } from "@/pages/ContactPage";
 import { BookPage } from "@/pages/BookPage";
 import { PrivacyPage } from "@/pages/PrivacyPage";
+import { AdminLoginPage } from "@/pages/admin/AdminLoginPage";
+import { AdminDashboardPage } from "@/pages/admin/AdminDashboardPage";
+import { AdminGuard } from "@/components/admin/AdminGuard";
 
 export default function App() {
   return (
@@ -29,6 +32,15 @@ export default function App() {
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="*" element={<HomePage />} />
       </Route>
+      <Route path="/admin" element={<AdminLoginPage />} />
+      <Route
+        path="/admin/dashboard"
+        element={
+          <AdminGuard>
+            <AdminDashboardPage />
+          </AdminGuard>
+        }
+      />
     </Routes>
   );
 }
