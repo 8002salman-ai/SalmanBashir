@@ -1,15 +1,19 @@
 import { PageHero } from "@/components/PageHero";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
-import { marketplacePreview } from "@/data/content";
+import {
+  marketplaces,
+  marketplaceServiceGroups,
+  marketplaceDisclaimer,
+} from "@/data/content";
 import { Link } from "react-router-dom";
-import { Reveal, SectionHeading, Accordion, CtaCard, Icon } from "@/components/ui";
+import { Reveal, Accordion, CtaCard, Icon } from "@/components/ui";
 
 export function MarketplaceServicesPage() {
   return (
     <>
       <Seo
         title="Marketplace Services | Salman Bashir"
-        description="Marketplace operations support for online sellers — listings, inventory, profit and COGS reporting, workflow automation and ERP planning. Built from hands-on marketplace experience."
+        description="Marketplace operations support — listings and catalogue, operations, profit and records, and workflow support across eBay, Depop, Mercari, Poshmark, Etsy, TikTok Shop and AliExpress."
         path="/marketplace-services"
       />
       <BreadcrumbJsonLd
@@ -21,32 +25,54 @@ export function MarketplaceServicesPage() {
         eyebrow="Marketplace Services"
         title={
           <>
-            Operations, profit and systems{" "}
-            <span className="text-gradient-brand">for online sellers</span>
+            Order for the marketplaces{" "}
+            <span className="text-gradient-brand">you actually sell on</span>
           </>
         }
-        description="Hands-on marketplace operations experience applied to the platforms sellers actually use. I organize the work, make profit visible and remove repetitive manual steps."
+        description="Practical services across listings, operations, profit records and workflow support — built from hands-on selling, not from theory."
       />
 
-      <section className="relative pb-4 pt-2">
+      {/* Platforms */}
+      <section className="relative pb-2 pt-2">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-wider text-faint">
+              Platforms I work from hands-on experience
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {marketplaces.map((m) => (
+                <span
+                  key={m}
+                  className="rounded-lg border border-edge bg-panel px-3 py-1.5 text-sm font-medium text-soft"
+                >
+                  {m}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Service groups */}
+      <section className="relative pb-4 pt-8">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {marketplacePreview.map((s, i) => (
-              <Reveal key={s.title} delay={i * 80}>
-                <article className="h-full rounded-2xl border border-edge bg-panel p-5">
+            {marketplaceServiceGroups.map((g, i) => (
+              <Reveal key={g.title} delay={i * 80}>
+                <article className="flex h-full flex-col rounded-2xl border border-edge bg-panel p-5">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
-                    <Icon name={s.icon} className="h-5 w-5" />
+                    <Icon name={g.icon} className="h-5 w-5" />
                   </span>
                   <h2 className="mt-4 font-display text-base font-semibold text-strong">
-                    {s.title}
+                    {g.title}
                   </h2>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                    {s.desc}
+                    {g.desc}
                   </p>
-                  <ul className="mt-3 space-y-1.5">
-                    {s.points.map((p) => (
+                  <ul className="mt-3 space-y-1.5 border-t border-edge pt-3">
+                    {g.items.map((item) => (
                       <li
-                        key={p}
+                        key={item}
                         className="flex items-center gap-2 text-xs font-medium text-soft"
                       >
                         <Icon
@@ -54,7 +80,7 @@ export function MarketplaceServicesPage() {
                           className="h-3.5 w-3.5 shrink-0 text-accent"
                           strokeWidth={2}
                         />
-                        {p}
+                        {item}
                       </li>
                     ))}
                   </ul>
@@ -62,6 +88,18 @@ export function MarketplaceServicesPage() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal className="mt-6">
+            <div className="rounded-2xl border border-gold-accent/30 bg-gold-accent/[0.06] p-5">
+              <p className="flex items-start gap-2.5 text-sm leading-relaxed text-soft">
+                <Icon
+                  name="shield"
+                  className="mt-0.5 h-4 w-4 shrink-0 text-gold-accent"
+                />
+                {marketplaceDisclaimer}
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -69,12 +107,15 @@ export function MarketplaceServicesPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal>
-              <SectionHeading
-                eyebrow="How it works"
-                title="Common questions"
-                description="The practical details of how marketplace work is scoped and delivered."
-                align="left"
-              />
+              <div>
+                <h2 className="font-display text-3xl font-semibold tracking-tight text-strong">
+                  Common questions
+                </h2>
+                <p className="mt-3 max-w-md text-base leading-relaxed text-muted">
+                  The practical details of how marketplace work is scoped and
+                  delivered.
+                </p>
+              </div>
             </Reveal>
             <Reveal>
               <Accordion
@@ -82,7 +123,7 @@ export function MarketplaceServicesPage() {
                   {
                     question: "Which marketplaces do you support?",
                     answer:
-                      "I work from hands-on experience across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress, and I apply the same operational approach to other platforms sellers use.",
+                      "I work from hands-on experience across eBay, Depop, Mercari, Poshmark, Etsy, TikTok Shop and AliExpress, and I apply the same operational approach to other platforms sellers use.",
                   },
                   {
                     question: "Do you run my store, or do I keep running it?",
@@ -95,9 +136,9 @@ export function MarketplaceServicesPage() {
                       "A short consultation is usually enough. I need to understand the marketplaces, the products, how money and inventory move today, and what you want to change.",
                   },
                   {
-                    question: "Can you show real examples first?",
+                    question: "Do you guarantee sales or account reinstatement?",
                     answer:
-                      "The projects and systems on this site are the evidence. I prefer starting with a small, well-defined piece of work before committing to a larger engagement.",
+                      "No. I help organize and improve operations, but results depend on execution, platform rules and market conditions. Any service that promises guaranteed results should be treated with caution.",
                   },
                 ]}
               />
@@ -108,17 +149,17 @@ export function MarketplaceServicesPage() {
 
       <div className="flex flex-wrap justify-center gap-3 px-5 pb-14 sm:px-8">
         <Link
-          to="/services"
+          to="/business-systems"
           className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
         >
-          View All Services
+          Business Systems and Automation
           <Icon name="arrow" className="h-4 w-4" />
         </Link>
         <Link
           to="/sourcing-freight"
           className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
         >
-          Sourcing & Freight
+          Sourcing and Freight Coordination
           <Icon name="arrow" className="h-4 w-4" />
         </Link>
       </div>

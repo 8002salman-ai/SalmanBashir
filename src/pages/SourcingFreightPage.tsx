@@ -1,83 +1,143 @@
+import { Link } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
-import { sourcingPreview } from "@/data/content";
-import { Reveal, Accordion, CtaCard, Icon } from "@/components/ui";
+import { sourcingSupport, sourcingDisclosure } from "@/data/content";
+import { Reveal, SectionHeading, Accordion, CtaCard, Icon } from "@/components/ui";
 
 export function SourcingFreightPage() {
   return (
     <>
       <Seo
-        title="Sourcing & Freight | Salman Bashir"
-        description="Sourcing research, supplier coordination and freight planning support — operational guidance built from real marketplace and sourcing experience."
+        title="Sourcing and Freight Coordination | Salman Bashir"
+        description="Sourcing and operational coordination support — supplier comparison, MOQ and sample planning, packaging, air vs sea, landed cost and shipment coordination."
         path="/sourcing-freight"
       />
       <BreadcrumbJsonLd
         items={[{ name: "Sourcing & Freight", path: "/sourcing-freight" }]}
       />
       <PageHero
-        eyebrow="Sourcing & Freight"
+        eyebrow="Sourcing and Freight Coordination"
         title={
           <>
             Find products. Move them{" "}
             <span className="text-gradient-brand">with a plan.</span>
           </>
         }
-        description="Structured sourcing research and freight planning so buying decisions are made on real cost and reliability — not guesswork."
+        description="Sourcing and operational coordination support so buying decisions are made on real cost and reliability — not guesswork."
       />
 
       <section className="relative pb-4 pt-2">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-4 sm:grid-cols-3">
-            {sourcingPreview.map((s, i) => (
-              <Reveal key={s.title} delay={i * 80}>
-                <article className="h-full rounded-2xl border border-edge bg-panel p-5">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
-                    <Icon name={s.icon} className="h-5 w-5" />
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {sourcingSupport.map((s, i) => (
+              <Reveal key={s} delay={(i % 3) * 60}>
+                <div className="flex items-center gap-3 rounded-xl border border-edge bg-panel p-4">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-accent-strong">
+                    <Icon
+                      name="check"
+                      className="h-4 w-4"
+                      strokeWidth={2.2}
+                    />
                   </span>
-                  <h2 className="mt-4 font-display text-base font-semibold text-strong">
-                    {s.title}
-                  </h2>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                    {s.desc}
-                  </p>
-                  <ul className="mt-3 space-y-1.5">
-                    {s.points.map((p) => (
-                      <li
-                        key={p}
-                        className="flex items-center gap-2 text-xs font-medium text-soft"
-                      >
-                        <Icon
-                          name="check"
-                          className="h-3.5 w-3.5 shrink-0 text-accent"
-                          strokeWidth={2}
-                        />
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+                  <p className="text-sm font-medium text-soft">{s}</p>
+                </div>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="relative py-14 sm:py-20">
-        <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <Reveal>
+          <Reveal className="mt-6">
             <div className="rounded-2xl border border-gold-accent/30 bg-gold-accent/[0.06] p-5">
-              <p className="text-sm leading-relaxed text-soft">
-                <span className="font-semibold text-strong">
-                  An honest boundary:{" "}
-                </span>
-                I am not a licensed customs broker or freight forwarder. My
-                support covers sourcing research, supplier coordination, cost
-                comparison and freight planning notes. For customs clearance,
-                duties and regulated logistics, I connect you to qualified
-                professionals — I do not act as one.
+              <p className="flex items-start gap-2.5 text-sm leading-relaxed text-soft">
+                <Icon
+                  name="shield"
+                  className="mt-0.5 h-4 w-4 shrink-0 text-gold-accent"
+                />
+                {sourcingDisclosure}
               </p>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Himalayan Koh */}
+      <section className="relative py-14 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Project"
+                title={
+                  <>
+                    Himalayan Koh — Product, Retail and{" "}
+                    <span className="text-gradient-brand">Export Operations</span>
+                  </>
+                }
+                description="Operational support for salt products across retail, wholesale and export."
+                align="left"
+              />
+              <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                {[
+                  "Salt products",
+                  "Retail and wholesale preparation",
+                  "Packaging coordination",
+                  "Catalogue building",
+                  "Product operations",
+                  "Shipment and export coordination support",
+                  "Website and retailer workflows",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 rounded-xl border border-edge bg-panel px-4 py-3 text-sm text-soft"
+                  >
+                    <Icon
+                      name="check"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                      strokeWidth={2.2}
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div className="flex h-full flex-col justify-center rounded-3xl border border-edge bg-panel p-6 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-gold-accent/25 bg-gold-accent/10 text-gold-accent">
+                    <Icon name="store" className="h-6 w-6" />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-lg font-semibold text-strong">
+                      Himalayan Koh
+                    </h3>
+                    <p className="text-xs text-muted">
+                      Ongoing operational and digital-systems support
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted">
+                  Himalayan Koh covers the full product cycle — preparation,
+                  packaging, catalogues, operations and export coordination —
+                  supported by website and retailer workflows.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <Link
+                    to="/projects/himalayan-koh"
+                    className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-on-accent transition-colors hover:bg-brand-400"
+                  >
+                    Explore Products
+                    <Icon name="arrow" className="h-4 w-4" />
+                  </Link>
+                  <a
+                    href="mailto:basco.pk@gmail.com?subject=Export%20Information%20Request"
+                    className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-4 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40"
+                  >
+                    Request Export Information
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+          </div>
 
           <Reveal className="mt-10">
             <Accordion
@@ -90,12 +150,12 @@ export function SourcingFreightPage() {
                 {
                   question: "Do you handle customs or freight forwarding?",
                   answer:
-                    "No. I plan routes, compare costs and prepare document checklists, but clearance and forwarding must be done by licensed professionals. I will point you to the right ones.",
+                    "No. I support sourcing and operational coordination — comparison, planning and communication. Clearance and forwarding are handled by licensed professionals.",
                 },
                 {
-                  question: "Can you build a supplier scorecard for my team?",
+                  question: "Which routes do you coordinate?",
                   answer:
-                    "Yes. A Google Sheets scorecard tracks quotes, lead times, quality notes and reliability so sourcing decisions have a history instead of a memory.",
+                    "Practical coordination support covers China–USA and China–Pakistan flows, including air vs sea comparison, landed cost and shipment communication.",
                 },
               ]}
             />
@@ -106,7 +166,7 @@ export function SourcingFreightPage() {
       <CtaCard
         eyebrow="Sourcing help"
         title="Planning a sourcing or freight project?"
-        description="Start with a short call so we can scope the research and planning you actually need."
+        description="Start with a short call so we can scope the coordination and planning you actually need."
         ctaLabel="Book a Consultation"
         ctaHref="/book"
       />

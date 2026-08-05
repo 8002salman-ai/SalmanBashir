@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
-import { training, trainingFormats, contact } from "@/data/content";
+import {
+  training,
+  trainingFormats,
+  trainingTopics,
+  trainingDisclosure,
+  contact,
+} from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function TrainingPage() {
   return (
     <>
       <Seo
-        title="Training | Salman Bashir — Practical Marketplace & Business Systems Training"
-        description="Practical online training built from hands-on marketplace experience: eBay, Depop, Mercari, multi-marketplace operations and online business systems — 1:1, small group, recorded or live."
+        title="Training | Salman Bashir — Practical Marketplace and Business Systems Training"
+        description="Practical online training built from hands-on marketplace experience: eBay, Depop, Mercari, multi-marketplace operations and business systems — 1:1, small group, workflow reviews or live."
         path="/training"
       />
     <BreadcrumbJsonLd items={[{ name: "Training", path: "/training" }]} />
@@ -17,11 +23,11 @@ export function TrainingPage() {
         eyebrow="Training"
         title={
           <>
-            Practical training from{" "}
-            <span className="text-gradient-brand">hands-on operations</span>
+            Practical Marketplace and{" "}
+            <span className="text-gradient-brand">Business Systems Training</span>
           </>
         }
-        description="Training built from real marketplace work — not theory and not hype. Sessions cover the marketplaces you actually sell on and the systems that keep your profit honest, with no invented certificates or success statistics."
+        description="Training built from real marketplace work — not theory and not hype. Sessions cover the marketplaces you actually sell on and the systems that keep your profit honest."
       />
 
       <section className="relative pb-16">
@@ -84,6 +90,43 @@ export function TrainingPage() {
                   <p className="text-sm font-medium text-strong">{f}</p>
                 </div>
               ))}
+            </div>
+          </Reveal>
+
+          {/* Topics */}
+          <Reveal className="mt-10">
+            <SectionHeading
+              align="left"
+              eyebrow="Topics Covered"
+              title={
+                <>
+                  Practical topics, taught{" "}
+                  <span className="text-gradient-brand">from experience</span>
+                </>
+              }
+            />
+            <div className="mt-6 flex flex-wrap gap-2">
+              {trainingTopics.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-lg border border-edge bg-panel px-3 py-1.5 text-sm font-medium text-soft"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Disclosure */}
+          <Reveal className="mt-10">
+            <div className="rounded-2xl border border-gold-accent/30 bg-gold-accent/[0.06] p-5">
+              <p className="flex items-start gap-2.5 text-sm leading-relaxed text-soft">
+                <Icon
+                  name="shield"
+                  className="mt-0.5 h-4 w-4 shrink-0 text-gold-accent"
+                />
+                {trainingDisclosure}
+              </p>
             </div>
           </Reveal>
 

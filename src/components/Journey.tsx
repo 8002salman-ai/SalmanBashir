@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { journey, values, personal } from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
-export function JourneySection() {
+export function JourneySection({ limit }: { limit?: number }) {
+  const items = limit ? journey.slice(0, limit) : journey;
   return (
     <section id="journey" className="relative py-14 sm:py-20">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -25,7 +26,7 @@ export function JourneySection() {
 
         <div className="mx-auto mt-12 max-w-3xl">
           <ol className="relative space-y-8 border-l border-edge pl-8 sm:pl-10">
-            {journey.map((item, i) => (
+            {items.map((item, i) => (
               <Reveal as="li" key={item.title} delay={i * 90} className="relative">
                 <span className="absolute -left-8 top-1.5 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-brand-400 ring-4 ring-brand-500/15 sm:-left-10" />
                 <div className="flex flex-wrap items-center gap-3">

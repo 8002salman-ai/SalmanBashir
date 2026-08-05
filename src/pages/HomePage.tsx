@@ -123,7 +123,7 @@ export function HomePage() {
       <SourcingPreview />
       <TrainingPreview />
       <OpportunitySeats />
-      <JourneySection />
+      <JourneySection limit={3} />
       <TeamPreview />
       <BookCta />
     </>

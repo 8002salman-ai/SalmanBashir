@@ -1,4 +1,4 @@
-import { coreStrengths } from "@/data/content";
+import { coreStrengths, personal } from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function CoreStrength() {
@@ -10,10 +10,10 @@ export function CoreStrength() {
             eyebrow="My Core Strength"
             title={
               <>
-                Built on <span className="text-gradient-brand">hands-on experience</span>
+                {personal.coreMessage}
               </>
             }
-            description="I've operated real marketplaces and built the systems around them. That combination shapes everything I deliver."
+            description={personal.supportingLine}
           />
         </Reveal>
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { teamRoles, personal } from "@/data/content";
+import { teamRoles } from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function TeamPreview() {
@@ -41,7 +41,8 @@ export function TeamPreview() {
 
         <Reveal className="mt-8 text-center">
           <p className="text-sm text-muted">
-            {personal.name} leads the consulting practice directly.
+            A small team, kept honest — roles are filled as the workload
+            justifies it.
           </p>
           <Link
             to="/team"

@@ -4,17 +4,6 @@ import { personal, contact } from "@/data/content";
 import { submitContact } from "@/lib/api";
 import { Reveal, Icon } from "@/components/ui";
 
-const serviceOptions = [
-  "E-commerce Operations Review",
-  "Profit and COGS Dashboards",
-  "Marketplace Workflow Automation",
-  "ERP and Internal Tool Prototyping",
-  "Marketplace Integration Planning",
-  "SOP and Business Process Design",
-  "Online training session",
-  "Other / Not sure yet",
-];
-
 const budgetOptions = [
   "Under $500",
   "$500 – $1,000",
@@ -225,9 +214,9 @@ export function ContactSection() {
                       Message sent
                     </h3>
                     <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">
-                      Thanks — your message is on its way. I'll reply to{" "}
-                      <span className="font-medium text-strong">{lastEmail}</span>{" "}
-                      shortly.
+                      Thanks — your message is on its way to{" "}
+                      <span className="font-medium text-strong">{lastEmail}</span>
+                      . I review inquiries personally and will be in touch.
                     </p>
                     <button
                       type="button"
@@ -286,7 +275,7 @@ export function ContactSection() {
                       <Select
                         label="Service"
                         name="service"
-                        options={serviceOptions}
+                        options={contact.inquiryTypes}
                         placeholder="Select a service"
                       />
                       <Select

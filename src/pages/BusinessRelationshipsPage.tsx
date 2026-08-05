@@ -5,51 +5,37 @@ import { Reveal, SectionHeading, StatusBadge, Accordion, CtaCard, Icon } from "@
 const relationships = [
   {
     name: "Himalayan Koh",
-    label: "Ongoing operational support",
-    status: "Planning" as const,
-    desc: "A planned collaboration around marketplace operations and sourcing. Details are shared when the scope is finalized — nothing is claimed before it exists.",
+    label: "Ongoing operational and digital-systems support",
+    status: "Ongoing" as const,
+    desc: "Ongoing operational and digital-systems support across salt product retail, wholesale and export operations.",
     points: [
-      "Marketplace operations planning",
-      "Sourcing coordination",
-      "Profit visibility systems",
+      "Product and retail operations",
+      "Export coordination support",
+      "Website and digital-systems support",
     ],
   },
   {
     name: "Embani LLC",
-    label: "Project-based collaboration",
+    label: "Project-based marketplace, workflow and business-systems support",
     status: "Active Development" as const,
-    desc: "Active internal operations work on the Embani ERP prototype — inventory, sales and profit workflows designed around the way the business actually runs.",
+    desc: "Project-based support on the Embani ERP prototype — marketplace, workflow and business-systems work designed around the way the business actually runs.",
     points: [
-      "ERP workflow design",
-      "Operations dashboards",
-      "Integration planning",
-    ],
-  },
-  {
-    name: "Salman Bashir Consulting",
-    label: "Digital systems support",
-    status: "Live" as const,
-    desc: "The consulting practice itself: marketplace systems, profit tracking, automation and training for online sellers and growing businesses.",
-    points: [
-      "Operations consulting",
-      "Automation projects",
-      "Online training",
+      "Marketplace workflows",
+      "ERP and dashboard planning",
+      "Business-systems support",
     ],
   },
 ];
 
-const labels = [
-  "Ongoing operational support",
-  "Project-based collaboration",
-  "Digital systems support",
-];
+const disclosure =
+  "These are ongoing operational and project-based business relationships. The companies remain independently owned and operated. No owner, official partner, co-founder, director or managing partner titles are used unless they are true.";
 
 export function BusinessRelationshipsPage() {
   return (
     <>
       <Seo
         title="Business Relationships | Salman Bashir"
-        description="Business relationships built on ongoing operational support, project-based collaboration and digital systems support — no invented titles, no inflated claims."
+        description="Businesses and projects I support — ongoing operational and project-based relationships, described honestly with no invented titles."
         path="/business-relationships"
       />
       <BreadcrumbJsonLd
@@ -59,15 +45,16 @@ export function BusinessRelationshipsPage() {
         eyebrow="Business Relationships"
         title={
           <>
-            Built on <span className="text-gradient-brand">honest roles</span>
+            Businesses and Projects{" "}
+            <span className="text-gradient-brand">I Support</span>
           </>
         }
-        description="Collaborations are described with clear, truthful labels — ongoing operational support, project-based collaboration and digital systems support. Never inflated titles."
+        description="Ongoing operational and project-based relationships, described with clear, truthful labels — never inflated titles."
       />
 
       <section className="relative pb-4 pt-2">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-4 lg:grid-cols-2">
             {relationships.map((r, i) => (
               <Reveal key={r.name} delay={i * 80}>
                 <article className="flex h-full flex-col rounded-2xl border border-edge bg-panel p-5">
@@ -102,6 +89,18 @@ export function BusinessRelationshipsPage() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal className="mt-6">
+            <div className="rounded-2xl border border-gold-accent/30 bg-gold-accent/[0.06] p-5">
+              <p className="flex items-start gap-2.5 text-sm leading-relaxed text-soft">
+                <Icon
+                  name="shield"
+                  className="mt-0.5 h-4 w-4 shrink-0 text-gold-accent"
+                />
+                {disclosure}
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -110,39 +109,34 @@ export function BusinessRelationshipsPage() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal>
               <SectionHeading
-                eyebrow="Labels that stay honest"
-                title="What each label means"
-                description="Language matters. These are the only relationship labels used on this site."
+                eyebrow="Honest language"
+                title="Support, not ownership"
+                description="The language used on this page describes real work — nothing more."
                 align="left"
               />
               <ul className="mt-6 space-y-3">
-                {labels.map((l) => (
-                  <li
-                    key={l}
-                    className="flex items-center gap-3 rounded-xl border border-edge bg-panel px-4 py-3 text-sm font-medium text-soft"
-                  >
-                    <Icon
-                      name="badge"
-                      className="h-4 w-4 shrink-0 text-accent"
-                      strokeWidth={1.8}
-                    />
-                    {l}
-                  </li>
-                ))}
+                <li className="flex items-center gap-3 rounded-xl border border-edge bg-panel px-4 py-3 text-sm font-medium text-soft">
+                  <Icon name="badge" className="h-4 w-4 shrink-0 text-accent" strokeWidth={1.8} />
+                  Ongoing operational and digital-systems support
+                </li>
+                <li className="flex items-center gap-3 rounded-xl border border-edge bg-panel px-4 py-3 text-sm font-medium text-soft">
+                  <Icon name="badge" className="h-4 w-4 shrink-0 text-accent" strokeWidth={1.8} />
+                  Project-based marketplace, workflow and business-systems support
+                </li>
               </ul>
             </Reveal>
             <Reveal>
               <Accordion
                 items={[
                   {
-                    question: "Why only three relationship labels?",
+                    question: "Why no official titles?",
                     answer:
-                      "Because roles should describe real work. 'Ongoing operational support', 'project-based collaboration' and 'digital systems support' are precise and verifiable — titles like partner or director are not used unless they are true.",
+                      "Because roles should describe real work. Labels like ongoing operational support and project-based support are precise and verifiable — owner, official partner, co-founder, director or managing partner are not used unless they are true.",
                   },
                   {
-                    question: "Is Himalayan Koh an active business?",
+                    question: "What does support mean here?",
                     answer:
-                      "It is a planned collaboration currently in the planning stage. The card stays in 'Planning' until the scope is finalized and the work begins.",
+                      "Ongoing operational and digital-systems support, and project-based marketplace, workflow and business-systems support. The companies remain independently owned and operated.",
                   },
                   {
                     question: "What is Embani LLC?",
@@ -168,13 +162,11 @@ export function BusinessRelationshipsPage() {
 }
 
 function toneFor(
-  status: "Active Development" | "Planning" | "Live",
-): "active" | "planning" | "live" {
+  status: "Active Development" | "Ongoing",
+): "active" | "live" {
   switch (status) {
     case "Active Development":
       return "active";
-    case "Planning":
-      return "planning";
     default:
       return "live";
   }

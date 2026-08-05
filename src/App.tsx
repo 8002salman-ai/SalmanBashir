@@ -13,6 +13,7 @@ import { BookPage } from "@/pages/BookPage";
 import { PrivacyPage } from "@/pages/PrivacyPage";
 import { MarketplaceServicesPage } from "@/pages/MarketplaceServicesPage";
 import { SourcingFreightPage } from "@/pages/SourcingFreightPage";
+import { BusinessSystemsPage } from "@/pages/BusinessSystemsPage";
 import { BusinessRelationshipsPage } from "@/pages/BusinessRelationshipsPage";
 import { TeamPage } from "@/pages/TeamPage";
 import { CommunityPage } from "@/pages/CommunityPage";
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/book" element={<BookPage />} />
         <Route path="/marketplace-services" element={<MarketplaceServicesPage />} />
         <Route path="/sourcing-freight" element={<SourcingFreightPage />} />
+        <Route path="/business-systems" element={<BusinessSystemsPage />} />
         <Route path="/business-relationships" element={<BusinessRelationshipsPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/community" element={<CommunityPage />} />

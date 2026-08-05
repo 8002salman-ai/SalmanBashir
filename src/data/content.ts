@@ -11,6 +11,8 @@ export const personal = {
   tagline: "Built by experience. Driven by purpose.",
   coreMessage:
     "I understand the operation first. Then I build the system around it.",
+  supportingLine:
+    "I understand how online businesses actually work — and I turn that understanding into practical systems.",
   statement:
     "I turn real marketplace challenges into practical systems, clear workflows and smarter business decisions.",
   location: "Pakistan",
@@ -27,14 +29,14 @@ export const personal = {
   heroHeading:
     "Marketplace Operations, Sourcing, Training & Business Systems",
   heroSub:
-    "I help online sellers organize marketplace operations, understand real profit, improve workflows and turn scattered business processes into clear, practical systems.",
+    "I help online businesses improve marketplace operations, sourcing workflows, profit visibility and internal systems through practical experience and AI-assisted implementation.",
   heroCredibility:
     "Hands-on experience across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress.",
   heroBadge: "Available for remote consulting, project work and online training",
   positioning:
     "A Pakistan-based e-commerce operator and business automation consultant who has worked hands-on across marketplace operations — listings, inventory, sales, fees, profit reporting and payouts — and now applies that experience to ERP workflows, profit dashboards, integrations and AI-assisted product development.",
   professionalSummary:
-    "I work on the operational side of online business: managing listings, inventory and sales across multiple marketplaces, reconciling fees and payouts, and running the daily processes that keep an online business moving. That hands-on foundation shapes everything I build. Today I help online sellers and growing businesses bring order to their operations — replacing scattered spreadsheets with dashboards that track real profit, automating repetitive marketplace workflows, documenting repeatable processes, and planning internal tools and ERP prototypes that match the way their teams, money and inventory actually move.",
+    "My work started on the operational side of online selling — researching products, building listings, handling orders and reconciling fees and payouts across real marketplaces. That hands-on foundation shapes everything I do. Today I help online businesses in three connected ways: marketplace services that bring order to listings, operations and profit records; sourcing and freight coordination support that makes buying decisions measurable; and business systems — dashboards, Google Sheets workflows, internal tools and ERP prototypes — built with AI-assisted implementation and planned from the operator's side. I also train sellers and small teams on the practical side of these skills, working remotely with clients connected to the United States, United Kingdom, Norway, Sweden and international online markets.",
   aboutQuote:
     "I do not build technology for the sake of technology. I build around the way a real business works.",
   journeyQuote:
@@ -50,6 +52,14 @@ export const contact = {
   email: "basco.pk@gmail.com",
   adminEmail: "8002salman@gmail.com",
   availability: "Available for remote consulting, project work and online training",
+  inquiryTypes: [
+    "Consultation",
+    "Training",
+    "Marketplace services",
+    "Sourcing",
+    "ERP / system",
+    "Website project",
+  ],
   socials: {
     youtube: "https://www.youtube.com/@TheAIWithSalman",
     github: "https://github.com/8002salman-ai",
@@ -418,7 +428,7 @@ export const projects: Project[] = [
       "Directed the data structure so reporting stays truthful and reviewable",
       "Led UX direction and tested workflows against real operator scenarios",
     ],
-    role: "Product vision, business requirements, marketplace logic, financial workflows, UX direction, testing, AI-assisted development and project coordination.",
+    role: "Operational planning, business logic, workflow design, product direction, testing and AI-assisted implementation.",
     status: "Active Development",
     highlights: [
       "Profit and COGS tracking",
@@ -462,6 +472,7 @@ export const projects: Project[] = [
       "Role-based access planning",
       "Data organised around real business flow",
     ],
+    role: "Product concept, operational use cases, workflow design, interface direction and testing.",
     caseStudy:
       "SpotAware is a business operations and workflow platform in the design and early development stages. The focus so far has been on structuring operations around real team responsibilities and business flow. No production users, customers or performance figures are published.",
     accent: "brand",
@@ -470,35 +481,35 @@ export const projects: Project[] = [
   {
     slug: "himalayan-koh",
     name: "Himalayan Koh",
-    type: "E-commerce & Retailer Experience",
-    tech: ["E-commerce", "Product Catalogues", "Operations"],
-    desc: "Hands-on e-commerce and retailer experience — product research, listings, inventory and sales workflows built around real marketplace operations.",
+    type: "Product, Retail, Wholesale and Export Operations",
+    tech: ["Salt Products", "Catalogue", "Retail & Wholesale", "Export Coordination"],
+    desc: "Operational support for salt products across retail, wholesale and export — packaging, catalogues, product operations and shipment coordination.",
     overview:
-      "A hands-on e-commerce and retailer role covering the full selling cycle — researching products, building catalogues, managing listings and running inventory and order workflows across marketplaces and retailer channels.",
+      "Himalayan Koh covers product, retail, wholesale and export operations around salt products. The work spans packaging preparation, catalogue building, product operations and shipment and export coordination support — plus the website and retailer workflows that keep the business selling.",
     businessProblem:
-      "An e-commerce and retailer business needs consistent product research, catalogues, listings and order workflows across channels — without margin disappearing between sourcing and sale.",
+      "A product business selling salt across retail, wholesale and export needs consistent packaging, catalogues and operations — with coordination between website, retailers and shipments.",
     solution:
-      "Hands-on operations covering the full selling cycle — product research, catalogue building, listing management, inventory and order workflows across marketplaces and retailer channels.",
+      "Operational support across the full product cycle — retail and wholesale preparation, packaging, catalogues, product operations, and shipment and export coordination — with website and retailer workflows.",
     capabilities: [
-      "Product research and sourcing workflows",
-      "Catalogue and listing management",
-      "Inventory tracking",
-      "Order processing",
-      "Retailer and marketplace coordination",
-      "Margin-aware operations",
+      "Salt product operations",
+      "Retail and wholesale preparation",
+      "Packaging coordination",
+      "Catalogue building",
+      "Shipment and export coordination support",
+      "Website and retailer workflows",
     ],
     focusPoints: [
-      "Ran product research and listing workflows end to end",
-      "Managed inventory and order processes across channels",
-      "Coordinated retailer and marketplace operations",
+      "Supported retail, wholesale and export preparation",
+      "Coordinated packaging, catalogues and product operations",
+      "Planned website and retailer workflows",
     ],
     highlights: [
-      "Product research and listings",
-      "Inventory and order workflows",
-      "Retailer and marketplace operations",
+      "Salt products and catalogue",
+      "Retail and wholesale operations",
+      "Export coordination support",
     ],
     caseStudy:
-      "A hands-on e-commerce and retailer experience covering real daily selling work. This is an operational engagement rather than a software build — the experience it produced now shapes how systems are designed for other businesses.",
+      "A product and export operations engagement. Salman's role covers operational and digital-systems support — the companies remain independently owned and operated.",
     accent: "gold",
     icon: "store",
   },
@@ -506,16 +517,16 @@ export const projects: Project[] = [
     slug: "multi-marketplace-operations",
     name: "Multi-Marketplace Operations",
     type: "Hands-on Marketplace Operations",
-    tech: ["eBay", "Depop", "Mercari", "Etsy", "TikTok Shop"],
-    desc: "Hands-on experience running sales across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress — listings, inventory, fees, support, payouts and reporting.",
+    tech: ["eBay", "Depop", "Mercari", "Poshmark", "Etsy", "TikTok Shop"],
+    desc: "Hands-on experience running sales across eBay, Depop, Mercari, Poshmark, Etsy, TikTok Shop and AliExpress — listings, inventory, fees, support, payouts and reporting.",
     overview:
-      "The operational core behind everything I build: real, repeated work running sales across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress. Listings, pricing, inventory, buyer support, fee structures, payouts and reporting — the daily realities that shape how I design systems.",
+      "The operational core behind everything I build: real, repeated work running sales across eBay, Depop, Mercari, Poshmark, Etsy, TikTok Shop and AliExpress. Listings, pricing, inventory, buyer support, fee structures, payouts and reporting — the daily realities that shape how I design systems.",
     businessProblem:
-      "Selling across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress means six fee structures, six payout cycles and six ways of handling buyers — chaos without a consistent operating rhythm.",
+      "Selling across eBay, Depop, Mercari, Poshmark, Etsy, TikTok Shop and AliExpress means many fee structures, payout cycles and ways of handling buyers — chaos without a consistent operating rhythm.",
     solution:
-      "Consistent, hands-on operations across all six marketplaces — listings, pricing, inventory, buyer support, fee reconciliation, payouts and reporting — run as disciplined daily practice.",
+      "Consistent, hands-on operations across the marketplaces — listings, pricing, inventory, buyer support, fee reconciliation, payouts and reporting — run as disciplined daily practice.",
     capabilities: [
-      "Listings, pricing and inventory across six marketplaces",
+      "Listings, pricing and inventory across marketplaces",
       "Buyer support and account management",
       "Fee structure comparison",
       "Payout reconciliation",
@@ -523,7 +534,7 @@ export const projects: Project[] = [
       "Operational routines that scale",
     ],
     focusPoints: [
-      "Built and optimised listings across six marketplaces",
+      "Built and optimised listings across marketplaces",
       "Reconciled fees, payouts and true profit per channel",
       "Handled buyer support and account management",
     ],
@@ -606,6 +617,7 @@ export const marketplaces = [
   "eBay",
   "Depop",
   "Mercari",
+  "Poshmark",
   "Etsy",
   "TikTok Shop",
   "AliExpress",
@@ -692,88 +704,137 @@ export const principles: { icon: IconName; title: string; desc: string }[] = [
 export const journey = [
   {
     period: "Phase One",
-    periodLabel: "Foundations",
-    title: "Online operations and support work",
-    role: "Remote · Freelance / Support",
+    periodLabel: "Getting started",
+    title: "Early online selling",
+    role: "Online · Hands-on",
     points: [
-      "Data entry and product information management",
-      "File handling and listing support",
-      "Online research and customer communication",
-      "Administrative support",
+      "First marketplace listings and sales",
+      "Product research and listing basics",
+      "Buyer communication",
+      "Learning fees, shipping and payouts",
     ],
   },
   {
     period: "Phase Two",
-    periodLabel: "Hands-on operations",
-    title: "Marketplace operations across channels",
+    periodLabel: "Scaling across channels",
+    title: "Multi-platform operations",
     role: "Marketplace Operations · Remote",
     points: [
-      "Product research, listings and pricing",
-      "Inventory and order processing",
-      "Buyer communication and support",
-      "Marketplace account management",
+      "Running sales across several marketplaces",
+      "Listings, inventory and order processing",
+      "Buyer support and account management",
+      "Per-channel fees and payout handling",
     ],
   },
   {
     period: "Phase Three",
-    periodLabel: "Systems & automation",
-    title: "Business systems, ERP workflows and AI-assisted development",
-    role: "Independent · Project-based · Remote",
+    periodLabel: "Working with product",
+    title: "Sourcing and product coordination",
+    role: "Sourcing & Operations · Remote",
     points: [
-      "Profit, COGS and payout workflows",
-      "ERP and internal tool prototyping",
-      "Marketplace integrations and automation",
-      "AI-assisted product development",
+      "Supplier research and comparison",
+      "MOQ and sample planning",
+      "Packaging and catalogue coordination",
+      "Invoice and shipment coordination support",
+    ],
+  },
+  {
+    period: "Phase Four",
+    periodLabel: "Bringing order to data",
+    title: "Spreadsheets and business systems",
+    role: "Operations Systems · Remote",
+    points: [
+      "Sales workspaces in Google Sheets",
+      "COGS, fees and profit tracking",
+      "Payout reconciliation planning",
+      "SOPs and team workflows",
+    ],
+  },
+  {
+    period: "Phase Five",
+    periodLabel: "Building tools",
+    title: "AI-assisted websites and ERP",
+    role: "Product & Systems · Project-based",
+    points: [
+      "Operational planning for ERP and dashboards",
+      "Business logic and workflow design",
+      "Interface direction and testing",
+      "AI-assisted implementation",
+    ],
+  },
+  {
+    period: "Phase Six",
+    periodLabel: "Sharing the work",
+    title: "Consulting and training direction",
+    role: "Consulting & Training · Remote",
+    points: [
+      "Marketplace and profit consulting",
+      "Practical operations training",
+      "International remote support",
+      "Systems built around real business problems",
     ],
   },
 ];
 
-/* Resume content. Until a real resume is uploaded, the page shows
-   "Resume Coming Soon" — no fake PDF is generated. */
+/* Resume shown as a professional overview on the /resume page.
+   A downloadable CV is a later phase — nothing fake is generated. */
 export const resume = {
   available: false,
-  comingSoon:
-    "A detailed resume is being prepared and will be available here. Until it is, you can request a tailored overview of relevant work by email or during a call.",
   summary:
     "E-commerce operator turned business systems consultant. Hands-on experience across marketplace listings, inventory, orders, fees, payouts and profit reporting — now applied to ERP prototyping, dashboards, automation and AI-assisted product development for online businesses.",
-  phases: journey,
-  skills: [
-    {
-      category: "Marketplace Operations",
-      items: [
-        "Product research & sourcing",
-        "Listing creation & optimization",
-        "Inventory management",
-        "Order processing",
-        "Buyer communication & support",
-        "Payout reconciliation",
-      ],
-    },
-    {
-      category: "Business Systems & Data",
-      items: [
-        "Profit & COGS reporting",
-        "Google Sheets systems",
-        "Dashboard design",
-        "SOP documentation",
-        "ERP workflow design",
-        "Marketplace integrations",
-      ],
-    },
-    {
-      category: "Development & Automation",
-      items: [
-        "Automation planning",
-        "AI-assisted product development",
-        "Internal tool prototyping",
-        "Next.js",
-        "Supabase",
-        "Node.js",
-      ],
-    },
+  coreCapabilities: [
+    "Marketplace operations",
+    "Profit and COGS tracking",
+    "Workflow design and SOPs",
+    "Google Sheets systems",
+    "ERP and internal tool planning",
+    "AI-assisted implementation",
   ],
+  marketplaceExperience: [
+    "Product research and listing creation",
+    "Inventory and order processing",
+    "Buyer support and account management",
+    "Fee structures and payout reconciliation",
+    "Profit reporting per channel",
+  ],
+  sourcing: [
+    "Supplier research and comparison",
+    "MOQ and sample planning",
+    "Packaging coordination",
+    "Invoice and packing-list review",
+    "Air vs sea and landed cost planning",
+    "Shipment coordination support",
+  ],
+  businessSystems: [
+    "Profit dashboards and sales workspaces",
+    "Marketplace integration planning",
+    "ERP workflows and prototypes",
+    "AI-assisted website and system planning",
+  ],
+  tools: [
+    "eBay",
+    "Depop",
+    "Mercari",
+    "Etsy",
+    "TikTok Shop",
+    "Google Sheets",
+    "Supabase",
+    "Vercel",
+    "GitHub",
+    "Next.js",
+    "Node.js",
+  ],
+  projectHighlights: [
+    "Embani ERP — accounting and marketplace operations system",
+    "SpotAware — business operations and workflow platform",
+    "Himalayan Koh — product, retail and export operations",
+    "Marketplace operations across multiple platforms",
+    "Google Sheets sales workspace",
+  ],
+  remoteAvailability:
+    "Available for remote consulting, project work and online training. Based in Pakistan, supporting clients connected to the United States, United Kingdom, Norway, Sweden and international online markets.",
   note:
-    "Exact employment dates, employer names and performance figures are intentionally not published. I'm happy to share a tailored overview of relevant work during a direct conversation.",
+    "This is a professional overview. Exact employment dates, employer names and performance figures are intentionally not published. A downloadable version will be added in a future phase.",
 };
 
 export type Training = {
@@ -877,11 +938,32 @@ export const training: Training[] = [
 export const trainingFormats = [
   "One-to-one Zoom training",
   "Small group training",
-  "Recorded lessons",
-  "Live workshops",
-  "Marketplace audit plus training",
-  "Custom team training",
+  "Workflow reviews",
+  "Marketplace training",
+  "Profit and COGS sessions",
+  "ERP planning",
+  "AI-assisted website and system planning",
 ];
+
+export const trainingTopics = [
+  "eBay",
+  "Depop",
+  "Mercari",
+  "Listings",
+  "Research",
+  "Pricing",
+  "Fees",
+  "COGS",
+  "Profit calculations",
+  "Orders and returns",
+  "Payout reconciliation",
+  "Google Sheets",
+  "SOPs",
+  "Business-system planning",
+];
+
+export const trainingDisclosure =
+  "Training is educational and based on practical operational experience. Results depend on execution, marketplace rules and business conditions — no results are guaranteed.";
 
 export const book = {
   heading: "Let's talk about your business",
@@ -971,7 +1053,7 @@ export const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Marketplace", href: "/marketplace-services" },
   { label: "Sourcing", href: "/sourcing-freight" },
-  { label: "Business", href: "/business-relationships" },
+  { label: "Systems", href: "/business-systems" },
   { label: "Training", href: "/training" },
   { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/contact" },
@@ -982,6 +1064,7 @@ export const footerLinks = [
   { label: "Services", href: "/services" },
   { label: "Marketplace Services", href: "/marketplace-services" },
   { label: "Sourcing & Freight", href: "/sourcing-freight" },
+  { label: "Business Systems & Automation", href: "/business-systems" },
   { label: "Business Relationships", href: "/business-relationships" },
   { label: "Training", href: "/training" },
   { label: "Projects", href: "/projects" },
@@ -1013,28 +1096,28 @@ export type StrengthCard = {
 
 export const coreStrengths: StrengthCard[] = [
   {
-    icon: "layers",
-    title: "Marketplace Operations",
-    desc: "Running real listings, inventory and sales across multiple marketplaces every day.",
-    points: ["Listings & optimization", "Inventory control", "Orders & payouts"],
+    icon: "store",
+    title: "Real Marketplace Experience",
+    desc: "I have run actual listings, orders, inventory and payouts across multiple marketplaces — the work is not theoretical.",
+    points: ["Multi-marketplace operations", "Buyer and seller workflows", "Fee and payout reality"],
   },
   {
-    icon: "chart",
-    title: "Profit & COGS",
-    desc: "Tracking true cost so decisions are made on real margin, not surface revenue.",
-    points: ["Fee & tax mapping", "COGS tracking", "Profit reporting"],
+    icon: "target",
+    title: "Business Problem-Solving",
+    desc: "I start with the operational problem and the money, then decide what actually needs to change.",
+    points: ["Profit and COGS thinking", "Root-cause process work", "Practical priorities"],
+  },
+  {
+    icon: "layers",
+    title: "Systems Thinking",
+    desc: "Scattered spreadsheets and manual steps become one clear system that matches how the business really runs.",
+    points: ["Workflow design", "Data structure", "Google Sheets systems"],
   },
   {
     icon: "bolt",
-    title: "Workflow Automation",
-    desc: "Replacing repetitive manual steps with structured workflows and connected tools.",
-    points: ["Process mapping", "Google Sheets systems", "Tool integrations"],
-  },
-  {
-    icon: "cpu",
-    title: "Business Systems & ERP",
-    desc: "Planning internal tools and ERP prototypes that match how the business actually runs.",
-    points: ["ERP workflow design", "Dashboard planning", "AI-assisted prototyping"],
+    title: "Practical Execution",
+    desc: "Small, tested increments instead of over-engineered builds — built, tested and handed over to the team.",
+    points: ["Incremental builds", "AI-assisted implementation", "Documented handover"],
   },
 ];
 
@@ -1047,25 +1130,25 @@ export const businessPillars: {
   {
     icon: "cart",
     title: "Marketplace Services",
-    desc: "Operations, profit tracking, automation and systems for online sellers.",
+    desc: "Listings, operations, profit records and workflow support across the marketplaces you sell on.",
     href: "/marketplace-services",
   },
   {
     icon: "box",
-    title: "Sourcing & Freight",
-    desc: "Sourcing research, supplier coordination and freight planning notes.",
+    title: "Sourcing and Freight Coordination",
+    desc: "Supplier comparison, MOQ planning, landed cost and shipment coordination support.",
     href: "/sourcing-freight",
   },
   {
-    icon: "briefcase",
-    title: "Business Relationships",
-    desc: "Ongoing operational support and project-based collaborations.",
-    href: "/business-relationships",
+    icon: "cpu",
+    title: "Business Systems and Automation",
+    desc: "Dashboards, internal tools and ERP prototypes built around how your business runs.",
+    href: "/business-systems",
   },
   {
     icon: "book",
-    title: "Training",
-    desc: "Structured training for sellers, operators and growing teams.",
+    title: "Consulting and Practical Training",
+    desc: "Hands-on training and consultations on marketplace operations, profit and systems.",
     href: "/training",
   },
 ];
@@ -1073,162 +1156,305 @@ export const businessPillars: {
 export const marketplacePreview: StrengthCard[] = [
   {
     icon: "cart",
-    title: "Multi-Marketplace Listings",
-    desc: "Organize listings, variations and inventory across the platforms you actually sell on.",
-    points: ["Listing structure", "Catalog hygiene", "Channel planning"],
-  },
-  {
-    icon: "chart",
-    title: "Profit & COGS Reporting",
-    desc: "See real margin per product after fees, tax, shipping and cost of goods.",
-    points: ["Fee mapping", "COGS tracking", "Profit dashboards"],
-  },
-  {
-    icon: "bolt",
-    title: "Workflow Automation",
-    desc: "Remove repetitive manual steps with structured sheets, scripts and integrations.",
-    points: ["Process mapping", "Sheets systems", "Tool connections"],
+    title: "Listing and Catalogue",
+    desc: "Research, listings, titles, pricing and catalogue structure done properly.",
+    points: ["Product research", "Listing creation", "Catalogue structure"],
   },
   {
     icon: "settings",
-    title: "ERP & Integration Planning",
-    desc: "Prototype internal tools and ERP workflows that fit how your team and money move.",
-    points: ["ERP workflows", "Data structure", "Prototype builds"],
+    title: "Operations",
+    desc: "Orders, inventory, returns and buyer issues handled with a clear workflow.",
+    points: ["Order handling", "Inventory control", "Team SOPs"],
+  },
+  {
+    icon: "chart",
+    title: "Profit and Records",
+    desc: "Fees, COGS and payouts tracked so real profit is visible, not guessed.",
+    points: ["Fee mapping", "COGS tracking", "Payout reconciliation"],
+  },
+  {
+    icon: "bolt",
+    title: "Workflow Support",
+    desc: "SOPs, dashboards and operational reviews that keep the business consistent.",
+    points: ["SOP creation", "Dashboards", "Operational reviews"],
   },
 ];
+
+/* Detailed service groups for the Marketplace Services page. */
+export const marketplaceServiceGroups: {
+  icon: IconName;
+  title: string;
+  desc: string;
+  items: string[];
+}[] = [
+  {
+    icon: "cart",
+    title: "Listing and Catalogue",
+    desc: "Products researched, listed and catalogued so they sell on their own strength — not on guesswork.",
+    items: [
+      "Product research",
+      "Listing creation",
+      "Titles and descriptions",
+      "Pricing",
+      "Item specifics",
+      "Images and catalogue",
+      "Variations and inventory",
+    ],
+  },
+  {
+    icon: "settings",
+    title: "Operations",
+    desc: "The daily work of selling handled with a clear, consistent workflow.",
+    items: [
+      "Orders",
+      "Inventory",
+      "Returns",
+      "Customer issues",
+      "Handling workflow",
+      "Account organization",
+      "Team SOPs",
+    ],
+  },
+  {
+    icon: "chart",
+    title: "Profit and Records",
+    desc: "Every sale tied back to fees, cost and payout so the real number is visible.",
+    items: [
+      "Marketplace fees",
+      "COGS",
+      "Payouts",
+      "Profit visibility",
+      "Buying records",
+      "Spreadsheets",
+      "Reconciliation planning",
+    ],
+  },
+  {
+    icon: "bolt",
+    title: "Workflow Support",
+    desc: "Processes documented and reviewed so the business runs without depending on one person.",
+    items: [
+      "SOP creation",
+      "Role structure",
+      "Task flow",
+      "Quality control",
+      "Dashboards",
+      "Operational reviews",
+    ],
+  },
+];
+
+export const marketplaceDisclaimer =
+  "I help sellers organize and improve their operations. I do not promise guaranteed sales, guaranteed revenue or account reinstatement — marketplace results depend on execution, platform rules and market conditions.";
+
+export const businessSystems = {
+  summary:
+    "I combine operational knowledge with AI-assisted development to build practical websites, dashboards and internal systems.",
+  role: [
+    "Product vision",
+    "Business logic",
+    "Workflow design",
+    "Interface planning",
+    "Testing",
+    "AI-assisted implementation",
+  ],
+  stack: ["Supabase", "Vercel", "GitHub", "Google Sheets"],
+  examples: [
+    "Embani ERP",
+    "SpotAware",
+    "Google Sheets Sales Workspace",
+    "Marketplace dashboards",
+    "Internal workflow tools",
+  ],
+  note:
+    "This is product and systems work from an operator's perspective — planning, workflow design and AI-assisted implementation. It is not positioning Salman as a senior software engineer.",
+};
+
+export type BusinessCta = {
+  label: string;
+  href?: string;
+  external?: boolean;
+  comingSoon?: boolean;
+};
 
 export type BusinessCard = {
   name: string;
   type: string;
-  status: "Active Development" | "Planning" | "Placeholder" | "Live";
+  status: "Active Development" | "Planning" | "Ongoing" | "Placeholder" | "Live";
   desc: string;
-  href?: string;
   note: string;
+  ctas: BusinessCta[];
 };
 
 export const businessCards: BusinessCard[] = [
   {
-    name: "Embani ERP",
-    type: "Internal operations project",
-    status: "Active Development",
-    desc: "An internal operations prototype for inventory, sales and profit workflows.",
-    href: "/projects/embani-erp",
-    note: "Built around the way a real business works.",
+    name: "Shin Dev",
+    type: "Website and Digital Development",
+    status: "Placeholder",
+    desc: "Websites and digital development work — planned and scoped as projects come in.",
+    note: "Details shared when a project is scoped.",
+    ctas: [
+      { label: "Explore Shin Dev", comingSoon: true },
+      { label: "Start a Website Project", href: "/contact" },
+    ],
   },
   {
     name: "Himalayan Koh",
-    type: "Business relationship",
-    status: "Planning",
-    desc: "A planned collaboration around marketplace and sourcing operations.",
-    href: "/business-relationships",
-    note: "Details shared when the scope is finalized.",
+    type: "Salt Products, Retail, Wholesale and Export Operations",
+    status: "Ongoing",
+    desc: "Product, retail, wholesale and export operations around salt products.",
+    note: "Ongoing operational and digital-systems support.",
+    ctas: [
+      { label: "Explore Products", href: "/projects/himalayan-koh" },
+      {
+        label: "Request Export Information",
+        href: "mailto:basco.pk@gmail.com?subject=Export%20Information%20Request",
+        external: true,
+      },
+    ],
   },
   {
-    name: "Shin Dev",
-    type: "Marketplace brand",
-    status: "Placeholder",
-    desc: "A placeholder card for a future marketplace brand and storefront.",
-    note: "Card reserved — launching when ready.",
+    name: "Embani ERP",
+    type: "E-commerce Accounting and Marketplace Operations System",
+    status: "Active Development",
+    desc: "One clear system for accounting, profit tracking and daily marketplace operations.",
+    note: "Built around the way a real business works.",
+    ctas: [
+      { label: "Explore Embani ERP", href: "/projects/embani-erp" },
+      { label: "Discuss an ERP Project", href: "/book" },
+    ],
   },
   {
     name: "Fiverr",
-    type: "Service channel",
+    type: "Freelance Services",
     status: "Placeholder",
-    desc: "A planned service channel for marketplace and automation work.",
-    note: "Profile will be linked when live.",
+    desc: "A planned freelance channel for marketplace operations and systems work.",
+    note: "Profile link shared when the profile is live.",
+    ctas: [{ label: "Hire Me on Fiverr", comingSoon: true }],
   },
   {
     name: "Salman Bashir Consulting",
-    type: "Consulting practice",
+    type: "Consulting and Training",
     status: "Live",
     desc: "Consulting, systems and training built around real marketplace operations.",
-    href: "/services",
     note: "Consulting and project work available now.",
+    ctas: [
+      { label: "Book a Consultation", href: "/book" },
+      { label: "View Training", href: "/training" },
+    ],
   },
 ];
 
 export const sourcingPreview: StrengthCard[] = [
   {
     icon: "globe",
-    title: "Sourcing Research",
-    desc: "Structured research on products, suppliers and markets before committing.",
-    points: ["Product research", "Supplier shortlists", "Cost analysis"],
+    title: "Sourcing Coordination",
+    desc: "Alibaba and AliExpress sourcing with supplier comparison and shortlists.",
+    points: ["Supplier research", "Quote comparison", "MOQ and sample planning"],
   },
   {
     icon: "box",
-    title: "Freight & Logistics Notes",
-    desc: "Practical notes on routes, costs and documents — operational guidance, not a license.",
-    points: ["Route planning", "Cost comparison", "Document checklists"],
+    title: "Freight Planning Notes",
+    desc: "Air vs sea comparison, landed cost and shipment coordination support.",
+    points: ["Air vs sea", "Landed cost", "Shipment communication"],
   },
   {
     icon: "sheet",
-    title: "Supplier Scorecards",
-    desc: "Track supplier performance, quotes and reliability in one place.",
-    points: ["Quote tracking", "Lead-time history", "Quality notes"],
+    title: "Documents and Records",
+    desc: "Invoice and packing-list review with supplier follow-up and tracking.",
+    points: ["Invoice review", "Packing lists", "Supplier follow-up"],
   },
 ];
+
+export const sourcingSupport = [
+  "Alibaba and AliExpress sourcing",
+  "Supplier comparison",
+  "MOQ and sample planning",
+  "Packaging coordination",
+  "Invoice and packing-list review",
+  "Air vs sea comparison",
+  "Landed cost calculation",
+  "China–USA coordination",
+  "China–Pakistan coordination",
+  "Supplier follow-up",
+  "Shipment communication",
+];
+
+export const sourcingDisclosure =
+  "Salman provides sourcing and operational coordination support. He is not a licensed freight forwarder, customs broker or legal adviser. For customs clearance, duties and regulated logistics, qualified professionals handle those steps.";
 
 export const trainingPreview: StrengthCard[] = [
   {
     icon: "cart",
-    title: "Marketplace Seller Basics",
-    desc: "The operational side of selling: listings, orders, inventory and payouts.",
-    points: ["Listing setup", "Order handling", "Payout basics"],
+    title: "Marketplace Training",
+    desc: "Practical training on the marketplaces you actually sell on.",
+    points: ["eBay, Depop, Mercari", "Listings and research", "Pricing and fees"],
   },
   {
     icon: "chart",
-    title: "Profit & COGS Fundamentals",
+    title: "Profit & COGS Sessions",
     desc: "Understand what a sale really costs and how to read real margin.",
-    points: ["Fees & tax", "COGS mapping", "Profit sheets"],
+    points: ["COGS", "Profit calculations", "Payout reconciliation"],
   },
   {
     icon: "sheet",
-    title: "Google Sheets Operations",
+    title: "Google Sheets Systems",
     desc: "Build practical sheets for sales tracking, inventory and reporting.",
-    points: ["Formulas", "Dashboards", "Templates"],
+    points: ["Sales workspaces", "Formulas", "Dashboards"],
   },
   {
-    icon: "cpu",
-    title: "AI-Assisted Product Development",
-    desc: "Use AI tools responsibly in research, design and product planning.",
-    points: ["Prompt workflows", "Research", "Prototyping"],
+    icon: "file",
+    title: "SOPs and Process Planning",
+    desc: "Document processes and plan business systems that stick.",
+    points: ["SOP writing", "Workflow reviews", "System planning"],
   },
   {
     icon: "settings",
-    title: "ERP Workflow Fundamentals",
+    title: "ERP Planning",
     desc: "The concepts behind ERP workflows for teams moving off spreadsheets.",
     points: ["Master data", "Process flows", "Reporting"],
   },
   {
-    icon: "bolt",
-    title: "Automation Foundations",
-    desc: "Where to automate, what to keep manual, and how to structure it.",
-    points: ["Automation audit", "Tool choices", "SOPs"],
+    icon: "cpu",
+    title: "AI-Assisted System Planning",
+    desc: "Plan websites and internal systems with AI-assisted implementation.",
+    points: ["Website planning", "System planning", "AI-assisted builds"],
   },
 ];
 
-export const opportunitySeats: {
-  icon: IconName;
-  title: string;
-  desc: string;
-  cta: string;
-  href: string;
-}[] = [
-  {
-    icon: "users",
-    title: "Opportunity Seats",
-    desc: "Limited spots for consulting and project engagements each month so every client gets real attention.",
-    cta: "Reserve a seat",
-    href: "/book",
-  },
-  {
-    icon: "cpu",
-    title: "Practice Lab",
-    desc: "A planned space for experiments, prototypes and applied learning — coming soon.",
-    cta: "Visit the lab",
-    href: "/community",
-  },
-];
+export const opportunitySeats = {
+  heading: "Opportunity Seats",
+  copy: "Limited free or sponsored learning seats may be offered to committed learners with limited financial resources.",
+  selection: [
+    "Genuine need",
+    "Commitment",
+    "Attendance",
+    "Assignments",
+    "Respectful participation",
+  ],
+  cta: "Apply for an Opportunity Seat",
+  href: "/book",
+};
+
+export const practiceLab = {
+  heading: "Hands-on Practice Lab",
+  tagline: "Learn it. Practise it. Build it.",
+  copy: "Structured exercises where learners practise the real operational work — with mock data, not live accounts.",
+  exercises: [
+    "Mock listings",
+    "Pricing",
+    "Fees",
+    "COGS",
+    "Profit",
+    "Returns",
+    "Payout reconciliation",
+    "Google Sheets",
+    "SOP writing",
+    "Mini operational project",
+  ],
+  note: "Structured practice only — not live client-account access.",
+  href: "/community",
+};
 
 export type TeamRole = {
   role: string;
@@ -1238,28 +1464,23 @@ export type TeamRole = {
 
 export const teamRoles: TeamRole[] = [
   {
-    role: "Founder & Lead Consultant",
-    desc: "Salman Bashir — operator, systems builder and trainer.",
-    placeholder: false,
-  },
-  {
-    role: "Marketplace Operations",
-    desc: "Role reserved for a future operations specialist.",
+    role: "Marketplace Operations Support",
+    desc: "Order, inventory and marketplace workflow support.",
     placeholder: true,
   },
   {
-    role: "Sourcing & Freight",
-    desc: "Role reserved for a future sourcing and logistics coordinator.",
+    role: "Listing and Product Support",
+    desc: "Research, listings, pricing and catalogue support.",
     placeholder: true,
   },
   {
-    role: "Automation & Systems",
-    desc: "Role reserved for a future automation and systems builder.",
+    role: "Sales and Records Support",
+    desc: "Sales records, profit tracking and payout reconciliation support.",
     placeholder: true,
   },
   {
-    role: "Community & Training",
-    desc: "Role reserved for a future community and training lead.",
+    role: "Research and Coordination",
+    desc: "Sourcing, supplier and coordination support.",
     placeholder: true,
   },
 ];

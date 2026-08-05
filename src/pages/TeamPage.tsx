@@ -16,16 +16,16 @@ export function TeamPage() {
         eyebrow="Small Operations Team"
         title={
           <>
-            A team that is{" "}
-            <span className="text-gradient-brand">as lean as the work</span>
+            Supported by a{" "}
+            <span className="text-gradient-brand">Small Operations Team</span>
           </>
         }
-        description="Roles are listed with placeholders until the team is finalized. No invented names, no inflated headcount — only the work that actually needs doing."
+        description="Roles only — no names yet. The team grows only when the workload justifies it."
       />
 
       <section className="relative pb-4 pt-2">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
             {teamRoles.map((r, i) => (
               <Reveal key={r.role} delay={i * 60}>
                 <article className="flex h-full items-start gap-4 rounded-2xl border border-edge bg-panel p-5">
