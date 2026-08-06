@@ -4,7 +4,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function ServicesSection() {
   return (
-    <section id="services" className="relative py-14 sm:py-20">
+    <section id="services" className="relative py-16 sm:py-24">
       {/* subtle background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-1/3 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-brand-500/[0.07] blur-[140px]" />

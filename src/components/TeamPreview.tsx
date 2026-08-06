@@ -4,20 +4,20 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function TeamPreview() {
   return (
-    <section id="team-preview" className="relative py-14 sm:py-20">
+    <section id="team-preview" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
             eyebrow="Small Operations Team"
-            title="A lean team, built around real work"
-            description="Roles are listed with placeholders until the team is finalized. No invented names, no inflated headcount."
+            title="Supported by a Small Operations Team"
+            description="Roles only — no names yet. The team grows only when the workload justifies it."
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
           {teamRoles.map((r, i) => (
             <Reveal key={r.role} delay={i * 60}>
-              <article className="flex h-full items-start gap-4 rounded-2xl border border-edge bg-panel p-5">
+              <article className="card card-hover flex h-full items-start gap-4 p-5">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
                   <Icon name="users" className="h-5 w-5" />
                 </span>
@@ -28,11 +28,6 @@ export function TeamPreview() {
                   <p className="mt-1.5 text-sm leading-relaxed text-muted">
                     {r.desc}
                   </p>
-                  {r.placeholder && (
-                    <span className="mt-2 inline-block rounded-full border border-edge bg-panel-strong px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-faint">
-                      Role placeholder
-                    </span>
-                  )}
                 </div>
               </article>
             </Reveal>
@@ -41,8 +36,7 @@ export function TeamPreview() {
 
         <Reveal className="mt-8 text-center">
           <p className="text-sm text-muted">
-            A small team, kept honest — roles are filled as the workload
-            justifies it.
+            A small, honest team — names are added only when roles are filled.
           </p>
           <Link
             to="/team"

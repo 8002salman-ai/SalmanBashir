@@ -78,7 +78,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-14 sm:py-20">
+    <section id="contact" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="relative overflow-hidden rounded-[2rem] border border-edge-strong bg-gradient-to-br from-panel to-transparent p-6 sm:p-8 lg:p-10">
           {/* glow */}
@@ -317,7 +317,7 @@ export function ContactSection() {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="btn btn-primary btn-block group justify-center disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {submitting ? "Sending…" : "Send Project Details"}
                       {!submitting && (

@@ -142,15 +142,12 @@ export function ResumePage() {
                   href={`mailto:${contact.email}?subject=${encodeURIComponent(
                     "Resume / work overview request",
                   )}`}
-                  className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                  className="btn btn-primary"
                 >
                   Request a Tailored Overview
                   <Icon name="mail2" className="h-4 w-4" />
                 </a>
-                <Link
-                  to="/book"
-                  className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel-strong px-5 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
-                >
+                <Link to="/book" className="btn btn-secondary">
                   Book a Call
                   <Icon name="calendar" className="h-4 w-4" />
                 </Link>

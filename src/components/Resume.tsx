@@ -2,7 +2,7 @@ import { Reveal, Icon } from "@/components/ui";
 
 export function Resume() {
   return (
-    <section id="resume" className="relative py-14 sm:py-20">
+    <section id="resume" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <div className="relative mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-transparent p-8 text-center sm:p-10">

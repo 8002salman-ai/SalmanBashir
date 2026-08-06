@@ -101,7 +101,7 @@ export function BusinessSystemsPage() {
       </section>
 
       {/* Related projects */}
-      <section className="relative py-14 sm:py-20">
+      <section className="relative py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
             <SectionHeading
@@ -126,7 +126,7 @@ export function BusinessSystemsPage() {
                 <Reveal key={p.slug} delay={i * 60}>
                   <Link
                     to={`/projects/${p.slug}`}
-                    className="group flex h-full flex-col rounded-2xl border border-edge bg-panel p-5 transition-colors hover:border-brand-500/40 hover:bg-panel-strong"
+                    className="card card-hover group flex h-full flex-col p-5"
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
                       <Icon name={p.icon} className="h-5 w-5" />

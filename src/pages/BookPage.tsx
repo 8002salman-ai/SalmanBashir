@@ -96,7 +96,7 @@ export function BookPage() {
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {book.consultations.map((c, i) => (
                 <Reveal key={c.title} delay={(i % 4) * 60}>
-                  <div className="flex h-full flex-col rounded-2xl border border-edge bg-panel p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:bg-panel-strong">
+                  <div className="card card-hover flex h-full flex-col p-5">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-gradient-to-br from-brand-500/15 to-brand-500/5 text-accent-strong">
                       <Icon name={c.icon} className="h-6 w-6" />
                     </div>
@@ -350,7 +350,7 @@ export function BookPage() {
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="btn btn-primary btn-block group justify-center disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         {submitting ? "Sending…" : "Send Booking Request"}
                         {!submitting && (

@@ -3,7 +3,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function CoreStrength() {
   return (
-    <section id="core-strength" className="relative py-14 sm:py-20">
+    <section id="core-strength" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
@@ -20,8 +20,8 @@ export function CoreStrength() {
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {coreStrengths.map((s, i) => (
             <Reveal key={s.title} delay={i * 80}>
-              <article className="group relative h-full overflow-hidden rounded-2xl border border-edge bg-panel p-5 transition-colors hover:border-brand-500/40">
-                <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-brand-500/10 blur-2xl transition-opacity opacity-0 group-hover:opacity-100" />
+              <article className="card card-hover group relative h-full overflow-hidden p-5">
+                <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-brand-500/10 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
                   <Icon name={s.icon} className="h-5 w-5" />
                 </span>

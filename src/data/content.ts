@@ -72,13 +72,13 @@ export const contact = {
   } as Record<string, string>,
 };
 
-/* All figures here are derived from the journey and projects shown on
-   this site — no invented clients, revenue, employers or certifications. */
+/* Trust labels — qualitative on purpose. No invented numbers, clients or
+   performance figures are shown anywhere on this site. */
 export const stats = [
-  { value: "6", label: "Marketplaces Operated" },
-  { value: "5", label: "Projects & Systems Built" },
-  { value: "3", label: "Core Service Areas" },
-  { value: "Multi", label: "ERP & BI Workflows Designed" },
+  { value: "Hands-on", label: "Marketplace operations experience" },
+  { value: "Operator-led", label: "Projects and systems built from real work" },
+  { value: "Honest", label: "No invented metrics, clients or results" },
+  { value: "Remote", label: "USA · UK · Norway · Sweden · Pakistan" },
 ];
 
 export const trustItems = [
@@ -710,7 +710,6 @@ export const journey = [
     points: [
       "First marketplace listings and sales",
       "Product research and listing basics",
-      "Buyer communication",
       "Learning fees, shipping and payouts",
     ],
   },
@@ -722,7 +721,6 @@ export const journey = [
     points: [
       "Running sales across several marketplaces",
       "Listings, inventory and order processing",
-      "Buyer support and account management",
       "Per-channel fees and payout handling",
     ],
   },
@@ -734,8 +732,7 @@ export const journey = [
     points: [
       "Supplier research and comparison",
       "MOQ and sample planning",
-      "Packaging and catalogue coordination",
-      "Invoice and shipment coordination support",
+      "Packaging and shipment coordination support",
     ],
   },
   {
@@ -746,7 +743,6 @@ export const journey = [
     points: [
       "Sales workspaces in Google Sheets",
       "COGS, fees and profit tracking",
-      "Payout reconciliation planning",
       "SOPs and team workflows",
     ],
   },
@@ -758,7 +754,6 @@ export const journey = [
     points: [
       "Operational planning for ERP and dashboards",
       "Business logic and workflow design",
-      "Interface direction and testing",
       "AI-assisted implementation",
     ],
   },
@@ -771,7 +766,6 @@ export const journey = [
       "Marketplace and profit consulting",
       "Practical operations training",
       "International remote support",
-      "Systems built around real business problems",
     ],
   },
 ];
@@ -1064,23 +1058,17 @@ export const footerLinks = [
   { label: "Services", href: "/services" },
   { label: "Marketplace Services", href: "/marketplace-services" },
   { label: "Sourcing & Freight", href: "/sourcing-freight" },
-  { label: "Business Systems & Automation", href: "/business-systems" },
-  { label: "Business Relationships", href: "/business-relationships" },
+  { label: "Business Systems", href: "/business-systems" },
   { label: "Training", href: "/training" },
   { label: "Projects", href: "/projects" },
   { label: "Journey", href: "/journey" },
-  { label: "Team", href: "/team" },
-  { label: "Community", href: "/community" },
   { label: "Contact", href: "/contact" },
-  { label: "Book a Consultation", href: "/book" },
-  { label: "Resume", href: "/resume" },
   { label: "Privacy", href: "/privacy" },
 ];
 
 /* Phase-1 homepage & business hub content */
 
 export const profileCard = {
-  photoAlt: "Salman Bashir portrait placeholder",
   message:
     "I work hands-on across marketplaces first, then build the systems around the way the business really runs.",
   currentFocus: "Embani ERP — internal operations prototype",

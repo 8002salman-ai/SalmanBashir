@@ -20,33 +20,27 @@ export function Footer() {
     .filter((s) => Boolean(s.url));
 
   return (
-    <footer className="relative border-t border-edge py-10">
+    <footer className="relative border-t border-edge py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3">
               <span className="h-10 w-10 overflow-hidden rounded-xl">
                 <LogoMark className="block h-full w-full" />
               </span>
-              <span className="font-display text-base font-semibold text-strong">
+              <span className="font-display text-base font-bold text-strong">
                 {personal.name}
               </span>
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
               {personal.tagline} {personal.statement}
             </p>
+            <p className="mt-3 text-sm text-faint">
+              Based in Pakistan · Remote support for the USA, UK, Norway,
+              Sweden and international online markets.
+            </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {personal.markets.slice(0, 4).map((m) => (
-                <span
-                  key={m}
-                  className="rounded-md border border-edge bg-panel px-2 py-1 text-[11px] text-faint"
-                >
-                  {m}
-                </span>
-              ))}
-            </div>
-            <div className="mt-4 flex flex-wrap items-center gap-2">
               {socialLinks.map((s) => (
                 <a
                   key={s.key}
@@ -55,10 +49,14 @@ export function Footer() {
                   rel="noopener noreferrer"
                   aria-label={s.label}
                   title={s.label}
-                  className="inline-flex items-center gap-2 rounded-lg border border-edge bg-panel px-3 py-2 text-xs font-medium text-muted transition-colors hover:border-edge-strong hover:text-strong"
+                  className="external-link rounded-lg border border-edge bg-panel px-3 py-2 text-xs font-medium text-muted transition-colors hover:border-edge-strong hover:text-strong"
                 >
                   <Icon name={s.icon} className="h-3.5 w-3.5" />
                   {s.label}
+                  <Icon
+                    name="external"
+                    className="external-icon h-3 w-3 opacity-70"
+                  />
                 </a>
               ))}
             </div>
@@ -69,7 +67,7 @@ export function Footer() {
             <p className="text-xs font-semibold uppercase tracking-wider text-faint">
               Navigate
             </p>
-            <ul className="mt-3 space-y-2.5">
+            <ul className="mt-3 grid grid-cols-1 gap-2">
               {footerLinks.map((l) => (
                 <li key={l.href}>
                   <Link
@@ -104,22 +102,19 @@ export function Footer() {
                   </a>
                 </li>
               )}
-              <li className="flex items-center gap-2.5 text-sm text-muted">
-                <Icon name="calendar" className="h-4 w-4 text-accent" />
-                {contact.availability}
+              <li className="flex items-start gap-2.5 text-sm text-muted">
+                <Icon name="calendar" className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                <span className="leading-snug">{contact.availability}</span>
               </li>
             </ul>
-            <Link
-              to="/book"
-              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-panel-strong px-4 py-2.5 text-sm font-semibold text-strong transition-colors hover:bg-edge"
-            >
+            <Link to="/book" className="btn btn-primary mt-4">
               Book a Consultation
               <Icon name="arrow" className="h-4 w-4" />
             </Link>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-edge pt-5 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-edge pt-6 sm:flex-row">
           <p className="text-xs text-faint">
             © {new Date().getFullYear()} {personal.name}. All rights reserved.
           </p>

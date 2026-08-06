@@ -3,7 +3,7 @@ import { Reveal, SectionHeading } from "@/components/ui";
 
 export function CredibilitySection() {
   return (
-    <section id="credibility" className="relative py-14 sm:py-20">
+    <section id="credibility" className="relative py-16 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute right-1/4 top-1/3 h-[300px] w-[300px] rounded-full bg-gold-accent/[0.06] blur-[120px]" />
       </div>

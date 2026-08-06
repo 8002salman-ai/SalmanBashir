@@ -57,7 +57,7 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-accent-strong",
+        "inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-strong",
         className,
       )}
     >
@@ -90,11 +90,11 @@ export function SectionHeading({
       {eyebrow && (
         <Eyebrow className={align === "center" ? "mx-auto" : ""}>{eyebrow}</Eyebrow>
       )}
-      <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-strong sm:text-4xl md:text-[2.5rem] md:leading-[1.1]">
+      <h2 className="mt-3.5 font-display text-3xl font-semibold tracking-tight text-strong sm:text-4xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-3 text-base leading-relaxed text-muted sm:text-lg">
+        <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
           {description}
         </p>
       )}
@@ -370,7 +370,7 @@ export function Icon({
 
 /* Status badge — consistent tone for "Active / Planning / Live / Placeholder" */
 const statusTones = {
-  live: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
+  live: "border-brand-500/30 bg-brand-500/10 text-accent-strong",
   active: "border-brand-500/30 bg-brand-500/10 text-accent-strong",
   planning: "border-gold-accent/30 bg-gold-accent/10 text-gold-accent",
   placeholder: "border-edge-strong bg-panel text-faint",
@@ -393,7 +393,7 @@ export function StatusBadge({
         className,
       )}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-current opacity-80" />
+      <span className="h-1 w-1 rounded-full bg-current opacity-80" />
       {children}
     </span>
   );
@@ -474,7 +474,7 @@ export function CtaCard({
   ctaHref: string;
 }) {
   return (
-    <section className="relative py-14 sm:py-20">
+    <section className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-edge-strong bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/10 p-8 sm:p-10">
@@ -498,10 +498,7 @@ export function CtaCard({
                   </p>
                 )}
               </div>
-              <Link
-                to={ctaHref}
-                className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
-              >
+              <Link to={ctaHref} className="btn btn-primary btn-lg group">
                 {ctaLabel}
                 <Icon
                   name="arrow"

@@ -3,7 +3,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative py-14 sm:py-20">
+    <section id="about" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left: professional summary */}

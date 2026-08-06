@@ -60,7 +60,7 @@ export function SourcingFreightPage() {
       </section>
 
       {/* Himalayan Koh */}
-      <section className="relative py-14 sm:py-20">
+      <section className="relative py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
             <Reveal>
@@ -123,14 +123,14 @@ export function SourcingFreightPage() {
                 <div className="mt-5 flex flex-wrap gap-2">
                   <Link
                     to="/projects/himalayan-koh"
-                    className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-on-accent transition-colors hover:bg-brand-400"
+                    className="btn btn-primary"
                   >
                     Explore Products
                     <Icon name="arrow" className="h-4 w-4" />
                   </Link>
                   <a
                     href="mailto:basco.pk@gmail.com?subject=Export%20Information%20Request"
-                    className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-4 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40"
+                    className="btn btn-secondary"
                   >
                     Request Export Information
                   </a>

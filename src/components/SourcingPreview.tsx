@@ -4,7 +4,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function SourcingPreview() {
   return (
-    <section id="sourcing-preview" className="relative py-14 sm:py-20">
+    <section id="sourcing-preview" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
@@ -18,7 +18,7 @@ export function SourcingPreview() {
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {sourcingPreview.map((s, i) => (
             <Reveal key={s.title} delay={i * 80}>
-              <article className="h-full rounded-2xl border border-edge bg-panel p-5">
+              <article className="card card-hover h-full p-5">
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
                   <Icon name={s.icon} className="h-5 w-5" />
                 </span>
@@ -55,13 +55,10 @@ export function SourcingPreview() {
             </p>
             <Link
               to="/sourcing-freight"
-              className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+              className="btn btn-primary shrink-0"
             >
               View Sourcing & Freight
-              <Icon
-                name="arrow"
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-              />
+              <Icon name="arrow" className="h-4 w-4" />
             </Link>
           </div>
         </Reveal>

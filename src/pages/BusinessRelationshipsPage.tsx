@@ -57,7 +57,7 @@ export function BusinessRelationshipsPage() {
           <div className="grid gap-4 lg:grid-cols-2">
             {relationships.map((r, i) => (
               <Reveal key={r.name} delay={i * 80}>
-                <article className="flex h-full flex-col rounded-2xl border border-edge bg-panel p-5">
+                <article className="card card-hover flex h-full flex-col p-5">
                   <div className="flex items-start justify-between gap-3">
                     <h2 className="font-display text-lg font-semibold text-strong">
                       {r.name}
@@ -104,7 +104,7 @@ export function BusinessRelationshipsPage() {
         </div>
       </section>
 
-      <section className="relative py-14 sm:py-20">
+      <section className="relative py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal>

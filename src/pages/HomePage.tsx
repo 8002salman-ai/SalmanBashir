@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Hero } from "@/components/Hero";
 import { CoreStrength } from "@/components/CoreStrength";
-import { CredibilitySection } from "@/components/Credibility";
 import { BusinessPillars } from "@/components/BusinessPillars";
 import { MarketplacePreview } from "@/components/MarketplacePreview";
 import { BusinessCards } from "@/components/BusinessCards";
@@ -15,7 +14,7 @@ import { Reveal, Icon } from "@/components/ui";
 
 function BookCta() {
   return (
-    <section className="relative py-14 sm:py-20">
+    <section className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-edge-strong bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/10 p-8 sm:p-10">
@@ -36,7 +35,7 @@ function BookCta() {
               </div>
               <Link
                 to="/book"
-                className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                className="btn btn-primary btn-lg group shrink-0"
               >
                 Book a Consultation
                 <Icon
@@ -116,12 +115,11 @@ export function HomePage() {
       />
       <Hero />
       <CoreStrength />
-      <CredibilitySection />
       <BusinessPillars />
       <MarketplacePreview />
       <BusinessCards />
       <SourcingPreview />
-      <TrainingPreview />
+      <TrainingPreview limit={3} />
       <OpportunitySeats />
       <JourneySection limit={3} />
       <TeamPreview />

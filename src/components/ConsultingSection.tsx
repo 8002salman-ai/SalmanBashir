@@ -4,7 +4,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function ConsultingSection() {
   return (
-    <section id="consulting" className="relative py-14 sm:py-20">
+    <section id="consulting" className="relative py-16 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute right-1/4 top-0 h-[380px] w-[640px] rounded-full bg-gold-accent/[0.06] blur-[140px]" />
       </div>

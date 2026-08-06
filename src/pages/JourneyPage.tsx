@@ -43,16 +43,13 @@ export function JourneyPage() {
                 {personal.aboutQuote}
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  to="/resume"
-                  className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
-                >
+                <Link to="/resume" className="btn btn-primary">
                   View Resume
                   <Icon name="file" className="h-4 w-4" />
                 </Link>
                 <Link
                   to="/book"
-                  className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-3 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
+                  className="btn btn-secondary"
                 >
                   Work With Me
                 </Link>

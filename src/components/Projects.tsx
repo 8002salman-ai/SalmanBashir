@@ -15,11 +15,10 @@ function PreviewPlaceholder({ icon }: { icon: IconName }) {
   return (
     <div
       role="img"
-      aria-label="Project preview coming soon"
-      className="flex h-full min-h-[8rem] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-edge-strong bg-panel p-4 text-center"
+      aria-label="Project preview image"
+      className="flex h-full min-h-[8rem] items-center justify-center rounded-xl border border-dashed border-edge-strong bg-panel"
     >
-      <Icon name={icon} className="h-7 w-7 text-faint" />
-      <p className="text-xs font-medium text-faint">Project preview coming soon</p>
+      <Icon name={icon} className="h-8 w-8 text-faint/60" strokeWidth={1.4} />
     </div>
   );
 }
@@ -27,7 +26,7 @@ function PreviewPlaceholder({ icon }: { icon: IconName }) {
 export function ProjectsSection({ limit }: { limit?: number }) {
   const visible = limit ? rest.slice(0, limit) : rest;
   return (
-    <section id="projects" className="relative py-14 sm:py-20">
+    <section id="projects" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
@@ -115,7 +114,7 @@ export function ProjectsSection({ limit }: { limit?: number }) {
                 <div className="mt-6">
                   <Link
                     to={`/projects/${featured.slug}`}
-                    className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
+                    className="btn btn-primary"
                   >
                     View Project
                     <Icon name="arrow" className="h-4 w-4" />
@@ -137,7 +136,7 @@ export function ProjectsSection({ limit }: { limit?: number }) {
             <Reveal key={p.name} delay={(i % 4) * 70}>
               <Link
                 to={`/projects/${p.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-edge bg-panel p-5 transition-all duration-300 hover:-translate-y-1 hover:border-edge-strong hover:bg-panel-strong"
+                className="card card-hover group flex h-full flex-col p-5 hover:-translate-y-0.5"
               >
                 <PreviewPlaceholder icon={p.icon} />
 
@@ -162,17 +161,18 @@ export function ProjectsSection({ limit }: { limit?: number }) {
                   {p.desc}
                 </p>
 
-                <div className="mt-auto pt-3">
-                  <div className="flex flex-wrap gap-1.5">
-                    {p.tech.slice(0, 4).map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md border border-edge bg-panel px-2 py-0.5 text-[10px] font-medium text-faint"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                {p.role && (
+                  <p className="mt-3 border-t border-edge pt-3 text-xs leading-relaxed text-faint">
+                    Role: {p.role}
+                  </p>
+                )}
+
+                <div className="mt-auto flex items-center gap-1.5 pt-3 text-sm font-semibold text-accent-strong">
+                  View Details
+                  <Icon
+                    name="arrow"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  />
                 </div>
               </Link>
             </Reveal>

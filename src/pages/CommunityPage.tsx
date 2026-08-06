@@ -46,12 +46,12 @@ export function CommunityPage() {
         description="A planned community and practice lab around real operations — experiments, prototypes and applied learning. This page is a placeholder until it launches."
       />
 
-      <section className="relative pb-4 pt-2">
+      <section className="relative pb-16 pt-2">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {plans.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
-                <article className="h-full rounded-2xl border border-edge bg-panel p-5">
+                <article className="card card-hover flex h-full flex-col p-5">
                   <div className="flex items-start justify-between gap-3">
                     <h2 className="font-display text-base font-semibold text-strong">
                       {p.title}
@@ -66,7 +66,7 @@ export function CommunityPage() {
             ))}
           </div>
 
-          <Reveal className="mt-10">
+          <Reveal className="mt-8">
             <div className="mx-auto max-w-2xl rounded-2xl border border-edge bg-panel p-6 text-center">
               <p className="text-sm leading-relaxed text-muted">
                 Want to hear when the practice lab launches? Reach out and I will
@@ -74,7 +74,7 @@ export function CommunityPage() {
               </p>
               <a
                 href={`mailto:${contact.email}`}
-                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-accent transition-colors hover:bg-brand-400"
+                className="btn btn-primary mt-4"
               >
                 <Icon name="mail2" className="h-4 w-4" />
                 Email {contact.email}

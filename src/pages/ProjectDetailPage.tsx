@@ -13,17 +13,15 @@ function ScreenshotPlaceholder({ icon, name }: { icon: IconName; name: string })
   return (
     <div
       role="img"
-      aria-label={`${name} screenshots coming soon`}
-      className="flex h-full min-h-[14rem] flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-edge-strong bg-panel p-6 text-center"
+      aria-label={`${name} preview placeholder`}
+      className="flex h-full min-h-[14rem] items-center justify-center rounded-2xl border border-dashed border-edge-strong bg-panel p-6"
     >
-      <Icon name={icon} className="h-8 w-8 text-faint" />
-      <p className="font-display text-base font-semibold text-strong">
-        Project preview coming soon
-      </p>
-      <p className="max-w-xs text-xs leading-relaxed text-faint">
-        Real screenshots will appear here once available. No simulated or fake
-        software images are shown.
-      </p>
+      <div className="text-center">
+        <Icon name={icon} className="mx-auto h-8 w-8 text-faint" />
+        <p className="mt-3 text-xs leading-relaxed text-faint">
+          Real screenshots will appear here once available — no simulated images.
+        </p>
+      </div>
     </div>
   );
 }
@@ -43,10 +41,7 @@ export function ProjectDetailPage() {
             <p className="mt-3 text-sm leading-relaxed text-muted">
               The project you're looking for doesn't exist or has moved.
             </p>
-            <Link
-              to="/projects"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-accent transition-colors hover:bg-brand-400"
-            >
+            <Link to="/projects" className="btn btn-primary mt-6">
               <Icon name="arrow" className="h-4 w-4 rotate-180" />
               Back to projects
             </Link>
@@ -252,17 +247,11 @@ export function ProjectDetailPage() {
                 </p>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  to="/book"
-                  className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
-                >
+                <Link to="/book" className="btn btn-primary">
                   Book a Consultation
                   <Icon name="arrow" className="h-4 w-4" />
                 </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-3 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
-                >
+                <Link to="/contact" className="btn btn-secondary">
                   Send a Message
                 </Link>
               </div>

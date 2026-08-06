@@ -3,7 +3,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function StackSection() {
   return (
-    <section id="stack" className="relative py-14 sm:py-20">
+    <section id="stack" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading

@@ -5,7 +5,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 export function JourneySection({ limit }: { limit?: number }) {
   const items = limit ? journey.slice(0, limit) : journey;
   return (
-    <section id="journey" className="relative py-14 sm:py-20">
+    <section id="journey" className="relative py-16 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/4 top-1/2 h-[320px] w-[320px] -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[120px]" />
       </div>
@@ -94,7 +94,7 @@ export function JourneySection({ limit }: { limit?: number }) {
           <Reveal className="mt-8 text-center">
             <Link
               to="/journey"
-              className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
+              className="btn btn-secondary"
             >
               Read the full journey
               <Icon name="arrow" className="h-4 w-4" />

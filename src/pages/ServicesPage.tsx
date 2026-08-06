@@ -138,16 +138,13 @@ function ServiceDetail({
             </Block>
 
             <div className="flex flex-wrap gap-3 pt-2">
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/30"
-              >
+              <Link to="/book" className="btn btn-primary">
                 Book a Consultation
                 <Icon name="arrow" className="h-4 w-4" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
+                className="btn btn-secondary"
               >
                 Discuss This Service
               </Link>

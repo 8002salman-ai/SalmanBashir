@@ -4,7 +4,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function BusinessPillars() {
   return (
-    <section id="business-pillars" className="relative py-14 sm:py-20">
+    <section id="business-pillars" className="relative py-16 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/4 top-1/2 h-[300px] w-[300px] rounded-full bg-brand-500/[0.06] blur-[120px]" />
       </div>
@@ -23,7 +23,7 @@ export function BusinessPillars() {
             <Reveal key={p.title} delay={i * 80}>
               <Link
                 to={p.href}
-                className="group relative flex h-full flex-col rounded-2xl border border-edge bg-panel p-5 transition-all hover:border-brand-500/40 hover:bg-panel-strong"
+                className="card card-hover group relative flex h-full flex-col p-5"
               >
                 <div className="flex items-center justify-between">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong transition-transform duration-300 group-hover:scale-110">

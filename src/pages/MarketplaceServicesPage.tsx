@@ -33,7 +33,7 @@ export function MarketplaceServicesPage() {
       />
 
       {/* Platforms */}
-      <section className="relative pb-2 pt-2">
+      <section className="relative pb-6 pt-2">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-wider text-faint">
@@ -54,12 +54,12 @@ export function MarketplaceServicesPage() {
       </section>
 
       {/* Service groups */}
-      <section className="relative pb-4 pt-8">
+      <section className="relative pb-16 pt-8">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {marketplaceServiceGroups.map((g, i) => (
               <Reveal key={g.title} delay={i * 80}>
-                <article className="flex h-full flex-col rounded-2xl border border-edge bg-panel p-5">
+                <article className="card card-hover flex h-full flex-col p-5">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
                     <Icon name={g.icon} className="h-5 w-5" />
                   </span>
@@ -103,7 +103,7 @@ export function MarketplaceServicesPage() {
         </div>
       </section>
 
-      <section className="relative py-14 sm:py-20">
+      <section className="relative py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal>
@@ -147,18 +147,12 @@ export function MarketplaceServicesPage() {
         </div>
       </section>
 
-      <div className="flex flex-wrap justify-center gap-3 px-5 pb-14 sm:px-8">
-        <Link
-          to="/business-systems"
-          className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
-        >
+      <div className="flex flex-wrap justify-center gap-3 px-5 sm:px-8">
+        <Link to="/business-systems" className="btn btn-secondary">
           Business Systems and Automation
           <Icon name="arrow" className="h-4 w-4" />
         </Link>
-        <Link
-          to="/sourcing-freight"
-          className="inline-flex items-center gap-2 rounded-xl border border-edge bg-panel px-5 py-2.5 text-sm font-semibold text-strong transition-colors hover:border-brand-500/40 hover:text-accent-strong"
-        >
+        <Link to="/sourcing-freight" className="btn btn-secondary">
           Sourcing and Freight Coordination
           <Icon name="arrow" className="h-4 w-4" />
         </Link>

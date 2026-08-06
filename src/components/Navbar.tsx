@@ -50,17 +50,14 @@ export function Navbar() {
         <Link
           to="/"
           aria-label="Salman Bashir — home"
-          className="group flex items-center gap-3"
+          className="group flex items-center gap-2.5"
         >
           <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl shadow-lg shadow-brand-500/20">
             <LogoMark className="block h-full w-full" />
           </span>
-          <span className="hidden min-w-0 flex-col leading-tight sm:flex">
-            <span className="font-display text-base font-semibold tracking-tight text-strong">
+          <span className="hidden min-w-0 leading-tight sm:block">
+            <span className="font-display text-lg font-bold tracking-tight text-strong">
               {personal.name}
-            </span>
-            <span className="max-w-[13rem] truncate text-[11px] text-faint lg:max-w-[17rem]">
-              {personal.supportingIdentity}
             </span>
           </span>
         </Link>
@@ -89,7 +86,7 @@ export function Navbar() {
           <ThemeSwitcher />
           <Link
             to="/book"
-            className="hidden rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-on-accent transition-all hover:bg-brand-400 hover:shadow-lg hover:shadow-brand-500/20 sm:inline-flex"
+            className="btn btn-primary hidden sm:inline-flex"
           >
             Book a Consultation
           </Link>
@@ -149,7 +146,7 @@ export function Navbar() {
           <Link
             to="/book"
             onClick={() => setOpen(false)}
-            className="mt-2 block rounded-xl bg-brand-500 px-3 py-2 text-center text-sm font-semibold text-on-accent"
+            className="btn btn-primary btn-block mt-2"
           >
             Book a Consultation
           </Link>

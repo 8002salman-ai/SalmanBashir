@@ -3,7 +3,7 @@ import { Reveal, SectionHeading } from "@/components/ui";
 
 export function HowIWorkSection() {
   return (
-    <section id="process" className="relative py-14 sm:py-20">
+    <section id="process" className="relative py-16 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-dots opacity-40" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>

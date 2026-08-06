@@ -35,7 +35,7 @@ export function TrainingPage() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {training.map((t, i) => (
               <Reveal key={t.title} delay={(i % 3) * 70}>
-                <article className="flex h-full flex-col rounded-2xl border border-edge bg-panel p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:bg-panel-strong">
+                <article className="card card-hover flex h-full flex-col p-5">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-500/20 bg-gradient-to-br from-brand-500/15 to-brand-500/5 text-accent-strong">
                     <Icon name={t.icon} className="h-6 w-6" />
                   </div>
