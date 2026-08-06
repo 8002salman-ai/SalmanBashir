@@ -1,36 +1,49 @@
 import { Link, useParams } from "react-router-dom";
-import { projects } from "@/data/content";
+import { getCaseStudy, getRelated } from "@/data/projects";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
-import { Reveal, Icon, type IconName } from "@/components/ui";
+import { Reveal, Icon, SectionHeading, CtaCard } from "@/components/ui";
 import { cn } from "@/utils/cn";
+import { ProjectStatusBadge } from "@/components/projects/ProjectStatusBadge";
+import { RoleSummary } from "@/components/projects/RoleSummary";
+import { ProcessTimeline } from "@/components/projects/ProcessTimeline";
+import { ToolsUsed } from "@/components/projects/ToolsUsed";
+import { ProjectGallery } from "@/components/projects/ProjectGallery";
+import { ProofOfWork } from "@/components/projects/ProofOfWork";
+import { ResultSummary } from "@/components/projects/ResultSummary";
 
 const accentClasses = {
   brand: "border-brand-500/20 bg-brand-500/10 text-accent-strong",
   gold: "border-gold-accent/25 bg-gold-accent/10 text-gold-accent",
 };
 
-function ScreenshotPlaceholder({ icon, name }: { icon: IconName; name: string }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div
-      role="img"
-      aria-label={`${name} preview placeholder`}
-      className="flex h-full min-h-[14rem] items-center justify-center rounded-2xl border border-dashed border-edge-strong bg-panel p-6"
-    >
-      <div className="text-center">
-        <Icon name={icon} className="mx-auto h-8 w-8 text-faint" />
-        <p className="mt-3 text-xs leading-relaxed text-faint">
-          Real screenshots will appear here once available — no simulated images.
-        </p>
+    <Reveal>
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-12">
+          <SectionHeading
+            eyebrow=""
+            title={title}
+            className="lg:sticky lg:top-24 lg:self-start"
+          />
+          <div className="min-w-0">{children}</div>
+        </div>
       </div>
-    </div>
+    </Reveal>
   );
 }
 
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const project = projects.find((p) => p.slug === slug);
+  const study = getCaseStudy(slug);
 
-  if (!project) {
+  if (!study) {
     return (
       <section className="relative pb-20 pt-24 sm:pt-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -51,24 +64,22 @@ export function ProjectDetailPage() {
     );
   }
 
-  const index = projects.findIndex((p) => p.slug === project.slug);
-  const next = projects[(index + 1) % projects.length];
-
-  const icon = project.icon as IconName;
+  const related = getRelated(study.slug);
 
   return (
     <>
       <Seo
-        title={`${project.name} | Salman Bashir — Projects`}
-        description={project.desc}
-        path={`/projects/${project.slug}`}
+        title={`${study.title} | Salman Bashir — Projects`}
+        description={study.summary}
+        path={`/projects/${study.slug}`}
       />
       <BreadcrumbJsonLd
         items={[
           { name: "Projects", path: "/projects" },
-          { name: project.name, path: `/projects/${project.slug}` },
+          { name: study.title, path: `/projects/${study.slug}` },
         ]}
       />
+
       {/* Hero */}
       <section className="relative overflow-hidden pb-10 pt-24 sm:pb-14 sm:pt-32">
         <div className="pointer-events-none absolute inset-0 -z-10">
@@ -88,213 +99,187 @@ export function ProjectDetailPage() {
             <span
               className={cn(
                 "flex h-12 w-12 items-center justify-center rounded-xl border",
-                accentClasses[project.accent],
+                accentClasses[study.accent],
               )}
             >
-              <Icon name={icon} className="h-6 w-6" />
+              <Icon name={study.icon} className="h-6 w-6" />
             </span>
-            {project.status && (
-              <span className="flex items-center gap-1.5 rounded-full border border-gold-accent/30 bg-gold-accent/10 px-3 py-1 text-xs font-medium text-gold-accent">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold-accent" />
-                {project.status}
-              </span>
-            )}
+            <ProjectStatusBadge status={study.status} />
             <span className="rounded-full border border-edge bg-panel px-3 py-1 text-xs font-medium text-muted">
-              {project.type}
+              {study.category}
             </span>
           </div>
 
           <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold tracking-tight text-strong sm:text-5xl">
-            {project.name}
+            {study.title}
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-            {project.desc}
+            {study.summary}
           </p>
+        </div>
+      </section>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {project.tech.map((t) => (
-              <span
-                key={t}
-                className="rounded-lg border border-edge bg-panel px-2.5 py-1 text-xs font-medium text-muted"
+      {/* Status / category */}
+      {study.areas && study.areas.length > 0 && (
+        <Section title="Status by Area">
+          <div className="grid gap-3 sm:grid-cols-2">
+            {study.areas.map((area) => (
+              <div
+                key={area.title}
+                className="rounded-2xl border border-edge bg-panel p-4"
               >
-                {t}
-              </span>
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-semibold text-strong">
+                    {area.title}
+                  </p>
+                  <ProjectStatusBadge status={area.status} />
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {area.desc}
+                </p>
+              </div>
             ))}
           </div>
+        </Section>
+      )}
+
+      {/* Overview */}
+      <Section title="Overview">
+        <p className="max-w-3xl text-base leading-relaxed text-soft sm:text-lg">
+          {study.overview}
+        </p>
+      </Section>
+
+      {/* Business problem */}
+      <Section title="Business Problem">
+        <div className="rounded-2xl border border-edge bg-panel p-5 sm:p-6">
+          <p className="text-base leading-relaxed text-soft">
+            {study.businessProblem}
+          </p>
         </div>
-      </section>
+      </Section>
 
-      {/* Detail */}
-      <section className="relative pb-16">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-            {/* Left column */}
-            <Reveal>
-              <div className="space-y-5">
-                <DetailCard title="Overview">
-                  <p>{project.overview ?? project.desc}</p>
-                </DetailCard>
+      {/* Role */}
+      <Section title="Role">
+        <RoleSummary role={study.role} roleAreas={study.roleAreas} />
+      </Section>
 
-                {project.businessProblem && (
-                  <DetailCard title="Business Problem">
-                    <p>{project.businessProblem}</p>
-                  </DetailCard>
-                )}
+      {/* Process */}
+      <Section title="Process">
+        <ProcessTimeline steps={study.process} />
+      </Section>
 
-                {project.solution && (
-                  <DetailCard title="Solution">
-                    <p>{project.solution}</p>
-                  </DetailCard>
-                )}
-
-                {project.caseStudy && (
-                  <DetailCard title="Case Study">
-                    <p>{project.caseStudy}</p>
-                  </DetailCard>
-                )}
-
-                {project.role && (
-                  <DetailCard title="Salman's Role">
-                    <p>{project.role}</p>
-                  </DetailCard>
-                )}
-              </div>
-            </Reveal>
-
-            {/* Right column */}
-            <Reveal delay={80}>
-              <div className="space-y-5">
-                <DetailCard title="Technology">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-lg border border-edge bg-panel-strong px-2.5 py-1 text-xs font-medium text-soft"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </DetailCard>
-
-                <DetailCard title="Capabilities">
-                  <ul className="space-y-3">
-                    {(project.capabilities ?? []).map((c) => (
-                      <li key={c} className="flex items-start gap-3 text-sm text-soft">
-                        <Icon
-                          name="check"
-                          className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                          strokeWidth={2.2}
-                        />
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-                </DetailCard>
-
-                <DetailCard title="What I Focused On">
-                  <ul className="space-y-3">
-                    {(project.focusPoints ?? []).map((fp) => (
-                      <li key={fp} className="flex items-start gap-3 text-sm text-soft">
-                        <Icon
-                          name="check"
-                          className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                          strokeWidth={2.2}
-                        />
-                        {fp}
-                      </li>
-                    ))}
-                  </ul>
-                </DetailCard>
-
-                <DetailCard title="Honest Status">
-                  <div className="flex items-center gap-2 text-sm text-soft">
-                    <Icon name="shield" className="h-4 w-4 shrink-0 text-accent" />
-                    {project.status ??
-                      "Described honestly — no invented users, customers or performance figures."}
-                  </div>
-                </DetailCard>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Screenshots */}
-          <Reveal className="mt-8">
-            <div>
-              <h2 className="font-display text-xl font-semibold text-strong">
-                Screenshots
-              </h2>
-              <p className="mt-1 text-sm text-muted">
-                Real screenshots only. Until they're available, this preview is
-                shown instead.
-              </p>
-              <div className="mt-4">
-                <ScreenshotPlaceholder icon={icon} name={project.name} />
-              </div>
-            </div>
-          </Reveal>
-
-          {/* CTA */}
-          <Reveal className="mt-8">
-            <div className="flex flex-col items-center gap-4 rounded-3xl border border-edge-strong bg-gradient-to-br from-panel to-transparent p-6 text-center sm:flex-row sm:justify-between sm:text-left">
-              <div>
-                <h2 className="font-display text-lg font-semibold text-strong">
-                  Want something like this for your business?
-                </h2>
-                <p className="mt-1 text-sm text-muted">
-                  Tell me where your operations are today and we'll find the
-                  right starting point.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <Link to="/book" className="btn btn-primary">
-                  Book a Consultation
-                  <Icon name="arrow" className="h-4 w-4" />
-                </Link>
-                <Link to="/contact" className="btn btn-secondary">
-                  Send a Message
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Next project */}
-          <Reveal className="mt-8">
-            <Link
-              to={`/projects/${next.slug}`}
-              className="group flex items-center justify-between gap-4 rounded-3xl border border-edge bg-panel p-6 transition-colors hover:border-brand-500/30 hover:bg-panel-strong"
+      {/* Features */}
+      <Section title="Features">
+        <div className="grid gap-3 sm:grid-cols-2">
+          {study.features.map((f) => (
+            <div
+              key={f}
+              className="flex items-start gap-3 rounded-2xl border border-edge bg-panel p-4 text-sm leading-relaxed text-soft"
             >
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-faint">
-                  Next project
-                </p>
-                <p className="mt-1 font-display text-lg font-semibold text-strong">
-                  {next.name}
-                </p>
-              </div>
               <Icon
-                name="arrow"
-                className="h-5 w-5 shrink-0 text-accent transition-transform group-hover:translate-x-1"
+                name="check"
+                className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                strokeWidth={2.2}
               />
-            </Link>
-          </Reveal>
+              {f}
+            </div>
+          ))}
         </div>
-      </section>
-    </>
-  );
-}
+      </Section>
 
-function DetailCard({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-3xl border border-edge bg-panel p-6 sm:p-8">
-      <h2 className="font-display text-xl font-semibold text-strong">{title}</h2>
-      <div className="mt-3 text-base leading-relaxed text-muted">{children}</div>
-    </div>
+      {/* Tools */}
+      <Section title="Tools">
+        <ToolsUsed tools={study.tools} />
+      </Section>
+
+      {/* Media */}
+      {study.media.length > 0 && (
+        <Section title="Screenshots & Media">
+          <p className="mb-4 text-sm leading-relaxed text-muted">
+            Real screenshots only — no simulated images. Placeholders mark where
+            verified media will appear.
+          </p>
+          <ProjectGallery media={study.media} />
+        </Section>
+      )}
+
+      {/* Proof / evidence */}
+      <Section title="Evidence">
+        <ProofOfWork evidence={study.evidence} />
+      </Section>
+
+      {/* Outcomes / status */}
+      <Section title="Outcomes">
+        <ResultSummary outcomes={study.outcomes} />
+      </Section>
+
+      {/* Limitations / disclosure */}
+      <Section title="Disclosure">
+        <div className="rounded-2xl border border-edge-strong bg-panel p-5 sm:p-6">
+          <div className="flex items-start gap-3">
+            <Icon
+              name="shield"
+              className="mt-0.5 h-5 w-5 shrink-0 text-accent"
+            />
+            <p className="text-sm leading-relaxed text-muted">
+              {study.limitations}
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Related */}
+      {related.length > 0 && (
+        <section className="relative pb-8 pt-16 sm:pt-20">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+            <SectionHeading eyebrow="" title="Related Projects" />
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((r) => (
+                <Reveal key={r.slug} delay={80}>
+                  <Link
+                    to={`/projects/${r.slug}`}
+                    className="card-hover card flex h-full flex-col p-5"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={cn(
+                          "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border",
+                          accentClasses[r.accent],
+                        )}
+                      >
+                        <Icon name={r.icon} className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="font-display text-base font-semibold text-strong">
+                          {r.title}
+                        </p>
+                        <p className="text-xs text-muted">{r.category}</p>
+                      </div>
+                    </div>
+                    <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">
+                      {r.summary}
+                    </p>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent-strong">
+                      View case study
+                      <Icon name="arrow" className="h-3.5 w-3.5" />
+                    </span>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <CtaCard
+        eyebrow="Let's talk"
+        title="Want something like this for your business?"
+        description="Tell me where your operations are today and we'll find the right starting point."
+        ctaLabel="Book a Consultation"
+        ctaHref="/book"
+      />
+    </>
   );
 }

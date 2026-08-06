@@ -1,27 +1,17 @@
 import { Link } from "react-router-dom";
-import { projects } from "@/data/content";
+import { caseStudies } from "@/data/projects";
 import { Reveal, SectionHeading, Icon, type IconName } from "@/components/ui";
 import { cn } from "@/utils/cn";
+import { ProjectStatusBadge } from "@/components/projects/ProjectStatusBadge";
+import { EvidencePlaceholder } from "@/components/projects/EvidencePlaceholder";
 
-const featured = projects.find((p) => p.featured) ?? projects[0];
-const rest = projects.filter((p) => !p.featured);
+const featured = caseStudies.find((c) => c.featured) ?? caseStudies[0];
+const rest = caseStudies.filter((c) => c !== featured);
 
 const accentClasses = {
   brand: "border-brand-500/20 bg-brand-500/10 text-accent-strong",
   gold: "border-gold-accent/25 bg-gold-accent/10 text-gold-accent",
 };
-
-function PreviewPlaceholder({ icon }: { icon: IconName }) {
-  return (
-    <div
-      role="img"
-      aria-label="Project preview image"
-      className="flex h-full min-h-[8rem] items-center justify-center rounded-xl border border-dashed border-edge-strong bg-panel"
-    >
-      <Icon name={icon} className="h-8 w-8 text-faint/60" strokeWidth={1.4} />
-    </div>
-  );
-}
 
 export function ProjectsSection({ limit }: { limit?: number }) {
   const visible = limit ? rest.slice(0, limit) : rest;
@@ -55,22 +45,17 @@ export function ProjectsSection({ limit }: { limit?: number }) {
                   <span className="rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-medium text-accent-strong">
                     Featured Project
                   </span>
-                  {featured.status && (
-                    <span className="flex items-center gap-1.5 rounded-full border border-gold-accent/30 bg-gold-accent/10 px-3 py-1 text-xs font-medium text-gold-accent">
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold-accent" />
-                      {featured.status}
-                    </span>
-                  )}
+                  <ProjectStatusBadge status={featured.status} />
                   <span className="rounded-full border border-edge bg-panel px-3 py-1 text-xs font-medium text-muted">
-                    {featured.type}
+                    {featured.category}
                   </span>
                 </div>
 
                 <h3 className="mt-4 font-display text-2xl font-semibold text-strong sm:text-3xl">
-                  {featured.name}
+                  {featured.title}
                 </h3>
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-                  {featured.desc}
+                  {featured.summary}
                 </p>
 
                 {featured.role && (
@@ -84,39 +69,30 @@ export function ProjectsSection({ limit }: { limit?: number }) {
                   </div>
                 )}
 
-                <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-                  {featured.highlights.map((h) => (
-                    <li
-                      key={h}
-                      className="flex items-start gap-2.5 text-sm text-soft"
-                    >
-                      <Icon
-                        name="check"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                        strokeWidth={2.2}
-                      />
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {featured.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-lg border border-edge bg-panel px-2.5 py-1 text-xs font-medium text-muted"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+                {featured.areas && (
+                  <div className="mt-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-faint">
+                      Key Areas
+                    </p>
+                    <ul className="mt-2 flex flex-wrap gap-2">
+                      {featured.areas.slice(0, 4).map((a) => (
+                        <li
+                          key={a.title}
+                          className="rounded-lg border border-edge bg-panel px-2.5 py-1 text-xs font-medium text-soft"
+                        >
+                          {a.title}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 <div className="mt-6">
                   <Link
                     to={`/projects/${featured.slug}`}
                     className="btn btn-primary"
                   >
-                    View Project
+                    View Case Study
                     <Icon name="arrow" className="h-4 w-4" />
                   </Link>
                 </div>
@@ -124,7 +100,7 @@ export function ProjectsSection({ limit }: { limit?: number }) {
 
               {/* Preview placeholder */}
               <div className="relative">
-                <PreviewPlaceholder icon={featured.icon} />
+                <EvidencePlaceholder label={`${featured.title} preview`} />
               </div>
             </div>
           </article>
@@ -132,48 +108,61 @@ export function ProjectsSection({ limit }: { limit?: number }) {
 
         {/* Rest of projects */}
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {visible.map((p, i) => (
-            <Reveal key={p.name} delay={(i % 4) * 70}>
+          {visible.map((c, i) => (
+            <Reveal key={c.slug} delay={(i % 4) * 70}>
               <Link
-                to={`/projects/${p.slug}`}
+                to={`/projects/${c.slug}`}
                 className="card card-hover group flex h-full flex-col p-5 hover:-translate-y-0.5"
               >
-                <PreviewPlaceholder icon={p.icon} />
+                <EvidencePlaceholder
+                  compact
+                  label={`${c.title} preview`}
+                  className="rounded-xl"
+                />
 
                 <div className="mt-4 flex items-center justify-between gap-2">
                   <span
                     className={cn(
                       "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border",
-                      accentClasses[p.accent],
+                      accentClasses[c.accent],
                     )}
                   >
-                    <Icon name={p.icon} className="h-5 w-5" />
+                    <Icon name={c.icon as IconName} className="h-5 w-5" />
                   </span>
                   <span className="text-right text-[11px] font-medium leading-tight text-faint">
-                    {p.type}
+                    {c.category}
                   </span>
                 </div>
 
                 <h4 className="mt-3 font-display text-lg font-semibold text-strong">
-                  {p.name}
+                  {c.title}
                 </h4>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                  {p.desc}
+
+                <div className="mt-2">
+                  <ProjectStatusBadge status={c.status} />
+                </div>
+
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {c.summary}
                 </p>
 
-                {p.role && (
+                {c.areas && (
                   <p className="mt-3 border-t border-edge pt-3 text-xs leading-relaxed text-faint">
-                    Role: {p.role}
+                    Key areas:{" "}
+                    {c.areas
+                      .slice(0, 3)
+                      .map((a) => a.title)
+                      .join(", ")}
                   </p>
                 )}
 
-                <div className="mt-auto flex items-center gap-1.5 pt-3 text-sm font-semibold text-accent-strong">
-                  View Details
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-semibold text-accent-strong">
+                  View Case Study
                   <Icon
                     name="arrow"
                     className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                   />
-                </div>
+                </span>
               </Link>
             </Reveal>
           ))}

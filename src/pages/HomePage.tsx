@@ -9,6 +9,7 @@ import { TrainingPreview } from "@/components/TrainingPreview";
 import { OpportunitySeats } from "@/components/OpportunitySeats";
 import { JourneySection } from "@/components/Journey";
 import { TeamPreview } from "@/components/TeamPreview";
+import { SelectedWork } from "@/components/SelectedWork";
 import { Seo, JsonLd, SITE } from "@/components/Seo";
 import { Reveal, Icon } from "@/components/ui";
 
@@ -123,6 +124,7 @@ export function HomePage() {
       <OpportunitySeats />
       <JourneySection limit={3} />
       <TeamPreview />
+      <SelectedWork />
       <BookCta />
     </>
   );
