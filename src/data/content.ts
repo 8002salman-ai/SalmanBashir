@@ -28,11 +28,18 @@ export const personal = {
     "Based in Pakistan and available for remote work, consulting and training with clients connected to the United States, United Kingdom, Norway, Sweden and international online markets.",
   heroHeading:
     "Marketplace Operations, Sourcing, Training & Business Systems",
+  /* Rotating word in the hero headline — keeps the H1 short on mobile. */
+  heroRotatingWords: [
+    "Marketplace Operations",
+    "Sourcing",
+    "Business Systems",
+    "AI & Automation",
+    "Training",
+  ],
   heroSub:
-    "I help online businesses improve marketplace operations, sourcing workflows, profit visibility and internal systems through practical experience and AI-assisted implementation.",
-  heroCredibility:
-    "Hands-on experience across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress.",
-  heroBadge: "Available for remote consulting, project work and online training",
+    "I run the operations first, then build the systems around them — listings, profit, sourcing and internal tools.",
+  heroCredibility: "eBay · Depop · Mercari · Etsy · TikTok Shop · AliExpress",
+  heroBadge: "Available for remote work",
   positioning:
     "A Pakistan-based e-commerce operator and business automation consultant who has worked hands-on across marketplace operations — listings, inventory, sales, fees, profit reporting and payouts — and now applies that experience to ERP workflows, profit dashboards, integrations and AI-assisted product development.",
   professionalSummary:

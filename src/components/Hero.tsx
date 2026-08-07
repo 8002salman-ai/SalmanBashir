@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { personal, stats, contact, profileCard, ceoNote } from "@/data/content";
 import { Icon, type IconName } from "@/components/ui";
 import { IntroVideoLightbox } from "@/components/IntroVideoLightbox";
+import { RotatingWord } from "@/components/RotatingWord";
 
 const profileFacts: {
   icon: IconName;
@@ -25,7 +26,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left: copy */}
-          <div className="animate-fade-up">
+          <div className="min-w-0 animate-fade-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-edge bg-panel px-3 py-1 text-[11px] font-medium text-soft backdrop-blur">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
@@ -34,33 +35,27 @@ export function Hero() {
               {personal.heroBadge}
             </div>
 
-            <p className="mt-5 font-display text-base font-extrabold uppercase tracking-[0.14em] text-accent-strong sm:text-lg">
+            <p className="mt-5 font-display text-2xl font-extrabold leading-none tracking-tight text-strong sm:text-3xl">
               {personal.name}
             </p>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-faint">
-              {ceoNote.title} · {personal.shortTitle}
+            <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-strong sm:text-xs">
+              {ceoNote.title}
             </p>
 
-            <h1 className="mt-3 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-strong sm:text-5xl lg:text-[3rem]">
-              <span className="text-gradient">{personal.heroHeading}</span>
+            <h1 className="mt-4 font-display text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-strong sm:text-4xl lg:text-[2.75rem]">
+              <span className="block text-muted">I work in</span>
+              <RotatingWord
+                words={personal.heroRotatingWords}
+                className="block"
+              />
+              <span className="block text-muted">and build what holds up.</span>
             </h1>
 
-            <p className="mt-3 text-base font-medium text-soft sm:text-lg">
-              {personal.tagline}
-            </p>
-
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-soft sm:text-base">
               {personal.heroSub}
             </p>
 
-            <div className="mt-4 max-w-xl animate-fade-up rounded-xl border border-edge bg-panel/60 px-4 py-3 shadow-lg shadow-brand-500/5 backdrop-blur-sm [animation-delay:240ms]">
-              <p className="text-sm leading-relaxed text-soft">
-                <span className="font-semibold text-strong">A note from {personal.name}:</span>{" "}
-                {ceoNote.message}
-              </p>
-            </div>
-
-            <p className="mt-4 flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
+            <p className="mt-3 flex flex-wrap items-center gap-2 text-[11px] font-medium tracking-wide text-faint sm:text-xs">
               <Icon
                 name="badge"
                 className="h-3.5 w-3.5 shrink-0 text-accent"
@@ -69,26 +64,30 @@ export function Hero() {
               {personal.heroCredibility}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Link to="/book" className="btn btn-primary group">
+            <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
+              <Link to="/book" className="btn btn-primary btn-lg group">
                 Meet up
                 <Icon
                   name="arrow"
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                 />
               </Link>
-              <Link to="/services" className="btn btn-secondary">
+              <Link to="/services" className="btn btn-secondary btn-lg">
                 Explore Services
               </Link>
-              <Link to="/training" className="btn btn-ghost">
-                <Icon name="book" className="h-4 w-4" />
-                Training
-              </Link>
-              <IntroVideoLightbox />
+            </div>
+
+            {/* Video: a real visual element, not a buried link */}
+            <IntroVideoLightbox className="mt-5 w-full sm:w-auto" />
+
+            <div className="mt-6 max-w-md rounded-xl border-l-2 border-brand-400/60 bg-panel/40 py-2.5 pl-4 pr-3">
+              <p className="text-sm italic leading-relaxed text-soft">
+                “{ceoNote.message}”
+              </p>
             </div>
 
             {/* Trust labels — qualitative, never invented numbers */}
-            <dl className="mt-9 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-edge bg-panel-strong sm:grid-cols-4">
+            <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-edge bg-panel-strong sm:grid-cols-4">
               {stats.map((s) => (
                 <div key={s.label} className="bg-bg/40 px-3.5 py-3">
                   <dt className="font-display text-sm font-semibold text-strong">
@@ -103,7 +102,7 @@ export function Hero() {
           </div>
 
           {/* Right: profile card */}
-          <div className="relative animate-fade-up [animation-delay:120ms]">
+          <div className="relative min-w-0 animate-fade-up [animation-delay:120ms]">
             <div className="relative mx-auto max-w-md">
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/15 blur-2xl" />
 
