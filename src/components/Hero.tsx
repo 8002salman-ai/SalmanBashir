@@ -1,17 +1,9 @@
 import { Link } from "react-router-dom";
-import { personal, stats, contact, profileCard, ceoNote } from "@/data/content";
-import { Icon, type IconName } from "@/components/ui";
+import { personal, stats, ceoNote } from "@/data/content";
+import { Icon } from "@/components/ui";
 import { IntroVideoLightbox } from "@/components/IntroVideoLightbox";
 import { RotatingWord } from "@/components/RotatingWord";
-
-const profileFacts: {
-  icon: IconName;
-  label: string;
-  value: string;
-}[] = [
-  { icon: "cpu", label: "Current focus", value: profileCard.currentFocus },
-  { icon: "calendar", label: "Availability", value: profileCard.availability },
-];
+import { HeroPanels } from "@/components/HeroPanels";
 
 export function Hero() {
   return (
@@ -102,79 +94,13 @@ export function Hero() {
             </dl>
           </div>
 
-          {/* Right: video + profile card */}
+          {/* Right: video, then destinations and the work itself */}
           <div className="relative min-w-0 animate-fade-up [animation-delay:120ms]">
             <IntroVideoLightbox className="mx-auto mb-4 hidden w-full max-w-md lg:flex" />
 
-            <div className="relative mx-auto max-w-md">
+            <div className="relative">
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/15 blur-2xl" />
-
-              <div className="overflow-hidden rounded-2xl border border-edge-strong bg-bg-soft/80 shadow-xl backdrop-blur-xl">
-                {/* header */}
-                <div className="relative bg-gradient-to-br from-brand-500/10 via-transparent to-gold-accent/[0.08] p-5">
-                  <div className="flex items-center gap-4">
-                    <span
-                      className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-edge-strong bg-panel font-display text-xl font-bold text-accent-strong"
-                      role="img"
-                      aria-label={`${personal.name} monogram`}
-                    >
-                      {personal.monogram}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="font-display text-lg font-semibold text-strong">
-                        {personal.name}
-                      </p>
-                      <p className="mt-0.5 text-xs leading-snug text-muted">
-                        {personal.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* body */}
-                <div className="space-y-2.5 border-t border-edge p-5">
-                  <p className="rounded-xl border border-edge bg-panel px-3.5 py-2.5 text-xs leading-relaxed text-muted">
-                    {profileCard.message}
-                  </p>
-
-                  {profileFacts.map((f) => (
-                    <div key={f.label} className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-edge bg-panel text-accent-strong">
-                        <Icon name={f.icon} className="h-4 w-4" />
-                      </span>
-                      <div className="min-w-0">
-                        <p className="text-[10px] font-medium uppercase tracking-wide text-faint">
-                          {f.label}
-                        </p>
-                        <p className="truncate text-sm font-medium text-strong">
-                          {f.value}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="flex flex-wrap gap-2 pt-1.5">
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="btn btn-primary btn-sm"
-                    >
-                      <Icon name="mail2" className="h-4 w-4" />
-                      Email Me
-                    </a>
-                    {contact.socials.github && (
-                      <a
-                        href={contact.socials.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-secondary btn-sm"
-                      >
-                        GitHub
-                        <Icon name="github" className="h-4 w-4" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <HeroPanels />
             </div>
           </div>
         </div>

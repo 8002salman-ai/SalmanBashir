@@ -485,7 +485,10 @@ body {
   transition: background-color 0.6s ease;
 }
 
-/* Ambient wash that strengthens while the section is the one on screen */
+/* Ambient wash that strengthens while the section is the one on screen.
+   Two stacked gradients — a broad tint across the whole block plus a
+   brighter bloom at the top — so the colour change is obvious while
+   scrolling rather than a barely-there hint. */
 .tone::before {
   content: "";
   position: absolute;
@@ -493,13 +496,10 @@ body {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(
-      70% 55% at 50% 0%,
-      var(--sb-glow-a) 0%,
-      transparent 70%
-    );
-  opacity: 0;
-  transition: opacity 0.8s ease;
+    radial-gradient(80% 50% at 50% 0%, var(--sb-glow-a) 0%, transparent 72%),
+    linear-gradient(180deg, var(--sb-glow-b) 0%, transparent 45%, var(--sb-glow-b) 100%);
+  opacity: 0.35;
+  transition: opacity 0.7s ease;
 }
 .tone.is-active::before {
   opacity: 1;
@@ -518,8 +518,8 @@ body {
   --color-accent: #22d3ee;
   --color-accent-strong: #67e8f9;
   --color-gold-accent: #fcd34d;
-  --sb-glow-a: rgba(34, 211, 238, 0.1);
-  --sb-glow-b: rgba(34, 211, 238, 0.06);
+  --sb-glow-a: rgba(34, 211, 238, 0.16);
+  --sb-glow-b: rgba(34, 211, 238, 0.05);
 }
 
 .tone-indigo {
@@ -535,7 +535,7 @@ body {
   --color-accent: #818cf8;
   --color-accent-strong: #a5b4fc;
   --color-gold-accent: #c4b5fd;
-  --sb-glow-a: rgba(129, 140, 248, 0.1);
+  --sb-glow-a: rgba(129, 140, 248, 0.18);
   --sb-glow-b: rgba(129, 140, 248, 0.06);
 }
 
@@ -552,8 +552,8 @@ body {
   --color-accent: #34d399;
   --color-accent-strong: #6ee7b7;
   --color-gold-accent: #a7f3d0;
-  --sb-glow-a: rgba(52, 211, 153, 0.1);
-  --sb-glow-b: rgba(52, 211, 153, 0.06);
+  --sb-glow-a: rgba(52, 211, 153, 0.16);
+  --sb-glow-b: rgba(52, 211, 153, 0.05);
 }
 
 .tone-amber {
@@ -569,8 +569,8 @@ body {
   --color-accent: #fbbf24;
   --color-accent-strong: #fcd34d;
   --color-gold-accent: #fde68a;
-  --sb-glow-a: rgba(251, 191, 36, 0.1);
-  --sb-glow-b: rgba(251, 191, 36, 0.06);
+  --sb-glow-a: rgba(251, 191, 36, 0.16);
+  --sb-glow-b: rgba(251, 191, 36, 0.05);
 }
 
 .tone-rose {
@@ -586,8 +586,8 @@ body {
   --color-accent: #fb7185;
   --color-accent-strong: #fda4af;
   --color-gold-accent: #fecdd3;
-  --sb-glow-a: rgba(251, 113, 133, 0.1);
-  --sb-glow-b: rgba(251, 113, 133, 0.06);
+  --sb-glow-a: rgba(251, 113, 133, 0.16);
+  --sb-glow-b: rgba(251, 113, 133, 0.05);
 }
 
 .tone-sky {
@@ -603,8 +603,8 @@ body {
   --color-accent: #38bdf8;
   --color-accent-strong: #7dd3fc;
   --color-gold-accent: #bae6fd;
-  --sb-glow-a: rgba(56, 189, 248, 0.1);
-  --sb-glow-b: rgba(56, 189, 248, 0.06);
+  --sb-glow-a: rgba(56, 189, 248, 0.16);
+  --sb-glow-b: rgba(56, 189, 248, 0.05);
 }
 
 /* Light surfaces need darker accents to stay readable. Applied for the

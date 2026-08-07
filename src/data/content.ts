@@ -1104,6 +1104,66 @@ export const ceoNote = {
     "Every system I build starts on the operations floor, not the whiteboard. Real orders. Real payouts. Real deadlines.",
 };
 
+/* Compact destination list shown in the hero, so a visitor can jump
+   anywhere without scrolling or opening the menu. */
+export const heroQuickLinks: {
+  icon: IconName;
+  label: string;
+  href: string;
+}[] = [
+  { icon: "book", label: "Training", href: "/training" },
+  { icon: "users", label: "Community", href: "/community" },
+  { icon: "store", label: "Marketplace", href: "/marketplace-services" },
+  { icon: "box", label: "Sourcing", href: "/sourcing-freight" },
+  { icon: "layers", label: "Projects", href: "/projects" },
+  { icon: "cpu", label: "AI & Automation", href: "/ai-automation" },
+  { icon: "settings", label: "Systems", href: "/business-systems" },
+  { icon: "chart", label: "Skills", href: "/skills" },
+  { icon: "compass", label: "Journey", href: "/journey" },
+  { icon: "youtube", label: "Media", href: "/media" },
+  { icon: "badge", label: "Credentials", href: "/credentials" },
+  { icon: "file", label: "Resume", href: "/resume" },
+];
+
+/* Short "built with" strip for the hero. The full breakdown lives in
+   techStack below; this is the glanceable version. */
+export const heroStack: { label: string; note: string }[] = [
+  { label: "React", note: "UI" },
+  { label: "TypeScript", note: "Types" },
+  { label: "Supabase", note: "Database & auth" },
+  { label: "Vercel", note: "Deploys" },
+  { label: "GitHub", note: "Source" },
+  { label: "Tailwind", note: "Styling" },
+];
+
+/* Flagship builds, surfaced in the hero so the work is visible immediately.
+   Statuses stay honest — nothing in development is shown as shipped. */
+export const featuredBuilds: {
+  name: string;
+  desc: string;
+  status: "Live" | "In Development" | "Prototype";
+  href: string;
+}[] = [
+  {
+    name: "Hermes AI Agent",
+    desc: "Local AI operations agent",
+    status: "In Development",
+    href: "/ai-automation",
+  },
+  {
+    name: "Embani ERP",
+    desc: "Internal operations system",
+    status: "Prototype",
+    href: "/projects/embani-erp",
+  },
+  {
+    name: "SpotAware",
+    desc: "Location awareness tool",
+    status: "Prototype",
+    href: "/projects/spotaware",
+  },
+];
+
 /* Audience-first entry points. Someone landing here should find their own
    route in one glance instead of reading the whole page. */
 export const audiencePaths: {
