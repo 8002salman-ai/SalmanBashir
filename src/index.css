@@ -103,6 +103,37 @@
   --sb-gold: #b45309;
 }
 
+/* Soft: a warm charcoal instead of near-black. Same accent family, lifted
+   surfaces and a stronger grain so large dark areas do not read as flat. */
+[data-theme="soft"] {
+  color-scheme: dark;
+  --sb-bg: #17181c;
+  --sb-bg-soft: #1c1d22;
+  --sb-panel: #232429;
+  --sb-panel-strong: #2b2c33;
+  --sb-edge-strong: #3a3b44;
+  --sb-text: #f3f3f5;
+  --sb-text-soft: #dedee4;
+  --sb-text-muted: #a9aab3;
+  --sb-text-faint: #7e7f8a;
+  --sb-border: rgba(255, 255, 255, 0.1);
+  --sb-border-strong: rgba(255, 255, 255, 0.18);
+  --sb-panel-soft: rgba(255, 255, 255, 0.04);
+  --sb-panel-soft-strong: rgba(255, 255, 255, 0.07);
+  --sb-on-accent: #04151a;
+  --sb-grid: rgba(255, 255, 255, 0.022);
+  --sb-glow-a: rgba(103, 232, 249, 0.06);
+  --sb-glow-b: rgba(103, 232, 249, 0.04);
+  --sb-grad-a: #ffffff;
+  --sb-grad-b: #67e8f9;
+  --sb-grad-c: #fcd34d;
+  --sb-grad-d: #a5f3fc;
+  --sb-accent: #22d3ee;
+  --sb-accent-strong: #67e8f9;
+  --sb-gold: #fcd34d;
+  --sb-noise-opacity: 0.05;
+}
+
 /* System theme follows the OS preference */
 [data-theme="system"] {
   color-scheme: light dark;
@@ -192,7 +223,7 @@ body {
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
-  opacity: 0.045;
+  opacity: var(--sb-noise-opacity, 0.045);
 }
 
 ::selection {
@@ -437,6 +468,82 @@ body {
     .external-link .external-icon {
       transition: none;
     }
+  }
+}
+
+/* Rotating headline word: a short, small-travel fade so the H1 does not
+   visibly jump every few seconds. */
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.22em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-word-in {
+  animation: word-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-word-in {
+    animation: none;
+  }
+}
+
+/* Logo: draw the heart outline once on mount */
+@keyframes sb-draw {
+  from {
+    stroke-dashoffset: 150;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.sb-logo-heart {
+  stroke-dasharray: 150;
+  animation: sb-draw 1.4s ease-out both;
+}
+
+/* Nav links: a gradient underline that sweeps in on hover/focus, plus a soft
+   glow on the active item. */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.625rem;
+  right: 0.625rem;
+  bottom: 0.3rem;
+  height: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--sb-accent-strong),
+    var(--sb-gold)
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link[aria-current="true"]::after {
+  transform: scaleX(1);
+}
+.nav-link[aria-current="true"] {
+  text-shadow: 0 0 18px var(--sb-glow-a);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-logo-heart {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .nav-link::after {
+    transition: none;
   }
 }
 

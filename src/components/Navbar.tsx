@@ -140,7 +140,7 @@ export function Navbar() {
               aria-current={isActive(link.href) ? "true" : undefined}
               className={({ isActive: a }) =>
                 cn(
-                  "rounded-lg px-2.5 py-2 text-sm font-medium transition-colors",
+                  "nav-link rounded-lg px-2.5 py-2 text-sm font-medium transition-colors",
                   a || isActive(link.href)
                     ? "text-accent-strong"
                     : "text-muted hover:text-strong",

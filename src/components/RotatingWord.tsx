@@ -46,7 +46,7 @@ export function RotatingWord({
         </span>
         <span
           key={index}
-          className="col-start-1 row-start-1 min-w-0 animate-fade-up text-gradient"
+          className="col-start-1 row-start-1 min-w-0 animate-word-in text-gradient"
         >
           {words[index]}
         </span>

@@ -77,8 +77,9 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Video: a real visual element, not a buried link */}
-            <IntroVideoLightbox className="mt-5 w-full sm:w-auto" />
+            {/* Video sits inline on small screens; on desktop it moves into
+                the right column so that column is not left half-empty. */}
+            <IntroVideoLightbox className="mt-5 w-full sm:w-auto lg:hidden" />
 
             <div className="mt-6 max-w-md rounded-xl border-l-2 border-brand-400/60 bg-panel/40 py-2.5 pl-4 pr-3">
               <p className="text-sm italic leading-relaxed text-soft">
@@ -101,8 +102,10 @@ export function Hero() {
             </dl>
           </div>
 
-          {/* Right: profile card */}
+          {/* Right: video + profile card */}
           <div className="relative min-w-0 animate-fade-up [animation-delay:120ms]">
+            <IntroVideoLightbox className="mx-auto mb-4 hidden w-full max-w-md lg:flex" />
+
             <div className="relative mx-auto max-w-md">
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/15 blur-2xl" />
 
