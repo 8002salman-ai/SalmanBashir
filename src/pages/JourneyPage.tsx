@@ -1,31 +1,55 @@
 import { PageHero } from "@/components/PageHero";
-import { JourneySection } from "@/components/Journey";
+import { JourneyTimeline } from "@/components/JourneyTimeline";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { Link } from "react-router-dom";
-import { personal } from "@/data/content";
-import { Reveal, Icon } from "@/components/ui";
+import { personal, values } from "@/data/content";
+import { Reveal, Icon, SectionHeading } from "@/components/ui";
 
 export function JourneyPage() {
   return (
     <>
       <Seo
-        title="Journey | Salman Bashir — From Marketplace Operations to Business Systems"
-        description="A practical transition from hands-on marketplace operations to business systems, ERP workflows and AI-assisted product development — described honestly in broad phases."
+        title="Journey | Salman Bashir — From Marketplace Operations to AI Automation"
+        description="An interactive, honest timeline across eight phases — from online operations and marketplace work, through sourcing, business systems and AI-assisted development, to the Hermes AI Agent and consulting."
         path="/journey"
       />
-    <BreadcrumbJsonLd items={[{ name: "Journey", path: "/journey" }]} />
+      <BreadcrumbJsonLd items={[{ name: "Journey", path: "/journey" }]} />
       <PageHero
         eyebrow="My Journey"
         title={
           <>
             From online operations to{" "}
-            <span className="text-gradient-brand">building business systems</span>
+            <span className="text-gradient-brand">AI-assisted business systems</span>
           </>
         }
-        description="A practical transition — starting on the operational side of online selling, then applying that understanding to design, automate and build systems that actually work."
+        description="A practical transition, told across eight phases — starting on the operational side of online selling, then applying that understanding to sourcing, business systems and AI-assisted development. Select a phase to see skills, tools, related projects and media."
       />
 
-      <JourneySection />
+      <section className="relative pb-8">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <Reveal>
+            <JourneyTimeline />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="relative py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal>
+            <SectionHeading eyebrow="Working principles" title="Values I Work By" align="center" />
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {values.map((v) => (
+                <span
+                  key={v}
+                  className="rounded-lg border border-edge bg-panel px-3 py-1.5 text-xs font-medium text-soft"
+                >
+                  {v}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <section className="relative pb-20 pt-4">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -43,14 +67,15 @@ export function JourneyPage() {
                 {personal.aboutQuote}
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <Link to="/resume" className="btn btn-primary">
-                  View Resume
-                  <Icon name="file" className="h-4 w-4" />
+                <Link to="/skills" className="btn btn-secondary">
+                  View Skills
+                  <Icon name="arrow" className="h-4 w-4" />
                 </Link>
-                <Link
-                  to="/book"
-                  className="btn btn-secondary"
-                >
+                <Link to="/ai-automation" className="btn btn-secondary">
+                  AI &amp; Automation
+                  <Icon name="arrow" className="h-4 w-4" />
+                </Link>
+                <Link to="/book" className="btn btn-primary">
                   Work With Me
                 </Link>
               </div>

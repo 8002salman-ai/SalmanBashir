@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-import { journey, values, personal } from "@/data/content";
+import { journeyHomePreview } from "@/data/journeyPhases";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
+/* Homepage "My Journey" preview — four concise stage cards linking through
+   to the full interactive timeline at /journey. Kept short on purpose:
+   the full detail (skills, tools, media, related projects) lives on the
+   dedicated page. */
 export function JourneySection({ limit }: { limit?: number }) {
-  const items = limit ? journey.slice(0, limit) : journey;
+  const items = limit ? journeyHomePreview.slice(0, limit) : journeyHomePreview;
   return (
     <section id="journey" className="relative py-16 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -20,87 +24,35 @@ export function JourneySection({ limit }: { limit?: number }) {
                 <span className="text-gradient-brand">building business systems</span>
               </>
             }
-            description="A practical transition — starting on the operational side of online selling, then applying that understanding to design, automate and build systems that actually work."
+            description="A practical transition — starting on the operational side of online selling, then applying that understanding to sourcing, business systems and AI-assisted automation."
           />
         </Reveal>
 
-        <div className="mx-auto mt-12 max-w-3xl">
-          <ol className="relative space-y-8 border-l border-edge pl-8 sm:pl-10">
-            {items.map((item, i) => (
-              <Reveal as="li" key={item.title} delay={i * 90} className="relative">
-                <span className="absolute -left-8 top-1.5 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-brand-400 ring-4 ring-brand-500/15 sm:-left-10" />
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="rounded-full border border-brand-500/25 bg-brand-500/10 px-3 py-1 text-xs font-semibold text-accent-strong">
-                    {item.period}
-                  </span>
-                  <span className="text-xs font-medium text-faint">
-                    {item.role}
-                  </span>
-                </div>
-                <h3 className="mt-2 font-display text-xl font-semibold text-strong">
+        <div className="mx-auto mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((item, i) => (
+            <Reveal key={item.title} delay={i * 80}>
+              <Link
+                to={`/journey#${item.anchor}`}
+                className="card card-hover flex h-full flex-col p-5"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand-500/25 bg-brand-500/10 text-accent-strong">
+                  <Icon name={item.icon} className="h-5 w-5" />
+                </span>
+                <p className="mt-3 font-display text-base font-semibold text-strong">
                   {item.title}
-                </h3>
-                <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
-                  {item.points.map((pt) => (
-                    <li
-                      key={pt}
-                      className="flex items-start gap-2 text-sm text-muted"
-                    >
-                      <Icon
-                        name="check"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                        strokeWidth={2.2}
-                      />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-            ))}
-          </ol>
-
-          {/* Quote + values */}
-          <Reveal delay={120}>
-            <blockquote className="mt-10 rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-transparent p-5 text-center">
-              <Icon
-                name="badge"
-                className="mx-auto h-8 w-8 text-accent"
-                strokeWidth={1.6}
-              />
-              <p className="mx-auto mt-3 max-w-lg font-display text-lg font-semibold leading-snug text-strong">
-                {personal.journeyQuote}
-              </p>
-            </blockquote>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <div className="mt-5 text-center">
-              <p className="text-xs font-semibold uppercase tracking-wider text-faint">
-                Values I Work By
-              </p>
-              <div className="mt-2 flex flex-wrap justify-center gap-2">
-                {values.map((v) => (
-                  <span
-                    key={v}
-                    className="rounded-lg border border-edge bg-panel px-3 py-1.5 text-xs font-medium text-soft"
-                  >
-                    {v}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal className="mt-8 text-center">
-            <Link
-              to="/journey"
-              className="btn btn-secondary"
-            >
-              Read the full journey
-              <Icon name="arrow" className="h-4 w-4" />
-            </Link>
-          </Reveal>
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">{item.desc}</p>
+              </Link>
+            </Reveal>
+          ))}
         </div>
+
+        <Reveal className="mt-8 text-center">
+          <Link to="/journey" className="btn btn-secondary">
+            Explore My Full Journey
+            <Icon name="arrow" className="h-4 w-4" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

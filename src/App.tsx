@@ -7,6 +7,9 @@ import { TrainingPage } from "@/pages/TrainingPage";
 import { ProjectsPage } from "@/pages/ProjectsPage";
 import { ProjectDetailPage } from "@/pages/ProjectDetailPage";
 import { JourneyPage } from "@/pages/JourneyPage";
+import { SkillsPage } from "@/pages/SkillsPage";
+import { CredentialsPage } from "@/pages/CredentialsPage";
+import { AiAutomationPage } from "@/pages/AiAutomationPage";
 import { ResumePage } from "@/pages/ResumePage";
 import { ContactPage } from "@/pages/ContactPage";
 import { BookPage } from "@/pages/BookPage";
@@ -32,6 +35,9 @@ export default function App() {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:slug" element={<ProjectDetailPage />} />
         <Route path="/journey" element={<JourneyPage />} />
+        <Route path="/skills" element={<SkillsPage />} />
+        <Route path="/credentials" element={<CredentialsPage />} />
+        <Route path="/ai-automation" element={<AiAutomationPage />} />
         <Route path="/resume" element={<ResumePage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/book" element={<BookPage />} />

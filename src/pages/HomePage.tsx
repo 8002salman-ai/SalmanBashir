@@ -8,6 +8,7 @@ import { SourcingPreview } from "@/components/SourcingPreview";
 import { TrainingPreview } from "@/components/TrainingPreview";
 import { OpportunitySeats } from "@/components/OpportunitySeats";
 import { JourneySection } from "@/components/Journey";
+import { SkillsPreviewSection } from "@/components/SkillsPreview";
 import { TeamPreview } from "@/components/TeamPreview";
 import { SelectedWork } from "@/components/SelectedWork";
 import { Seo, JsonLd, SITE } from "@/components/Seo";
@@ -122,7 +123,8 @@ export function HomePage() {
       <SourcingPreview />
       <TrainingPreview limit={3} />
       <OpportunitySeats />
-      <JourneySection limit={3} />
+      <JourneySection />
+      <SkillsPreviewSection />
       <TeamPreview />
       <SelectedWork />
       <BookCta />

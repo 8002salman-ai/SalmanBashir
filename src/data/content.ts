@@ -1053,6 +1053,17 @@ export const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
+/* Secondary navigation shown under a "More" menu so the primary nav stays
+   uncluttered. Also linked from the footer, homepage previews and
+   related-page CTAs. */
+export const moreLinks = [
+  { label: "My Journey", href: "/journey" },
+  { label: "Skills", href: "/skills" },
+  { label: "AI & Automation", href: "/ai-automation" },
+  { label: "Credentials", href: "/credentials" },
+  { label: "Resume", href: "/resume" },
+];
+
 export const footerLinks = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
@@ -1062,6 +1073,9 @@ export const footerLinks = [
   { label: "Training", href: "/training" },
   { label: "Projects", href: "/projects" },
   { label: "Journey", href: "/journey" },
+  { label: "Skills", href: "/skills" },
+  { label: "AI & Automation", href: "/ai-automation" },
+  { label: "Credentials", href: "/credentials" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
 ];
