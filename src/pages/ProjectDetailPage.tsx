@@ -10,6 +10,8 @@ import { ToolsUsed } from "@/components/projects/ToolsUsed";
 import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { ProofOfWork } from "@/components/projects/ProofOfWork";
 import { ResultSummary } from "@/components/projects/ResultSummary";
+import { skillGroups } from "@/data/skillsGroups";
+import { journeyPhases } from "@/data/journeyPhases";
 
 const accentClasses = {
   brand: "border-brand-500/20 bg-brand-500/10 text-accent-strong",
@@ -65,6 +67,10 @@ export function ProjectDetailPage() {
   }
 
   const related = getRelated(study.slug);
+  const relatedSkillGroups = skillGroups.filter((g) => g.relatedProjects.includes(study.slug));
+  const relatedJourneyPhases = journeyPhases.filter((p) =>
+    p.relatedProjects.includes(study.slug),
+  );
 
   return (
     <>
@@ -228,6 +234,52 @@ export function ProjectDetailPage() {
           </div>
         </div>
       </Section>
+
+      {/* Related skills and journey phase — derived from shared data keys */}
+      {(relatedSkillGroups.length > 0 || relatedJourneyPhases.length > 0) && (
+        <Section title="Skills & Journey">
+          <div className="grid gap-6 sm:grid-cols-2">
+            {relatedSkillGroups.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-faint">
+                  Related Skills
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {relatedSkillGroups.map((g) => (
+                    <Link
+                      key={g.id}
+                      to={`/skills#${g.id}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-edge bg-panel px-3 py-1.5 text-xs font-semibold text-accent-strong transition-colors hover:border-brand-500/40"
+                    >
+                      <Icon name={g.icon} className="h-3.5 w-3.5" />
+                      {g.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            {relatedJourneyPhases.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-faint">
+                  Journey Phase
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {relatedJourneyPhases.map((p) => (
+                    <Link
+                      key={p.id}
+                      to={`/journey#${p.id}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-edge bg-panel px-3 py-1.5 text-xs font-semibold text-accent-strong transition-colors hover:border-brand-500/40"
+                    >
+                      <Icon name={p.icon} className="h-3.5 w-3.5" />
+                      {p.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </Section>
+      )}
 
       {/* Related */}
       {related.length > 0 && (

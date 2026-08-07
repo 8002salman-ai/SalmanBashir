@@ -1,9 +1,79 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/utils/cn";
-import { navLinks, personal } from "@/data/content";
+import { navLinks, moreLinks, personal } from "@/data/content";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { LogoMark } from "@/components/Logo";
+import { Icon } from "@/components/ui";
+
+function MoreMenu({ isActive }: { isActive: (href: string) => boolean }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const active = moreLinks.some((l) => isActive(l.href));
+
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        className={cn(
+          "flex items-center gap-1 rounded-lg px-2.5 py-2 text-sm font-medium transition-colors",
+          active || open ? "text-accent-strong" : "text-muted hover:text-strong",
+        )}
+      >
+        More
+        <Icon
+          name="arrow"
+          className={cn("h-3.5 w-3.5 rotate-90 transition-transform", open && "-rotate-90")}
+        />
+      </button>
+      <div
+        role="menu"
+        className={cn(
+          "absolute right-0 top-full z-10 mt-1 w-56 origin-top-right rounded-xl border border-edge bg-bg/95 p-1.5 shadow-lg backdrop-blur-xl transition-all duration-150",
+          open
+            ? "pointer-events-auto scale-100 opacity-100"
+            : "pointer-events-none scale-95 opacity-0",
+        )}
+      >
+        {moreLinks.map((link) => (
+          <Link
+            key={link.href}
+            to={link.href}
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className={cn(
+              "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+              isActive(link.href)
+                ? "bg-panel text-accent-strong"
+                : "text-soft hover:bg-panel hover:text-strong",
+            )}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -80,6 +150,7 @@ export function Navbar() {
               {link.label}
             </NavLink>
           ))}
+          <MoreMenu isActive={isActive} />
         </div>
 
         <div className="flex items-center gap-2.5">
@@ -143,6 +214,29 @@ export function Navbar() {
               {link.label}
             </NavLink>
           ))}
+          <div className="my-1 border-t border-edge pt-1">
+            <p className="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wider text-faint">
+              More
+            </p>
+            {moreLinks.map((link) => (
+              <NavLink
+                key={link.href}
+                to={link.href}
+                onClick={() => setOpen(false)}
+                aria-current={isActive(link.href) ? "true" : undefined}
+                className={({ isActive: a }) =>
+                  cn(
+                    "block rounded-lg px-3 py-2 text-sm font-medium",
+                    a || isActive(link.href)
+                      ? "bg-panel text-accent-strong"
+                      : "text-soft hover:bg-panel hover:text-strong",
+                  )
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
           <Link
             to="/book"
             onClick={() => setOpen(false)}
