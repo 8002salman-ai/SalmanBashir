@@ -1092,8 +1092,31 @@ export const profileCard = {
 export const ceoNote = {
   title: "Founder & CEO",
   message:
-    "Every system I build starts on the operations floor, not the whiteboard. If it doesn't hold up under a real order, a real payout or a real deadline, I don't ship it.",
+    "Every system I build starts on the operations floor, not the whiteboard. Real orders. Real payouts. Real deadlines.",
 };
+
+export const quickLinks = [
+  {
+    label: "Projects",
+    href: "/projects",
+    description: "Case studies and live builds.",
+  },
+  {
+    label: "Marketplace Operations",
+    href: "/services",
+    description: "Multi-marketplace workflows.",
+  },
+  {
+    label: "Training",
+    href: "/training",
+    description: "Hands-on marketplace training.",
+  },
+  {
+    label: "AI & Automation",
+    href: "/ai-automation",
+    description: "AI agents and automation.",
+  },
+];
 
 export const introVideo = {
   title: "A quick word from Salman",

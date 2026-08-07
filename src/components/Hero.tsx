@@ -53,10 +53,12 @@ export function Hero() {
               {personal.heroSub}
             </p>
 
-            <p className="mt-4 max-w-xl rounded-xl border border-edge bg-panel/60 px-4 py-3 text-sm leading-relaxed text-soft">
-              <span className="font-semibold text-strong">A note from {personal.name}:</span>{" "}
-              {ceoNote.message}
-            </p>
+            <div className="mt-4 max-w-xl animate-fade-up rounded-xl border border-edge bg-panel/60 px-4 py-3 shadow-lg shadow-brand-500/5 backdrop-blur-sm [animation-delay:240ms]">
+              <p className="text-sm leading-relaxed text-soft">
+                <span className="font-semibold text-strong">A note from {personal.name}:</span>{" "}
+                {ceoNote.message}
+              </p>
+            </div>
 
             <p className="mt-4 flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
               <Icon
@@ -68,19 +70,19 @@ export function Hero() {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Link to="/services" className="btn btn-primary group">
-                Explore Services
+              <Link to="/book" className="btn btn-primary group">
+                Meet up
                 <Icon
                   name="arrow"
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                 />
               </Link>
-              <Link to="/book" className="btn btn-secondary">
-                Book a Consultation
+              <Link to="/services" className="btn btn-secondary">
+                Explore Services
               </Link>
               <Link to="/training" className="btn btn-ghost">
                 <Icon name="book" className="h-4 w-4" />
-                View Training
+                Training
               </Link>
               <IntroVideoLightbox />
             </div>

@@ -13,6 +13,7 @@ import { TeamPreview } from "@/components/TeamPreview";
 import { SelectedWork } from "@/components/SelectedWork";
 import { Seo, JsonLd, SITE } from "@/components/Seo";
 import { Reveal, Icon } from "@/components/ui";
+import { QuickLinks } from "@/components/QuickLinks";
 
 function BookCta() {
   return (
@@ -39,7 +40,7 @@ function BookCta() {
                 to="/book"
                 className="btn btn-primary btn-lg group shrink-0"
               >
-                Book a Consultation
+                Meet up
                 <Icon
                   name="arrow"
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -116,6 +117,7 @@ export function HomePage() {
         }}
       />
       <Hero />
+      <QuickLinks />
       <CoreStrength />
       <BusinessPillars />
       <MarketplacePreview />

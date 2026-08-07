@@ -159,8 +159,8 @@ export function Navbar() {
             to="/book"
             className="btn btn-primary btn-sm hidden shrink-0 whitespace-nowrap sm:inline-flex"
           >
-            <span className="hidden lg:inline">Book a Consultation</span>
-            <span className="lg:hidden">Book a Call</span>
+            <span className="hidden lg:inline">Meet up</span>
+            <span className="lg:hidden">Meet</span>
           </Link>
           <button
             type="button"
@@ -243,7 +243,7 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className="btn btn-primary btn-block mt-2"
           >
-            Book a Consultation
+            Meet up
           </Link>
         </div>
       </div>
