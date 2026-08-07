@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { personal, stats, contact, profileCard } from "@/data/content";
+import { personal, stats, contact, profileCard, ceoNote } from "@/data/content";
 import { Icon, type IconName } from "@/components/ui";
+import { IntroVideoLightbox } from "@/components/IntroVideoLightbox";
 
 const profileFacts: {
   icon: IconName;
@@ -33,11 +34,14 @@ export function Hero() {
               {personal.heroBadge}
             </div>
 
-            <p className="mt-5 font-display text-sm font-bold uppercase tracking-[0.18em] text-accent-strong">
+            <p className="mt-5 font-display text-base font-extrabold uppercase tracking-[0.14em] text-accent-strong sm:text-lg">
               {personal.name}
             </p>
+            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-faint">
+              {ceoNote.title} · {personal.shortTitle}
+            </p>
 
-            <h1 className="mt-2.5 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-strong sm:text-5xl lg:text-[3rem]">
+            <h1 className="mt-3 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-strong sm:text-5xl lg:text-[3rem]">
               <span className="text-gradient">{personal.heroHeading}</span>
             </h1>
 
@@ -47,6 +51,11 @@ export function Hero() {
 
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
               {personal.heroSub}
+            </p>
+
+            <p className="mt-4 max-w-xl rounded-xl border border-edge bg-panel/60 px-4 py-3 text-sm leading-relaxed text-soft">
+              <span className="font-semibold text-strong">A note from {personal.name}:</span>{" "}
+              {ceoNote.message}
             </p>
 
             <p className="mt-4 flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
@@ -73,6 +82,7 @@ export function Hero() {
                 <Icon name="book" className="h-4 w-4" />
                 View Training
               </Link>
+              <IntroVideoLightbox />
             </div>
 
             {/* Trust labels — qualitative, never invented numbers */}
