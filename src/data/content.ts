@@ -1089,6 +1089,19 @@ export const profileCard = {
   availability: "Remote consulting · Project work · Online training",
 };
 
+export const ceoNote = {
+  title: "Founder & CEO",
+  message:
+    "Every system I build starts on the operations floor, not the whiteboard. If it doesn't hold up under a real order, a real payout or a real deadline, I don't ship it.",
+};
+
+export const introVideo = {
+  title: "A quick word from Salman",
+  description:
+    "A short introduction to how I work with marketplaces, sourcing and business systems.",
+  youtubeUrl: "",
+};
+
 export type StrengthCard = {
   icon: IconName;
   title: string;

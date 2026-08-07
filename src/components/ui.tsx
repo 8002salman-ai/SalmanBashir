@@ -339,6 +339,7 @@ const paths = {
       <circle cx="16.5" cy="16" r="2.5" />
     </>
   ),
+  play: <path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none" />,
 } as const;
 
 export type IconName = keyof typeof paths;

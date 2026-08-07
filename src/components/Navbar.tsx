@@ -157,9 +157,10 @@ export function Navbar() {
           <ThemeSwitcher />
           <Link
             to="/book"
-            className="btn btn-primary hidden sm:inline-flex"
+            className="btn btn-primary btn-sm hidden shrink-0 whitespace-nowrap sm:inline-flex"
           >
-            Book a Consultation
+            <span className="hidden lg:inline">Book a Consultation</span>
+            <span className="lg:hidden">Book a Call</span>
           </Link>
           <button
             type="button"
