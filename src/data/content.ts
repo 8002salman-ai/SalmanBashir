@@ -1067,6 +1067,7 @@ export const moreLinks = [
   { label: "My Journey", href: "/journey" },
   { label: "Skills", href: "/skills" },
   { label: "AI & Automation", href: "/ai-automation" },
+  { label: "Media", href: "/media" },
   { label: "Credentials", href: "/credentials" },
   { label: "Resume", href: "/resume" },
 ];
@@ -1082,6 +1083,7 @@ export const footerLinks = [
   { label: "Journey", href: "/journey" },
   { label: "Skills", href: "/skills" },
   { label: "AI & Automation", href: "/ai-automation" },
+  { label: "Media", href: "/media" },
   { label: "Credentials", href: "/credentials" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
@@ -1102,26 +1104,56 @@ export const ceoNote = {
     "Every system I build starts on the operations floor, not the whiteboard. Real orders. Real payouts. Real deadlines.",
 };
 
-export const quickLinks = [
+/* Audience-first entry points. Someone landing here should find their own
+   route in one glance instead of reading the whole page. */
+export const audiencePaths: {
+  icon: IconName;
+  audience: string;
+  headline: string;
+  description: string;
+  href: string;
+  cta: string;
+  tone: "amber" | "emerald" | "rose" | "sky";
+}[] = [
   {
-    label: "Projects",
-    href: "/projects",
-    description: "Case studies and live builds.",
-  },
-  {
-    label: "Marketplace Operations",
-    href: "/services",
-    description: "Multi-marketplace workflows.",
-  },
-  {
-    label: "Training",
+    icon: "book",
+    audience: "I want to learn",
+    headline: "Training & Bootcamps",
+    description:
+      "Marketplace selling, profit and COGS, and the workflows behind them — taught from real operations.",
     href: "/training",
-    description: "Hands-on marketplace training.",
+    cta: "See training",
+    tone: "amber",
   },
   {
-    label: "AI & Automation",
+    icon: "store",
+    audience: "I run a business",
+    headline: "Operations & Systems",
+    description:
+      "Listings, inventory, payouts and profit visibility brought into one system your team can actually run.",
+    href: "/services",
+    cta: "See services",
+    tone: "emerald",
+  },
+  {
+    icon: "cpu",
+    audience: "I need AI & automation",
+    headline: "AI Agents & Workflows",
+    description:
+      "Hermes AI Agent, automated marketplace workflows and AI-assisted internal tools built around real processes.",
     href: "/ai-automation",
-    description: "AI agents and automation.",
+    cta: "Explore AI work",
+    tone: "rose",
+  },
+  {
+    icon: "layers",
+    audience: "Show me the work",
+    headline: "Projects & Case Studies",
+    description:
+      "Embani ERP, SpotAware and the rest — what was built, why, and what it changed.",
+    href: "/projects",
+    cta: "View projects",
+    tone: "sky",
   },
 ];
 

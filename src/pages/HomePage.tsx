@@ -13,7 +13,8 @@ import { TeamPreview } from "@/components/TeamPreview";
 import { SelectedWork } from "@/components/SelectedWork";
 import { Seo, JsonLd, SITE } from "@/components/Seo";
 import { Reveal, Icon } from "@/components/ui";
-import { QuickLinks } from "@/components/QuickLinks";
+import { AudiencePaths } from "@/components/AudiencePaths";
+import { SectionTone } from "@/components/SectionTone";
 
 function BookCta() {
   return (
@@ -116,20 +117,43 @@ export function HomePage() {
           ],
         }}
       />
-      <Hero />
-      <QuickLinks />
-      <CoreStrength />
-      <BusinessPillars />
-      <MarketplacePreview />
-      <BusinessCards />
-      <SourcingPreview />
-      <TrainingPreview limit={3} />
-      <OpportunitySeats />
-      <JourneySection />
-      <SkillsPreviewSection />
-      <TeamPreview />
-      <SelectedWork />
-      <BookCta />
+      {/* Each block claims its own accent family, so the page shifts colour
+          as you scroll instead of reading as one flat theme. */}
+      <SectionTone tone="cyan">
+        <Hero />
+      </SectionTone>
+
+      <AudiencePaths />
+
+      <SectionTone tone="cyan">
+        <CoreStrength />
+        <BusinessPillars />
+      </SectionTone>
+
+      <SectionTone tone="emerald">
+        <MarketplacePreview />
+        <BusinessCards />
+        <SourcingPreview />
+      </SectionTone>
+
+      <SectionTone tone="amber">
+        <TrainingPreview limit={3} />
+        <OpportunitySeats />
+      </SectionTone>
+
+      <SectionTone tone="indigo">
+        <JourneySection />
+        <SkillsPreviewSection />
+      </SectionTone>
+
+      <SectionTone tone="sky">
+        <TeamPreview />
+        <SelectedWork />
+      </SectionTone>
+
+      <SectionTone tone="cyan">
+        <BookCta />
+      </SectionTone>
     </>
   );
 }

@@ -471,6 +471,228 @@ body {
   }
 }
 
+/* ============================================================
+   Section tones
+   Each homepage section can claim its own accent family. Because the
+   Tailwind brand/accent utilities all resolve through CSS variables,
+   re-declaring those variables on a wrapper retints everything inside it
+   — buttons, badges, glows, gradients — with no per-component changes.
+   Hues stay desaturated so sections read as distinct, not as a rainbow.
+   ============================================================ */
+.tone {
+  position: relative;
+  isolation: isolate;
+  transition: background-color 0.6s ease;
+}
+
+/* Ambient wash that strengthens while the section is the one on screen */
+.tone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      70% 55% at 50% 0%,
+      var(--sb-glow-a) 0%,
+      transparent 70%
+    );
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.tone.is-active::before {
+  opacity: 1;
+}
+
+.tone-cyan {
+  --color-brand-300: #67e8f9;
+  --color-brand-400: #22d3ee;
+  --color-brand-500: #06b6d4;
+  --color-gold-300: #fcd34d;
+  --sb-accent: #22d3ee;
+  --sb-accent-strong: #67e8f9;
+  --sb-gold: #fcd34d;
+  /* Tailwind resolves --color-* against :root, so the tone must set
+     these directly for accent utilities to retint. */
+  --color-accent: #22d3ee;
+  --color-accent-strong: #67e8f9;
+  --color-gold-accent: #fcd34d;
+  --sb-glow-a: rgba(34, 211, 238, 0.1);
+  --sb-glow-b: rgba(34, 211, 238, 0.06);
+}
+
+.tone-indigo {
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-gold-300: #c4b5fd;
+  --sb-accent: #818cf8;
+  --sb-accent-strong: #a5b4fc;
+  --sb-gold: #c4b5fd;
+  /* Tailwind resolves --color-* against :root, so the tone must set
+     these directly for accent utilities to retint. */
+  --color-accent: #818cf8;
+  --color-accent-strong: #a5b4fc;
+  --color-gold-accent: #c4b5fd;
+  --sb-glow-a: rgba(129, 140, 248, 0.1);
+  --sb-glow-b: rgba(129, 140, 248, 0.06);
+}
+
+.tone-emerald {
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-gold-300: #a7f3d0;
+  --sb-accent: #34d399;
+  --sb-accent-strong: #6ee7b7;
+  --sb-gold: #a7f3d0;
+  /* Tailwind resolves --color-* against :root, so the tone must set
+     these directly for accent utilities to retint. */
+  --color-accent: #34d399;
+  --color-accent-strong: #6ee7b7;
+  --color-gold-accent: #a7f3d0;
+  --sb-glow-a: rgba(52, 211, 153, 0.1);
+  --sb-glow-b: rgba(52, 211, 153, 0.06);
+}
+
+.tone-amber {
+  --color-brand-300: #fcd34d;
+  --color-brand-400: #fbbf24;
+  --color-brand-500: #f59e0b;
+  --color-gold-300: #fde68a;
+  --sb-accent: #fbbf24;
+  --sb-accent-strong: #fcd34d;
+  --sb-gold: #fde68a;
+  /* Tailwind resolves --color-* against :root, so the tone must set
+     these directly for accent utilities to retint. */
+  --color-accent: #fbbf24;
+  --color-accent-strong: #fcd34d;
+  --color-gold-accent: #fde68a;
+  --sb-glow-a: rgba(251, 191, 36, 0.1);
+  --sb-glow-b: rgba(251, 191, 36, 0.06);
+}
+
+.tone-rose {
+  --color-brand-300: #fda4af;
+  --color-brand-400: #fb7185;
+  --color-brand-500: #f43f5e;
+  --color-gold-300: #fecdd3;
+  --sb-accent: #fb7185;
+  --sb-accent-strong: #fda4af;
+  --sb-gold: #fecdd3;
+  /* Tailwind resolves --color-* against :root, so the tone must set
+     these directly for accent utilities to retint. */
+  --color-accent: #fb7185;
+  --color-accent-strong: #fda4af;
+  --color-gold-accent: #fecdd3;
+  --sb-glow-a: rgba(251, 113, 133, 0.1);
+  --sb-glow-b: rgba(251, 113, 133, 0.06);
+}
+
+.tone-sky {
+  --color-brand-300: #7dd3fc;
+  --color-brand-400: #38bdf8;
+  --color-brand-500: #0ea5e9;
+  --color-gold-300: #bae6fd;
+  --sb-accent: #38bdf8;
+  --sb-accent-strong: #7dd3fc;
+  --sb-gold: #bae6fd;
+  /* Tailwind resolves --color-* against :root, so the tone must set
+     these directly for accent utilities to retint. */
+  --color-accent: #38bdf8;
+  --color-accent-strong: #7dd3fc;
+  --color-gold-accent: #bae6fd;
+  --sb-glow-a: rgba(56, 189, 248, 0.1);
+  --sb-glow-b: rgba(56, 189, 248, 0.06);
+}
+
+/* Light surfaces need darker accents to stay readable. Applied for the
+   explicit light theme, and for "system" only when the OS is actually
+   light — a system+dark reader must keep the bright variants. */
+[data-theme="light"] .tone-cyan {
+  --sb-accent: #06b6d4;
+  --sb-accent-strong: #0e7490;
+  --color-accent: #06b6d4;
+  --color-accent-strong: #0e7490;
+}
+[data-theme="light"] .tone-indigo {
+  --sb-accent: #4f46e5;
+  --sb-accent-strong: #4338ca;
+  --color-accent: #4f46e5;
+  --color-accent-strong: #4338ca;
+}
+[data-theme="light"] .tone-emerald {
+  --sb-accent: #059669;
+  --sb-accent-strong: #047857;
+  --color-accent: #059669;
+  --color-accent-strong: #047857;
+}
+[data-theme="light"] .tone-amber {
+  --sb-accent: #d97706;
+  --sb-accent-strong: #b45309;
+  --color-accent: #d97706;
+  --color-accent-strong: #b45309;
+}
+[data-theme="light"] .tone-rose {
+  --sb-accent: #e11d48;
+  --sb-accent-strong: #be123c;
+  --color-accent: #e11d48;
+  --color-accent-strong: #be123c;
+}
+[data-theme="light"] .tone-sky {
+  --sb-accent: #0284c7;
+  --sb-accent-strong: #0369a1;
+  --color-accent: #0284c7;
+  --color-accent-strong: #0369a1;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="system"] .tone-cyan {
+    --sb-accent: #06b6d4;
+    --sb-accent-strong: #0e7490;
+    --color-accent: #06b6d4;
+    --color-accent-strong: #0e7490;
+  }
+  [data-theme="system"] .tone-indigo {
+    --sb-accent: #4f46e5;
+    --sb-accent-strong: #4338ca;
+    --color-accent: #4f46e5;
+    --color-accent-strong: #4338ca;
+  }
+  [data-theme="system"] .tone-emerald {
+    --sb-accent: #059669;
+    --sb-accent-strong: #047857;
+    --color-accent: #059669;
+    --color-accent-strong: #047857;
+  }
+  [data-theme="system"] .tone-amber {
+    --sb-accent: #d97706;
+    --sb-accent-strong: #b45309;
+    --color-accent: #d97706;
+    --color-accent-strong: #b45309;
+  }
+  [data-theme="system"] .tone-rose {
+    --sb-accent: #e11d48;
+    --sb-accent-strong: #be123c;
+    --color-accent: #e11d48;
+    --color-accent-strong: #be123c;
+  }
+  [data-theme="system"] .tone-sky {
+    --sb-accent: #0284c7;
+    --sb-accent-strong: #0369a1;
+    --color-accent: #0284c7;
+    --color-accent-strong: #0369a1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tone,
+  .tone::before {
+    transition: none;
+  }
+}
+
 /* Rotating headline word: a short, small-travel fade so the H1 does not
    visibly jump every few seconds. */
 @keyframes word-in {
