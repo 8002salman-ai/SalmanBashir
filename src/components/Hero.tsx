@@ -67,7 +67,6 @@ export function Hero() {
               <Link to="/services" className="btn btn-secondary btn-lg">
                 Explore Services
               </Link>
-              <IntroVideoLightbox />
             </div>
 
             {/* Video sits inline on small screens; on desktop it moves into
