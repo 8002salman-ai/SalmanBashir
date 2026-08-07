@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
 
-const THEMES = ["dark", "light", "system"] as const;
+const THEMES = ["dark", "soft", "light", "system"] as const;
 export type Theme = (typeof THEMES)[number];
 
 const LABELS: Record<Theme, string> = {
   dark: "Dark",
+  soft: "Soft (textured charcoal)",
   light: "Light",
   system: "System",
 };
 
 const THEME_COLORS: Record<Theme, string> = {
   dark: "#040405",
+  soft: "#17181c",
   light: "#f5f6f8",
   system: "#040405",
 };
@@ -70,6 +72,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
           )}
         >
           {t === "dark" && <SunOffIcon />}
+          {t === "soft" && <SoftIcon />}
           {t === "light" && <SunIcon />}
           {t === "system" && <MonitorIcon />}
         </button>
@@ -109,6 +112,24 @@ function SunOffIcon() {
       aria-hidden="true"
     >
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  );
+}
+
+function SoftIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-[18px] w-[18px]"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none" />
     </svg>
   );
 }

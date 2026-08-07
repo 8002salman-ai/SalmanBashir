@@ -9,6 +9,7 @@ import { ProjectDetailPage } from "@/pages/ProjectDetailPage";
 import { JourneyPage } from "@/pages/JourneyPage";
 import { SkillsPage } from "@/pages/SkillsPage";
 import { CredentialsPage } from "@/pages/CredentialsPage";
+import { MediaPage } from "@/pages/MediaPage";
 import { AiAutomationPage } from "@/pages/AiAutomationPage";
 import { ResumePage } from "@/pages/ResumePage";
 import { ContactPage } from "@/pages/ContactPage";
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/journey" element={<JourneyPage />} />
         <Route path="/skills" element={<SkillsPage />} />
         <Route path="/credentials" element={<CredentialsPage />} />
+        <Route path="/media" element={<MediaPage />} />
         <Route path="/ai-automation" element={<AiAutomationPage />} />
         <Route path="/resume" element={<ResumePage />} />
         <Route path="/contact" element={<ContactPage />} />

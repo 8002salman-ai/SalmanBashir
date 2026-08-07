@@ -28,11 +28,18 @@ export const personal = {
     "Based in Pakistan and available for remote work, consulting and training with clients connected to the United States, United Kingdom, Norway, Sweden and international online markets.",
   heroHeading:
     "Marketplace Operations, Sourcing, Training & Business Systems",
+  /* Rotating word in the hero headline — keeps the H1 short on mobile. */
+  heroRotatingWords: [
+    "Marketplace Operations",
+    "Sourcing",
+    "Business Systems",
+    "AI & Automation",
+    "Training",
+  ],
   heroSub:
-    "I help online businesses improve marketplace operations, sourcing workflows, profit visibility and internal systems through practical experience and AI-assisted implementation.",
-  heroCredibility:
-    "Hands-on experience across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress.",
-  heroBadge: "Available for remote consulting, project work and online training",
+    "I run the operations first, then build the systems around them — listings, profit, sourcing and internal tools.",
+  heroCredibility: "eBay · Depop · Mercari · Etsy · TikTok Shop · AliExpress",
+  heroBadge: "Available for remote work",
   positioning:
     "A Pakistan-based e-commerce operator and business automation consultant who has worked hands-on across marketplace operations — listings, inventory, sales, fees, profit reporting and payouts — and now applies that experience to ERP workflows, profit dashboards, integrations and AI-assisted product development.",
   professionalSummary:
@@ -1060,6 +1067,7 @@ export const moreLinks = [
   { label: "My Journey", href: "/journey" },
   { label: "Skills", href: "/skills" },
   { label: "AI & Automation", href: "/ai-automation" },
+  { label: "Media", href: "/media" },
   { label: "Credentials", href: "/credentials" },
   { label: "Resume", href: "/resume" },
 ];
@@ -1075,6 +1083,7 @@ export const footerLinks = [
   { label: "Journey", href: "/journey" },
   { label: "Skills", href: "/skills" },
   { label: "AI & Automation", href: "/ai-automation" },
+  { label: "Media", href: "/media" },
   { label: "Credentials", href: "/credentials" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
@@ -1092,8 +1101,121 @@ export const profileCard = {
 export const ceoNote = {
   title: "Founder & CEO",
   message:
-    "Every system I build starts on the operations floor, not the whiteboard. If it doesn't hold up under a real order, a real payout or a real deadline, I don't ship it.",
+    "Every system I build starts on the operations floor, not the whiteboard. Real orders. Real payouts. Real deadlines.",
 };
+
+/* Compact destination list shown in the hero, so a visitor can jump
+   anywhere without scrolling or opening the menu. */
+export const heroQuickLinks: {
+  icon: IconName;
+  label: string;
+  href: string;
+}[] = [
+  { icon: "book", label: "Training", href: "/training" },
+  { icon: "users", label: "Community", href: "/community" },
+  { icon: "store", label: "Marketplace", href: "/marketplace-services" },
+  { icon: "box", label: "Sourcing", href: "/sourcing-freight" },
+  { icon: "layers", label: "Projects", href: "/projects" },
+  { icon: "cpu", label: "AI & Automation", href: "/ai-automation" },
+  { icon: "settings", label: "Systems", href: "/business-systems" },
+  { icon: "chart", label: "Skills", href: "/skills" },
+  { icon: "compass", label: "Journey", href: "/journey" },
+  { icon: "youtube", label: "Media", href: "/media" },
+  { icon: "badge", label: "Credentials", href: "/credentials" },
+  { icon: "file", label: "Resume", href: "/resume" },
+];
+
+/* Short "built with" strip for the hero. The full breakdown lives in
+   techStack below; this is the glanceable version. */
+export const heroStack: { label: string; note: string }[] = [
+  { label: "React", note: "UI" },
+  { label: "TypeScript", note: "Types" },
+  { label: "Supabase", note: "Database & auth" },
+  { label: "Vercel", note: "Deploys" },
+  { label: "GitHub", note: "Source" },
+  { label: "Tailwind", note: "Styling" },
+];
+
+/* Flagship builds, surfaced in the hero so the work is visible immediately.
+   Statuses stay honest — nothing in development is shown as shipped. */
+export const featuredBuilds: {
+  name: string;
+  desc: string;
+  status: "Live" | "In Development" | "Prototype";
+  href: string;
+}[] = [
+  {
+    name: "Hermes AI Agent",
+    desc: "Local AI operations agent",
+    status: "In Development",
+    href: "/ai-automation",
+  },
+  {
+    name: "Embani ERP",
+    desc: "Internal operations system",
+    status: "Prototype",
+    href: "/projects/embani-erp",
+  },
+  {
+    name: "SpotAware",
+    desc: "Location awareness tool",
+    status: "Prototype",
+    href: "/projects/spotaware",
+  },
+];
+
+/* Audience-first entry points. Someone landing here should find their own
+   route in one glance instead of reading the whole page. */
+export const audiencePaths: {
+  icon: IconName;
+  audience: string;
+  headline: string;
+  description: string;
+  href: string;
+  cta: string;
+  tone: "amber" | "emerald" | "rose" | "sky";
+}[] = [
+  {
+    icon: "book",
+    audience: "I want to learn",
+    headline: "Training & Bootcamps",
+    description:
+      "Marketplace selling, profit and COGS, and the workflows behind them — taught from real operations.",
+    href: "/training",
+    cta: "See training",
+    tone: "amber",
+  },
+  {
+    icon: "store",
+    audience: "I run a business",
+    headline: "Operations & Systems",
+    description:
+      "Listings, inventory, payouts and profit visibility brought into one system your team can actually run.",
+    href: "/services",
+    cta: "See services",
+    tone: "emerald",
+  },
+  {
+    icon: "cpu",
+    audience: "I need AI & automation",
+    headline: "AI Agents & Workflows",
+    description:
+      "Hermes AI Agent, automated marketplace workflows and AI-assisted internal tools built around real processes.",
+    href: "/ai-automation",
+    cta: "Explore AI work",
+    tone: "rose",
+  },
+  {
+    icon: "layers",
+    audience: "Show me the work",
+    headline: "Projects & Case Studies",
+    description:
+      "Embani ERP, SpotAware and the rest — what was built, why, and what it changed.",
+    href: "/projects",
+    cta: "View projects",
+    tone: "sky",
+  },
+];
 
 export const introVideo = {
   title: "A quick word from Salman",
