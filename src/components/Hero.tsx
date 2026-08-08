@@ -19,7 +19,16 @@ export function Hero() {
         <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left: copy */}
           <div className="min-w-0 animate-fade-up">
-            <div className="inline-flex items-center gap-2 rounded-full border border-edge bg-panel px-3 py-1 text-[11px] font-medium text-soft backdrop-blur">
+            <img
+              src="/8002-salman-horizontal.png"
+              alt="8002 Salman Bashir"
+              width={1672}
+              height={941}
+              loading="eager"
+              className="h-10 w-auto object-contain sm:h-12"
+            />
+
+            <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-edge bg-panel px-3 py-1 text-[11px] font-medium text-soft backdrop-blur">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-400" />
