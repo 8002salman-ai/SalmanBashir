@@ -16,7 +16,7 @@ export function Hero() {
       </div>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left: copy */}
           <div className="min-w-0 animate-fade-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-edge bg-panel px-3 py-1 text-[11px] font-medium text-soft backdrop-blur">
@@ -27,7 +27,7 @@ export function Hero() {
               {personal.heroBadge}
             </div>
 
-            <p className="mt-5 font-display text-2xl font-extrabold leading-none tracking-tight text-strong sm:text-3xl">
+            <p className="mt-5 font-display text-[1.65rem] font-black leading-none tracking-tight text-strong sm:text-[2.15rem]">
               {personal.name}
             </p>
             <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-strong sm:text-xs">
@@ -95,7 +95,7 @@ export function Hero() {
           </div>
 
           {/* Right: video, then destinations and the work itself */}
-          <div className="relative min-w-0 animate-fade-up [animation-delay:120ms]">
+          <div className="relative min-w-0 animate-fade-up [animation-delay:120ms] lg:pt-12">
             <IntroVideoLightbox className="mx-auto mb-4 hidden w-full max-w-md lg:flex" />
 
             <div className="relative">
