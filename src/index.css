@@ -331,6 +331,11 @@ body {
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   }
 
+  .mask-logo-watermark {
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 68%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 68%, transparent 100%);
+  }
+
   .mask-fade-edges {
     -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
     mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);

@@ -18,15 +18,25 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left: copy */}
-          <div className="min-w-0 animate-fade-up">
-            <img
-              src="/8002-salman-horizontal.png"
-              alt="8002 Salman Bashir"
-              width={1672}
-              height={941}
-              loading="eager"
-              className="h-10 w-auto object-contain sm:h-12"
-            />
+          <div className="relative min-w-0 animate-fade-up">
+            {/* Large brand watermark behind the hero copy */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-10 left-0 -z-10 w-[min(100%,560px)] select-none opacity-[0.16] sm:-top-12 sm:w-[min(100%,640px)]"
+            >
+              <img
+                src="/8002-salman-horizontal-transparent.png"
+                alt=""
+                width={1300}
+                height={731}
+                loading="eager"
+                decoding="async"
+                className="h-auto w-full mask-logo-watermark"
+              />
+            </div>
+
+            {/* Keeps the original vertical rhythm of the hero copy */}
+            <div aria-hidden="true" className="h-10 sm:h-12" />
 
             <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-edge bg-panel px-3 py-1 text-[11px] font-medium text-soft backdrop-blur">
               <span className="relative flex h-1.5 w-1.5">

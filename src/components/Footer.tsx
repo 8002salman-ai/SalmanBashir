@@ -26,7 +26,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3">
-              <span className="h-10 w-10 overflow-hidden rounded-xl">
+              <span className="h-14 w-14 shrink-0 sm:h-16 sm:w-16">
                 <LogoMark className="block h-full w-full" />
               </span>
               <span className="font-display text-base font-bold text-strong">
