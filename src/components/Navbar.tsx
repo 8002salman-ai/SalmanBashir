@@ -122,7 +122,7 @@ export function Navbar() {
           aria-label="Salman Bashir — home"
           className="group flex items-center gap-2.5"
         >
-          <span className="relative h-11 w-11 shrink-0 sm:h-12 sm:w-12">
+          <span className="relative h-12 w-12 shrink-0 drop-shadow-[0_0_14px_rgba(34,211,238,0.35)] sm:h-[52px] sm:w-[52px]">
             <LogoMark className="block h-full w-full" />
           </span>
           <span className="hidden min-w-0 leading-tight sm:block">

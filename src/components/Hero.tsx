@@ -11,6 +11,21 @@ export function Hero() {
       {/* Background layers */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-grid mask-fade-b opacity-60" />
+        {/* Large centered brand watermark */}
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 top-12 w-[min(92vw,620px)] -translate-x-1/2 select-none opacity-[0.24] sm:top-16 sm:w-[min(88vw,760px)]"
+        >
+          <img
+            src="/8002-salman-horizontal-transparent.png"
+            alt=""
+            width={1300}
+            height={731}
+            loading="eager"
+            decoding="async"
+            className="h-auto w-full mask-logo-watermark"
+          />
+        </div>
         <div className="absolute left-1/2 top-[-10%] h-[480px] w-[780px] -translate-x-1/2 rounded-full bg-brand-500/20 blur-[140px]" />
         <div className="absolute right-[5%] top-[20%] h-[300px] w-[300px] rounded-full bg-gold-accent/10 blur-[120px]" />
       </div>
@@ -19,22 +34,6 @@ export function Hero() {
         <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left: copy */}
           <div className="relative min-w-0 animate-fade-up">
-            {/* Large brand watermark behind the hero copy */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-10 left-0 -z-10 w-[min(100%,560px)] select-none opacity-[0.16] sm:-top-12 sm:w-[min(100%,640px)]"
-            >
-              <img
-                src="/8002-salman-horizontal-transparent.png"
-                alt=""
-                width={1300}
-                height={731}
-                loading="eager"
-                decoding="async"
-                className="h-auto w-full mask-logo-watermark"
-              />
-            </div>
-
             {/* Keeps the original vertical rhythm of the hero copy */}
             <div aria-hidden="true" className="h-10 sm:h-12" />
 
