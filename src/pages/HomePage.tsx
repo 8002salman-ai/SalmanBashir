@@ -117,6 +117,22 @@ export function HomePage() {
           ],
         }}
       />
+      {/* Fixed brand watermark — stays centred in the viewport while the page scrolls */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed left-1/2 top-1/2 z-0 w-[min(92vw,640px)] -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.18]"
+      >
+        <img
+          src="/8002-salman-horizontal-transparent.png"
+          alt=""
+          width={1300}
+          height={731}
+          loading="eager"
+          decoding="async"
+          className="h-auto w-full animate-watermark-glow mask-watermark-center"
+        />
+      </div>
+
       {/* Each block claims its own accent family, so the page shifts colour
           as you scroll instead of reading as one flat theme. */}
       <SectionTone tone="cyan">
