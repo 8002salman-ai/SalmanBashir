@@ -34,7 +34,7 @@ export function FixedWatermark() {
         />
         {!reduced && (
           <svg
-            className="absolute inset-0 h-full w-full opacity-80"
+            className="absolute inset-0 h-full w-full opacity-40"
             viewBox="0 0 1300 731"
             fill="none"
           >
@@ -46,9 +46,8 @@ export function FixedWatermark() {
                 width="500%"
                 height="500%"
               >
-                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feGaussianBlur stdDeviation="4" result="blur" />
                 <feMerge>
-                  <feMergeNode in="blur" />
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
@@ -56,12 +55,12 @@ export function FixedWatermark() {
             </defs>
             <path id="wm-orbit-path" d={ORBIT_PATH} />
             <g filter="url(#wm-orb-glow)">
-              <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto">
+              <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
                 <mpath href="#wm-orbit-path" />
               </animateMotion>
-              <circle r="11" fill="#22d3ee" opacity="0.35" />
-              <circle r="7" fill="#67e8f9" />
-              <circle r="3.5" fill="#ecfeff" />
+              <circle r="9" fill="#22d3ee" opacity="0.3" />
+              <circle r="5.5" fill="#67e8f9" />
+              <circle r="2.75" fill="#ecfeff" />
             </g>
           </svg>
         )}
