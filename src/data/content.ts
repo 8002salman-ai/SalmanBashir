@@ -54,7 +54,7 @@ export const personal = {
    - email: public contact address shown on the site.
    - adminEmail: internal admin address — never rendered publicly.
    - socials: verified links are filled; empty entries are hidden, never href="#".
-   Only YouTube and GitHub are verified today. */
+   Only YouTube, GitHub and LinkedIn are verified today. */
 export const contact = {
   email: "basco.pk@gmail.com",
   adminEmail: "8002salman@gmail.com",
@@ -70,7 +70,7 @@ export const contact = {
   socials: {
     youtube: "https://www.youtube.com/@TheAIWithSalman",
     github: "https://github.com/8002salman-ai",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/salmanbashir80",
     x: "",
     instagram: "",
     fiverr: "",

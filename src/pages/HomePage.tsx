@@ -81,6 +81,7 @@ export function HomePage() {
           sameAs: [
             "https://www.youtube.com/@TheAIWithSalman",
             "https://github.com/8002salman-ai",
+            "https://www.linkedin.com/in/salmanbashir80",
           ],
           makesOffer: [
             {

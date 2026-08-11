@@ -127,6 +127,17 @@ export function HeroPanels({ className }: { className?: string }) {
                 <Icon name="github" className="h-4 w-4" />
               </a>
             )}
+            {contact.socials.linkedin && (
+              <a
+                href={contact.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary btn-sm"
+              >
+                LinkedIn
+                <Icon name="linkedin" className="h-4 w-4" />
+              </a>
+            )}
           </div>
         </div>
       </div>
