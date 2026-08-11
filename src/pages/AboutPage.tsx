@@ -1,5 +1,8 @@
 import { PageHero } from "@/components/PageHero";
 import { AboutSection } from "@/components/About";
+import { ProfileCard } from "@/components/ProfileCard";
+import { BusinessProfile } from "@/components/BusinessProfile";
+import { ProfileAccess } from "@/components/ProfileAccess";
 import { StackSection } from "@/components/Stack";
 import { CredibilitySection } from "@/components/Credibility";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
@@ -26,7 +29,10 @@ export function AboutPage() {
         }
         description={personal.locationLine}
       />
+      <ProfileCard />
       <AboutSection />
+      <BusinessProfile />
+      <ProfileAccess />
       <StackSection />
       <CredibilitySection />
     </>

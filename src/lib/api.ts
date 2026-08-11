@@ -36,6 +36,26 @@ async function postJson(path: string, body: unknown): Promise<ApiResult> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+  return toApiResult(res);
+}
+
+async function postJsonWithAuth(
+  path: string,
+  body: unknown,
+  token: string,
+): Promise<ApiResult> {
+  const res = await fetch(path, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  });
+  return toApiResult(res);
+}
+
+async function toApiResult(res: Response): Promise<ApiResult> {
   let data: Record<string, unknown> = {};
   try {
     data = (await res.json()) as Record<string, unknown>;
@@ -111,6 +131,22 @@ export function submitContact(payload: ContactPayload): Promise<ApiResult> {
 
 export function submitBooking(payload: BookingPayload): Promise<ApiResult> {
   return postJson("/api/booking", payload);
+}
+
+export type PrivateProfileRequestPayload = {
+  name: string;
+  email: string;
+  company?: string;
+  reason?: string;
+  message: string;
+  [key: string]: unknown;
+};
+
+export function submitPrivateProfileRequest(
+  payload: PrivateProfileRequestPayload,
+  accessToken: string,
+): Promise<ApiResult> {
+  return postJsonWithAuth("/api/private-profile-request", payload, accessToken);
 }
 
 export function askChatbot(question: string): Promise<ApiResult & { answer?: string }> {

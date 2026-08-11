@@ -79,6 +79,134 @@ export const contact = {
   } as Record<string, string>,
 };
 
+/* Professional profile (About page). Business identity only — no personal,
+   financial or sensitive details are published anywhere on the site. */
+export const aboutProfile = {
+  name: "Salman Bashir",
+  title: "E-commerce Operations & Business Automation Consultant",
+  badge: "E-commerce Operations · Business Automation",
+  identity: [
+    "Marketplace Operations",
+    "Sourcing & Product Coordination",
+    "Business Systems & ERP Workflows",
+    "AI-Assisted Development",
+    "Consulting & Training",
+  ],
+  intro:
+    "A Pakistan-based e-commerce operator and business automation consultant who works hands-on across marketplace operations, sourcing and coordination, and business systems — then applies that experience to ERP workflows, profit dashboards, integrations and AI-assisted product development.",
+  focusLabel: "Professional focus",
+  focus: [
+    "Marketplace operations — listings, inventory, fees, profit and payouts",
+    "Sourcing and product coordination for measurable buying decisions",
+    "Business systems — dashboards, Google Sheets workflows, internal tools and ERP prototypes",
+    "AI-assisted development and automation workflows",
+    "Consulting and practical training for sellers and small teams",
+  ],
+  location:
+    "Based in Pakistan · Remote support for the USA, UK, Norway, Sweden and international online markets",
+  signatureProjects: [
+    { name: "Embani ERP", href: "/projects/embani-erp" },
+    { name: "SpotAware", href: "/projects/spotaware" },
+    { name: "Himalayan Koh", href: "/projects/himalayan-koh" },
+    { name: "Hermes AI Agent", href: "/ai-automation" },
+  ],
+};
+
+/* Business Profile — professional capabilities only, never private
+   revenue or financial figures. */
+export const businessProfile = {
+  eyebrow: "Business Profile",
+  title: "What I do professionally",
+  intro:
+    "A working profile built around capabilities, not numbers. Each area links to the page where the work is explained in detail.",
+  note:
+    "This profile shows professional capabilities only. Private revenue, profit or financial figures are never published here and are shared only directly with qualified partners under confidentiality.",
+  areas: [
+    {
+      icon: "store",
+      title: "Marketplace Operations",
+      desc: "Listings, inventory, pricing, orders, fees, profit reporting and payout workflows across real marketplaces.",
+      href: "/marketplace-services",
+    },
+    {
+      icon: "box",
+      title: "Sourcing & Product Operations",
+      desc: "Product research, supplier coordination, packaging and export/shipment coordination support that keeps buying decisions measurable.",
+      href: "/sourcing-freight",
+    },
+    {
+      icon: "settings",
+      title: "Business Systems & Automation",
+      desc: "Profit dashboards, Google Sheets workflows, internal tools and ERP prototypes planned from the operator's side.",
+      href: "/business-systems",
+    },
+    {
+      icon: "spark",
+      title: "AI Agents & Workflows",
+      desc: "AI-assisted development, automation workflows and the Hermes AI Agent — built around real processes.",
+      href: "/ai-automation",
+    },
+    {
+      icon: "briefcase",
+      title: "Consulting & Training",
+      desc: "Consultation sessions and practical online training for sellers and small teams, with a clear review step before anything is scheduled.",
+      href: "/book",
+    },
+    {
+      icon: "chart",
+      title: "Projects & Case Studies",
+      desc: "Selected work — Embani ERP, SpotAware, Himalayan Koh and more — with honest status labels on every item.",
+      href: "/projects",
+    },
+  ] satisfies { icon: IconName; title: string; desc: string; href: string }[],
+};
+
+/* Private Profile Access — a safe, gated request flow. No private or
+   sensitive data lives in this file or anywhere in the browser bundle. */
+export const profileAccess = {
+  eyebrow: "Private Profile Access",
+  title: "Need more information?",
+  intro:
+    "Some professional and project details are shared only when appropriate. If you're a potential client, partner or employer and need deeper context, request access and I'll review your request personally.",
+  privacyNote:
+    "No sensitive or personal information is published on this site. Approved requests are handled manually and privately.",
+  steps: [
+    {
+      step: "01",
+      title: "Sign in or create an account",
+      desc: "Requests are tied to a verified account so they can be reviewed properly.",
+    },
+    {
+      step: "02",
+      title: "Submit your request",
+      desc: "Tell me who you are, your organization and why you need access.",
+    },
+    {
+      step: "03",
+      title: "Manual review",
+      desc: "I review each request personally and contact you if access is appropriate.",
+    },
+  ],
+  form: {
+    nameLabel: "Full name",
+    namePlaceholder: "Your full name",
+    emailLabel: "Email",
+    emailPlaceholder: "you@business.com",
+    companyLabel: "Company / organization",
+    companyPlaceholder: "Business or organization (optional)",
+    reasonLabel: "Reason for request",
+    reasonPlaceholder: "e.g., Client engagement, partnership, employment",
+    messageLabel: "Message",
+    messagePlaceholder: "What specific information do you need and why?",
+    submit: "Request Private Profile Access",
+  },
+  signInTitle: "Sign in to request access",
+  signUpTitle: "Create an account to request access",
+  successTitle: "Request received",
+  successBody:
+    "Your request is under review. If access is appropriate, I'll contact you directly — no automated approvals.",
+};
+
 /* Trust labels — qualitative on purpose. No invented numbers, clients or
    performance figures are shown anywhere on this site. */
 export const stats = [
