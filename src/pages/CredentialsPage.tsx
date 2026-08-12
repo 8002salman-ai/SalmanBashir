@@ -2,6 +2,7 @@ import { PageHero } from "@/components/PageHero";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import { Reveal, Icon, CtaCard } from "@/components/ui";
 import { CredentialPreview } from "@/components/CredentialPreview";
+import { Achievements } from "@/components/Achievements";
 import { credentialSections, credentialsEmptyMessage } from "@/data/credentialsData";
 
 export function CredentialsPage() {
@@ -60,6 +61,8 @@ export function CredentialsPage() {
               </div>
             </Reveal>
           ))}
+
+          <Achievements />
         </div>
       </section>
 

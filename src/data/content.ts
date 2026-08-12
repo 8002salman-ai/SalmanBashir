@@ -244,6 +244,59 @@ export const credibility = [
   "AI-assisted product development",
 ];
 
+/* Selected Achievements — evidence-backed milestones, each linked to the
+   page where the work is explained. No invented awards, clients, revenue
+   or dates. */
+export const achievements: {
+  icon: IconName;
+  title: string;
+  desc: string;
+  href: string;
+}[] = [
+  {
+    icon: "cart",
+    title: "Multi-Marketplace Operations",
+    desc: "Hands-on operations across eBay, Depop, Mercari, Etsy, TikTok Shop and AliExpress — listings, inventory, fees, payouts and profit reporting.",
+    href: "/projects/multi-marketplace-operations",
+  },
+  {
+    icon: "layers",
+    title: "Embani ERP",
+    desc: "Product vision, business logic, financial workflows and ERP planning for an e-commerce accounting and profit-tracking platform in active development.",
+    href: "/projects/embani-erp",
+  },
+  {
+    icon: "settings",
+    title: "SpotAware",
+    desc: "Product concept and workflow design for a business operations platform structured around real team responsibilities.",
+    href: "/projects/spotaware",
+  },
+  {
+    icon: "store",
+    title: "Himalayan Koh",
+    desc: "Operational and digital-systems support across retail, wholesale and export — packaging, catalogues and coordination.",
+    href: "/projects/himalayan-koh",
+  },
+  {
+    icon: "spark",
+    title: "SoSAi / Hermes AI Agent",
+    desc: "Designed and actively developing a personal AI operations agent built with Hermes — monitoring, coordination and workflows.",
+    href: "/ai-automation",
+  },
+  {
+    icon: "sheet",
+    title: "Google Sheets Workflow Systems",
+    desc: "Controlled sales workspaces, profit and COGS tracking and workflow automation built in Google Sheets around real data.",
+    href: "/projects/google-sheets-sales-workspace",
+  },
+  {
+    icon: "cpu",
+    title: "AI-Assisted Development",
+    desc: "AI-assisted websites, platforms and internal tools built around real processes — with honest status on every item.",
+    href: "/ai-automation",
+  },
+];
+
 export type Service = {
   slug: string;
   title: string;

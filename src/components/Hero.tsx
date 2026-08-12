@@ -4,6 +4,7 @@ import { Icon } from "@/components/ui";
 import { IntroVideoLightbox } from "@/components/IntroVideoLightbox";
 import { RotatingWord } from "@/components/RotatingWord";
 import { HeroPanels } from "@/components/HeroPanels";
+import { SoSaiBadge } from "@/components/SoSaiBadge";
 
 export function Hero() {
   return (
@@ -19,8 +20,7 @@ export function Hero() {
         <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left: copy */}
           <div className="relative min-w-0 animate-fade-up">
-            {/* Keeps the original vertical rhythm of the hero copy */}
-            <div aria-hidden="true" className="h-10 sm:h-12" />
+            <SoSaiBadge />
 
             <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-edge bg-panel px-3 py-1 text-[11px] font-medium text-soft backdrop-blur">
               <span className="relative flex h-1.5 w-1.5">
