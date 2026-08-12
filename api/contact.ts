@@ -36,6 +36,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     marketplace: sanitizeField(body.marketplace, 300) || null,
     service: sanitizeField(body.service, 300) || null,
     budget: sanitizeField(body.budget, 200) || null,
+    quantity: sanitizeField(body.quantity, 200) || null,
+    destination: sanitizeField(body.destination, 200) || null,
     meeting_method: sanitizeField(body.meetingMethod, 200) || null,
     message: sanitizeField(body.message, 5000) || null,
   };
@@ -47,7 +49,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     try {
       const { data, error } = await sb
         .from("contact_submissions")
-        .insert({ ...submission, ip_hash: hashIp(ip) })
+        .insert({
+          name: submission.name,
+          email: submission.email,
+          business: submission.business,
+          country: submission.country,
+          marketplace: submission.marketplace,
+          service: submission.service,
+          budget: submission.budget,
+          meeting_method: submission.meeting_method,
+          message: submission.message,
+          ip_hash: hashIp(ip),
+        })
         .select("id")
         .single();
       if (!error && data) storedId = data.id;
@@ -65,9 +78,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     `Email: ${submission.email}`,
     submission.business && `Business: ${submission.business}`,
     submission.country && `Country: ${submission.country}`,
-    submission.marketplace && `Marketplace: ${submission.marketplace}`,
-    submission.service && `Service: ${submission.service}`,
+    submission.marketplace && `Product / Marketplace: ${submission.marketplace}`,
+    submission.service && `Inquiry type: ${submission.service}`,
     submission.budget && `Budget: ${submission.budget}`,
+    submission.quantity && `Approx quantity: ${submission.quantity}`,
+    submission.destination && `Destination: ${submission.destination}`,
     submission.meeting_method && `Meeting method: ${submission.meeting_method}`,
     submission.message && "",
     submission.message && `Message:\n${submission.message}`,

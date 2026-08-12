@@ -4,16 +4,6 @@ import { personal, contact } from "@/data/content";
 import { submitContact } from "@/lib/api";
 import { Reveal, Icon } from "@/components/ui";
 
-const budgetOptions = [
-  "Under $500",
-  "$500 – $1,000",
-  "$1,000 – $5,000",
-  "$5,000+",
-  "Not sure yet",
-];
-
-const meetingMethods = ["Zoom", "Google Meet", "Custom meeting method"];
-
 const socialMeta: { key: string; label: string; icon: "youtube" | "github" | "linkedin" | "x" | "instagram" | "fiverr" | "facebook" | "tiktok" }[] = [
   { key: "youtube", label: "YouTube", icon: "youtube" },
   { key: "github", label: "GitHub", icon: "github" },
@@ -25,7 +15,7 @@ const socialMeta: { key: string; label: string; icon: "youtube" | "github" | "li
   { key: "tiktok", label: "TikTok", icon: "tiktok" },
 ];
 
-export function ContactSection() {
+export function ContactSection({ initialInquiry }: { initialInquiry?: string }) {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -49,8 +39,8 @@ export function ContactSection() {
     const country = String(fd.get("country") ?? "");
     const marketplace = String(fd.get("marketplace") ?? "");
     const service = String(fd.get("service") ?? "");
-    const budget = String(fd.get("budget") ?? "");
-    const method = String(fd.get("method") ?? "");
+    const quantity = String(fd.get("quantity") ?? "");
+    const destination = String(fd.get("destination") ?? "");
     const message = String(fd.get("message") ?? "");
 
     setSubmitting(true);
@@ -62,8 +52,8 @@ export function ContactSection() {
       country,
       marketplace,
       service,
-      budget,
-      meetingMethod: method,
+      quantity,
+      destination,
       message,
     });
     setSubmitting(false);
@@ -245,9 +235,9 @@ export function ContactSection() {
                     </div>
                     <div className="grid gap-3 sm:grid-cols-2">
                       <Field
-                        label="Business"
+                        label="Company / Business"
                         name="business"
-                        placeholder="Your business name"
+                        placeholder="Your company or business name"
                       />
                       <Field
                         label="Country"
@@ -255,11 +245,6 @@ export function ContactSection() {
                         placeholder="Your country"
                       />
                     </div>
-                    <Field
-                      label="Marketplace"
-                      name="marketplace"
-                      placeholder="e.g., eBay, Etsy, TikTok Shop"
-                    />
                     {/* Honeypot — humans leave this empty */}
                     <div className="hidden" aria-hidden="true">
                       <label htmlFor="company_website">Company website</label>
@@ -271,38 +256,42 @@ export function ContactSection() {
                         autoComplete="off"
                       />
                     </div>
+                    <Select
+                      label="Inquiry type"
+                      name="service"
+                      options={contact.inquiryTypes}
+                      placeholder="Select the closest match"
+                      defaultValue={initialInquiry}
+                    />
+                    <Field
+                      label="Product / Marketplace"
+                      name="marketplace"
+                      placeholder="e.g., Himalayan salt, eBay, Etsy, TikTok Shop"
+                    />
                     <div className="grid gap-3 sm:grid-cols-2">
-                      <Select
-                        label="Service"
-                        name="service"
-                        options={contact.inquiryTypes}
-                        placeholder="Select a service"
+                      <Field
+                        label="Approx quantity"
+                        name="quantity"
+                        placeholder="Optional — e.g., 500 units / 50 kg"
                       />
-                      <Select
-                        label="Budget"
-                        name="budget"
-                        options={budgetOptions}
-                        placeholder="Select a range"
+                      <Field
+                        label="Destination"
+                        name="destination"
+                        placeholder="Optional — country / port"
                       />
                     </div>
-                    <Select
-                      label="Preferred meeting method"
-                      name="method"
-                      options={meetingMethods}
-                      placeholder="Zoom, Google Meet or custom"
-                    />
                     <div>
                       <label
                         htmlFor="message"
                         className="mb-1.5 block text-xs font-medium text-muted"
                       >
-                        Message
+                        Requirement / Message
                       </label>
                       <textarea
                         id="message"
                         name="message"
                         rows={4}
-                        placeholder="Describe your business and what you'd like to improve..."
+                        placeholder="Describe your requirement and what you'd like help with..."
                         className="w-full resize-none rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong placeholder:text-faint outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong"
                       />
                     </div>
@@ -385,11 +374,13 @@ function Select({
   name,
   options,
   placeholder,
+  defaultValue,
 }: {
   label: string;
   name: string;
   options: string[];
   placeholder: string;
+  defaultValue?: string;
 }) {
   return (
     <div>
@@ -402,7 +393,7 @@ function Select({
       <select
         id={name}
         name={name}
-        defaultValue=""
+        defaultValue={defaultValue}
         className="w-full rounded-xl border border-edge bg-panel px-3.5 py-3 text-sm text-strong outline-none transition-colors focus:border-brand-500/50 focus:bg-panel-strong"
       >
         <option value="" disabled className="bg-bg-soft text-strong">

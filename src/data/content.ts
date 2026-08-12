@@ -59,13 +59,20 @@ export const contact = {
   email: "basco.pk@gmail.com",
   adminEmail: "8002salman@gmail.com",
   availability: "Available for remote consulting, project work and online training",
+  /* Unified business inquiry types — used by the contact form and the
+     Business & Trade homepage cards. */
   inquiryTypes: [
-    "Consultation",
-    "Training",
-    "Marketplace services",
-    "Sourcing",
-    "ERP / system",
-    "Website project",
+    "Himalayan Salt / Himalayan Koh",
+    "Wholesale / Bulk Order",
+    "Private Label",
+    "Product Sourcing / Buying",
+    "Alibaba Supplier Research",
+    "Marketplace Operations",
+    "eBay Operations",
+    "Business Systems / ERP",
+    "AI & Automation",
+    "Training / Consulting",
+    "Other Business Inquiry",
   ],
   socials: {
     youtube: "https://www.youtube.com/@TheAIWithSalman",
@@ -77,6 +84,22 @@ export const contact = {
     facebook: "",
     tiktok: "",
   } as Record<string, string>,
+};
+
+/* URL-safe slugs for each inquiry type, used to pre-select a type when a
+   Business & Trade card links into the contact form. */
+export const inquiryTypeSlugs: Record<string, string> = {
+  "Himalayan Salt / Himalayan Koh": "himalayan-salt",
+  "Wholesale / Bulk Order": "wholesale-bulk",
+  "Private Label": "private-label",
+  "Product Sourcing / Buying": "product-sourcing",
+  "Alibaba Supplier Research": "alibaba-research",
+  "Marketplace Operations": "marketplace-operations",
+  "eBay Operations": "ebay-operations",
+  "Business Systems / ERP": "business-systems-erp",
+  "AI & Automation": "ai-automation",
+  "Training / Consulting": "training-consulting",
+  "Other Business Inquiry": "other",
 };
 
 /* Professional profile (About page). Business identity only — no personal,
@@ -1247,6 +1270,7 @@ export const navLinks = [
 export const moreLinks = [
   { label: "My Journey", href: "/journey" },
   { label: "Skills", href: "/skills" },
+  { label: "Team", href: "/team" },
   { label: "AI & Automation", href: "/ai-automation" },
   { label: "Media", href: "/media" },
   { label: "Credentials", href: "/credentials" },
@@ -1263,6 +1287,7 @@ export const footerLinks = [
   { label: "Projects", href: "/projects" },
   { label: "Journey", href: "/journey" },
   { label: "Skills", href: "/skills" },
+  { label: "Team", href: "/team" },
   { label: "AI & Automation", href: "/ai-automation" },
   { label: "Media", href: "/media" },
   { label: "Credentials", href: "/credentials" },
@@ -1471,6 +1496,67 @@ export const businessPillars: {
   },
 ];
 
+/* Business & Trade — a compact gateway section on the homepage pointing
+   buyers, sellers and sourcing clients into the unified inquiry flow.
+   Wording stays within "sourcing & trade coordination" limits: nothing
+   claims licensed freight-forwarding, customs brokerage or import/export. */
+export const businessTrade = {
+  eyebrow: "Business & Trade",
+  title: "One entry point for business inquiries",
+  intro:
+    "From marketplace operations to product sourcing, wholesale inquiries and business systems — practical support built around real operations.",
+  cards: [
+    {
+      icon: "store",
+      title: "Himalayan Salt & Wholesale",
+      audience: "For Himalayan Koh products, retail, wholesale, bulk orders, export and private label / packaging inquiries.",
+      points: [
+        "Retail & wholesale supply",
+        "Bulk orders & export inquiries",
+        "Private label / packaging",
+      ],
+      href: "/contact?inquiry=himalayan-salt",
+      cta: "Request Salt Quote",
+    },
+    {
+      icon: "box",
+      title: "Product Sourcing & Buying",
+      audience: "For businesses needing products sourced from Alibaba, AliExpress, China suppliers and other verified channels.",
+      points: [
+        "Product research & supplier comparison",
+        "MOQ, samples & quotation comparison",
+        "Packaging, landed-cost & shipment coordination",
+      ],
+      href: "/contact?inquiry=product-sourcing",
+      cta: "Discuss a Sourcing Requirement",
+      disclosure:
+        "Sourcing & trade coordination support only — Salman is not a licensed freight forwarder or customs broker.",
+    },
+    {
+      icon: "cart",
+      title: "Marketplace Operations",
+      audience: "For sellers running eBay, Depop, Mercari, Poshmark, Etsy, TikTok Shop, AliExpress or similar.",
+      points: [
+        "Listings, pricing, inventory & order workflow",
+        "Returns, payouts & COGS / profit tracking",
+        "Sourcing for resale, SOPs & workflow improvement",
+      ],
+      href: "/contact?inquiry=marketplace-operations",
+      cta: "Get Marketplace Support",
+      note: "Salman and the team can help you source or buy products AND operate or manage your marketplace workflows.",
+    },
+  ] as {
+    icon: IconName;
+    title: string;
+    audience: string;
+    points: string[];
+    href: string;
+    cta: string;
+    disclosure?: string;
+    note?: string;
+  }[],
+};
+
 export const marketplacePreview: StrengthCard[] = [
   {
     icon: "cart",
@@ -1625,9 +1711,8 @@ export const businessCards: BusinessCard[] = [
     ctas: [
       { label: "Explore Products", href: "/projects/himalayan-koh" },
       {
-        label: "Request Export Information",
-        href: "mailto:basco.pk@gmail.com?subject=Export%20Information%20Request",
-        external: true,
+        label: "Request Salt Quote",
+        href: "/contact?inquiry=himalayan-salt",
       },
     ],
   },
@@ -1787,18 +1872,28 @@ export const teamRoles: TeamRole[] = [
     placeholder: true,
   },
   {
-    role: "Listing and Product Support",
+    role: "Listing & Product Support",
     desc: "Research, listings, pricing and catalogue support.",
     placeholder: true,
   },
   {
-    role: "Sales and Records Support",
+    role: "Sourcing & Buying Support",
+    desc: "Supplier research, MOQ review, samples and buying coordination support.",
+    placeholder: true,
+  },
+  {
+    role: "Sales & Records Support",
     desc: "Sales records, profit tracking and payout reconciliation support.",
     placeholder: true,
   },
   {
-    role: "Research and Coordination",
-    desc: "Sourcing, supplier and coordination support.",
+    role: "Research & Coordination",
+    desc: "Product, supplier and shipment coordination support.",
+    placeholder: true,
+  },
+  {
+    role: "Systems / Workflow Support",
+    desc: "Google Sheets systems, SOPs and workflow improvement support.",
     placeholder: true,
   },
 ];

@@ -4,6 +4,7 @@ import { CoreStrength } from "@/components/CoreStrength";
 import { BusinessPillars } from "@/components/BusinessPillars";
 import { MarketplacePreview } from "@/components/MarketplacePreview";
 import { BusinessCards } from "@/components/BusinessCards";
+import { BusinessTrade } from "@/components/BusinessTrade";
 import { SourcingPreview } from "@/components/SourcingPreview";
 import { TrainingPreview } from "@/components/TrainingPreview";
 import { OpportunitySeats } from "@/components/OpportunitySeats";
@@ -137,6 +138,7 @@ export function HomePage() {
       <SectionTone tone="emerald">
         <MarketplacePreview />
         <BusinessCards />
+        <BusinessTrade />
         <SourcingPreview />
       </SectionTone>
 

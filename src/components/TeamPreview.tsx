@@ -15,7 +15,7 @@ export function TeamPreview() {
         </Reveal>
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
-          {teamRoles.map((r, i) => (
+          {teamRoles.slice(0, 4).map((r, i) => (
             <Reveal key={r.role} delay={i * 60}>
               <article className="card card-hover flex h-full items-start gap-4 p-5">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
@@ -36,7 +36,8 @@ export function TeamPreview() {
 
         <Reveal className="mt-8 text-center">
           <p className="text-sm text-muted">
-            A small, honest team — names are added only when roles are filled.
+            Salman works with a small operations team supporting marketplace,
+            product, records, research and coordination work.
           </p>
           <Link
             to="/team"

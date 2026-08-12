@@ -8,6 +8,8 @@ export type ContactPayload = {
   marketplace?: string;
   service?: string;
   budget?: string;
+  quantity?: string;
+  destination?: string;
   meetingMethod?: string;
   message?: string;
   [key: string]: unknown;
