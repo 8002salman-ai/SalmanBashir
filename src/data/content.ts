@@ -1865,6 +1865,69 @@ export type TeamRole = {
   placeholder: boolean;
 };
 
+/* All GitHub repositories — surfaced in a compact strip on the homepage. */
+export const githubRepos: {
+  name: string;
+  desc: string;
+  url: string;
+}[] = [
+  {
+    name: "luxedge-website",
+    desc: "LuxEdge website",
+    url: "https://github.com/8002salman-ai/luxedge-website",
+  },
+  {
+    name: "himalayan-koh",
+    desc: "Himalayan Koh product site",
+    url: "https://github.com/8002salman-ai/himalayan-koh",
+  },
+  {
+    name: "SalmanBashir",
+    desc: "Portfolio & business site",
+    url: "https://github.com/8002salman-ai/SalmanBashir",
+  },
+  {
+    name: "watpro-consultants",
+    desc: "Watpro Consultants",
+    url: "https://github.com/8002salman-ai/watpro-consultants",
+  },
+  {
+    name: "EbayErp",
+    desc: "eBay ERP system",
+    url: "https://github.com/8002salman-ai/EbayErp",
+  },
+  {
+    name: "8002PDF",
+    desc: "PDF tool",
+    url: "https://github.com/8002salman-ai/8002PDF",
+  },
+  {
+    name: "spotaware-platform",
+    desc: "SpotAware platform",
+    url: "https://github.com/8002salman-ai/spotaware-platform",
+  },
+  {
+    name: "8002-erp",
+    desc: "8002 ERP",
+    url: "https://github.com/8002salman-ai/8002-erp",
+  },
+  {
+    name: "commerceos",
+    desc: "CommerceOS",
+    url: "https://github.com/8002salman-ai/commerceos",
+  },
+  {
+    name: "i-864-affidavit-support-calculator",
+    desc: "I-864 Affidavit calculator",
+    url: "https://github.com/8002salman-ai/i-864-affidavit-support-calculator",
+  },
+  {
+    name: "hot-grill-website",
+    desc: "Hot Grill website",
+    url: "https://github.com/8002salman-ai/hot-grill-website",
+  },
+];
+
 export const teamRoles: TeamRole[] = [
   {
     role: "Marketplace Operations Support",

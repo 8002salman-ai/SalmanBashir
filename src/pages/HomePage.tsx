@@ -17,6 +17,7 @@ import { Reveal, Icon } from "@/components/ui";
 import { AudiencePaths } from "@/components/AudiencePaths";
 import { SectionTone } from "@/components/SectionTone";
 import { FixedWatermark } from "@/components/FixedWatermark";
+import { GitHubRepos } from "@/components/GitHubRepos";
 
 function BookCta() {
   return (
@@ -127,6 +128,8 @@ export function HomePage() {
       <SectionTone tone="cyan">
         <Hero />
       </SectionTone>
+
+      <GitHubRepos />
 
       <AudiencePaths />
 
