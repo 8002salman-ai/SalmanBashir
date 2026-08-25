@@ -120,6 +120,42 @@ prompt copy karo aur yeh Urdu samajhne ke liye:
 
 ---
 
+## Voice-over: section timing (video se match karne ke liye)
+
+Video ab ek **60-second animated reel** hai (public/intro-video.mp4, already
+live). Agar aap uspe apni awaaz mein voice-over add karna chahein, to script
+ko video ke sections se match karke bolo — har section ka apna topic hai:
+
+| Video time | Section | Urdu script (bolo) |
+|------------|---------|--------------------|
+| 0–5s | Intro (8002 logo) | "Assalam-o-Alaikum, main Salman Bashir hoon." |
+| 5–12s | Marketplace Operations | "Maine shuruat operations floor se ki — asli listings, orders aur payouts chalaye eBay, Depop, Mercari, Etsy aur TikTok Shop pe. Sirf theory nahi." |
+| 12–19s | Sourcing & Freight | "Usi se maine banaya jo sach mein kaam karta hai: marketplace systems, product sourcing aur freight coordination, aur internal tools jo business ko asli chalate hain." |
+| 19–25s | Business Systems | "Meri har cheez money se shuru hoti hai — profit, COGS aur roz ka workflow. Agar real operations mein tik nahi sakta, to main ship nahi karta." |
+| 25–32s | Current Projects | "Abhi main in projects pe kaam kar raha hoon — Embani ERP, SpotAware, Hermes AI Agent, Himalayan Koh aur SalmanMacCleaner." |
+| 32–39s | Training | "Aur teams ko hands-on train karta hoon — marketplace selling, profit aur systems." |
+| 39–46s | Fiverr CTA | "Freelance gigs bhi available hain — marketplace ops, sourcing, dashboards. Link fiverr pe hai, main ek message door hoon." |
+| 46–53s | Contact | "Website: salmanbashir.vercel.app — remote work available worldwide." |
+| 53–60s | Outro | "Shukriya. Let's build what holds up." (dheere, smile ke saath) |
+
+Dheere bolo — har section ke beech 1–2 second ka gap rakho. Total ~60
+seconds. Sirf **audio** record karna hai (voice memo / recorder app):
+
+1. Phone ki voice recorder app kholo, script padho (~60s, ek take mein).
+2. File ko naam do `voice-over.mp3` (ya `.wav`/`.m4a`) aur project ke
+   `.freebuff/` folder mein daal do — ya kahin bhi rakho aur mujhe path
+   bata do.
+3. Main `ffmpeg` se mix kar ke push kar doonga — video ke length ke saath
+   exact sync, volume normalize, fade in/out. Bas 1 minute ka kaam.
+
+Mixing command (agar khud chalana ho):
+
+```bash
+node .freebuff/mix-voiceover.mjs .freebuff/voice-over.mp3
+```
+
+---
+
 ## Option C — Google Vids (if you use Google Workspace)
 
 Google Vids (workspace.google.com) has AI text-to-video powered by Veo 3.
