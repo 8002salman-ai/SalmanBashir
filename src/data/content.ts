@@ -80,7 +80,7 @@ export const contact = {
     linkedin: "https://www.linkedin.com/in/salmanbashir80",
     x: "",
     instagram: "",
-    fiverr: "",
+    fiverr: "https://www.fiverr.com/pe/BbB0Ply",
     facebook: "",
     tiktok: "",
   } as Record<string, string>,
@@ -1730,10 +1730,16 @@ export const businessCards: BusinessCard[] = [
   {
     name: "Fiverr",
     type: "Freelance Services",
-    status: "Placeholder",
-    desc: "A planned freelance channel for marketplace operations and systems work.",
-    note: "Profile link shared when the profile is live.",
-    ctas: [{ label: "Hire Me on Fiverr", comingSoon: true }],
+    status: "Live",
+    desc: "Freelance services for marketplace operations, sourcing and business systems work.",
+    note: "Freelance gigs available now on Fiverr.",
+    ctas: [
+      {
+        label: "Hire Me on Fiverr",
+        href: "https://www.fiverr.com/pe/BbB0Ply",
+        external: true,
+      },
+    ],
   },
   {
     name: "Salman Bashir Consulting",

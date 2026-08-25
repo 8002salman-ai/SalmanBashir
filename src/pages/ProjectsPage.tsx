@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/PageHero";
 import { ProjectsSection } from "@/components/Projects";
+import { GithubReposSection } from "@/components/GithubReposSection";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 
 export function ProjectsPage() {
@@ -22,6 +23,7 @@ export function ProjectsPage() {
         description="A focused set of platforms, workflows and tools I've built from the operator's side. Every project is described honestly — no invented customers, users or performance numbers."
       />
       <ProjectsSection />
+      <GithubReposSection />
     </>
   );
 }
