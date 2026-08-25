@@ -21,6 +21,7 @@ import { BusinessSystemsPage } from "@/pages/BusinessSystemsPage";
 import { BusinessRelationshipsPage } from "@/pages/BusinessRelationshipsPage";
 import { TeamPage } from "@/pages/TeamPage";
 import { CommunityPage } from "@/pages/CommunityPage";
+import { FiverrPage } from "@/pages/FiverrPage";
 import { AdminLoginPage } from "@/pages/admin/AdminLoginPage";
 import { AdminDashboardPage } from "@/pages/admin/AdminDashboardPage";
 import { AdminGuard } from "@/components/admin/AdminGuard";
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/business-relationships" element={<BusinessRelationshipsPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/community" element={<CommunityPage />} />
+        <Route path="/fiverr" element={<FiverrPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="*" element={<HomePage />} />
       </Route>

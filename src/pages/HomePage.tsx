@@ -18,6 +18,7 @@ import { AudiencePaths } from "@/components/AudiencePaths";
 import { SectionTone } from "@/components/SectionTone";
 import { FixedWatermark } from "@/components/FixedWatermark";
 import { GitHubRepos } from "@/components/GitHubRepos";
+import { FiverrGig } from "@/components/FiverrGig";
 
 function BookCta() {
   return (
@@ -130,6 +131,8 @@ export function HomePage() {
       </SectionTone>
 
       <GitHubRepos />
+
+      <FiverrGig />
 
       <AudiencePaths />
 

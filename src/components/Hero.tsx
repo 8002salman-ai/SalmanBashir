@@ -5,6 +5,7 @@ import { IntroVideoLightbox } from "@/components/IntroVideoLightbox";
 import { RotatingWord } from "@/components/RotatingWord";
 import { HeroPanels } from "@/components/HeroPanels";
 import { SoSaiBadge } from "@/components/SoSaiBadge";
+import { GithubHeroStrip } from "@/components/GithubHeroStrip";
 
 export function Hero() {
   return (
@@ -105,6 +106,7 @@ export function Hero() {
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/15 blur-2xl" />
               <HeroPanels />
             </div>
+            <GithubHeroStrip className="mt-4 lg:mt-5 lg:pl-2" />
           </div>
         </div>
       </div>
