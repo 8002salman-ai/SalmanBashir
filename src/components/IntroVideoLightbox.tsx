@@ -41,7 +41,6 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
     triggerRef.current?.focus();
   };
 
-  const src = introVideo.mp4Url || undefined;
   const poster = introVideo.posterUrl || undefined;
 
   return (
@@ -58,20 +57,15 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
           className,
         )}
       >
-        {/* Muted autoplay showreel preview — loops silently in the hero,
-            full sound + lightbox on click. Decorative: hidden from AT. */}
+        {/* Static poster preview — sits still in the hero (no autoplay), full
+            video + sound opens in the lightbox on click. Decorative. */}
         <span className="relative block aspect-video w-full overflow-hidden bg-panel-strong">
-          {src ? (
-            <video
-              src={src}
-              poster={poster}
-              muted
-              autoPlay
-              loop
-              playsInline
-              preload="metadata"
+          {poster ? (
+            <img
+              src={poster}
+              alt=""
               aria-hidden="true"
-              tabIndex={-1}
+              loading="lazy"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
           ) : (
