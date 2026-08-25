@@ -5,12 +5,22 @@ import { introVideo } from "@/data/content";
 import { cn } from "@/utils/cn";
 
 /* Animated play trigger + accessible lightbox for the hero intro video.
-   Uses MediaPreview's honest empty state until a real video URL is set
-   in src/data/content.ts (introVideo.youtubeUrl). */
+   Plays the 60-second showreel once a URL is set in src/data/content.ts
+   (introVideo.youtubeUrl for YouTube, introVideo.mp4Url for a direct MP4).
+   Until then it shows MediaPreview's honest "coming soon" empty state. */
 export function IntroVideoLightbox({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
+  const [mp4Failed, setMp4Failed] = useState(false);
   const dialogId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
+  // If the MP4 file isn't there yet (drop-in path), show the placeholder
+  // instead of a broken player until the file is actually uploaded.
+  const kind: "youtube" | "mp4" | "none" =
+    introVideo.youtubeUrl
+      ? "youtube"
+      : introVideo.mp4Url && !mp4Failed
+        ? "mp4"
+        : "none";
 
   useEffect(() => {
     if (!open) return;
@@ -27,6 +37,7 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
 
   const close = () => {
     setOpen(false);
+    setMp4Failed(false);
     triggerRef.current?.focus();
   };
 
@@ -85,11 +96,13 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
             </button>
             <div className="p-4 sm:p-5">
               <MediaPreview
-                kind={introVideo.youtubeUrl ? "youtube" : "none"}
+                kind={kind}
                 title={introVideo.title}
                 description={introVideo.description}
                 youtubeUrl={introVideo.youtubeUrl || undefined}
-                status={introVideo.youtubeUrl ? "Available" : "Placeholder"}
+                mp4Src={introVideo.mp4Url || undefined}
+                onVideoError={() => setMp4Failed(true)}
+                status={kind === "none" ? "Placeholder" : "Available"}
               />
             </div>
           </div>

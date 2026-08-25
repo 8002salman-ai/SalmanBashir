@@ -1429,7 +1429,14 @@ export const introVideo = {
   title: "A quick word from Salman",
   description:
     "A short introduction to how I work with marketplaces, sourcing and business systems.",
+  /* 60-second showreel: set ONE of these and the hero video button plays it.
+     - youtubeUrl: any YouTube watch/share link (e.g. https://youtu.be/XXXX)
+     - mp4Url:     a direct .mp4 file URL. The default below is drop-in ready:
+                   drop your file at public/intro-video.mp4 and it just works.
+     If the file isn't there yet (or the URL 404s), the honest "coming soon"
+     placeholder shows instead of a broken player. */
   youtubeUrl: "",
+  mp4Url: "/intro-video.mp4",
 };
 
 export type StrengthCard = {

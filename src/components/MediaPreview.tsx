@@ -13,6 +13,8 @@ export type MediaPreviewProps = {
   mp4Src?: string;
   /** Poster/thumbnail image for video or the image itself for kind="image". */
   poster?: string;
+  /** Fired when the video source fails to load (e.g. file not uploaded yet). */
+  onVideoError?: () => void;
   /** Privacy / review status shown as a small badge. */
   status?: "Available" | "Placeholder" | "Private";
   className?: string;
@@ -43,6 +45,7 @@ export function MediaPreview({
   youtubeUrl,
   mp4Src,
   poster,
+  onVideoError,
   status = "Placeholder",
   className,
 }: MediaPreviewProps) {
@@ -63,8 +66,9 @@ export function MediaPreview({
         ) : kind === "mp4" && mp4Src ? (
           <video
             controls
-            preload="none"
+            preload="metadata"
             poster={poster}
+            onError={onVideoError}
             className="absolute inset-0 h-full w-full object-cover"
           >
             <source src={mp4Src} type="video/mp4" />
