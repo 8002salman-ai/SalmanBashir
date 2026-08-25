@@ -110,16 +110,16 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
             onClick={close}
             className="absolute inset-0 bg-bg/90 backdrop-blur-sm"
           />
-          <div className="relative w-full max-w-2xl rounded-2xl border border-edge-strong bg-bg-soft shadow-2xl">
+          <div className="relative w-full max-w-4xl sm:max-w-5xl rounded-2xl border border-edge-strong bg-bg-soft shadow-2xl">
             <button
               type="button"
               onClick={close}
               aria-label="Close video"
-              className="absolute -top-3 -right-3 flex h-9 w-9 items-center justify-center rounded-full border border-edge-strong bg-panel-strong text-soft shadow-lg transition-colors hover:text-strong"
+              className="absolute -top-3 -right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-edge-strong bg-panel-strong text-soft shadow-lg transition-colors hover:text-strong"
             >
               <Icon name="x" className="h-4 w-4" />
             </button>
-            <div className="p-4 sm:p-5">
+            <div className="p-3 sm:p-5">
               <MediaPreview
                 kind={kind}
                 title={introVideo.title}
