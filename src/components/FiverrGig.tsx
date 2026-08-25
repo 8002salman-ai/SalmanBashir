@@ -1,12 +1,9 @@
+import { Link } from "react-router-dom";
 import { contact } from "@/data/content";
+import { fiverrHighlights } from "@/data/gigs";
 import { Icon, Reveal } from "@/components/ui";
 
-const gigPoints = [
-  "Marketplace operations & listings",
-  "Product sourcing coordination",
-  "Business systems & dashboards",
-  "AI-assisted tools & workflows",
-];
+const gigPoints = fiverrHighlights;
 
 /**
  * Homepage highlight for the Fiverr freelance channel —
@@ -61,18 +58,30 @@ export function FiverrGig() {
                 </ul>
               </div>
 
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary btn-lg group shrink-0"
-              >
-                Hire Me on Fiverr
-                <Icon
-                  name="external"
-                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                />
-              </a>
+              <div className="flex shrink-0 flex-col items-stretch gap-3 sm:items-start">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-lg group"
+                >
+                  Hire Me on Fiverr
+                  <Icon
+                    name="external"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  />
+                </a>
+                <Link
+                  to="/fiverr"
+                  className="btn btn-secondary btn-lg group"
+                >
+                  View all gigs
+                  <Icon
+                    name="arrow"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  />
+                </Link>
+              </div>
             </div>
           </div>
         </Reveal>

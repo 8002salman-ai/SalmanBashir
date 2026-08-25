@@ -1275,6 +1275,7 @@ export const moreLinks = [
   { label: "Media", href: "/media" },
   { label: "Credentials", href: "/credentials" },
   { label: "Resume", href: "/resume" },
+  { label: "Fiverr Gigs", href: "/fiverr" },
 ];
 
 export const footerLinks = [
@@ -1291,6 +1292,7 @@ export const footerLinks = [
   { label: "AI & Automation", href: "/ai-automation" },
   { label: "Media", href: "/media" },
   { label: "Credentials", href: "/credentials" },
+  { label: "Fiverr Gigs", href: "/fiverr" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
 ];
