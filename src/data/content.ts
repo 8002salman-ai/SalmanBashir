@@ -1211,7 +1211,7 @@ export const privacy = {
   sections: [
     {
       title: "Overview",
-      body: "This page explains what information this website collects and how it is used. This site is a personal portfolio — it does not sell data, show ads or share your information with third parties.",
+      body: "This page explains what information this website collects and how it is used. This site is a personal portfolio. It does not sell your personal data. Google AdSense may display contextual advertisements on public pages after Google approves the site; Google may use cookies or similar technologies to measure and personalise advertising under its own policies.",
     },
     {
       title: "Contact and booking forms",
@@ -1223,7 +1223,7 @@ export const privacy = {
     },
     {
       title: "Analytics & tracking",
-      body: "This site does not use analytics trackers, advertising cookies or third-party fingerprinting. Nothing about your browsing here is shared with advertisers.",
+      body: "This site does not use an independent analytics tracker or third-party fingerprinting. If AdSense ads are served, Google may use cookies or similar technologies for ad delivery, measurement and personalisation. You can manage advertising preferences through Google's Ads Settings and your browser controls."
     },
     {
       title: "External links",

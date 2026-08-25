@@ -8,7 +8,7 @@ export function PrivacyPage() {
     <>
       <Seo
         title="Privacy Policy | Salman Bashir"
-        description="A simple, honest privacy policy for salmanbashir.vercel.app — no data selling, no ads, no third-party tracking."
+        description="A simple, honest privacy policy for salmanbashir.vercel.app — how contact forms, preferences and Google AdSense advertising are handled."
         path="/privacy"
       />
     <BreadcrumbJsonLd items={[{ name: "Privacy", path: "/privacy" }]} />

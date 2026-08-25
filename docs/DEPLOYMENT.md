@@ -22,17 +22,32 @@ Add every variable from `.env.example` in **Vercel → Project → Settings → 
 | `CONTACT_TO_EMAIL` | contact emails (e.g. `basco.pk@gmail.com`) | no |
 | `BOOKING_TO_EMAIL` | booking emails (e.g. `basco.pk@gmail.com`) | no |
 | `OPENROUTER_API_KEY` | chatbot `/api/chat` | no |
+| `SALMAN_OS_BASE_URL` | server-side `/api/projects-feed` proxy | no |
+| `PROJECTS_FEED_TOKEN` | server-side Salman OS authentication | no |
 | `APP_URL` | canonical/OG URLs (default `https://salmanbashir.vercel.app`) | build |
 
 Only the two `VITE_` variables are bundled into the browser. Everything else stays on the server.
 
-## 3. Deploy
+## 3. Google AdSense
+
+The public site includes the AdSense loader for publisher `pub-5473713135927706` and publishes `https://salmanbashir.vercel.app/ads.txt`. The loader alone does not activate ads or guarantee approval.
+
+1. In AdSense, add and verify the exact production site: `salmanbashir.vercel.app`.
+2. Deploy this repo and confirm `https://salmanbashir.vercel.app/ads.txt` returns the publisher record without an SPA HTML fallback.
+3. Submit the site for AdSense review and wait for Google approval.
+4. After approval, enable Auto ads in AdSense. Do not add ad unit code to `/admin` or private/authenticated areas.
+5. Complete AdSense Privacy & messaging / consent settings required for visitors in the EEA, UK and Switzerland before serving personalised ads.
+6. Keep the privacy policy accurate: Google may use cookies or similar technologies for ad delivery, measurement and personalisation.
+
+If AdSense reports an `ads.txt` warning, use the exact record Google provides in AdSense. Do not add a second or guessed publisher record.
+
+## 4. Deploy
 
 - Deploy on push to `main`. Each deploy runs `npm run build` (Vite), then Vercel compiles `api/*.ts` into serverless functions automatically (`@vercel/node`).
 - `vercel.json` handles SPA rewrites (everything except `api/*`, assets, branding, favicon, og-image, robots.txt, sitemap.xml → `index.html`), so deep links and direct refreshes work, and `/admin` works client-side.
 - Security headers are set globally; `/admin` also gets `X-Robots-Tag: noindex, nofollow`.
 
-## 4. Pre-flight checklist
+## 5. Pre-flight checklist
 
 Before you promote to production:
 
@@ -41,7 +56,7 @@ Before you promote to production:
 - Resend key + sender verified (see `docs/RESEND_SETUP.md`)
 - OpenRouter key set (see `docs/OPENROUTER_SETUP.md`)
 
-## 5. Testing after deploy
+## 6. Testing after deploy
 
 - Public routes load and direct-refresh works: `/`, `/about`, `/services`, `/training`, `/projects`, `/projects/embani-erp`, `/journey`, `/resume`, `/contact`, `/book`, `/privacy`
 - Dark / light / system theme toggling still works
@@ -49,10 +64,13 @@ Before you promote to production:
 - Contact form sends and emails arrive (and the error path is honest)
 - Booking request stays "pending" until approved; admin approve + meeting link emails the visitor
 - Chatbot answers on topic and declines private/off-topic questions
+- `/api/projects-feed` returns the latest public projects when both Salman OS feed variables are configured; the homepage GitHub strip keeps its curated fallback when unavailable
 - Mobile layout for the navbar, footer, forms and chat bubble
 - `robots.txt` disallows `/admin`; `sitemap.xml` lists public routes only
+- `ads.txt` returns the Google publisher record at the domain root
+- AdSense script appears once in the document head; no ads are rendered in `/admin`
 
-## 6. Local testing of serverless functions
+## 7. Local testing of serverless functions
 
 ```bash
 npm install -g vercel

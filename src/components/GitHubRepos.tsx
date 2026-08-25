@@ -1,15 +1,53 @@
+import { useEffect, useMemo, useState } from "react";
 import { contact, githubRepos } from "@/data/content";
+import { fetchProjectFeed, type SalmanOsProject } from "@/lib/projects-feed";
+import { useGithubRepos, type GithubRepo } from "@/hooks/useGithubRepos";
 import { Icon, Reveal } from "@/components/ui";
-import { useGithubRepos } from "@/hooks/useGithubRepos";
+
+function toGithubRepo(project: SalmanOsProject): GithubRepo {
+  return {
+    name: project.github_repo || project.name,
+    desc: project.description || project.name,
+    url: `https://github.com/${project.github_owner}/${project.github_repo}`,
+    stars: 0,
+    language: null,
+    topics: [],
+    pushedAt: project.last_commit_at,
+    homepage: project.production_url,
+  };
+}
 
 /**
  * Compact, auto-scrolling strip of GitHub repo badges (plus a Fiverr chip).
- * Repos are synced live from the public GitHub API — newest activity first —
- * so every new public repo appears here automatically without a rebuild.
- * Each chip shows star count and primary language when available.
+ * Salman OS supplies the public project set; GitHub metadata enriches it when
+ * available. Static content remains the fallback when either service is down.
  */
 export function GitHubRepos() {
-  const { repos } = useGithubRepos(githubRepos);
+  const { repos: githubReposLive } = useGithubRepos(githubRepos);
+  const [syncedProjects, setSyncedProjects] = useState<GithubRepo[]>([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetchProjectFeed(controller.signal)
+      .then((projects) => {
+        if (!projects.length) return;
+        setSyncedProjects(projects.map(toGithubRepo));
+      })
+      .catch(() => {
+        // Keep GitHub/static data when the server-side feed is unavailable.
+      });
+    return () => controller.abort();
+  }, []);
+
+  const repos = useMemo(() => {
+    if (!syncedProjects.length) return githubReposLive;
+    return syncedProjects.map((project) => {
+      const live = githubReposLive.find(
+        (repo) => repo.name.toLowerCase() === project.name.toLowerCase(),
+      );
+      return live ? { ...project, ...live, desc: project.desc || live.desc } : project;
+    });
+  }, [githubReposLive, syncedProjects]);
 
   return (
     <section className="relative overflow-hidden py-6 sm:py-8">
@@ -41,14 +79,11 @@ export function GitHubRepos() {
         </Reveal>
       </div>
 
-      {/* Auto-scrolling marquee row */}
       <div className="group relative">
-        {/* Fade edges */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-bg to-transparent sm:w-24" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-bg to-transparent sm:w-24" />
 
         <div className="flex w-max animate-marquee gap-2.5 px-4 group-hover:[animation-play-state:paused]">
-          {/* Fiverr chip first — freelance channel up front */}
           {contact.socials.fiverr && (
             <a
               href={contact.socials.fiverr}
@@ -60,20 +95,12 @@ export function GitHubRepos() {
                 <Icon name="fiverr" className="h-3.5 w-3.5 text-gold-accent" />
               </span>
               <span className="min-w-0">
-                <span className="block truncate text-xs font-semibold text-strong">
-                  Fiverr
-                </span>
-                <span className="block truncate text-[10px] text-faint">
-                  Hire me for freelance work
-                </span>
+                <span className="block truncate text-xs font-semibold text-strong">Fiverr</span>
+                <span className="block truncate text-[10px] text-faint">Hire me for freelance work</span>
               </span>
-              <Icon
-                name="external"
-                className="h-3 w-3 shrink-0 text-faint transition-colors group-hover:text-gold-accent"
-              />
+              <Icon name="external" className="h-3 w-3 shrink-0 text-faint transition-colors group-hover:text-gold-accent" />
             </a>
           )}
-          {/* Duplicate for seamless loop — latest first, then the loop repeats */}
           {[...repos, ...repos].map((repo, i) => (
             <a
               key={`${repo.name}-${i}`}
@@ -87,9 +114,7 @@ export function GitHubRepos() {
               </span>
               <span className="min-w-0">
                 <span className="flex items-center gap-2">
-                  <span className="max-w-[160px] truncate text-xs font-semibold text-strong">
-                    {repo.name}
-                  </span>
+                  <span className="max-w-[160px] truncate text-xs font-semibold text-strong">{repo.name}</span>
                   {repo.stars > 0 && (
                     <span className="inline-flex shrink-0 items-center gap-0.5 text-[10px] font-medium text-gold-accent">
                       <Icon name="star" className="h-2.5 w-2.5" />
@@ -109,10 +134,7 @@ export function GitHubRepos() {
                   </span>
                 </span>
               </span>
-              <Icon
-                name="external"
-                className="h-3 w-3 shrink-0 text-faint transition-colors group-hover:text-accent-strong"
-              />
+              <Icon name="external" className="h-3 w-3 shrink-0 text-faint transition-colors group-hover:text-accent-strong" />
             </a>
           ))}
         </div>
