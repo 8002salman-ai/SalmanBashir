@@ -1437,6 +1437,9 @@ export const introVideo = {
      placeholder shows instead of a broken player. */
   youtubeUrl: "",
   mp4Url: "/intro-video.mp4",
+  /* Poster/thumbnail shown before the video plays and as the first frame
+     of the muted hero preview. */
+  posterUrl: "/images/intro-video-poster.jpg",
 };
 
 export type StrengthCard = {
