@@ -5,6 +5,26 @@ import { navLinks, moreLinks, personal } from "@/data/content";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { LogoMark } from "@/components/Logo";
 import { Icon } from "@/components/ui";
+import { useGithubRepos } from "@/hooks/useGithubRepos";
+
+function LatestRepoBadge() {
+  const { repos } = useGithubRepos([]);
+  const latest = repos[0];
+  return (
+    <Link
+      to="/projects"
+      title={latest ? `Latest: ${latest.name}` : "View projects"}
+      className="group hidden items-center gap-1.5 rounded-lg border border-edge bg-panel/60 px-2.5 py-1.5 text-xs font-medium text-soft transition-colors hover:border-brand-500/30 hover:text-strong lg:inline-flex"
+    >
+      <Icon name="spark" className="h-3 w-3 text-accent-strong" />
+      {latest ? (
+        <span className="max-w-[9rem] truncate">{latest.name}</span>
+      ) : (
+        <span>Projects</span>
+      )}
+    </Link>
+  );
+}
 
 function MoreMenu({ isActive }: { isActive: (href: string) => boolean }) {
   const [open, setOpen] = useState(false);
@@ -155,6 +175,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2.5">
           <ThemeSwitcher />
+          <LatestRepoBadge />
           <Link
             to="/book"
             className="btn btn-primary btn-sm hidden shrink-0 whitespace-nowrap sm:inline-flex"
