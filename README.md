@@ -28,7 +28,7 @@ See `.env.example` for the full documented list. Never commit real keys. Only tw
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
 
-Everything else is server-only and lives in your Vercel project settings.
+The Salman OS project feed uses `SALMAN_OS_BASE_URL` and `PROJECTS_FEED_TOKEN` only inside the Vercel serverless proxy. Everything else is server-only and lives in your Vercel project settings.
 
 ## Scripts
 
@@ -45,7 +45,7 @@ npm run typecheck  # tsc --noEmit
 - `src/components/` — sections, SEO helpers, the admin UI, and `AskSalmanAI`
 - `src/lib/` — Supabase client, API helpers (`submitContact`, `submitBooking`, `askChatbot`), admin auth
 - `src/data/content.ts` — canonical site content the CMS tables map to
-- `api/` — Vercel serverless functions (contact, booking, chat, booking-admin, activity)
+- `api/` — Vercel serverless functions (contact, booking, chat, booking-admin, activity, Salman OS project feed proxy)
 - `supabase/migrations/` — database schema, triggers, RLS and storage buckets
 - `docs/` — setup guides (see below)
 

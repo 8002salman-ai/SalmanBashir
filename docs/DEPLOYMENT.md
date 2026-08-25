@@ -22,6 +22,8 @@ Add every variable from `.env.example` in **Vercel → Project → Settings → 
 | `CONTACT_TO_EMAIL` | contact emails (e.g. `basco.pk@gmail.com`) | no |
 | `BOOKING_TO_EMAIL` | booking emails (e.g. `basco.pk@gmail.com`) | no |
 | `OPENROUTER_API_KEY` | chatbot `/api/chat` | no |
+| `SALMAN_OS_BASE_URL` | server-side `/api/projects-feed` proxy | no |
+| `PROJECTS_FEED_TOKEN` | server-side Salman OS authentication | no |
 | `APP_URL` | canonical/OG URLs (default `https://salmanbashir.vercel.app`) | build |
 
 Only the two `VITE_` variables are bundled into the browser. Everything else stays on the server.
@@ -49,6 +51,7 @@ Before you promote to production:
 - Contact form sends and emails arrive (and the error path is honest)
 - Booking request stays "pending" until approved; admin approve + meeting link emails the visitor
 - Chatbot answers on topic and declines private/off-topic questions
+- `/api/projects-feed` returns the latest public projects when both Salman OS feed variables are configured; the homepage GitHub strip keeps its curated fallback when unavailable
 - Mobile layout for the navbar, footer, forms and chat bubble
 - `robots.txt` disallows `/admin`; `sitemap.xml` lists public routes only
 

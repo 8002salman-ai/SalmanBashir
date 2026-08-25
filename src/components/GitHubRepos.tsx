@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { githubRepos, contact } from "@/data/content";
+import { fetchProjectFeed } from "@/lib/projects-feed";
 import { Icon } from "@/components/ui";
 import { Reveal } from "@/components/ui";
 
@@ -8,6 +10,30 @@ import { Reveal } from "@/components/ui";
  * without taking vertical space or breaking the layout.
  */
 export function GitHubRepos() {
+  const [liveRepos, setLiveRepos] = useState(githubRepos);
+
+  useEffect(() => {
+    let cancelled = false;
+    const controller = new AbortController();
+    fetchProjectFeed(controller.signal)
+      .then((projects) => {
+        if (!cancelled && projects.length) {
+          setLiveRepos(projects.map((project) => ({
+            name: project.github_repo || project.name,
+            desc: project.description || project.name,
+            url: `https://github.com/${project.github_owner}/${project.github_repo}`,
+          })));
+        }
+      })
+      .catch(() => {
+        // Keep the curated static list when the server-side feed is unavailable.
+      });
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, []);
+
   return (
     <section className="relative overflow-hidden py-6 sm:py-8">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -38,7 +64,7 @@ export function GitHubRepos() {
 
         <div className="flex w-max animate-marquee gap-2.5 px-4 group-hover:[animation-play-state:paused]">
           {/* Duplicate for seamless loop */}
-          {[...githubRepos, ...githubRepos].map((repo, i) => (
+          {[...liveRepos, ...liveRepos].map((repo, i) => (
             <a
               key={`${repo.name}-${i}`}
               href={repo.url}

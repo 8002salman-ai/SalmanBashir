@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { caseStudies } from "@/data/projects";
+import { fetchProjectFeed, type SalmanOsProject } from "@/lib/projects-feed";
 import { Reveal, SectionHeading, Icon, type IconName } from "@/components/ui";
 import { cn } from "@/utils/cn";
 import { ProjectStatusBadge } from "@/components/projects/ProjectStatusBadge";
@@ -12,6 +14,67 @@ const accentClasses = {
   brand: "border-brand-500/20 bg-brand-500/10 text-accent-strong",
   gold: "border-gold-accent/25 bg-gold-accent/10 text-gold-accent",
 };
+
+function LiveProjectsGrid() {
+  const [projects, setProjects] = useState<SalmanOsProject[]>([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetchProjectFeed(controller.signal)
+      .then((items) => setProjects(items))
+      .catch(() => {
+        // The curated case studies remain the complete fallback view.
+      });
+    return () => controller.abort();
+  }, []);
+
+  if (projects.length === 0) return null;
+
+  return (
+    <Reveal className="mt-12">
+      <div className="flex items-end justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-faint">Live project index</p>
+          <h3 className="mt-2 font-display text-2xl font-semibold text-strong">Latest public projects</h3>
+        </div>
+        <span className="shrink-0 text-xs text-faint">Synced from Salman OS</span>
+      </div>
+      <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {projects.map((project) => {
+          const caseStudy = caseStudies.find((item) => item.slug === project.slug);
+          const href = caseStudy ? `/projects/${caseStudy.slug}` : `https://github.com/${project.github_owner}/${project.github_repo}`;
+          const isExternal = !caseStudy;
+          return (
+            <a
+              key={project.id}
+              href={href}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className="card card-hover flex min-h-44 flex-col p-5"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-brand-500/20 bg-brand-500/10 text-accent-strong">
+                  <Icon name="github" className="h-5 w-5" />
+                </span>
+                <span className="rounded-full border border-edge bg-panel px-2 py-1 text-[10px] font-medium text-faint">
+                  {project.status.replace("_", " ")}
+                </span>
+              </div>
+              <h4 className="mt-4 font-display text-lg font-semibold text-strong">{project.name}</h4>
+              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">
+                {project.description || `${project.github_owner}/${project.github_repo}`}
+              </p>
+              <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent-strong">
+                {isExternal ? "Open repository" : "View case study"}
+                <Icon name="arrow" className="h-3.5 w-3.5" />
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </Reveal>
+  );
+}
 
 export function ProjectsSection({ limit }: { limit?: number }) {
   const visible = limit ? rest.slice(0, limit) : rest;
@@ -167,6 +230,8 @@ export function ProjectsSection({ limit }: { limit?: number }) {
             </Reveal>
           ))}
         </div>
+
+        <LiveProjectsGrid />
 
         {limit && rest.length > limit && (
           <Reveal className="mt-8 text-center">
