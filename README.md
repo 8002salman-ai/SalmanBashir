@@ -30,6 +30,8 @@ See `.env.example` for the full documented list. Never commit real keys. Only tw
 
 The Salman OS project feed uses `SALMAN_OS_BASE_URL` and `PROJECTS_FEED_TOKEN` only inside the Vercel serverless proxy. Everything else is server-only and lives in your Vercel project settings.
 
+Google AdSense is configured for the public site with publisher `pub-5473713135927706`; `public/ads.txt` publishes the standard publisher record. AdSense approval, Auto ads activation and consent settings remain account-side steps in Google AdSense.
+
 ## Scripts
 
 ```bash
@@ -56,7 +58,7 @@ npm run typecheck  # tsc --noEmit
 - `docs/RESEND_SETUP.md` — Resend API key + verified sender
 - `docs/OPENROUTER_SETUP.md` — OpenRouter key + chatbot configuration
 - `docs/CLOUDFLARE_EMAIL_SETUP.md` — email routing (no DNS values invented here)
-- `docs/DEPLOYMENT.md` — Vercel deployment, env vars, testing checklist
+- `docs/DEPLOYMENT.md` — Vercel deployment, env vars, AdSense setup, testing checklist
 
 ## Admin CMS
 
