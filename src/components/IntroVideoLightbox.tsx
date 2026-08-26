@@ -138,6 +138,9 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
                 onVideoError={() => setMp4Failed(true)}
                 status={kind === "none" ? "Placeholder" : "Available"}
               />
+              <p className="mt-2 text-center text-[11px] text-faint">
+                Press <kbd className="mx-0.5 rounded border border-edge-strong bg-panel px-1 py-0.5 text-[10px] font-medium text-soft">Esc</kbd> or tap outside to close
+              </p>
             </div>
           </div>
         </div>,
