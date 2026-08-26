@@ -9,11 +9,15 @@ import { cn } from "@/utils/cn";
    Plays the 60-second showreel once a URL is set in src/data/content.ts
    (introVideo.youtubeUrl for YouTube, introVideo.mp4Url for a direct MP4).
    Until then it shows MediaPreview's honest "coming soon" empty state. */
+const EXIT_MS = 200;
+
 export function IntroVideoLightbox({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [mp4Failed, setMp4Failed] = useState(false);
   const dialogId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout>>(null);
   // If the MP4 file isn't there yet (drop-in path), show the placeholder
   // instead of a broken player until the file is actually uploaded.
   const kind: "youtube" | "mp4" | "none" =
@@ -26,20 +30,25 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      if (closeTimer.current) clearTimeout(closeTimer.current);
     };
   }, [open]);
 
   const close = () => {
-    setOpen(false);
-    setMp4Failed(false);
-    triggerRef.current?.focus();
+    setClosing(true);
+    closeTimer.current = setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+      setMp4Failed(false);
+      triggerRef.current?.focus();
+    }, EXIT_MS);
   };
 
   const poster = introVideo.posterUrl || undefined;
@@ -107,18 +116,27 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
           role="dialog"
           aria-modal="true"
           aria-label={introVideo.title}
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 animate-fade-up"
+          className={cn(
+            'fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 transition-opacity duration-200',
+            closing ? 'opacity-0' : 'opacity-100 animate-fade-up',
+          )}
         >
           <button
             type="button"
             aria-label="Close video"
             onClick={close}
-            className="absolute inset-0 bg-bg/90 backdrop-blur-sm"
+            className={cn(
+              'absolute inset-0 bg-bg/90 backdrop-blur-sm transition-opacity duration-200',
+              closing && 'opacity-0',
+            )}
           />
           {/* Width is capped by viewport HEIGHT too (16:9 math), so the whole
               dialog always fits on screen — no black gap above or video pushed
               below the fold on short desktop windows. */}
-          <div className="relative my-auto w-full max-w-[min(64rem,calc((100dvh-7rem)*16/9))] rounded-2xl border border-edge-strong bg-bg-soft shadow-2xl">
+          <div className={cn(
+            'relative my-auto w-full max-w-[min(64rem,calc((100dvh-7rem)*16/9))] rounded-2xl border border-edge-strong bg-bg-soft shadow-2xl transition duration-200',
+            closing ? 'scale-[.97] opacity-0' : 'scale-100 opacity-100',
+          )}>
             <button
               type="button"
               onClick={close}
