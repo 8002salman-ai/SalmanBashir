@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Icon } from "@/components/ui";
 import { MediaPreview } from "@/components/MediaPreview";
 import { introVideo } from "@/data/content";
@@ -96,13 +97,17 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
         </span>
       </button>
 
-      {open && (
+      {/* Rendered through a portal to document.body: an ancestor with a CSS
+          transform (e.g. the hero's fade-up animation) otherwise becomes the
+          containing block for position:fixed, breaking full-screen centering. */}
+      {open &&
+        createPortal(
         <div
           id={dialogId}
           role="dialog"
           aria-modal="true"
           aria-label={introVideo.title}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-up"
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 animate-fade-up"
         >
           <button
             type="button"
@@ -110,7 +115,10 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
             onClick={close}
             className="absolute inset-0 bg-bg/90 backdrop-blur-sm"
           />
-          <div className="relative w-full max-w-4xl sm:max-w-5xl rounded-2xl border border-edge-strong bg-bg-soft shadow-2xl">
+          {/* Width is capped by viewport HEIGHT too (16:9 math), so the whole
+              dialog always fits on screen — no black gap above or video pushed
+              below the fold on short desktop windows. */}
+          <div className="relative my-auto w-full max-w-[min(64rem,calc((100dvh-7rem)*16/9))] rounded-2xl border border-edge-strong bg-bg-soft shadow-2xl">
             <button
               type="button"
               onClick={close}
@@ -132,8 +140,9 @@ export function IntroVideoLightbox({ className }: { className?: string }) {
               />
             </div>
           </div>
-        </div>
-      )}
+        </div>,
+        document.body,
+        )}
     </>
   );
 }
