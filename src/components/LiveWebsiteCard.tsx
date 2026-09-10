@@ -7,15 +7,62 @@ interface LiveWebsiteCardProps {
   className?: string;
 }
 
+const SHOWCASE_SITES = [
+  {
+    id: "luxedge",
+    name: "LuxEdge",
+    url: "https://luxedge.us",
+    badge: "Live Store",
+    title: "LuxEdge — Curated Pet & Animal Essentials",
+    tagline: "Live e-commerce brand engineered with modern catalog architecture & PWA",
+    github: "https://github.com/8002salman-ai/luxedge-website",
+    color: "from-brand-500 to-cyan-400",
+  },
+  {
+    id: "salman-os",
+    name: "Salman OS",
+    url: "https://salman-os-swart.vercel.app",
+    badge: "AI Platform",
+    title: "Salman OS — Autonomous Business Systems",
+    tagline: "Marketplace coordination, stock velocity auditing, and Hermes Agent core",
+    github: "https://github.com/8002salman-ai/salman-os",
+    color: "from-purple-500 to-indigo-400",
+  },
+  {
+    id: "portfolio",
+    name: "Dev Studio",
+    url: "https://salmanbashir.vercel.app",
+    badge: "Portfolio",
+    title: "Salman Bashir — Lead Architecture Hub",
+    tagline: "Engineering solutions that hold up under real operational demands",
+    github: "https://github.com/8002salman-ai/SalmanBashir",
+    color: "from-emerald-500 to-teal-400",
+  },
+];
+
+// Available rotation durations
+const ROTATION_INTERVALS = [
+  { label: "30s", ms: 30 * 1000 },
+  { label: "2m", ms: 2 * 60 * 1000 },
+  { label: "10m", ms: 10 * 60 * 1000 },
+];
+
 export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
+  const [activeSiteIndex, setActiveSiteIndex] = useState(0);
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [zoomMode, setZoomMode] = useState<"fit" | "actual">("fit");
+  const [intervalIndex, setIntervalIndex] = useState(0); // default 30s for demo, user can switch to 10m
+  const [isAutoRotating, setIsAutoRotating] = useState(true);
+  const [progressPercent, setProgressPercent] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(580);
   const [containerHeight, setContainerHeight] = useState(380);
+
+  const currentSite = SHOWCASE_SITES[activeSiteIndex];
+  const currentIntervalMs = ROTATION_INTERVALS[intervalIndex].ms;
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -36,7 +83,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
     };
   }, []);
 
-  // Standard target desktop width so the full site header, banners, and store catalog are completely visible
+  // Standard target desktop width so the full site layout is completely visible without zoom-in
   const virtualDesktopWidth = 1240;
   const scale =
     zoomMode === "fit"
@@ -46,7 +93,33 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
   const iframeHeight =
     zoomMode === "fit" ? Math.round(containerHeight / scale) : containerHeight;
 
-  const previewSrc = `/api/proxy-site?url=https://luxedge.us&v=${refreshKey}`;
+  // Auto-rotation timer with visual progress bar
+  useEffect(() => {
+    if (!isAutoRotating) {
+      setProgressPercent(0);
+      return;
+    }
+
+    const stepMs = 200;
+    const totalSteps = currentIntervalMs / stepMs;
+    let currentStep = 0;
+
+    const progressTimer = setInterval(() => {
+      currentStep++;
+      const percent = Math.min(100, (currentStep / totalSteps) * 100);
+      setProgressPercent(percent);
+
+      if (currentStep >= totalSteps) {
+        setIframeLoaded(false);
+        setActiveSiteIndex((prev) => (prev + 1) % SHOWCASE_SITES.length);
+        currentStep = 0;
+      }
+    }, stepMs);
+
+    return () => clearInterval(progressTimer);
+  }, [activeSiteIndex, isAutoRotating, currentIntervalMs]);
+
+  const previewSrc = `/api/proxy-site?url=${encodeURIComponent(currentSite.url)}&v=${refreshKey}`;
 
   return (
     <>
@@ -61,18 +134,44 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
         <div className="pointer-events-none absolute -left-12 -bottom-12 h-36 w-36 rounded-full bg-emerald-500/10 blur-2xl transition-opacity group-hover:opacity-100" />
 
         {/* Browser Navigation Bar */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-3">
-          {/* Traffic light dots */}
-          <div className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+        <div className="flex items-center justify-between border-b border-white/10 pb-3 gap-2 flex-wrap">
+          {/* Traffic light dots + Site Switcher Tabs */}
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+            </div>
+
+            {/* Site Switcher Tabs: 1st, 2nd, 3rd Website */}
+            <div className="flex items-center rounded-lg border border-white/10 bg-black/40 p-0.5 text-[10px] font-medium">
+              {SHOWCASE_SITES.map((site, idx) => (
+                <button
+                  key={site.id}
+                  type="button"
+                  onClick={() => {
+                    setIframeLoaded(false);
+                    setActiveSiteIndex(idx);
+                    setProgressPercent(0);
+                  }}
+                  className={cn(
+                    "rounded-md px-2 py-0.5 transition-all flex items-center gap-1",
+                    activeSiteIndex === idx
+                      ? "bg-brand-500/25 text-brand-300 font-semibold border border-brand-400/35 shadow"
+                      : "text-zinc-400 hover:text-white",
+                  )}
+                >
+                  <span className="text-[9px] opacity-60">#{idx + 1}</span>
+                  <span>{site.name}</span>
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Interactive URL bar */}
-          <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-3 py-1 text-[11px] font-mono text-zinc-300">
+          <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[11px] font-mono text-zinc-300">
             <span className="text-emerald-400 text-[10px]">🔒</span>
-            <span className="truncate max-w-[130px] sm:max-w-[180px]">https://luxedge.us</span>
+            <span className="truncate max-w-[120px] sm:max-w-[160px]">{currentSite.url.replace("https://", "")}</span>
             <button
               type="button"
               onClick={() => {
@@ -86,27 +185,49 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
             </button>
           </div>
 
-          {/* Controls: Zoom Mode, Expand / Live Badge */}
-          <div className="flex items-center gap-2">
+          {/* Controls: Auto-Rotate Timer, Zoom, Expand */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            {/* Auto-Rotation Control (30s / 2m / 10m / Pause) */}
+            <button
+              type="button"
+              onClick={() => {
+                setIntervalIndex((prev) => (prev + 1) % ROTATION_INTERVALS.length);
+                setProgressPercent(0);
+              }}
+              title="Change rotation duration"
+              className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
+            >
+              <span className="text-amber-400">⏱</span>
+              <span>{ROTATION_INTERVALS[intervalIndex].label}</span>
+            </button>
+
+            {/* Play / Pause Auto-Rotation */}
+            <button
+              type="button"
+              onClick={() => setIsAutoRotating((r) => !r)}
+              title={isAutoRotating ? "Pause rotation" : "Resume auto-rotation"}
+              className={cn(
+                "rounded-md border border-white/10 px-1.5 py-0.5 text-[10px] transition-colors",
+                isAutoRotating
+                  ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
+                  : "bg-white/5 text-zinc-400",
+              )}
+            >
+              {isAutoRotating ? "▶ Auto" : "❚❚ Paused"}
+            </button>
+
             {/* View Zoom Toggle (Fit full desktop site vs 1:1) */}
             <button
               type="button"
               onClick={() => setZoomMode((m) => (m === "fit" ? "actual" : "fit"))}
               title={zoomMode === "fit" ? "Click for 100% view" : "Click to fit entire website"}
-              className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
+              className="hidden sm:inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
             >
               <span className="text-brand-400">🔍</span>
               <span>{zoomMode === "fit" ? `Fit (${Math.round(scale * 100)}%)` : "100%"}</span>
             </button>
 
-            <div className="hidden sm:flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              </span>
-              <span>Live Store</span>
-            </div>
-
+            {/* Expand Button */}
             <button
               type="button"
               onClick={() => setIsExpanded(true)}
@@ -120,24 +241,34 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           </div>
         </div>
 
+        {/* Rotation Progress Bar */}
+        {isAutoRotating && (
+          <div className="relative h-[2px] w-full bg-white/5 overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-brand-500 to-cyan-400 transition-all duration-200"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        )}
+
         {/* Live Website Embedded Viewport */}
         <div
           ref={containerRef}
-          className="relative mt-3 h-[320px] sm:h-[360px] lg:h-[380px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner"
+          className="relative mt-2.5 h-[320px] sm:h-[360px] lg:h-[380px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner"
         >
           {/* Loading state indicator */}
           {!iframeLoaded && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10">
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-brand-400 border-t-transparent" />
-              <span className="text-xs font-mono">Rendering live luxedge.us…</span>
+              <span className="text-xs font-mono">Loading live {currentSite.name}…</span>
             </div>
           )}
 
           {/* Embedded live website iframe with un-zoomed desktop fit scaling */}
           <iframe
-            key={refreshKey}
+            key={`${currentSite.id}-${refreshKey}`}
             src={previewSrc}
-            title="LuxEdge Live Website Preview"
+            title={`${currentSite.name} Live Website Preview`}
             loading="lazy"
             onLoad={() => setIframeLoaded(true)}
             style={{
@@ -166,7 +297,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               <span>Expand</span>
             </button>
             <a
-              href="https://luxedge.us"
+              href={currentSite.url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-400 px-2.5 py-1 text-[11px] font-bold text-black shadow-lg hover:brightness-110 transition-all"
@@ -180,29 +311,37 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
         {/* Site Details Bar */}
         <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-3">
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="h-7 w-7 rounded-lg border border-white/10 bg-white/5 p-1 shrink-0">
-              <img
-                src="/images/projects/luxedge-mark.png"
-                alt="LuxEdge"
-                className="h-full w-full object-contain"
-              />
+            <div className="h-7 w-7 rounded-lg border border-white/10 bg-white/5 p-1 shrink-0 flex items-center justify-center">
+              {currentSite.id === "luxedge" ? (
+                <img
+                  src="/images/projects/luxedge-mark.png"
+                  alt="LuxEdge"
+                  className="h-full w-full object-contain"
+                />
+              ) : currentSite.id === "salman-os" ? (
+                <Icon name="spark" className="h-4 w-4 text-brand-300" />
+              ) : (
+                <Icon name="cpu" className="h-4 w-4 text-emerald-400" />
+              )}
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
-                <h4 className="font-display text-xs font-bold text-white truncate">LuxEdge</h4>
+                <h4 className="font-display text-xs font-bold text-white truncate">{currentSite.name}</h4>
                 <span className="rounded bg-emerald-500/15 border border-emerald-500/30 px-1 text-[8.5px] font-bold text-emerald-400">
-                  ONLINE
+                  {currentSite.badge}
                 </span>
+                <span className="text-zinc-600 text-xs">·</span>
+                <span className="text-[10px] text-zinc-500">Auto-Rotating ({ROTATION_INTERVALS[intervalIndex].label})</span>
               </div>
               <p className="text-[10px] text-zinc-400 truncate">
-                Live e-commerce storefront · Pet & Animal Essentials
+                {currentSite.tagline}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5 shrink-0">
             <a
-              href="https://github.com/8002salman-ai/luxedge-website"
+              href={currentSite.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[11px] font-medium text-zinc-400 hover:text-white transition-colors"
@@ -212,12 +351,12 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
             </a>
             <span className="text-zinc-600">·</span>
             <a
-              href="https://luxedge.us"
+              href={currentSite.url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-400 hover:text-cyan-300 transition-colors"
             >
-              <span>Open Store</span>
+              <span>Open Website</span>
               <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45" />
             </a>
           </div>
@@ -230,7 +369,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="LuxEdge Live Website Preview"
+            aria-label={`${currentSite.name} Live Website Preview`}
             className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
           >
             {/* Backdrop */}
@@ -250,26 +389,26 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                     <span className="h-3 w-3 rounded-full bg-emerald-500/90" />
                   </div>
                   <span className="ml-2 font-display text-sm font-bold text-white">
-                    LuxEdge Live Production Store
+                    {currentSite.title}
                   </span>
                 </div>
 
                 {/* Central URL Bar */}
                 <a
-                  href="https://luxedge.us"
+                  href={currentSite.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hidden md:flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-4 py-1 text-xs font-mono text-zinc-300 hover:text-white hover:border-brand-400"
                 >
                   <span className="text-emerald-400">🔒</span>
-                  <span>https://luxedge.us</span>
+                  <span>{currentSite.url}</span>
                   <Icon name="arrow" className="h-3 w-3 -rotate-45 text-zinc-400" />
                 </a>
 
                 {/* Header Actions */}
                 <div className="flex items-center gap-2">
                   <a
-                    href="https://luxedge.us"
+                    href={currentSite.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-400 px-3 py-1.5 text-xs font-bold text-black hover:brightness-110"
@@ -292,7 +431,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               <div className="relative flex-1 bg-black overflow-hidden">
                 <iframe
                   src={previewSrc}
-                  title="LuxEdge Live Desktop Preview"
+                  title={`${currentSite.name} Fullscreen Live Preview`}
                   className="h-full w-full border-0"
                   sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 />

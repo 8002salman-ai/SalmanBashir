@@ -12,7 +12,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Allowed targets
-  const allowedOrigins = ["https://luxedge.us", "https://salman-os-swart.vercel.app"];
+  const allowedOrigins = [
+    "https://luxedge.us",
+    "https://salman-os-swart.vercel.app",
+    "https://salmanbashir.vercel.app",
+  ];
   if (!allowedOrigins.includes(origin)) {
     return res.status(403).send("Origin not permitted for preview");
   }
@@ -22,17 +26,51 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       headers: {
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        Accept: "*/*",
       },
     });
 
-    let html = await response.text();
-    // Inject base tag so all assets, css and scripts resolve against the live site origin
-    html = html.replace(/<head>/i, `<head><base href="${origin}/"><style>html,body{overflow-x:hidden!important;}</style>`);
+    const contentType = response.headers.get("content-type") || "";
 
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");
-    return res.status(200).send(html);
+    // Always set open CORS headers so assets are never blocked by browser
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
+
+    if (contentType.includes("text/html")) {
+      let html = await response.text();
+
+      // Inject base tag and overflow prevention style
+      html = html.replace(
+        /<head>/i,
+        `<head><base href="${origin}/"><style>html,body{overflow-x:hidden!important;width:100%!important;}</style>`,
+      );
+
+      // Rewrite asset paths to pass through this proxy so CORS never blocks JS or CSS modules
+      html = html.replace(
+        /(src|href)=["']\/assets\/([^"']+)["']/g,
+        `$1="/api/proxy-site?url=${origin}/assets/$2"`,
+      );
+
+      // Remove crossorigin attributes so browser doesn't trigger strict cross-origin module failure
+      html = html.replace(/\scrossorigin(=["'][^"']*["'])?/gi, "");
+
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.status(200).send(html);
+    }
+
+    // For JS, CSS, images, fonts: pass the content-type and body
+    if (contentType) {
+      res.setHeader("Content-Type", contentType);
+    } else if (targetUrl.endsWith(".js")) {
+      res.setHeader("Content-Type", "text/javascript; charset=utf-8");
+    } else if (targetUrl.endsWith(".css")) {
+      res.setHeader("Content-Type", "text/css; charset=utf-8");
+    }
+
+    const buffer = await response.arrayBuffer();
+    return res.status(200).send(Buffer.from(buffer));
   } catch {
     return res.status(502).send("Could not load preview");
   }
