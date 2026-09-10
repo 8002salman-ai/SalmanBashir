@@ -110,10 +110,10 @@ export function Footer() {
                   <LogoMark className="h-full w-full" />
                 </span>
                 <div className="min-w-0">
-                  <span className="block font-display text-lg sm:text-xl font-black tracking-tight text-white group-hover:text-brand-300 transition-colors">
+                  <span className="block font-display text-lg sm:text-xl font-black tracking-tight text-white group-hover:text-brand-300 transition-colors whitespace-nowrap">
                     {personal.name}
                   </span>
-                  <span className="block text-xs font-semibold text-amber-400">
+                  <span className="block text-xs font-semibold text-amber-400 whitespace-nowrap">
                     Founder & CEO · Systems Architect
                   </span>
                 </div>

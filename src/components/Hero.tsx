@@ -43,10 +43,10 @@ export function Hero() {
 
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h2 className="font-display text-2xl sm:text-3xl lg:text-[2.25rem] font-black tracking-tight text-strong drop-shadow-sm">
+                    <h2 className="font-display text-2xl sm:text-3xl lg:text-[2.25rem] font-black tracking-tight text-strong drop-shadow-sm whitespace-nowrap">
                       {personal.name}
                     </h2>
-                    <span className="inline-flex items-center gap-1 rounded-full border border-sky-400/40 bg-sky-500/15 px-2.5 py-0.5 text-[10.5px] font-bold text-sky-600 dark:text-sky-300 backdrop-blur shadow-sm">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-sky-400/40 bg-sky-500/15 px-2.5 py-0.5 text-[10.5px] font-bold text-sky-600 dark:text-sky-300 backdrop-blur shadow-sm whitespace-nowrap">
                       <Icon name="check" className="h-2.5 w-2.5 stroke-[3]" />
                       <span>Verified Executive</span>
                     </span>

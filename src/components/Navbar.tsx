@@ -140,13 +140,13 @@ export function Navbar() {
         <Link
           to="/"
           aria-label="Salman Bashir — home"
-          className="group flex items-center gap-2.5"
+          className="group flex items-center gap-2.5 shrink-0 whitespace-nowrap"
         >
-          <span className="relative h-12 w-12 shrink-0 drop-shadow-[0_0_14px_rgba(34,211,238,0.35)] sm:h-[52px] sm:w-[52px]">
+          <span className="relative h-10 w-10 shrink-0 drop-shadow-[0_0_14px_rgba(34,211,238,0.35)] sm:h-12 sm:w-12">
             <LogoMark className="block h-full w-full" />
           </span>
-          <span className="hidden min-w-0 leading-tight sm:block">
-            <span className="font-display text-lg font-bold tracking-tight text-strong">
+          <span className="shrink-0 whitespace-nowrap">
+            <span className="font-display text-base sm:text-lg font-bold tracking-tight text-strong whitespace-nowrap">
               {personal.name}
             </span>
           </span>
