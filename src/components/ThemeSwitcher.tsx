@@ -51,7 +51,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
       role="radiogroup"
       aria-label="Color theme"
       className={cn(
-        "inline-flex items-center gap-0.5 rounded-xl border border-edge bg-panel p-0.5",
+        "inline-flex items-center gap-0.5 rounded-full border border-white/10 [data-theme=light]:border-black/10 bg-white/[0.03] [data-theme=light]:bg-black/[0.03] p-0.5 shadow-inner backdrop-blur-md",
         className,
       )}
     >
@@ -65,10 +65,10 @@ export function ThemeSwitcher({ className }: { className?: string }) {
           title={LABELS[t]}
           onClick={() => setTheme(t)}
           className={cn(
-            "inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors",
+            "inline-flex h-7 w-7 items-center justify-center rounded-full transition-all duration-200",
             theme === t
-              ? "bg-brand-500/15 text-brand-300"
-              : "text-faint hover:text-soft",
+              ? "bg-brand-500/25 text-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.25)] border border-cyan-400/40"
+              : "text-muted hover:text-strong hover:bg-white/[0.08]",
           )}
         >
           {t === "dark" && <SunOffIcon />}
@@ -90,7 +90,7 @@ function SunIcon() {
       strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-[18px] w-[18px]"
+      className="h-3.5 w-3.5"
       aria-hidden="true"
     >
       <circle cx="12" cy="12" r="4" />
@@ -108,7 +108,7 @@ function SunOffIcon() {
       strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-[18px] w-[18px]"
+      className="h-3.5 w-3.5"
       aria-hidden="true"
     >
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
@@ -125,7 +125,7 @@ function SoftIcon() {
       strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-[18px] w-[18px]"
+      className="h-3.5 w-3.5"
       aria-hidden="true"
     >
       <circle cx="12" cy="12" r="9" />
@@ -143,7 +143,7 @@ function MonitorIcon() {
       strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-[18px] w-[18px]"
+      className="h-3.5 w-3.5"
       aria-hidden="true"
     >
       <rect x="2" y="3" width="20" height="14" rx="2" />
