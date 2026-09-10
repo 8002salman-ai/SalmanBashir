@@ -14,6 +14,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Allowed targets
   const allowedOrigins = [
     "https://luxedge.us",
+    "https://8002-erp.vercel.app",
     "https://salman-os-swart.vercel.app",
     "https://salmanbashir.vercel.app",
   ];
@@ -40,6 +41,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (contentType.includes("text/html")) {
       let html = await response.text();
+
+      // Auto-authenticate 8002 ERP so visitor immediately sees the live colored dashboard
+      if (origin.includes("8002-erp")) {
+        const erpAuthScript = `<script>try{localStorage.setItem("8002-auth",JSON.stringify({state:{currentUser:{id:"admin-001",email:"admin@8002erp.com",password:"Admin123@@@",name:"8002 Admin",role:"ADMIN",status:"active"},isAuthenticated:true},version:0}));if(location.pathname==="/login")location.replace("/");}catch(e){}</script>`;
+        html = html.replace(/<head>/i, `<head>${erpAuthScript}`);
+      }
 
       // Inject base tag and overflow prevention style
       html = html.replace(

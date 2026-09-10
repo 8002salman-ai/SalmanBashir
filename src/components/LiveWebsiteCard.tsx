@@ -34,7 +34,7 @@ export const SHOWCASE_SITES: ShowcaseSite[] = [
   {
     id: "8002-erp",
     name: "8002 ERP",
-    embedUrl: "https://8002-erp.vercel.app",
+    embedUrl: "/api/proxy-site?url=https://8002-erp.vercel.app",
     displayUrl: "https://8002-erp.vercel.app",
     badge: "Enterprise",
     title: "8002 ERP — Enterprise Resource Planning",

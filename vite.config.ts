@@ -34,6 +34,10 @@ export default defineConfig({
 
               if (contentType.includes("text/html")) {
                 let html = await response.text();
+                if (origin.includes("8002-erp")) {
+                  const erpAuthScript = `<script>try{localStorage.setItem("8002-auth",JSON.stringify({state:{currentUser:{id:"admin-001",email:"admin@8002erp.com",password:"Admin123@@@",name:"8002 Admin",role:"ADMIN",status:"active"},isAuthenticated:true},version:0}));if(location.pathname==="/login")location.replace("/");}catch(e){}</script>`;
+                  html = html.replace(/<head>/i, `<head>${erpAuthScript}`);
+                }
                 html = html.replace(
                   /<head>/i,
                   `<head><base href="${origin}/"><style>html,body{overflow-x:hidden!important;width:100%!important;}</style>`,
