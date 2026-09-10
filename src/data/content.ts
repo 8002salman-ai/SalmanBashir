@@ -1441,7 +1441,7 @@ export const introVideo = {
                    drop your file at public/intro-video.mp4 and it just works.
      If the file isn't there yet (or the URL 404s), the honest "coming soon"
      placeholder shows instead of a broken player. */
-  youtubeUrl: "",
+  youtubeUrl: "https://www.youtube.com/watch?v=YOBlXCyOh28",
   mp4Url: "/intro-video.mp4",
   /* Poster/thumbnail shown before the video plays and as the first frame
      of the muted hero preview. */

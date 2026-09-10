@@ -6,6 +6,7 @@ import { RotatingWord } from "@/components/RotatingWord";
 import { HeroPanels } from "@/components/HeroPanels";
 import { SoSaiBadge } from "@/components/SoSaiBadge";
 import { GithubHeroStrip } from "@/components/GithubHeroStrip";
+import { YoutubeHeroStrip } from "@/components/YoutubeHeroStrip";
 
 export function Hero() {
   return (
@@ -95,6 +96,9 @@ export function Hero() {
                 </div>
               ))}
             </dl>
+
+            {/* YouTube Media Strip — @TheAIWithSalman */}
+            <YoutubeHeroStrip className="mt-6" />
           </div>
 
           {/* Right: video, then destinations and the work itself */}
