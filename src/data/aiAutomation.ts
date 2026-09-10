@@ -2,9 +2,9 @@ import type { IconName } from "@/components/ui";
 
 export const hermes = {
   name: "Hermes AI Agent",
-  status: "In Development" as const,
+  status: "Live in Salman OS" as const,
   description:
-    "A locally connected AI operations agent being developed to monitor websites, companies, workflows, approvals, integrations and system status from one workspace.",
+    "Live autonomous AI operations agent running inside Salman OS. Actively monitors websites, GitHub repos, operational webhooks, inventory integrations, and system telemetry in real time.",
   journeyAnchor: "/journey#hermes-ai-agent-and-automation",
 };
 
@@ -28,9 +28,14 @@ export type CapabilityGroup = {
 export const capabilityGroups: CapabilityGroup[] = [
   {
     status: "Current",
-    heading: "Current",
-    intro: "Automation and AI-assisted work already in active use today.",
+    heading: "Current & Live",
+    intro: "Automation and AI-assisted systems already active and live today in production.",
     items: [
+      {
+        title: "Hermes AI Agent (Live in Salman OS)",
+        desc: "Autonomous operations daemon active inside Salman OS with real-time repo monitoring, webhook triggers, and live telemetry tracking.",
+        icon: "spark",
+      },
       {
         title: "Google Sheets Workflow Automation",
         desc: "Controlled sales imports, monthly tabs and review-before-import workflows already running for real marketplace data.",
@@ -51,13 +56,8 @@ export const capabilityGroups: CapabilityGroup[] = [
   {
     status: "In Development",
     heading: "In Development",
-    intro: "Being actively built and tested — not yet live in production.",
+    intro: "Being actively built and tested — expanding features and integrations.",
     items: [
-      {
-        title: "Hermes AI Agent",
-        desc: hermes.description,
-        icon: "spark",
-      },
       {
         title: "Embani ERP",
         desc: "One clear system for accounting, profit tracking and daily marketplace operations, with Google Sheets and eBay integration workflows.",

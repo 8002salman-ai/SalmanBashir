@@ -163,7 +163,7 @@ export function JourneyTimeline() {
 
                     {phase.id === "hermes-ai-agent-and-automation" && (
                       <div className="flex flex-wrap items-center gap-2">
-                        <StatusBadge tone="active">In Development</StatusBadge>
+                        <StatusBadge tone="live">Live in Salman OS</StatusBadge>
                         <Link to="/ai-automation" className="btn btn-secondary btn-sm">
                           View AI &amp; Automation
                           <Icon name="arrow" className="h-3.5 w-3.5" />

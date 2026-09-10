@@ -16,7 +16,7 @@ export function AiAutomationPage() {
     <>
       <Seo
         title="AI & Automation | Salman Bashir — Hermes AI Agent and Business Automation"
-        description="An honest look at AI and automation work — what's live today, what's in development (including the Hermes AI Agent) and what's planned. Nothing planned is presented as live."
+        description="An honest look at AI and automation work — featuring the live Hermes AI Agent running in Salman OS, business automation, and active production systems."
         path="/ai-automation"
       />
       <BreadcrumbJsonLd items={[{ name: "AI & Automation", path: "/ai-automation" }]} />
@@ -28,7 +28,7 @@ export function AiAutomationPage() {
             <span className="text-gradient-brand">grouped honestly</span>
           </>
         }
-        description="Hermes AI Agent, Embani ERP, SpotAware, marketplace automation, Google Sheets workflows and AI-assisted websites — grouped as Current, In Development or Planned. Nothing here is presented as live before it is."
+        description="Hermes AI Agent (Live in Salman OS), Embani ERP, SpotAware, marketplace automation, Google Sheets workflows and AI-assisted websites — grouped as Current, In Development or Planned."
       />
 
       {/* Hermes spotlight */}
@@ -43,7 +43,7 @@ export function AiAutomationPage() {
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-500/25 bg-brand-500/10 text-accent-strong">
                   <Icon name="spark" className="h-6 w-6" />
                 </span>
-                <StatusBadge tone="planning">{hermes.status}</StatusBadge>
+                <StatusBadge tone="live">{hermes.status}</StatusBadge>
               </div>
               <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight text-strong sm:text-3xl">
                 {hermes.name}
@@ -53,7 +53,7 @@ export function AiAutomationPage() {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
-                  to="/"
+                  to="/#salman-os"
                   className="btn btn-primary group"
                 >
                   Launch Live Salman OS

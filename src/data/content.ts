@@ -303,7 +303,7 @@ export const achievements: {
   {
     icon: "spark",
     title: "SoSAi / Hermes AI Agent",
-    desc: "Designed and actively developing a personal AI operations agent built with Hermes — monitoring, coordination and workflows.",
+    desc: "Live autonomous AI operations agent running inside Salman OS — real-time repo monitoring, webhook coordination and operational workflows.",
     href: "/ai-automation",
   },
   {
@@ -1360,8 +1360,8 @@ export const featuredBuilds: {
   },
   {
     name: "Hermes AI Agent",
-    desc: "Local AI operations agent",
-    status: "In Development",
+    desc: "Live in Salman OS · Autonomous operations agent",
+    status: "Live",
     href: "/ai-automation",
   },
   {
