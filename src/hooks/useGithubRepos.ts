@@ -15,8 +15,8 @@ export type GithubRepo = {
 };
 
 const GITHUB_USER = "8002salman-ai";
-const CACHE_KEY = "gh-repos-cache-v3";
-const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // refresh from GitHub once a day
+const CACHE_KEY = "gh-repos-cache-v4";
+const CACHE_STALE_MS = 6 * 60 * 60 * 1000; // revalidate every 6h to catch any new live launch daily
 
 function toGithubRepo(p: PortfolioRepo): GithubRepo {
   return {
@@ -35,7 +35,7 @@ function toGithubRepo(p: PortfolioRepo): GithubRepo {
 
 /**
  * Syncs public repos for Salman Bashir's GitHub profile — newest activity first.
- * Categorized into 'new', 'old' systems, and 'coming' projects.
+ * Automatically checks daily for new projects or new live websites.
  */
 export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
   const [repos, setRepos] = useState<GithubRepo[]>(fallback.map(toGithubRepo));
@@ -43,24 +43,60 @@ export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
 
   useEffect(() => {
     let cancelled = false;
+    let shouldFetch = true;
 
-    // Serve from cache when it is fresh (< 24h old).
+    // Fast-path: immediately hydrate from cache (zero delay)
     try {
       const cached = localStorage.getItem(CACHE_KEY);
       if (cached) {
         const parsed = JSON.parse(cached) as { at: number; repos: GithubRepo[] };
-        if (Date.now() - parsed.at < CACHE_TTL_MS && parsed.repos?.length) {
+        if (parsed.repos?.length) {
           setRepos(parsed.repos);
           setLive(true);
-          return;
+          // If fresh (< 6h), we can avoid immediate network spam
+          if (Date.now() - parsed.at < CACHE_STALE_MS) {
+            shouldFetch = false;
+          }
         }
       }
     } catch {
-      /* corrupted cache — ignore and refetch */
+      /* corrupted cache — proceed to fetch */
     }
 
+    if (!shouldFetch) return;
+
+    // Daily background sync to discover any new repositories or live sites
     (async () => {
       try {
+        // Try local/Vercel daily cached serverless route first
+        let reposFromApi: GithubRepo[] | null = null;
+        try {
+          const apiRes = await fetch("/api/github-repos");
+          if (apiRes.ok) {
+            const json = (await apiRes.json()) as { ok: boolean; repos: GithubRepo[] };
+            if (json.ok && Array.isArray(json.repos) && json.repos.length > 0) {
+              reposFromApi = json.repos;
+            }
+          }
+        } catch {
+          /* ignore and fallback to direct GitHub API */
+        }
+
+        if (reposFromApi && !cancelled) {
+          setRepos(reposFromApi);
+          setLive(true);
+          try {
+            localStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify({ at: Date.now(), repos: reposFromApi }),
+            );
+          } catch {
+            /* ignore */
+          }
+          return;
+        }
+
+        // Direct GitHub API fallback
         const headers: Record<string, string> = { Accept: "application/vnd.github+json" };
         const token = import.meta.env.VITE_GITHUB_TOKEN;
         if (token) {
@@ -93,17 +129,24 @@ export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
           .sort((a, b) => Date.parse(b.pushed_at) - Date.parse(a.pushed_at))
           .map((r) => {
             const meta = fallbackMap.get(r.name.toLowerCase());
+            const daysSincePushed = (Date.now() - Date.parse(r.pushed_at)) / (1000 * 60 * 60 * 24);
+            const isRecent = daysSincePushed <= 45;
+
+            const category: "new" | "old" | "coming" =
+              meta?.category || (isRecent ? "new" : "old");
+            const homepage = r.homepage || meta?.homepage || null;
+
             return {
               name: r.name,
-              desc: meta?.desc || r.description || "GitHub repository",
+              desc: meta?.desc || r.description || `${r.name} repository`,
               url: r.html_url,
               stars: r.stargazers_count ?? 0,
               language: r.language || meta?.language || null,
               topics: r.topics?.slice(0, 3) ?? [],
               pushedAt: r.pushed_at,
-              homepage: r.homepage || meta?.homepage || null,
-              category: meta?.category || "old",
-              status: meta?.status || (r.homepage ? "Live" : "Repo"),
+              homepage,
+              category,
+              status: meta?.status || (homepage ? "Live" : isRecent ? "New" : "Repo"),
             };
           });
 
@@ -114,15 +157,17 @@ export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
           }
         });
 
-        setRepos(latest);
-        setLive(true);
-        try {
-          localStorage.setItem(
-            CACHE_KEY,
-            JSON.stringify({ at: Date.now(), repos: latest }),
-          );
-        } catch {
-          /* storage full — non-fatal */
+        if (!cancelled) {
+          setRepos(latest);
+          setLive(true);
+          try {
+            localStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify({ at: Date.now(), repos: latest }),
+            );
+          } catch {
+            /* storage full — non-fatal */
+          }
         }
       } catch {
         /* network error — fallback list stays */
