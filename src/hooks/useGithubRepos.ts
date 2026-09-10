@@ -96,12 +96,8 @@ export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
           return;
         }
 
-        // Direct GitHub API fallback
+        // Direct GitHub API fallback for public repositories
         const headers: Record<string, string> = { Accept: "application/vnd.github+json" };
-        const token = import.meta.env.VITE_GITHUB_TOKEN;
-        if (token) {
-          headers.Authorization = `Bearer ${token}`;
-        }
         const res = await fetch(
           `https://api.github.com/users/${GITHUB_USER}/repos?sort=pushed&direction=desc&per_page=100`,
           { headers },
