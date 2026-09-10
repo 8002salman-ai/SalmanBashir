@@ -14,6 +14,8 @@ function toGithubRepo(project: SalmanOsProject): GithubRepo {
     topics: [],
     pushedAt: project.last_commit_at,
     homepage: project.production_url,
+    category: "new",
+    status: project.production_url ? "Live" : "Active",
   };
 }
 

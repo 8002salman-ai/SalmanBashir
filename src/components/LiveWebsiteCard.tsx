@@ -239,23 +239,31 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                     setProgressPercent(0);
                   }}
                   className={cn(
-                    "rounded-md px-2 py-0.5 text-[10px] font-medium transition-all shrink-0 flex items-center gap-1",
+                    "rounded-md px-2.5 py-0.5 text-[10.5px] font-medium transition-all shrink-0 flex items-center gap-1",
                     activeSiteIndex === idx
                       ? "bg-brand-500/25 text-brand-300 font-semibold border border-brand-400/40 shadow-sm"
                       : "border border-white/10 bg-black/40 text-zinc-400 hover:text-white hover:bg-white/5",
                   )}
                 >
                   <span className="text-[9px] opacity-60">#{idx + 1}</span>
-                  <span className="truncate max-w-[80px] sm:max-w-[100px]">{site.name}</span>
+                  <span>{site.name}</span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Interactive URL bar */}
-          <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[11px] font-mono text-zinc-300">
+          {/* Interactive URL bar displaying complete URL */}
+          <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-3 py-1 text-[11px] font-mono text-zinc-200 shadow-inner">
             <span className="text-emerald-400 text-[10px]">🔒</span>
-            <span className="truncate max-w-[110px] sm:max-w-[160px]">{currentSite.displayUrl.replace("https://", "")}</span>
+            <a
+              href={currentSite.displayUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-200 hover:text-brand-300 hover:underline transition-colors"
+              title={`Open full URL: ${currentSite.displayUrl}`}
+            >
+              {currentSite.displayUrl.replace("https://", "")}
+            </a>
             <button
               type="button"
               onClick={() => {
@@ -263,13 +271,13 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                 setRefreshKey((k) => k + 1);
               }}
               title="Reload live preview"
-              className="text-zinc-400 hover:text-white transition-colors ml-0.5"
+              className="text-zinc-400 hover:text-white transition-colors ml-1"
             >
               <Icon name="clock" className="h-2.5 w-2.5" />
             </button>
           </div>
 
-          {/* Controls: Auto-Rotate Timer, Zoom, Expand */}
+          {/* Controls: Auto-Rotation Control, Zoom, Expand */}
           <div className="flex items-center gap-1.5 shrink-0">
             {/* Auto-Rotation Control (10m / 2m / 30s) */}
             <button
