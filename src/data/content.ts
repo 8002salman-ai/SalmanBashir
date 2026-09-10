@@ -1889,66 +1889,160 @@ export type TeamRole = {
   placeholder: boolean;
 };
 
-/* All GitHub repositories — surfaced in a compact strip on the homepage. */
-export const githubRepos: {
+export interface PortfolioRepo {
   name: string;
   desc: string;
   url: string;
-}[] = [
+  category: "new" | "old" | "coming";
+  status: string;
+  homepage?: string;
+  language?: string;
+}
+
+/* All 16 GitHub repositories — new, established/old systems, and upcoming projects */
+export const githubRepos: PortfolioRepo[] = [
+  // 1. New & Recently Updated Projects
+  {
+    name: "SalmanBashir",
+    desc: "Portfolio & enterprise AI architecture platform",
+    url: "https://github.com/8002salman-ai/SalmanBashir",
+    homepage: "https://salmanbashir.vercel.app",
+    language: "TypeScript",
+    category: "new",
+    status: "Active / Live",
+  },
   {
     name: "luxedge-website",
-    desc: "LuxEdge website",
+    desc: "Curated pet & animal essentials storefront & PWA",
     url: "https://github.com/8002salman-ai/luxedge-website",
+    homepage: "https://luxedge.us",
+    language: "TypeScript",
+    category: "new",
+    status: "Active Store",
+  },
+  {
+    name: "youtube-automation",
+    desc: "Autonomous YouTube content generation, voice & publishing agent",
+    url: "https://github.com/8002salman-ai/youtube-automation",
+    homepage: "https://youtube-automation-azure.vercel.app",
+    language: "JavaScript",
+    category: "new",
+    status: "Active Agent",
+  },
+  {
+    name: "screenshot-to-code",
+    desc: "AI vision-to-code workspace converting screenshots to web code",
+    url: "https://github.com/8002salman-ai/screenshot-to-code",
+    language: "Python",
+    category: "new",
+    status: "Active AI",
+  },
+  {
+    name: "Basco-sports",
+    desc: "Activewear brand showcase with catalog & checkout pipeline",
+    url: "https://github.com/8002salman-ai/Basco-sports",
+    homepage: "https://basco-sports.vercel.app",
+    language: "TypeScript",
+    category: "new",
+    status: "Active Store",
   },
   {
     name: "himalayan-koh",
-    desc: "Himalayan Koh product site",
+    desc: "Natural salt & mineral products e-commerce storefront",
     url: "https://github.com/8002salman-ai/himalayan-koh",
+    homepage: "https://himalayan-koh.vercel.app",
+    language: "TypeScript",
+    category: "new",
+    status: "Active Store",
   },
+
+  // 2. Old / Established Production Systems & Tools
   {
-    name: "SalmanBashir",
-    desc: "Portfolio & business site",
-    url: "https://github.com/8002salman-ai/SalmanBashir",
-  },
-  {
-    name: "watpro-consultants",
-    desc: "Watpro Consultants",
-    url: "https://github.com/8002salman-ai/watpro-consultants",
-  },
-  {
-    name: "EbayErp",
-    desc: "eBay ERP system",
-    url: "https://github.com/8002salman-ai/EbayErp",
-  },
-  {
-    name: "8002PDF",
-    desc: "PDF tool",
-    url: "https://github.com/8002salman-ai/8002PDF",
+    name: "8002-erp",
+    desc: "Enterprise resource planning & multi-warehouse inventory engine",
+    url: "https://github.com/8002salman-ai/8002-erp",
+    homepage: "https://8002-erp.vercel.app",
+    language: "TypeScript",
+    category: "old",
+    status: "Enterprise ERP",
   },
   {
     name: "spotaware-platform",
-    desc: "SpotAware platform",
+    desc: "AI vision real-time spatial monitoring & tracking platform",
     url: "https://github.com/8002salman-ai/spotaware-platform",
+    homepage: "https://spotaware-platform.vercel.app",
+    language: "TypeScript",
+    category: "old",
+    status: "AI Platform",
   },
   {
-    name: "8002-erp",
-    desc: "8002 ERP",
-    url: "https://github.com/8002salman-ai/8002-erp",
-  },
-  {
-    name: "commerceos",
-    desc: "CommerceOS",
-    url: "https://github.com/8002salman-ai/commerceos",
-  },
-  {
-    name: "i-864-affidavit-support-calculator",
-    desc: "I-864 Affidavit calculator",
-    url: "https://github.com/8002salman-ai/i-864-affidavit-support-calculator",
+    name: "watpro-consultants",
+    desc: "Industrial engineering consultancy, compliance & client portal",
+    url: "https://github.com/8002salman-ai/watpro-consultants",
+    homepage: "https://watpro-consultants.vercel.app",
+    language: "TypeScript",
+    category: "old",
+    status: "Consulting",
   },
   {
     name: "hot-grill-website",
-    desc: "Hot Grill website",
+    desc: "Restaurant & hospitality digital experience portal with booking",
     url: "https://github.com/8002salman-ai/hot-grill-website",
+    homepage: "https://hot-grill-website.vercel.app",
+    language: "TypeScript",
+    category: "old",
+    status: "Hospitality",
+  },
+  {
+    name: "i-864-affidavit-support-calculator",
+    desc: "US immigration legal compliance & poverty guidelines calculator",
+    url: "https://github.com/8002salman-ai/i-864-affidavit-support-calculator",
+    homepage: "https://i-864-affidavit-support-calculator.vercel.app",
+    language: "TypeScript",
+    category: "old",
+    status: "Legal Tech",
+  },
+  {
+    name: "EbayErp",
+    desc: "eBay multi-account order processing, stock sync & listing automation",
+    url: "https://github.com/8002salman-ai/EbayErp",
+    language: "TypeScript",
+    category: "old",
+    status: "Operations",
+  },
+  {
+    name: "8002PDF",
+    desc: "High-performance PDF generation & document automation engine",
+    url: "https://github.com/8002salman-ai/8002PDF",
+    language: "TypeScript",
+    category: "old",
+    status: "Utility Tool",
+  },
+  {
+    name: "SalmanMacCleaner",
+    desc: "Mac utility for system optimization, storage cleanup & monitoring",
+    url: "https://github.com/8002salman-ai/SalmanMacCleaner",
+    language: "System",
+    category: "old",
+    status: "Desktop Utility",
+  },
+  {
+    name: "shootergame",
+    desc: "Real-time game mechanics, physics simulation & gameplay engine",
+    url: "https://github.com/8002salman-ai/shootergame",
+    language: "C#",
+    category: "old",
+    status: "Game Engine",
+  },
+
+  // 3. Coming / Upcoming Architecture Projects
+  {
+    name: "commerceos",
+    desc: "Next-gen omnichannel commerce operating system & headless API",
+    url: "https://github.com/8002salman-ai/commerceos",
+    language: "TypeScript",
+    category: "coming",
+    status: "Architecture / Coming",
   },
 ];
 

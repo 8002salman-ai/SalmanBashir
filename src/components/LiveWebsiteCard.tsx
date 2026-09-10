@@ -32,6 +32,17 @@ export const SHOWCASE_SITES: ShowcaseSite[] = [
     category: "E-Commerce",
   },
   {
+    id: "youtube-automation",
+    name: "YouTube AI",
+    embedUrl: "https://youtube-automation-azure.vercel.app",
+    displayUrl: "https://youtube-automation-azure.vercel.app",
+    badge: "AI Agent",
+    title: "YouTube Automation & Video AI Pipeline",
+    tagline: "Autonomous content generation, voice synthesis & publishing pipeline",
+    github: "https://github.com/8002salman-ai/youtube-automation",
+    category: "AI Agent",
+  },
+  {
     id: "8002-erp",
     name: "8002 ERP",
     embedUrl: "/api/proxy-site?url=https://8002-erp.vercel.app",
@@ -110,10 +121,11 @@ export const SHOWCASE_SITES: ShowcaseSite[] = [
   },
 ];
 
-// Available rotation durations (default 10 mins as requested)
+// Available rotation durations (default 2 mins as requested by user)
 const ROTATION_INTERVALS = [
-  { label: "10m", ms: 10 * 60 * 1000 },
   { label: "2m", ms: 2 * 60 * 1000 },
+  { label: "5m", ms: 5 * 60 * 1000 },
+  { label: "10m", ms: 10 * 60 * 1000 },
   { label: "30s", ms: 30 * 1000 },
 ];
 
@@ -123,7 +135,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [zoomMode, setZoomMode] = useState<"fit" | "actual">("fit");
-  // Default to 10 minutes interval as requested by user
+  // Default to 2 minutes interval as requested by user
   const [intervalIndex, setIntervalIndex] = useState(0);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [progressPercent, setProgressPercent] = useState(0);

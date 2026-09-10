@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { githubRepos, type PortfolioRepo } from "@/data/content";
 
 export type GithubRepo = {
   name: string;
@@ -9,31 +10,35 @@ export type GithubRepo = {
   topics: string[];
   pushedAt: string | null;
   homepage: string | null;
+  category: "new" | "old" | "coming";
+  status: string;
 };
 
 const GITHUB_USER = "8002salman-ai";
-const CACHE_KEY = "gh-repos-cache-v2";
+const CACHE_KEY = "gh-repos-cache-v3";
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // refresh from GitHub once a day
 
+function toGithubRepo(p: PortfolioRepo): GithubRepo {
+  return {
+    name: p.name,
+    desc: p.desc,
+    url: p.url,
+    stars: 0,
+    language: p.language || null,
+    topics: [],
+    pushedAt: null,
+    homepage: p.homepage || null,
+    category: p.category,
+    status: p.status,
+  };
+}
+
 /**
- * Syncs public repos for the GitHub profile — newest activity first.
- * Cached in localStorage for 24h ("daily sync"); every new public repo
- * appears automatically without a rebuild. Falls back to `fallback`
- * (the static list in content.ts) when offline or rate-limited.
+ * Syncs public repos for Salman Bashir's GitHub profile — newest activity first.
+ * Categorized into 'new', 'old' systems, and 'coming' projects.
  */
-export function useGithubRepos(fallback: { name: string; desc: string; url: string }[]) {
-  const [repos, setRepos] = useState<GithubRepo[]>(
-    fallback.map((r) => ({
-      name: r.name,
-      desc: r.desc,
-      url: r.url,
-      stars: 0,
-      language: null,
-      topics: [],
-      pushedAt: null,
-      homepage: null,
-    })),
-  );
+export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
+  const [repos, setRepos] = useState<GithubRepo[]>(fallback.map(toGithubRepo));
   const [live, setLive] = useState(false);
 
   useEffect(() => {
@@ -78,19 +83,37 @@ export function useGithubRepos(fallback: { name: string; desc: string; url: stri
           fork: boolean;
         }[];
         if (!Array.isArray(data) || data.length === 0 || cancelled) return;
+
+        // Map lookup for known categories and curated details
+        const fallbackMap = new Map<string, PortfolioRepo>();
+        fallback.forEach((f) => fallbackMap.set(f.name.toLowerCase(), f));
+
         const latest: GithubRepo[] = data
           .slice()
           .sort((a, b) => Date.parse(b.pushed_at) - Date.parse(a.pushed_at))
-          .map((r) => ({
-            name: r.name,
-            desc: r.description || "GitHub repository",
-            url: r.html_url,
-            stars: r.stargazers_count ?? 0,
-            language: r.language,
-            topics: r.topics?.slice(0, 3) ?? [],
-            pushedAt: r.pushed_at,
-            homepage: r.homepage || null,
-          }));
+          .map((r) => {
+            const meta = fallbackMap.get(r.name.toLowerCase());
+            return {
+              name: r.name,
+              desc: meta?.desc || r.description || "GitHub repository",
+              url: r.html_url,
+              stars: r.stargazers_count ?? 0,
+              language: r.language || meta?.language || null,
+              topics: r.topics?.slice(0, 3) ?? [],
+              pushedAt: r.pushed_at,
+              homepage: r.homepage || meta?.homepage || null,
+              category: meta?.category || "old",
+              status: meta?.status || (r.homepage ? "Live" : "Repo"),
+            };
+          });
+
+        // Ensure any fallback coming/planned projects not yet pushed are included
+        fallback.forEach((f) => {
+          if (!latest.some((l) => l.name.toLowerCase() === f.name.toLowerCase())) {
+            latest.push(toGithubRepo(f));
+          }
+        });
+
         setRepos(latest);
         setLive(true);
         try {
@@ -109,7 +132,7 @@ export function useGithubRepos(fallback: { name: string; desc: string; url: stri
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [fallback]);
 
   return { repos, live };
 }

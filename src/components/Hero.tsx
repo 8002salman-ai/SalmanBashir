@@ -101,15 +101,17 @@ export function Hero() {
             <YoutubeHeroStrip className="mt-6" />
           </div>
 
-          {/* Right: video, then destinations and the work itself */}
+          {/* Right: all repo links on top, then live preview, then quick links */}
           <div className="relative min-w-0 animate-fade-up [animation-delay:120ms]">
+            {/* All repo links on top: new, old, and upcoming projects */}
+            <GithubHeroStrip className="mb-6" />
+
             <LiveWebsiteCard className="mb-6 hidden w-full lg:block" />
 
             <div className="relative">
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/15 blur-2xl" />
               <HeroPanels />
             </div>
-            <GithubHeroStrip className="mt-4 lg:mt-5 lg:pl-2" />
           </div>
         </div>
       </div>
