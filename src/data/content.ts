@@ -1353,6 +1353,12 @@ export const featuredBuilds: {
   href: string;
 }[] = [
   {
+    name: "LuxEdge",
+    desc: "Live pet & animal essentials store",
+    status: "Live",
+    href: "https://luxedge.us",
+  },
+  {
     name: "Hermes AI Agent",
     desc: "Local AI operations agent",
     status: "In Development",

@@ -19,6 +19,7 @@ import { SectionTone } from "@/components/SectionTone";
 import { FixedWatermark } from "@/components/FixedWatermark";
 import { GitHubRepos } from "@/components/GitHubRepos";
 import { FiverrGig } from "@/components/FiverrGig";
+import { VideoShowreelSection } from "@/components/VideoShowreelSection";
 
 function BookCta() {
   return (
@@ -135,6 +136,8 @@ export function HomePage() {
       <FiverrGig />
 
       <AudiencePaths />
+ 
+      <VideoShowreelSection />
 
       <SectionTone tone="cyan">
         <CoreStrength />

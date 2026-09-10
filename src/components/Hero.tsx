@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { personal, stats, ceoNote } from "@/data/content";
 import { Icon } from "@/components/ui";
-import { IntroVideoLightbox } from "@/components/IntroVideoLightbox";
+import { LiveWebsiteCard } from "@/components/LiveWebsiteCard";
 import { RotatingWord } from "@/components/RotatingWord";
 import { HeroPanels } from "@/components/HeroPanels";
 import { SoSaiBadge } from "@/components/SoSaiBadge";
@@ -73,9 +73,8 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Video sits inline on small screens; on desktop it moves into
-                the right column so that column is not left half-empty. */}
-            <IntroVideoLightbox className="mt-5 w-full sm:w-auto lg:hidden" />
+            {/* Live website preview card for latest build (e.g. luxedge.us) */}
+            <LiveWebsiteCard className="mt-5 w-full sm:w-auto lg:hidden" />
 
             <div className="mt-6 max-w-md rounded-xl border-l-2 border-brand-400/60 bg-panel/40 py-2.5 pl-4 pr-3">
               <p className="text-sm italic leading-relaxed text-soft">
@@ -100,7 +99,7 @@ export function Hero() {
 
           {/* Right: video, then destinations and the work itself */}
           <div className="relative min-w-0 animate-fade-up [animation-delay:120ms] lg:pt-12">
-            <IntroVideoLightbox className="mx-auto mb-4 hidden w-full max-w-md lg:flex" />
+            <LiveWebsiteCard className="mx-auto mb-4 hidden w-full max-w-md lg:block" />
 
             <div className="relative">
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/15 blur-2xl" />

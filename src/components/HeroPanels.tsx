@@ -65,31 +65,40 @@ export function HeroPanels({ className }: { className?: string }) {
         </div>
 
         <ul className="divide-y divide-edge">
-          {featuredBuilds.map((build) => (
-            <li key={build.name}>
-              <Link
-                to={build.href}
-                className="group flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-panel-strong"
-              >
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-xs font-semibold text-strong">
-                    {build.name}
-                  </span>
-                  <span className="block truncate text-[11px] text-muted">
-                    {build.desc}
-                  </span>
-                </span>
-                <span
-                  className={cn(
-                    "shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-medium",
-                    statusTone[build.status],
-                  )}
+          {featuredBuilds.map((build) => {
+            const isExternal = build.href.startsWith("http");
+            const linkProps = isExternal
+              ? { href: build.href, target: "_blank", rel: "noopener noreferrer" }
+              : { to: build.href };
+            const LinkComponent = isExternal ? "a" : Link;
+
+            return (
+              <li key={build.name}>
+                {/* @ts-expect-error polymorphic link */}
+                <LinkComponent
+                  {...linkProps}
+                  className="group flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-panel-strong"
                 >
-                  {build.status}
-                </span>
-              </Link>
-            </li>
-          ))}
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-xs font-semibold text-strong">
+                      {build.name}
+                    </span>
+                    <span className="block truncate text-[11px] text-muted">
+                      {build.desc}
+                    </span>
+                  </span>
+                  <span
+                    className={cn(
+                      "shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-medium",
+                      statusTone[build.status],
+                    )}
+                  >
+                    {build.status}
+                  </span>
+                </LinkComponent>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="border-t border-edge px-4 py-3">
