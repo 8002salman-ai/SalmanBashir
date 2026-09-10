@@ -121,12 +121,12 @@ export const SHOWCASE_SITES: ShowcaseSite[] = [
   },
 ];
 
-// Available rotation durations (default 2 mins as requested by user)
+// Available rotation durations (default 15s as requested by user)
 const ROTATION_INTERVALS = [
-  { label: "2m", ms: 2 * 60 * 1000 },
-  { label: "5m", ms: 5 * 60 * 1000 },
-  { label: "10m", ms: 10 * 60 * 1000 },
+  { label: "15s", ms: 15 * 1000 },
   { label: "30s", ms: 30 * 1000 },
+  { label: "1m", ms: 60 * 1000 },
+  { label: "2m", ms: 2 * 60 * 1000 },
 ];
 
 export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
@@ -135,7 +135,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [zoomMode, setZoomMode] = useState<"fit" | "actual">("fit");
-  // Default to 2 minutes interval as requested by user
+  // Default to 15 seconds interval as requested by user
   const [intervalIndex, setIntervalIndex] = useState(0);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [progressPercent, setProgressPercent] = useState(0);
@@ -183,7 +183,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
       return;
     }
 
-    const stepMs = 250;
+    const stepMs = 100;
     const totalSteps = currentIntervalMs / stepMs;
     let currentStep = 0;
 
