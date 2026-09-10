@@ -98,17 +98,6 @@ export const SHOWCASE_SITES: ShowcaseSite[] = [
     category: "AI Platform",
   },
   {
-    id: "salman-os",
-    name: "Salman OS",
-    embedUrl: "https://salmanos-8002.vercel.app",
-    displayUrl: "https://salmanos-8002.vercel.app",
-    badge: "Autonomous AI",
-    title: "Salman OS — Autonomous Business Systems",
-    tagline: "Hermes Agent core, stock flow auditing, and multi-marketplace sync daemon",
-    github: "https://github.com/8002salman-ai/salman-os",
-    category: "AI Agent",
-  },
-  {
     id: "i-864",
     name: "I-864 Calc",
     embedUrl: "https://i-864-affidavit-support-calculator.vercel.app",
@@ -339,15 +328,15 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           ref={containerRef}
           className="relative mt-2.5 h-[320px] sm:h-[360px] lg:h-[380px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner"
         >
-          {/* Loading state indicator */}
+          {/* Loading state indicator - pointer-events-none so it NEVER blocks user clicks */}
           {!iframeLoaded && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10 pointer-events-none">
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-brand-400 border-t-transparent" />
               <span className="text-xs font-mono">Loading {currentSite.name} live…</span>
             </div>
           )}
 
-          {/* Embedded live website iframe with un-zoomed desktop fit scaling */}
+          {/* Embedded live website iframe - zero sandbox restriction so all clicks, links, and buttons work 100% */}
           <iframe
             key={`${currentSite.id}-${refreshKey}`}
             src={previewSrc}
@@ -361,10 +350,9 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               transformOrigin: "top left",
             }}
             className={cn(
-              "border-0 transition-opacity duration-300 block",
+              "border-0 transition-opacity duration-300 block pointer-events-auto",
               iframeLoaded ? "opacity-100" : "opacity-0",
             )}
-            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
           />
 
           {/* Overlay hover bar for quick actions */}
@@ -517,8 +505,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                 <iframe
                   src={previewSrc}
                   title={`${currentSite.name} Fullscreen Live Preview`}
-                  className="h-full w-full border-0"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                  className="h-full w-full border-0 pointer-events-auto"
                 />
               </div>
             </div>

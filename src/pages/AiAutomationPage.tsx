@@ -52,18 +52,16 @@ export function AiAutomationPage() {
                 {hermes.description}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href="https://salman-os-swart.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/"
                   className="btn btn-primary group"
                 >
-                  Open Salman OS Platform
+                  Launch Live Salman OS
                   <Icon
                     name="arrow"
                     className="h-4 w-4 -rotate-45 transition-transform group-hover:translate-x-0.5"
                   />
-                </a>
+                </Link>
                 <Link to={hermes.journeyAnchor} className="btn btn-secondary group">
                   View Hermes Agent Journey
                   <Icon
