@@ -67,7 +67,7 @@ function MoreMenu({ isActive }: { isActive: (href: string) => boolean }) {
           "flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs lg:px-3 lg:text-[13px] font-semibold transition-all duration-200 whitespace-nowrap",
           active || open
             ? "bg-gradient-to-r from-brand-500/25 via-cyan-400/20 to-brand-500/15 text-cyan-300 dark:text-cyan-300 [data-theme=light]:text-cyan-700 font-bold border border-cyan-400/40 shadow-[0_0_14px_rgba(34,211,238,0.25)]"
-            : "text-muted hover:text-strong hover:bg-white/[0.06] [data-theme=light]:hover:bg-black/[0.05]",
+            : "text-muted hover:text-strong hover:bg-black/[0.05] dark:hover:bg-white/[0.06]",
         )}
       >
         <span>More</span>
@@ -83,7 +83,7 @@ function MoreMenu({ isActive }: { isActive: (href: string) => boolean }) {
       <div
         role="menu"
         className={cn(
-          "absolute right-0 top-full z-30 mt-2 w-64 origin-top-right rounded-2xl border border-white/12 [data-theme=light]:border-black/10 bg-[#0a0b12]/95 [data-theme=light]:bg-white/95 p-2 shadow-2xl backdrop-blur-2xl transition-all duration-200",
+          "absolute right-0 top-full z-30 mt-2 w-64 origin-top-right rounded-2xl border border-black/10 dark:border-white/12 bg-white/95 dark:bg-[#0a0b12]/95 p-2 shadow-2xl backdrop-blur-2xl transition-all duration-200",
           open
             ? "pointer-events-auto scale-100 opacity-100 translate-y-0"
             : "pointer-events-none scale-95 opacity-0 -translate-y-1",
@@ -108,8 +108,8 @@ function MoreMenu({ isActive }: { isActive: (href: string) => boolean }) {
               className={cn(
                 "group flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition-all duration-150",
                 isActive(link.href)
-                  ? "bg-brand-500/20 text-cyan-300 font-bold border border-cyan-400/30 shadow-sm"
-                  : "text-soft hover:bg-white/[0.08] [data-theme=light]:hover:bg-black/[0.05] hover:text-strong",
+                  ? "bg-brand-500/20 text-cyan-700 dark:text-cyan-300 font-bold border border-cyan-400/30 shadow-sm"
+                  : "text-soft hover:bg-black/[0.05] dark:hover:bg-white/[0.08] hover:text-strong",
               )}
             >
               <div className="flex items-center gap-2">
@@ -171,11 +171,11 @@ export function Navbar() {
         className={cn(
           "pointer-events-auto mx-auto max-w-7xl rounded-2xl sm:rounded-full border transition-all duration-300 relative",
           "backdrop-blur-2xl px-3 sm:px-4 py-2 sm:py-2.5",
-          "bg-[#08090e]/85 dark:bg-[#08090e]/90 [data-theme=light]:bg-white/90",
-          "border-white/10 dark:border-white/12 [data-theme=light]:border-black/10",
-          "shadow-[0_12px_40px_-8px_rgba(0,0,0,0.65)] [data-theme=light]:shadow-[0_10px_35px_-8px_rgba(0,0,0,0.12)]",
+          "bg-white/90 dark:bg-[#08090e]/90",
+          "border-black/10 dark:border-white/12",
+          "shadow-[0_10px_35px_-8px_rgba(0,0,0,0.1)] dark:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.65)]",
           scrolled &&
-            "border-brand-500/35 shadow-[0_16px_50px_-10px_rgba(34,211,238,0.2)] bg-[#05060a]/95 [data-theme=light]:bg-white/95",
+            "border-brand-500/40 shadow-[0_16px_50px_-10px_rgba(34,211,238,0.2)] bg-white/95 dark:bg-[#05060a]/95",
         )}
       >
         {/* Subtle top edge metallic reflection beam */}
@@ -220,7 +220,7 @@ export function Navbar() {
           </Link>
 
           {/* Center Navigation: Segmented Glass Pill Dock */}
-          <div className="hidden md:flex items-center gap-0.5 rounded-full border border-white/[0.08] [data-theme=light]:border-black/[0.08] bg-white/[0.03] [data-theme=light]:bg-black/[0.03] p-1 shadow-inner backdrop-blur-md">
+          <div className="hidden md:flex items-center gap-0.5 rounded-full border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.03] dark:bg-white/[0.03] p-1 shadow-inner backdrop-blur-md">
             {navLinks.map((link) => {
               const isCurrent = isActive(link.href);
               // On tablet screens (md: 768px-1279px), hide Sourcing & Training to prevent cramped layout; they're in MoreMenu
@@ -238,8 +238,8 @@ export function Navbar() {
                       ? "hidden xl:inline-flex"
                       : "inline-flex items-center",
                     isCurrent
-                      ? "bg-gradient-to-r from-brand-500/25 via-cyan-400/20 to-brand-500/15 text-cyan-300 dark:text-cyan-300 [data-theme=light]:text-cyan-700 font-bold border border-cyan-400/40 shadow-[0_0_14px_rgba(34,211,238,0.25)]"
-                      : "text-muted hover:text-strong hover:bg-white/[0.06] [data-theme=light]:hover:bg-black/[0.05]",
+                      ? "bg-gradient-to-r from-brand-500/25 via-cyan-400/20 to-brand-500/15 text-cyan-700 dark:text-cyan-300 font-bold border border-cyan-400/40 shadow-[0_0_14px_rgba(34,211,238,0.25)]"
+                      : "text-muted hover:text-strong hover:bg-black/[0.05] dark:hover:bg-white/[0.06]",
                   )}
                 >
                   {isCurrent && (

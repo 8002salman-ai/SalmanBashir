@@ -51,7 +51,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
       role="radiogroup"
       aria-label="Color theme"
       className={cn(
-        "inline-flex items-center gap-0.5 rounded-full border border-white/10 [data-theme=light]:border-black/10 bg-white/[0.03] [data-theme=light]:bg-black/[0.03] p-0.5 shadow-inner backdrop-blur-md",
+        "inline-flex items-center gap-0.5 rounded-full border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.03] p-0.5 shadow-inner backdrop-blur-md",
         className,
       )}
     >
@@ -67,8 +67,8 @@ export function ThemeSwitcher({ className }: { className?: string }) {
           className={cn(
             "inline-flex h-7 w-7 items-center justify-center rounded-full transition-all duration-200",
             theme === t
-              ? "bg-brand-500/25 text-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.25)] border border-cyan-400/40"
-              : "text-muted hover:text-strong hover:bg-white/[0.08]",
+              ? "bg-brand-500/25 text-cyan-700 dark:text-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.25)] border border-cyan-400/40"
+              : "text-muted hover:text-strong hover:bg-black/[0.05] dark:hover:bg-white/[0.08]",
           )}
         >
           {t === "dark" && <SunOffIcon />}
