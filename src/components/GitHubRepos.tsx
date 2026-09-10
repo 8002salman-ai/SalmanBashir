@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { contact, githubRepos } from "@/data/content";
 import { fetchProjectFeed, type SalmanOsProject } from "@/lib/projects-feed";
 import { useGithubRepos, type GithubRepo } from "@/hooks/useGithubRepos";
@@ -19,14 +19,29 @@ function toGithubRepo(project: SalmanOsProject): GithubRepo {
   };
 }
 
+function getLanguageColor(lang: string | null): string {
+  switch (lang?.toLowerCase()) {
+    case "typescript":
+      return "bg-sky-400";
+    case "javascript":
+      return "bg-amber-400";
+    case "python":
+      return "bg-emerald-400";
+    case "c#":
+      return "bg-violet-400";
+    default:
+      return "bg-brand-400";
+  }
+}
+
 /**
- * Compact, auto-scrolling strip of GitHub repo badges (plus a Fiverr chip).
- * Salman OS supplies the public project set; GitHub metadata enriches it when
- * available. Static content remains the fallback when either service is down.
+ * Interactive, smooth horizontal repository showcase.
+ * Replaces the runaway marquee with controlled, high-end interactive browsing.
  */
 export function GitHubRepos() {
   const { repos: githubReposLive } = useGithubRepos(githubRepos);
   const [syncedProjects, setSyncedProjects] = useState<GithubRepo[]>([]);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -36,7 +51,7 @@ export function GitHubRepos() {
         setSyncedProjects(projects.map(toGithubRepo));
       })
       .catch(() => {
-        // Keep GitHub/static data when the server-side feed is unavailable.
+        // Keep fallback data
       });
     return () => controller.abort();
   }, []);
@@ -51,92 +66,126 @@ export function GitHubRepos() {
     });
   }, [githubReposLive, syncedProjects]);
 
+  const handleScroll = (direction: "left" | "right") => {
+    if (!scrollContainerRef.current) return;
+    const scrollAmount = 340;
+    scrollContainerRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section className="relative overflow-hidden py-6 sm:py-8">
+    <section className="relative py-6 sm:py-8 overflow-hidden">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
-          <div className="flex items-center gap-3 mb-4">
-            <Icon name="github" className="h-4 w-4 text-muted" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-faint">
-              Open Source on GitHub
-            </span>
-            <span className="h-px flex-1 bg-edge" />
-            <a
-              href={contact.socials.fiverr || "https://www.fiverr.com"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-semibold text-accent-strong hover:underline"
-            >
-              Fiverr ↗
-            </a>
-            <a
-              href={contact.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-semibold text-accent-strong hover:underline"
-            >
-              View Profile →
-            </a>
+          {/* Header Bar with Interactive Navigation Controls */}
+          <div className="flex items-center justify-between gap-4 mb-4 pb-2 border-b border-edge">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-edge bg-panel text-strong shadow-sm">
+                <Icon name="github" className="h-4 w-4" />
+              </span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-bold uppercase tracking-wider text-strong">
+                  Open Source & Repositories
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-bold text-cyan-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  {repos.length} Active Repos
+                </span>
+              </div>
+            </div>
+
+            {/* Right Controls: Arrow Navigation + GitHub Profile Link */}
+            <div className="flex items-center gap-2 shrink-0">
+              <div className="hidden sm:flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => handleScroll("left")}
+                  aria-label="Scroll repos left"
+                  className="flex h-7 w-7 items-center justify-center rounded-lg border border-edge bg-panel text-muted hover:text-strong hover:border-brand-400/40 transition-colors"
+                >
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleScroll("right")}
+                  aria-label="Scroll repos right"
+                  className="flex h-7 w-7 items-center justify-center rounded-lg border border-edge bg-panel text-muted hover:text-strong hover:border-brand-400/40 transition-colors"
+                >
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              <a
+                href={contact.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-edge bg-panel px-3 py-1 text-xs font-semibold text-soft hover:text-accent-strong hover:border-brand-400/40 transition-colors"
+              >
+                <span>Profile</span>
+                <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45" />
+              </a>
+            </div>
           </div>
         </Reveal>
       </div>
 
-      <div className="group relative">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-bg to-transparent sm:w-24" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-bg to-transparent sm:w-24" />
+      {/* Smooth Horizontal Track with Side Fade Masks */}
+      <div className="relative">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-16 bg-gradient-to-r from-bg to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-16 bg-gradient-to-l from-bg to-transparent" />
 
-        <div className="flex w-max animate-marquee gap-2.5 px-4 group-hover:[animation-play-state:paused]">
-          {contact.socials.fiverr && (
-            <a
-              href={contact.socials.fiverr}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex shrink-0 items-center gap-2.5 rounded-xl border border-gold-accent/30 bg-gold-accent/10 px-4 py-2.5 text-left transition-all hover:border-gold-accent/50 hover:bg-gold-accent/15 hover:-translate-y-0.5"
-            >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-gold-accent/30 bg-bg-soft">
-                <Icon name="fiverr" className="h-3.5 w-3.5 text-gold-accent" />
-              </span>
-              <span className="min-w-0">
-                <span className="block truncate text-xs font-semibold text-strong">Fiverr</span>
-                <span className="block truncate text-[10px] text-faint">Hire me for freelance work</span>
-              </span>
-              <Icon name="external" className="h-3 w-3 shrink-0 text-faint transition-colors group-hover:text-gold-accent" />
-            </a>
-          )}
-          {[...repos, ...repos].map((repo, i) => (
+        <div
+          ref={scrollContainerRef}
+          className="flex items-center gap-3 overflow-x-auto no-scrollbar scroll-smooth px-5 sm:px-8 py-2"
+        >
+          {repos.map((repo, i) => (
             <a
               key={`${repo.name}-${i}`}
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex shrink-0 items-center gap-2.5 rounded-xl border border-edge bg-panel/60 px-4 py-2.5 text-left backdrop-blur-sm transition-all hover:border-brand-500/30 hover:bg-panel-strong hover:-translate-y-0.5"
+              className="group relative flex w-[280px] sm:w-[310px] shrink-0 flex-col justify-between rounded-2xl border border-edge bg-panel/80 p-3.5 shadow-md backdrop-blur-md transition-all duration-300 hover:border-cyan-400/50 hover:bg-panel-strong hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/10"
             >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-edge bg-bg-soft">
-                <Icon name="github" className="h-3.5 w-3.5 text-muted" />
-              </span>
-              <span className="min-w-0">
-                <span className="flex items-center gap-2">
-                  <span className="max-w-[160px] truncate text-xs font-semibold text-strong">{repo.name}</span>
-                  {repo.stars > 0 && (
-                    <span className="inline-flex shrink-0 items-center gap-0.5 text-[10px] font-medium text-gold-accent">
-                      <Icon name="star" className="h-2.5 w-2.5" />
-                      {repo.stars}
-                    </span>
-                  )}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  {repo.language && (
-                    <span className="inline-flex shrink-0 items-center gap-1 text-[10px] text-faint">
-                      <span className="h-1.5 w-1.5 rounded-full bg-brand-500/70" />
-                      {repo.language}
-                    </span>
-                  )}
-                  <span className="max-w-[130px] truncate text-[10px] text-faint">
-                    {repo.language ? `· ${repo.desc}` : repo.desc}
+              {/* Top Row: Title + Arrow */}
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-1.5">
+                  <span className="font-mono text-xs font-bold text-strong group-hover:text-cyan-300 transition-colors truncate">
+                    {repo.name}
                   </span>
-                </span>
-              </span>
-              <Icon name="external" className="h-3 w-3 shrink-0 text-faint transition-colors group-hover:text-accent-strong" />
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-edge bg-white/[0.04] text-muted group-hover:text-cyan-300 group-hover:border-cyan-400/40 transition-colors">
+                    <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45" />
+                  </span>
+                </div>
+
+                <p className="line-clamp-2 text-[11.5px] leading-relaxed text-muted group-hover:text-soft transition-colors">
+                  {repo.desc || "Systems and architecture repository by Salman Bashir."}
+                </p>
+              </div>
+
+              {/* Bottom Meta Row: Language & Status */}
+              <div className="mt-3 flex items-center justify-between border-t border-edge/60 pt-2 text-[10.5px]">
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className={`h-2 w-2 rounded-full ${getLanguageColor(repo.language)} shadow-sm`}
+                  />
+                  <span className="text-soft font-medium">
+                    {repo.language || "TypeScript"}
+                  </span>
+                </div>
+
+                {repo.homepage && (
+                  <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Live URL
+                  </span>
+                )}
+              </div>
             </a>
           ))}
         </div>
