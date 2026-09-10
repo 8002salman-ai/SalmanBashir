@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Icon } from "@/components/ui";
 import { cn } from "@/utils/cn";
@@ -11,6 +11,40 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [zoomMode, setZoomMode] = useState<"fit" | "actual">("fit");
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(580);
+  const [containerHeight, setContainerHeight] = useState(380);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.clientWidth || 580);
+        setContainerHeight(containerRef.current.clientHeight || 380);
+      }
+    };
+
+    updateDimensions();
+    const ro = new ResizeObserver(updateDimensions);
+    ro.observe(containerRef.current);
+    window.addEventListener("resize", updateDimensions);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, []);
+
+  // Standard target desktop width so the full site header, banners, and store catalog are completely visible
+  const virtualDesktopWidth = 1240;
+  const scale =
+    zoomMode === "fit"
+      ? Math.min(1, Math.max(0.25, containerWidth / virtualDesktopWidth))
+      : 1;
+  const iframeWidth = zoomMode === "fit" ? virtualDesktopWidth : containerWidth;
+  const iframeHeight =
+    zoomMode === "fit" ? Math.round(containerHeight / scale) : containerHeight;
 
   const previewSrc = `/api/proxy-site?url=https://luxedge.us&v=${refreshKey}`;
 
@@ -38,7 +72,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           {/* Interactive URL bar */}
           <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-3 py-1 text-[11px] font-mono text-zinc-300">
             <span className="text-emerald-400 text-[10px]">🔒</span>
-            <span className="truncate max-w-[140px] sm:max-w-[200px]">https://luxedge.us</span>
+            <span className="truncate max-w-[130px] sm:max-w-[180px]">https://luxedge.us</span>
             <button
               type="button"
               onClick={() => {
@@ -52,8 +86,19 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
             </button>
           </div>
 
-          {/* Controls: Expand / Live Badge */}
+          {/* Controls: Zoom Mode, Expand / Live Badge */}
           <div className="flex items-center gap-2">
+            {/* View Zoom Toggle (Fit full desktop site vs 1:1) */}
+            <button
+              type="button"
+              onClick={() => setZoomMode((m) => (m === "fit" ? "actual" : "fit"))}
+              title={zoomMode === "fit" ? "Click for 100% view" : "Click to fit entire website"}
+              className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
+            >
+              <span className="text-brand-400">🔍</span>
+              <span>{zoomMode === "fit" ? `Fit (${Math.round(scale * 100)}%)` : "100%"}</span>
+            </button>
+
             <div className="hidden sm:flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -76,24 +121,33 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
         </div>
 
         {/* Live Website Embedded Viewport */}
-        <div className="relative mt-3 h-[320px] sm:h-[360px] lg:h-[380px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner">
+        <div
+          ref={containerRef}
+          className="relative mt-3 h-[320px] sm:h-[360px] lg:h-[380px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner"
+        >
           {/* Loading state indicator */}
           {!iframeLoaded && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10">
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-brand-400 border-t-transparent" />
-              <span className="text-xs font-mono">Loading live luxedge.us…</span>
+              <span className="text-xs font-mono">Rendering live luxedge.us…</span>
             </div>
           )}
 
-          {/* Embedded live website iframe */}
+          {/* Embedded live website iframe with un-zoomed desktop fit scaling */}
           <iframe
             key={refreshKey}
             src={previewSrc}
             title="LuxEdge Live Website Preview"
             loading="lazy"
             onLoad={() => setIframeLoaded(true)}
+            style={{
+              width: `${iframeWidth}px`,
+              height: `${iframeHeight}px`,
+              transform: `scale(${scale})`,
+              transformOrigin: "top left",
+            }}
             className={cn(
-              "h-full w-full border-0 transition-opacity duration-300",
+              "border-0 transition-opacity duration-300 block",
               iframeLoaded ? "opacity-100" : "opacity-0",
             )}
             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
@@ -196,7 +250,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                     <span className="h-3 w-3 rounded-full bg-emerald-500/90" />
                   </div>
                   <span className="ml-2 font-display text-sm font-bold text-white">
-                    LuxEdge Live Production Preview
+                    LuxEdge Live Production Store
                   </span>
                 </div>
 
@@ -235,7 +289,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               </div>
 
               {/* Fullscreen Iframe */}
-              <div className="relative flex-1 bg-black">
+              <div className="relative flex-1 bg-black overflow-hidden">
                 <iframe
                   src={previewSrc}
                   title="LuxEdge Live Desktop Preview"

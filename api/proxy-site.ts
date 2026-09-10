@@ -28,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     let html = await response.text();
     // Inject base tag so all assets, css and scripts resolve against the live site origin
-    html = html.replace(/<head>/i, `<head><base href="${origin}/">`);
+    html = html.replace(/<head>/i, `<head><base href="${origin}/"><style>html,body{overflow-x:hidden!important;}</style>`);
 
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");

@@ -28,7 +28,7 @@ export default defineConfig({
                 },
               });
               let html = await response.text();
-              html = html.replace(/<head>/i, `<head><base href="${origin}/">`);
+              html = html.replace(/<head>/i, `<head><base href="${origin}/"><style>html,body{overflow-x:hidden!important;}</style>`);
               res.setHeader("Content-Type", "text/html; charset=utf-8");
               res.end(html);
               return;
