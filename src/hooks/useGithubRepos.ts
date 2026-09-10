@@ -56,9 +56,14 @@ export function useGithubRepos(fallback: { name: string; desc: string; url: stri
 
     (async () => {
       try {
+        const headers: Record<string, string> = { Accept: "application/vnd.github+json" };
+        const token = import.meta.env.VITE_GITHUB_TOKEN;
+        if (token) {
+          headers.Authorization = `Bearer ${token}`;
+        }
         const res = await fetch(
           `https://api.github.com/users/${GITHUB_USER}/repos?sort=pushed&direction=desc&per_page=100`,
-          { headers: { Accept: "application/vnd.github+json" } },
+          { headers },
         );
         if (!res.ok) return;
         const data = (await res.json()) as {
