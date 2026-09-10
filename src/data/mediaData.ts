@@ -30,12 +30,41 @@ export type MediaCollection = {
 export const mediaCollections: MediaCollection[] = [
   {
     id: "vlogs",
-    title: "Vlogs",
+    title: "Vlogs & Production Films",
     description:
-      "Day-to-day operator notes — what I am building, what broke, and what I changed because of it.",
+      "Factory tours, mining extractions, industrial supply chain operations, and brand films.",
     icon: "youtube",
     tone: "rose",
-    items: [],
+    items: [
+      {
+        title: "How Pakistan's Himalayan Pink Salt Products Are Made | Mine to Factory",
+        description:
+          "Behind-the-scenes look at Himalayan pink salt extraction, sorting, artisanal carving, and worldwide export pipelines.",
+        youtubeUrl: "https://www.youtube.com/watch?v=YOBlXCyOh28",
+        status: "Available",
+      },
+      {
+        title: "How Livestock Salt Licks Are Made & Used Worldwide | Factory to Farm",
+        description:
+          "High-pressure hydraulic block pressing, animal trace-mineral formulations, and global agricultural distribution.",
+        youtubeUrl: "https://www.youtube.com/watch?v=jnbtdcHif7k",
+        status: "Available",
+      },
+      {
+        title: "How Pomegranate Juice Is Made in a 1 Million Bottle Factory",
+        description:
+          "Industrial-scale food processing, automated extraction, pasteurization, and high-speed bottling assembly lines.",
+        youtubeUrl: "https://www.youtube.com/watch?v=6CdRrnkClVU",
+        status: "Available",
+      },
+      {
+        title: "Himalayan Koh Salt Block | Premium Ranch CGI Commercial",
+        description:
+          "High-end CGI brand commercial featuring Himalayan Koh natural mineral lick blocks in rugged mountain ranch environments.",
+        youtubeUrl: "https://www.youtube.com/watch?v=OFLtliQ4BMI",
+        status: "Available",
+      },
+    ],
   },
   {
     id: "build-logs",

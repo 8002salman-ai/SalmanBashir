@@ -32,6 +32,24 @@ export const YOUTUBE_VIDEOS: YoutubeVideoItem[] = [
     youtubeUrl: "https://www.youtube.com/watch?v=jnbtdcHif7k",
     viewsBadge: "Global Sourcing",
   },
+  {
+    id: "6CdRrnkClVU",
+    title: "How Pomegranate Juice Is Made in a 1 Million Bottle Factory",
+    duration: "5:20",
+    tag: "Industrial Scale",
+    thumbnail: "https://i.ytimg.com/vi/6CdRrnkClVU/hq720.jpg",
+    youtubeUrl: "https://www.youtube.com/watch?v=6CdRrnkClVU",
+    viewsBadge: "Factory Production",
+  },
+  {
+    id: "OFLtliQ4BMI",
+    title: "Himalayan Koh Salt Block | Premium Ranch CGI Commercial",
+    duration: "0:45",
+    tag: "Himalayan Koh",
+    thumbnail: "https://i.ytimg.com/vi/OFLtliQ4BMI/hq720.jpg",
+    youtubeUrl: "https://www.youtube.com/watch?v=OFLtliQ4BMI",
+    viewsBadge: "CGI Brand Film",
+  },
 ];
 
 export function YoutubeHeroStrip({ className }: { className?: string }) {
