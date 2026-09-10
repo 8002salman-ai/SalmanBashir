@@ -217,19 +217,33 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
         <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-brand-500/15 blur-2xl transition-opacity group-hover:opacity-100" />
         <div className="pointer-events-none absolute -left-12 -bottom-12 h-36 w-36 rounded-full bg-emerald-500/10 blur-2xl transition-opacity group-hover:opacity-100" />
 
-        {/* Browser Navigation Bar */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-3 gap-2 flex-wrap">
-          {/* Traffic light dots + Site Switcher Tabs */}
-          <div className="flex items-center gap-2 max-w-full">
+        {/* Browser Top Chrome: macOS Controls + Live Showcase Title + 9 Live Sites Counter */}
+        <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-1.5 shrink-0">
-              <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80 shadow-sm shadow-rose-500/50" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80 shadow-sm shadow-amber-500/50" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80 shadow-sm shadow-emerald-500/50" />
             </div>
+            <span className="font-display text-[11px] font-semibold text-zinc-300 tracking-wide">
+              Live Showcase Browser
+            </span>
+          </div>
 
-            {/* Scrollable Tabs of Salman's Live Websites */}
-            <div className="flex items-center gap-1 overflow-x-auto no-scrollbar max-w-[200px] sm:max-w-[280px] lg:max-w-[340px] py-0.5">
-              {SHOWCASE_SITES.map((site, idx) => (
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400 font-mono">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              {SHOWCASE_SITES.length} Live Sites
+            </span>
+          </div>
+        </div>
+
+        {/* All 9 Showcase Tabs — 100% visible, completely un-truncated, wrapping cleanly */}
+        <div className="py-2.5 border-b border-white/10">
+          <div className="flex flex-wrap items-center gap-1.5">
+            {SHOWCASE_SITES.map((site, idx) => {
+              const isActive = activeSiteIndex === idx;
+              return (
                 <button
                   key={site.id}
                   type="button"
@@ -239,30 +253,46 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                     setProgressPercent(0);
                   }}
                   className={cn(
-                    "rounded-md px-2.5 py-0.5 text-[10.5px] font-medium transition-all shrink-0 flex items-center gap-1",
-                    activeSiteIndex === idx
-                      ? "bg-brand-500/25 text-brand-300 font-semibold border border-brand-400/40 shadow-sm"
-                      : "border border-white/10 bg-black/40 text-zinc-400 hover:text-white hover:bg-white/5",
+                    "rounded-lg px-2.5 py-1 text-[11px] font-medium transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer",
+                    isActive
+                      ? "bg-brand-500/25 text-brand-300 font-semibold border border-brand-400/60 shadow-sm shadow-brand-500/20 ring-1 ring-brand-400/30"
+                      : "border border-white/10 bg-black/40 text-zinc-400 hover:text-white hover:bg-white/10 hover:border-white/20",
                   )}
+                  title={`${site.name} — ${site.title}`}
                 >
-                  <span className="text-[9px] opacity-60">#{idx + 1}</span>
-                  <span>{site.name}</span>
+                  <span
+                    className={cn(
+                      "text-[9.5px] font-mono",
+                      isActive ? "text-brand-300 font-bold" : "opacity-60",
+                    )}
+                  >
+                    #{idx + 1}
+                  </span>
+                  <span className="whitespace-nowrap font-medium">{site.name}</span>
+                  {isActive && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse" />
+                  )}
                 </button>
-              ))}
-            </div>
+              );
+            })}
           </div>
+        </div>
 
+        {/* Dedicated Address Bar & Browser Controls */}
+        <div className="flex items-center justify-between gap-2 pt-2.5 pb-1 flex-wrap sm:flex-nowrap">
           {/* Interactive URL bar displaying complete URL */}
-          <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-3 py-1 text-[11px] font-mono text-zinc-200 shadow-inner">
-            <span className="text-emerald-400 text-[10px]">🔒</span>
+          <div className="flex items-center gap-2 rounded-lg border border-white/15 bg-black/60 px-3 py-1.5 text-[11.5px] font-mono text-zinc-200 shadow-inner flex-1 min-w-[220px]">
+            <span className="text-emerald-400 text-xs shrink-0" title="Secure SSL connection">
+              🔒
+            </span>
             <a
               href={currentSite.displayUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-200 hover:text-brand-300 hover:underline transition-colors"
+              className="truncate text-zinc-200 hover:text-brand-300 hover:underline transition-colors flex-1"
               title={`Open full URL: ${currentSite.displayUrl}`}
             >
-              {currentSite.displayUrl.replace("https://", "")}
+              {currentSite.displayUrl}
             </a>
             <button
               type="button"
@@ -271,15 +301,24 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                 setRefreshKey((k) => k + 1);
               }}
               title="Reload live preview"
-              className="text-zinc-400 hover:text-white transition-colors ml-1"
+              className="text-zinc-400 hover:text-white transition-colors shrink-0 p-0.5 rounded hover:bg-white/10"
             >
-              <Icon name="clock" className="h-2.5 w-2.5" />
+              <Icon name="clock" className="h-3 w-3" />
             </button>
+            <a
+              href={currentSite.displayUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open site in new tab"
+              className="text-zinc-400 hover:text-brand-300 transition-colors shrink-0 p-0.5 rounded hover:bg-white/10"
+            >
+              <Icon name="arrow" className="h-3 w-3 -rotate-45" />
+            </a>
           </div>
 
-          {/* Controls: Auto-Rotation Control, Zoom, Expand */}
+          {/* Controls: Auto-Rotation Control (15s), Play/Pause, Zoom, Expand */}
           <div className="flex items-center gap-1.5 shrink-0">
-            {/* Auto-Rotation Control (10m / 2m / 30s) */}
+            {/* Auto-Rotation Duration Control (15s / 30s / 1m / 2m) */}
             <button
               type="button"
               onClick={() => {
@@ -287,7 +326,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                 setProgressPercent(0);
               }}
               title="Change rotation duration"
-              className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
             >
               <span className="text-amber-400">⏱</span>
               <span>{ROTATION_INTERVALS[intervalIndex].label}</span>
@@ -299,10 +338,10 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               onClick={() => setIsAutoRotating((r) => !r)}
               title={isAutoRotating ? "Pause rotation" : "Resume auto-rotation"}
               className={cn(
-                "rounded-md border border-white/10 px-1.5 py-0.5 text-[10px] transition-colors",
+                "inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] transition-colors",
                 isAutoRotating
-                  ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
-                  : "bg-white/5 text-zinc-400",
+                  ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 font-semibold"
+                  : "bg-white/5 text-zinc-400 border-white/10 hover:text-white",
               )}
             >
               {isAutoRotating ? "▶ Auto" : "❚❚ Paused"}
@@ -313,7 +352,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               type="button"
               onClick={() => setZoomMode((m) => (m === "fit" ? "actual" : "fit"))}
               title={zoomMode === "fit" ? "Click for 100% view" : "Click to fit entire website"}
-              className="hidden sm:inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
+              className="hidden sm:inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[11px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
             >
               <span className="text-brand-400">🔍</span>
               <span>{zoomMode === "fit" ? `Fit (${Math.round(scale * 100)}%)` : "100%"}</span>
@@ -324,9 +363,9 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               type="button"
               onClick={() => setIsExpanded(true)}
               title="Expand live view"
-              className="rounded-md border border-white/10 bg-white/5 p-1 text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
+              className="rounded-md border border-white/10 bg-white/5 p-1.5 text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
             >
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
               </svg>
             </button>
@@ -518,6 +557,35 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                     <Icon name="x" className="h-5 w-5" />
                   </button>
                 </div>
+              </div>
+
+              {/* Modal Project Switcher Tabs */}
+              <div className="flex items-center gap-1.5 overflow-x-auto px-4 py-2 border-b border-white/10 bg-[#0f111a]">
+                {SHOWCASE_SITES.map((site, idx) => {
+                  const isActive = activeSiteIndex === idx;
+                  return (
+                    <button
+                      key={site.id}
+                      type="button"
+                      onClick={() => {
+                        setActiveSiteIndex(idx);
+                        setProgressPercent(0);
+                      }}
+                      className={cn(
+                        "rounded-lg px-3 py-1 text-xs font-medium transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer",
+                        isActive
+                          ? "bg-brand-500/25 text-brand-300 font-semibold border border-brand-400/50 shadow-sm"
+                          : "border border-white/10 bg-black/40 text-zinc-400 hover:text-white hover:bg-white/10",
+                      )}
+                    >
+                      <span className="text-[10px] font-mono opacity-60">#{idx + 1}</span>
+                      <span>{site.name}</span>
+                      {isActive && (
+                        <span className="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Fullscreen Iframe */}
