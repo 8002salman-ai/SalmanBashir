@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { createPortal } from "react-dom";
 import { Icon } from "@/components/ui";
 import { cn } from "@/utils/cn";
 
@@ -6,119 +8,233 @@ interface LiveWebsiteCardProps {
 }
 
 export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const previewSrc = `/api/proxy-site?url=https://luxedge.us&v=${refreshKey}`;
+
   return (
-    <div
-      className={cn(
-        "group relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-b from-[#12141e] via-[#0d0e15] to-[#0a0b10] p-4 text-left shadow-2xl transition-all duration-300 hover:border-brand-400/60 hover:shadow-brand-500/10",
-        className,
-      )}
-    >
-      {/* Decorative ambient gradient */}
-      <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-brand-500/15 blur-2xl transition-opacity group-hover:opacity-100" />
-      <div className="pointer-events-none absolute -left-12 -bottom-12 h-36 w-36 rounded-full bg-emerald-500/10 blur-2xl transition-opacity group-hover:opacity-100" />
+    <>
+      <div
+        className={cn(
+          "group relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-b from-[#12141e] via-[#0d0e15] to-[#0a0b10] p-4 text-left shadow-2xl transition-all duration-300 hover:border-brand-400/60 hover:shadow-brand-500/10",
+          className,
+        )}
+      >
+        {/* Ambient Glow */}
+        <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-brand-500/15 blur-2xl transition-opacity group-hover:opacity-100" />
+        <div className="pointer-events-none absolute -left-12 -bottom-12 h-36 w-36 rounded-full bg-emerald-500/10 blur-2xl transition-opacity group-hover:opacity-100" />
 
-      {/* Browser Bar Header */}
-      <div className="flex items-center justify-between border-b border-white/10 pb-3">
-        {/* Window controls */}
-        <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-        </div>
-
-        {/* Mock Browser URL Bar */}
-        <a
-          href="https://luxedge.us"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[11px] font-mono text-zinc-300 transition-colors hover:border-brand-400/50 hover:text-white"
-        >
-          <span className="text-emerald-400 text-[10px]">🔒</span>
-          <span className="truncate">luxedge.us</span>
-          <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45 text-zinc-400" />
-        </a>
-
-        {/* Live Pulse Indicator */}
-        <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          </span>
-          <span>Live Site</span>
-        </div>
-      </div>
-
-      {/* Card Content */}
-      <div className="mt-3.5 flex items-start gap-3.5">
-        {/* Brand Mark */}
-        <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-white/5 p-2 shadow-inner">
-          <img
-            src="/images/projects/luxedge-mark.png"
-            alt="Luxedge Logo"
-            className="h-full w-full object-contain"
-            onError={(e) => {
-              // Fallback to text icon if image fails
-              (e.target as HTMLElement).style.display = "none";
-            }}
-          />
-          <div className="absolute inset-0 flex items-center justify-center text-xs font-black text-brand-300 font-display -z-10">
-            LX
+        {/* Browser Navigation Bar */}
+        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          {/* Traffic light dots */}
+          <div className="flex items-center gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
           </div>
-        </div>
 
-        {/* Info */}
-        <div className="min-w-0 flex-1">
+          {/* Interactive URL bar */}
+          <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-3 py-1 text-[11px] font-mono text-zinc-300">
+            <span className="text-emerald-400 text-[10px]">🔒</span>
+            <span className="truncate max-w-[140px] sm:max-w-[200px]">https://luxedge.us</span>
+            <button
+              type="button"
+              onClick={() => {
+                setIframeLoaded(false);
+                setRefreshKey((k) => k + 1);
+              }}
+              title="Reload live preview"
+              className="text-zinc-400 hover:text-white transition-colors ml-0.5"
+            >
+              <Icon name="clock" className="h-2.5 w-2.5" />
+            </button>
+          </div>
+
+          {/* Controls: Expand / Live Badge */}
           <div className="flex items-center gap-2">
-            <h3 className="font-display text-sm font-bold text-white tracking-tight sm:text-base">
-              LuxEdge
-            </h3>
-            <span className="rounded bg-brand-500/15 border border-brand-400/30 px-1.5 py-0.2 text-[9px] font-semibold uppercase tracking-wider text-brand-300">
-              Active Store
-            </span>
+            <div className="hidden sm:flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              </span>
+              <span>Live Store</span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsExpanded(true)}
+              title="Expand live view"
+              className="rounded-md border border-white/10 bg-white/5 p-1 text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
+            >
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              </svg>
+            </button>
           </div>
-          <p className="mt-1 text-xs leading-relaxed text-zinc-300">
-            Live e-commerce brand engineered with modern catalog architecture, PWA, and optimized checkout flow.
-          </p>
+        </div>
+
+        {/* Live Website Embedded Viewport */}
+        <div className="relative mt-3 h-[240px] sm:h-[280px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner">
+          {/* Loading state indicator */}
+          {!iframeLoaded && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10">
+              <span className="h-5 w-5 animate-spin rounded-full border-2 border-brand-400 border-t-transparent" />
+              <span className="text-xs font-mono">Loading live luxedge.us…</span>
+            </div>
+          )}
+
+          {/* Embedded live website iframe */}
+          <iframe
+            key={refreshKey}
+            src={previewSrc}
+            title="LuxEdge Live Website Preview"
+            loading="lazy"
+            onLoad={() => setIframeLoaded(true)}
+            className={cn(
+              "h-full w-full border-0 transition-opacity duration-300",
+              iframeLoaded ? "opacity-100" : "opacity-0",
+            )}
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          />
+
+          {/* Overlay hover bar for quick actions */}
+          <div className="absolute bottom-2 right-2 flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setIsExpanded(true)}
+              className="inline-flex items-center gap-1 rounded-lg bg-black/80 backdrop-blur border border-white/20 px-2 py-1 text-[11px] font-medium text-white shadow-lg hover:bg-black transition-colors"
+            >
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              </svg>
+              <span>Expand</span>
+            </button>
+            <a
+              href="https://luxedge.us"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 rounded-lg bg-brand-500 px-2 py-1 text-[11px] font-bold text-black shadow-lg hover:bg-cyan-400 transition-colors"
+            >
+              <span>Visit Site</span>
+              <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45" />
+            </a>
+          </div>
+        </div>
+
+        {/* Site Details Bar */}
+        <div className="mt-3 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="h-7 w-7 rounded-lg border border-white/10 bg-white/5 p-1 shrink-0">
+              <img
+                src="/images/projects/luxedge-mark.png"
+                alt="LuxEdge"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5">
+                <h4 className="font-display text-xs font-bold text-white truncate">LuxEdge</h4>
+                <span className="rounded bg-emerald-500/15 border border-emerald-500/30 px-1 text-[8.5px] font-bold text-emerald-400">
+                  ONLINE
+                </span>
+              </div>
+              <p className="text-[10px] text-zinc-400 truncate">
+                Live e-commerce storefront · Pet & Animal Essentials
+              </p>
+            </div>
+          </div>
+
+          <a
+            href="https://github.com/8002salman-ai/luxedge-website"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 inline-flex items-center gap-1 text-[11px] font-medium text-zinc-400 hover:text-white transition-colors"
+          >
+            <Icon name="github" className="h-3 w-3" />
+            <span>Code</span>
+          </a>
         </div>
       </div>
 
-      {/* Feature tags */}
-      <div className="mt-3 flex flex-wrap gap-1.5">
-        <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-400">
-          Pet Supplies
-        </span>
-        <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-400">
-          React & Vite
-        </span>
-        <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-400">
-          PWA
-        </span>
-        <span className="rounded-md border border-emerald-500/20 bg-emerald-500/5 px-2 py-0.5 text-[10px] text-emerald-300 font-medium">
-          Production Live
-        </span>
-      </div>
+      {/* Expanded Live Website Modal */}
+      {isExpanded &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="LuxEdge Live Website Preview"
+            className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/90 backdrop-blur-md"
+              onClick={() => setIsExpanded(false)}
+            />
 
-      {/* Action Buttons */}
-      <div className="mt-3.5 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
-        <a
-          href="https://luxedge.us"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-brand-500 to-cyan-400 px-3 py-2 text-xs font-bold text-black shadow-md shadow-brand-500/20 transition-all hover:brightness-110 active:scale-95"
-        >
-          <span>Open Website</span>
-          <Icon name="arrow" className="h-3 w-3 -rotate-45" />
-        </a>
-        <a
-          href="https://github.com/8002salman-ai/luxedge-website"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs font-medium text-zinc-200 transition-all hover:bg-white/10 hover:text-white active:scale-95"
-        >
-          <Icon name="github" className="h-3.5 w-3.5" />
-          <span>Source Code</span>
-        </a>
-      </div>
-    </div>
+            {/* Modal Dialog Window */}
+            <div className="relative flex h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-white/20 bg-[#0c0e14] shadow-2xl">
+              {/* Modal Window Header */}
+              <div className="flex items-center justify-between border-b border-white/10 bg-[#121520] px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-3 w-3 rounded-full bg-rose-500/90" />
+                    <span className="h-3 w-3 rounded-full bg-amber-500/90" />
+                    <span className="h-3 w-3 rounded-full bg-emerald-500/90" />
+                  </div>
+                  <span className="ml-2 font-display text-sm font-bold text-white">
+                    LuxEdge Live Production Preview
+                  </span>
+                </div>
+
+                {/* Central URL Bar */}
+                <a
+                  href="https://luxedge.us"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden md:flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-4 py-1 text-xs font-mono text-zinc-300 hover:text-white hover:border-brand-400"
+                >
+                  <span className="text-emerald-400">🔒</span>
+                  <span>https://luxedge.us</span>
+                  <Icon name="arrow" className="h-3 w-3 -rotate-45 text-zinc-400" />
+                </a>
+
+                {/* Header Actions */}
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://luxedge.us"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-400 px-3 py-1.5 text-xs font-bold text-black hover:brightness-110"
+                  >
+                    <span>Open in New Tab</span>
+                    <Icon name="arrow" className="h-3 w-3 -rotate-45" />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setIsExpanded(false)}
+                    aria-label="Close preview"
+                    className="rounded-lg p-1.5 text-zinc-400 hover:bg-white/10 hover:text-white"
+                  >
+                    <Icon name="x" className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Fullscreen Iframe */}
+              <div className="relative flex-1 bg-black">
+                <iframe
+                  src={previewSrc}
+                  title="LuxEdge Live Desktop Preview"
+                  className="h-full w-full border-0"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                />
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
+    </>
   );
 }
