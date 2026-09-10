@@ -7,44 +7,125 @@ interface LiveWebsiteCardProps {
   className?: string;
 }
 
-const SHOWCASE_SITES = [
+export interface ShowcaseSite {
+  id: string;
+  name: string;
+  embedUrl: string;
+  displayUrl: string;
+  badge: string;
+  title: string;
+  tagline: string;
+  github: string;
+  category: string;
+}
+
+export const SHOWCASE_SITES: ShowcaseSite[] = [
   {
     id: "luxedge",
     name: "LuxEdge",
-    url: "https://luxedge.us",
+    embedUrl: "https://luxedge-website.vercel.app",
+    displayUrl: "https://luxedge.us",
     badge: "Live Store",
     title: "LuxEdge — Curated Pet & Animal Essentials",
-    tagline: "Live e-commerce brand engineered with modern catalog architecture & PWA",
+    tagline: "Live e-commerce brand engineered with modern catalog architecture, PWA & checkout",
     github: "https://github.com/8002salman-ai/luxedge-website",
-    color: "from-brand-500 to-cyan-400",
+    category: "E-Commerce",
+  },
+  {
+    id: "8002-erp",
+    name: "8002 ERP",
+    embedUrl: "https://8002-erp.vercel.app",
+    displayUrl: "https://8002-erp.vercel.app",
+    badge: "Enterprise",
+    title: "8002 ERP — Enterprise Resource Planning",
+    tagline: "Full-scale multi-warehouse inventory, procurement & financial operations system",
+    github: "https://github.com/8002salman-ai/8002-erp",
+    category: "Operations",
+  },
+  {
+    id: "basco-sports",
+    name: "Basco Sports",
+    embedUrl: "https://basco-sports.vercel.app",
+    displayUrl: "https://basco-sports.vercel.app",
+    badge: "Brand Store",
+    title: "Basco Sports — Performance Athletics",
+    tagline: "Activewear brand showcase with responsive catalog and checkout pipeline",
+    github: "https://github.com/8002salman-ai/Basco-sports",
+    category: "E-Commerce",
+  },
+  {
+    id: "himalayan-koh",
+    name: "Himalayan Koh",
+    embedUrl: "https://himalayan-koh.vercel.app",
+    displayUrl: "https://himalayan-koh.vercel.app",
+    badge: "Brand Store",
+    title: "Himalayan Koh — Natural Salt & Minerals",
+    tagline: "Natural wellness brand storefront with global sourcing & logistics integration",
+    github: "https://github.com/8002salman-ai/himalayan-koh",
+    category: "Wellness",
+  },
+  {
+    id: "hot-grill",
+    name: "Hot Grill",
+    embedUrl: "https://hot-grill-website.vercel.app",
+    displayUrl: "https://hot-grill-website.vercel.app",
+    badge: "Hospitality",
+    title: "Hot Grill — Restaurant & Dining",
+    tagline: "Modern dining menu, online reservations & brand storytelling experience",
+    github: "https://github.com/8002salman-ai/hot-grill-website",
+    category: "Hospitality",
+  },
+  {
+    id: "watpro",
+    name: "Watpro",
+    embedUrl: "https://watpro-consultants.vercel.app",
+    displayUrl: "https://watpro-consultants.vercel.app",
+    badge: "Consulting",
+    title: "Watpro Consultants — Industrial Engineering",
+    tagline: "Professional engineering consultancy, compliance & project management portal",
+    github: "https://github.com/8002salman-ai/watpro-consultants",
+    category: "Consulting",
+  },
+  {
+    id: "spotaware",
+    name: "SpotAware",
+    embedUrl: "https://spotaware-platform.vercel.app",
+    displayUrl: "https://spotaware-platform.vercel.app",
+    badge: "AI Vision",
+    title: "SpotAware Platform — Real-Time Monitoring",
+    tagline: "AI-driven spatial awareness, anomaly detection & operational visibility hub",
+    github: "https://github.com/8002salman-ai/spotaware-platform",
+    category: "AI Platform",
   },
   {
     id: "salman-os",
     name: "Salman OS",
-    url: "https://salman-os-swart.vercel.app",
-    badge: "AI Platform",
+    embedUrl: "https://salmanos-8002.vercel.app",
+    displayUrl: "https://salmanos-8002.vercel.app",
+    badge: "Autonomous AI",
     title: "Salman OS — Autonomous Business Systems",
-    tagline: "Marketplace coordination, stock velocity auditing, and Hermes Agent core",
+    tagline: "Hermes Agent core, stock flow auditing, and multi-marketplace sync daemon",
     github: "https://github.com/8002salman-ai/salman-os",
-    color: "from-purple-500 to-indigo-400",
+    category: "AI Agent",
   },
   {
-    id: "portfolio",
-    name: "Dev Studio",
-    url: "https://salmanbashir.vercel.app",
-    badge: "Portfolio",
-    title: "Salman Bashir — Lead Architecture Hub",
-    tagline: "Engineering solutions that hold up under real operational demands",
-    github: "https://github.com/8002salman-ai/SalmanBashir",
-    color: "from-emerald-500 to-teal-400",
+    id: "i-864",
+    name: "I-864 Calc",
+    embedUrl: "https://i-864-affidavit-support-calculator.vercel.app",
+    displayUrl: "https://i-864-affidavit-support-calculator.vercel.app",
+    badge: "Legal Tech",
+    title: "I-864 Affidavit of Support Calculator",
+    tagline: "Automated poverty guidelines calculation & legal compliance tool",
+    github: "https://github.com/8002salman-ai/i-864-affidavit-support-calculator",
+    category: "Calculator",
   },
 ];
 
-// Available rotation durations
+// Available rotation durations (default 10 mins as requested)
 const ROTATION_INTERVALS = [
-  { label: "30s", ms: 30 * 1000 },
-  { label: "2m", ms: 2 * 60 * 1000 },
   { label: "10m", ms: 10 * 60 * 1000 },
+  { label: "2m", ms: 2 * 60 * 1000 },
+  { label: "30s", ms: 30 * 1000 },
 ];
 
 export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
@@ -53,7 +134,8 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [zoomMode, setZoomMode] = useState<"fit" | "actual">("fit");
-  const [intervalIndex, setIntervalIndex] = useState(0); // default 30s for demo, user can switch to 10m
+  // Default to 10 minutes interval as requested by user
+  const [intervalIndex, setIntervalIndex] = useState(0);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [progressPercent, setProgressPercent] = useState(0);
 
@@ -93,14 +175,14 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
   const iframeHeight =
     zoomMode === "fit" ? Math.round(containerHeight / scale) : containerHeight;
 
-  // Auto-rotation timer with visual progress bar
+  // Auto-rotation timer with visual progress bar (every 10 minutes by default)
   useEffect(() => {
     if (!isAutoRotating) {
       setProgressPercent(0);
       return;
     }
 
-    const stepMs = 200;
+    const stepMs = 250;
     const totalSteps = currentIntervalMs / stepMs;
     let currentStep = 0;
 
@@ -119,7 +201,8 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
     return () => clearInterval(progressTimer);
   }, [activeSiteIndex, isAutoRotating, currentIntervalMs]);
 
-  const previewSrc = `/api/proxy-site?url=${encodeURIComponent(currentSite.url)}&v=${refreshKey}`;
+  // Embed directly from origin to ensure full React, Tailwind, and JS asset loading with zero CORS issues
+  const previewSrc = `${currentSite.embedUrl}?v=${refreshKey}`;
 
   return (
     <>
@@ -136,15 +219,15 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
         {/* Browser Navigation Bar */}
         <div className="flex items-center justify-between border-b border-white/10 pb-3 gap-2 flex-wrap">
           {/* Traffic light dots + Site Switcher Tabs */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 max-w-full">
             <div className="flex items-center gap-1.5 shrink-0">
               <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
               <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
             </div>
 
-            {/* Site Switcher Tabs: 1st, 2nd, 3rd Website */}
-            <div className="flex items-center rounded-lg border border-white/10 bg-black/40 p-0.5 text-[10px] font-medium">
+            {/* Scrollable Tabs of Salman's Live Websites */}
+            <div className="flex items-center gap-1 overflow-x-auto no-scrollbar max-w-[200px] sm:max-w-[280px] lg:max-w-[340px] py-0.5">
               {SHOWCASE_SITES.map((site, idx) => (
                 <button
                   key={site.id}
@@ -155,14 +238,14 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                     setProgressPercent(0);
                   }}
                   className={cn(
-                    "rounded-md px-2 py-0.5 transition-all flex items-center gap-1",
+                    "rounded-md px-2 py-0.5 text-[10px] font-medium transition-all shrink-0 flex items-center gap-1",
                     activeSiteIndex === idx
-                      ? "bg-brand-500/25 text-brand-300 font-semibold border border-brand-400/35 shadow"
-                      : "text-zinc-400 hover:text-white",
+                      ? "bg-brand-500/25 text-brand-300 font-semibold border border-brand-400/40 shadow-sm"
+                      : "border border-white/10 bg-black/40 text-zinc-400 hover:text-white hover:bg-white/5",
                   )}
                 >
                   <span className="text-[9px] opacity-60">#{idx + 1}</span>
-                  <span>{site.name}</span>
+                  <span className="truncate max-w-[80px] sm:max-w-[100px]">{site.name}</span>
                 </button>
               ))}
             </div>
@@ -171,7 +254,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           {/* Interactive URL bar */}
           <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[11px] font-mono text-zinc-300">
             <span className="text-emerald-400 text-[10px]">🔒</span>
-            <span className="truncate max-w-[120px] sm:max-w-[160px]">{currentSite.url.replace("https://", "")}</span>
+            <span className="truncate max-w-[110px] sm:max-w-[160px]">{currentSite.displayUrl.replace("https://", "")}</span>
             <button
               type="button"
               onClick={() => {
@@ -187,7 +270,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
 
           {/* Controls: Auto-Rotate Timer, Zoom, Expand */}
           <div className="flex items-center gap-1.5 shrink-0">
-            {/* Auto-Rotation Control (30s / 2m / 10m / Pause) */}
+            {/* Auto-Rotation Control (10m / 2m / 30s) */}
             <button
               type="button"
               onClick={() => {
@@ -241,11 +324,11 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           </div>
         </div>
 
-        {/* Rotation Progress Bar */}
+        {/* Rotation Progress Bar (indicates progress through current 10 min interval) */}
         {isAutoRotating && (
           <div className="relative h-[2px] w-full bg-white/5 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-brand-500 to-cyan-400 transition-all duration-200"
+              className="h-full bg-gradient-to-r from-brand-500 via-cyan-400 to-emerald-400 transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -260,7 +343,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           {!iframeLoaded && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10">
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-brand-400 border-t-transparent" />
-              <span className="text-xs font-mono">Loading live {currentSite.name}…</span>
+              <span className="text-xs font-mono">Loading {currentSite.name} live…</span>
             </div>
           )}
 
@@ -297,7 +380,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               <span>Expand</span>
             </button>
             <a
-              href={currentSite.url}
+              href={currentSite.displayUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-400 px-2.5 py-1 text-[11px] font-bold text-black shadow-lg hover:brightness-110 transition-all"
@@ -318,10 +401,10 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                   alt="LuxEdge"
                   className="h-full w-full object-contain"
                 />
-              ) : currentSite.id === "salman-os" ? (
+              ) : currentSite.category === "AI Platform" || currentSite.category === "AI Agent" ? (
                 <Icon name="spark" className="h-4 w-4 text-brand-300" />
               ) : (
-                <Icon name="cpu" className="h-4 w-4 text-emerald-400" />
+                <Icon name="globe" className="h-4 w-4 text-emerald-400" />
               )}
             </div>
             <div className="min-w-0">
@@ -331,7 +414,9 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
                   {currentSite.badge}
                 </span>
                 <span className="text-zinc-600 text-xs">·</span>
-                <span className="text-[10px] text-zinc-500">Auto-Rotating ({ROTATION_INTERVALS[intervalIndex].label})</span>
+                <span className="text-[10px] text-zinc-400 truncate">
+                  Site #{activeSiteIndex + 1} of {SHOWCASE_SITES.length} · Auto-rotating ({ROTATION_INTERVALS[intervalIndex].label})
+                </span>
               </div>
               <p className="text-[10px] text-zinc-400 truncate">
                 {currentSite.tagline}
@@ -351,7 +436,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
             </a>
             <span className="text-zinc-600">·</span>
             <a
-              href={currentSite.url}
+              href={currentSite.displayUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-400 hover:text-cyan-300 transition-colors"
@@ -395,20 +480,20 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
 
                 {/* Central URL Bar */}
                 <a
-                  href={currentSite.url}
+                  href={currentSite.displayUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hidden md:flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-4 py-1 text-xs font-mono text-zinc-300 hover:text-white hover:border-brand-400"
                 >
                   <span className="text-emerald-400">🔒</span>
-                  <span>{currentSite.url}</span>
+                  <span>{currentSite.displayUrl}</span>
                   <Icon name="arrow" className="h-3 w-3 -rotate-45 text-zinc-400" />
                 </a>
 
                 {/* Header Actions */}
                 <div className="flex items-center gap-2">
                   <a
-                    href={currentSite.url}
+                    href={currentSite.displayUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-400 px-3 py-1.5 text-xs font-bold text-black hover:brightness-110"
