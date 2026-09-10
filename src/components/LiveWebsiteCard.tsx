@@ -76,7 +76,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
         </div>
 
         {/* Live Website Embedded Viewport */}
-        <div className="relative mt-3 h-[240px] sm:h-[280px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner">
+        <div className="relative mt-3 h-[320px] sm:h-[360px] lg:h-[380px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner">
           {/* Loading state indicator */}
           {!iframeLoaded && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10">
@@ -100,7 +100,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           />
 
           {/* Overlay hover bar for quick actions */}
-          <div className="absolute bottom-2 right-2 flex items-center gap-2">
+          <div className="absolute top-2 right-2 flex items-center gap-2">
             <button
               type="button"
               onClick={() => setIsExpanded(true)}
@@ -115,7 +115,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               href="https://luxedge.us"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-lg bg-brand-500 px-2 py-1 text-[11px] font-bold text-black shadow-lg hover:bg-cyan-400 transition-colors"
+              className="inline-flex items-center gap-1 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-400 px-2.5 py-1 text-[11px] font-bold text-black shadow-lg hover:brightness-110 transition-all"
             >
               <span>Visit Site</span>
               <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45" />
@@ -124,7 +124,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
         </div>
 
         {/* Site Details Bar */}
-        <div className="mt-3 flex items-center justify-between gap-3">
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-3">
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="h-7 w-7 rounded-lg border border-white/10 bg-white/5 p-1 shrink-0">
               <img
@@ -146,15 +146,27 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
             </div>
           </div>
 
-          <a
-            href="https://github.com/8002salman-ai/luxedge-website"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-1 text-[11px] font-medium text-zinc-400 hover:text-white transition-colors"
-          >
-            <Icon name="github" className="h-3 w-3" />
-            <span>Code</span>
-          </a>
+          <div className="flex items-center gap-2.5 shrink-0">
+            <a
+              href="https://github.com/8002salman-ai/luxedge-website"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[11px] font-medium text-zinc-400 hover:text-white transition-colors"
+            >
+              <Icon name="github" className="h-3 w-3" />
+              <span>Code</span>
+            </a>
+            <span className="text-zinc-600">·</span>
+            <a
+              href="https://luxedge.us"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-400 hover:text-cyan-300 transition-colors"
+            >
+              <span>Open Store</span>
+              <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45" />
+            </a>
+          </div>
         </div>
       </div>
 

@@ -18,10 +18,10 @@ export function Hero() {
       </div>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-start gap-8 lg:grid-cols-2">
           {/* Left: copy */}
           <div className="relative min-w-0 animate-fade-up">
-            <SoSaiBadge />
+            <SoSaiBadge className="w-full" />
 
             <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-edge bg-panel px-3 py-1 text-[11px] font-medium text-soft backdrop-blur">
               <span className="relative flex h-1.5 w-1.5">
@@ -74,7 +74,7 @@ export function Hero() {
             </div>
 
             {/* Live website preview card for latest build (e.g. luxedge.us) */}
-            <LiveWebsiteCard className="mt-5 w-full sm:w-auto lg:hidden" />
+            <LiveWebsiteCard className="mt-6 w-full lg:hidden" />
 
             <div className="mt-6 max-w-md rounded-xl border-l-2 border-brand-400/60 bg-panel/40 py-2.5 pl-4 pr-3">
               <p className="text-sm italic leading-relaxed text-soft">
@@ -98,8 +98,8 @@ export function Hero() {
           </div>
 
           {/* Right: video, then destinations and the work itself */}
-          <div className="relative min-w-0 animate-fade-up [animation-delay:120ms] lg:pt-12">
-            <LiveWebsiteCard className="mx-auto mb-4 hidden w-full max-w-md lg:block" />
+          <div className="relative min-w-0 animate-fade-up [animation-delay:120ms]">
+            <LiveWebsiteCard className="mb-6 hidden w-full lg:block" />
 
             <div className="relative">
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/15 blur-2xl" />
