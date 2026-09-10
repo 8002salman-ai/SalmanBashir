@@ -328,7 +328,7 @@ export function Navbar() {
                   <span
                     className={cn(
                       "h-1.5 w-1.5 rounded-full",
-                      a || isActive(link.href) ? "bg-cyan-400 shadow-[0_0_6px_#22d3ee]" : "bg-white/20",
+                      isActive(link.href) ? "bg-cyan-400 shadow-[0_0_6px_#22d3ee]" : "bg-white/20",
                     )}
                   />
                   <span>{link.label}</span>

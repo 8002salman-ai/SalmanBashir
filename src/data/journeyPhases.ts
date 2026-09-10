@@ -207,8 +207,8 @@ export const journeyPhases: JourneyPhase[] = [
       "Acts as a centralized intelligence hub monitoring websites, companies, repositories, approvals, integrations, and operational health.",
       "See the full breakdown of active capabilities and workflow automation on the AI & Automation page.",
     ],
-    media: { type: "none", title: "Hermes AI Agent workspace preview", status: "Live" },
-    video: { type: "none", title: "Hermes AI Agent walkthrough", status: "Live" },
+    media: { type: "none", title: "Hermes AI Agent workspace preview", status: "Available" },
+    video: { type: "none", title: "Hermes AI Agent walkthrough", status: "Available" },
     icon: "spark",
   },
   {
