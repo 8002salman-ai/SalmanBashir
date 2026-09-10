@@ -19,7 +19,7 @@ export function Hero() {
       </div>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid items-start gap-8 lg:grid-cols-2">
+        <div className="grid items-start gap-6 md:grid-cols-2 lg:gap-8">
           {/* Left: copy */}
           <div className="relative min-w-0 animate-fade-up">
             <SoSaiBadge className="w-full" />
@@ -165,7 +165,7 @@ export function Hero() {
             </div>
 
             {/* Live website preview card for latest build (e.g. luxedge.us) */}
-            <LiveWebsiteCard className="mt-6 w-full lg:hidden" />
+            <LiveWebsiteCard className="mt-6 w-full md:hidden" />
 
             {/* Founder Philosophy & Motive Quote Card */}
             <div className="relative mt-6 max-w-xl overflow-hidden rounded-2xl border border-edge bg-panel-strong/60 p-4 backdrop-blur-md shadow-xl transition-all hover:border-brand-400/40">
@@ -192,7 +192,7 @@ export function Hero() {
             </div>
 
             {/* Trust labels — qualitative, operator credentials */}
-            <dl className="mt-7 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <dl className="mt-7 grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-2 xl:grid-cols-4">
               {stats.map((s) => (
                 <div
                   key={s.label}
@@ -215,14 +215,14 @@ export function Hero() {
           {/* Right: live preview on top, then all github repos, then quick links */}
           <div className="relative min-w-0 animate-fade-up [animation-delay:120ms]">
             {/* Live website preview card on top */}
-            <LiveWebsiteCard className="mb-6 hidden w-full lg:block" />
+            <LiveWebsiteCard className="mb-6 hidden w-full md:block" />
 
             {/* All repo links below live preview: new, old, and upcoming projects */}
             <GithubHeroStrip className="mb-6" />
 
             <div className="relative">
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-accent/15 blur-2xl" />
-              <HeroPanels />
+              <HeroPanels className="w-full max-w-none" />
             </div>
           </div>
         </div>

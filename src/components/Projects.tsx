@@ -102,7 +102,7 @@ export function ProjectsSection({ limit }: { limit?: number }) {
               <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-gold-accent/10 blur-[100px]" />
             </div>
 
-            <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid gap-6 p-6 sm:p-8 md:grid-cols-2 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-medium text-accent-strong">

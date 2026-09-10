@@ -55,7 +55,7 @@ function MoreMenu({ isActive }: { isActive: (href: string) => boolean }) {
         aria-expanded={open}
         aria-haspopup="menu"
         className={cn(
-          "flex items-center gap-1 rounded-lg px-2.5 py-2 text-sm font-medium transition-colors",
+          "flex items-center gap-1 rounded-lg px-2 py-1.5 text-xs lg:px-2.5 lg:py-2 lg:text-sm font-medium transition-colors whitespace-nowrap",
           active || open ? "text-accent-strong" : "text-muted hover:text-strong",
         )}
       >
@@ -152,7 +152,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-0.5 xl:flex">
+        <div className="hidden items-center gap-0.5 md:flex lg:gap-1">
           {navLinks.map((link) => (
             <NavLink
               key={link.href}
@@ -160,7 +160,7 @@ export function Navbar() {
               aria-current={isActive(link.href) ? "true" : undefined}
               className={({ isActive: a }) =>
                 cn(
-                  "nav-link rounded-lg px-2.5 py-2 text-sm font-medium transition-colors",
+                  "nav-link rounded-lg px-2 py-1.5 text-xs font-medium transition-colors whitespace-nowrap lg:px-2.5 lg:py-2 lg:text-sm",
                   a || isActive(link.href)
                     ? "text-accent-strong"
                     : "text-muted hover:text-strong",
@@ -173,15 +173,16 @@ export function Navbar() {
           <MoreMenu isActive={isActive} />
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 lg:gap-2.5 shrink-0">
           <ThemeSwitcher />
-          <LatestRepoBadge />
+          <div className="hidden xl:block">
+            <LatestRepoBadge />
+          </div>
           <Link
             to="/book"
-            className="btn btn-primary btn-sm hidden shrink-0 whitespace-nowrap sm:inline-flex"
+            className="btn btn-primary btn-sm hidden shrink-0 whitespace-nowrap sm:inline-flex px-2.5 py-1.5 text-xs lg:px-3 lg:py-2 lg:text-sm"
           >
-            <span className="hidden lg:inline">Meet up</span>
-            <span className="lg:hidden">Meet</span>
+            <span>Meet up</span>
           </Link>
           <button
             type="button"
@@ -189,7 +190,7 @@ export function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-edge-strong text-soft transition-colors hover:text-strong xl:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-edge-strong text-soft transition-colors hover:text-strong md:hidden"
           >
             <svg
               viewBox="0 0 24 24"
@@ -213,7 +214,7 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={cn(
-          "overflow-hidden border-t border-edge bg-bg/95 backdrop-blur-xl transition-all duration-300 xl:hidden",
+          "overflow-hidden border-t border-edge bg-bg/95 backdrop-blur-xl transition-all duration-300 md:hidden",
           open ? "max-h-[32rem]" : "max-h-0 border-t-0",
         )}
       >

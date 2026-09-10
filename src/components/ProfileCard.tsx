@@ -7,9 +7,9 @@ export function ProfileCard() {
     <section className="relative py-10 sm:py-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
-          <div className="overflow-hidden rounded-3xl border border-edge bg-panel p-6 sm:p-8 lg:grid lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-10">
+          <div className="overflow-hidden rounded-3xl border border-edge bg-panel p-6 sm:p-8 md:grid md:grid-cols-[minmax(0,260px)_1fr] md:gap-8 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-10">
             {/* Photo */}
-            <div className="relative mx-auto w-full max-w-[280px] lg:mx-0 lg:max-w-none">
+            <div className="relative mx-auto w-full max-w-[280px] md:mx-0 md:max-w-none">
               <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/25 via-transparent to-gold-accent/15 blur-2xl" />
               <picture>
                 <source
@@ -29,7 +29,7 @@ export function ProfileCard() {
             </div>
 
             {/* Professional identity */}
-            <div className="mt-8 flex flex-col justify-center lg:mt-0">
+            <div className="mt-8 flex flex-col justify-center md:mt-0">
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-500/25 bg-brand-500/10 px-3 py-1 text-xs font-medium text-accent-strong">
                 <Icon name="badge" className="h-3.5 w-3.5" />
                 {aboutProfile.badge}

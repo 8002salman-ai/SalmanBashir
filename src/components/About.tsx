@@ -5,7 +5,7 @@ export function AboutSection() {
   return (
     <section id="about" className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
           {/* Left: professional summary */}
           <Reveal>
             <SectionHeading

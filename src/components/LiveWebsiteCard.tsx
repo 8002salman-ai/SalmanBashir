@@ -352,7 +352,7 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
               type="button"
               onClick={() => setZoomMode((m) => (m === "fit" ? "actual" : "fit"))}
               title={zoomMode === "fit" ? "Click for 100% view" : "Click to fit entire website"}
-              className="hidden sm:inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[11px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[11px] text-zinc-300 hover:bg-white/15 hover:text-white transition-colors"
             >
               <span className="text-brand-400">🔍</span>
               <span>{zoomMode === "fit" ? `Fit (${Math.round(scale * 100)}%)` : "100%"}</span>
