@@ -1,6 +1,25 @@
 import { Link } from "react-router-dom";
 import { marketplacePreview } from "@/data/content";
 import { Reveal, SectionHeading, Icon } from "@/components/ui";
+import {
+  AmazonLogo,
+  EbayLogo,
+  TikTokShopLogo,
+  EtsyLogo,
+  WalmartLogo,
+  ShopifyLogo,
+  MercariLogo,
+} from "@/components/PlatformLogos";
+
+const platforms = [
+  { name: "Amazon", component: AmazonLogo, tag: "FBA / FBM" },
+  { name: "eBay", component: EbayLogo, tag: "Multi-Store" },
+  { name: "TikTok Shop", component: TikTokShopLogo, tag: "Fast Dispatch" },
+  { name: "Walmart", component: WalmartLogo, tag: "Marketplace" },
+  { name: "Etsy", component: EtsyLogo, tag: "Artisan" },
+  { name: "Shopify", component: ShopifyLogo, tag: "DTC Store" },
+  { name: "Mercari", component: MercariLogo, tag: "Resale" },
+];
 
 export function MarketplacePreview() {
   return (
@@ -16,20 +35,24 @@ export function MarketplacePreview() {
                   <span className="text-gradient-brand">for online sellers</span>
                 </>
               }
-              description="Practical services built from running marketplaces hands-on — not theory."
+              description="Practical services built from running marketplaces hands-on across Amazon, eBay, TikTok Shop, Walmart, Etsy and Shopify — not theory."
               align="left"
             />
-            {/* Live platform pills */}
-            <div className="flex flex-wrap items-center gap-1.5 pb-2">
-              {["eBay", "TikTok Shop", "Etsy", "Mercari", "Depop"].map((platform) => (
-                <span
-                  key={platform}
-                  className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-semibold text-emerald-300 backdrop-blur-sm"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  {platform}
-                </span>
-              ))}
+            {/* Live platform brand badges */}
+            <div className="flex flex-wrap items-center gap-2 pb-2">
+              {platforms.map((p) => {
+                const Logo = p.component;
+                return (
+                  <div
+                    key={p.name}
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-panel/90 px-3 py-1.5 shadow-sm backdrop-blur transition-all duration-200 hover:border-indigo-500/40 hover:bg-panel hover:shadow-md"
+                  >
+                    <Logo className="h-4.5 w-auto max-w-[60px] text-white" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-mono font-medium text-slate-400">{p.tag}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </Reveal>
@@ -59,7 +82,7 @@ export function MarketplacePreview() {
                 Ready to organize your store operations?
               </p>
               <p className="text-xs text-muted mt-0.5">
-                Full breakdown of marketplace services, deliverables and operational milestones.
+                Full breakdown of marketplace services, deliverables and operational milestones across Amazon, eBay, and multi-channel stores.
               </p>
             </div>
             <Link

@@ -826,12 +826,15 @@ export const process = [
 ];
 
 export const marketplaces = [
+  "Amazon",
   "eBay",
-  "Depop",
-  "Mercari",
-  "Poshmark",
-  "Etsy",
   "TikTok Shop",
+  "Walmart",
+  "Etsy",
+  "Shopify",
+  "Mercari",
+  "Depop",
+  "Poshmark",
   "AliExpress",
 ];
 

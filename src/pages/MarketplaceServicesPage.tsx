@@ -1,19 +1,39 @@
 import { PageHero } from "@/components/PageHero";
 import { Seo, BreadcrumbJsonLd } from "@/components/Seo";
 import {
-  marketplaces,
   marketplaceServiceGroups,
   marketplaceDisclaimer,
 } from "@/data/content";
 import { Link } from "react-router-dom";
 import { Reveal, Accordion, CtaCard, Icon } from "@/components/ui";
+import {
+  AmazonLogo,
+  EbayLogo,
+  TikTokShopLogo,
+  WalmartLogo,
+  EtsyLogo,
+  ShopifyLogo,
+  AliExpressLogo,
+  MercariLogo,
+} from "@/components/PlatformLogos";
+
+const platformLogos = [
+  { name: "Amazon", component: AmazonLogo, tag: "FBA / FBM & Seller Central" },
+  { name: "eBay", component: EbayLogo, tag: "Multi-Store & Promoted Listings" },
+  { name: "TikTok Shop", component: TikTokShopLogo, tag: "Fast Dispatch & Live Sales" },
+  { name: "Walmart", component: WalmartLogo, tag: "Marketplace & 2-Day Delivery" },
+  { name: "Etsy", component: EtsyLogo, tag: "Artisan & Handcrafted Catalogs" },
+  { name: "Shopify", component: ShopifyLogo, tag: "Custom DTC Storefronts" },
+  { name: "AliExpress", component: AliExpressLogo, tag: "Direct Sourcing & Supplier Sync" },
+  { name: "Mercari", component: MercariLogo, tag: "Second-hand & Liquidation" },
+];
 
 export function MarketplaceServicesPage() {
   return (
     <>
       <Seo
-        title="Marketplace Services | Salman Bashir"
-        description="Marketplace operations support — listings and catalogue, operations, profit and records, and workflow support across eBay, Depop, Mercari, Poshmark, Etsy, TikTok Shop and AliExpress."
+        title="Marketplace Services | Salman Bashir — Amazon, eBay & Multi-Channel Operations"
+        description="Marketplace operations support — listings, catalog upkeep, profit records, inventory reconciliation, and workflow systems across Amazon, eBay, TikTok Shop, Walmart, Etsy, and Shopify."
         path="/marketplace-services"
       />
       <BreadcrumbJsonLd
@@ -29,25 +49,42 @@ export function MarketplaceServicesPage() {
             <span className="text-gradient-brand">you actually sell on</span>
           </>
         }
-        description="Practical services across listings, operations, profit records and workflow support — built from hands-on selling, not from theory."
+        description="Practical services across listings, operations, profit records and workflow support — built from hands-on selling across Amazon, eBay, TikTok Shop, Walmart, Etsy, and Shopify."
       />
 
-      {/* Platforms */}
-      <section className="relative pb-6 pt-2">
+      {/* Platforms with Authentic Brand Logos */}
+      <section className="relative pb-6 pt-4">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider text-faint">
-              Platforms I work from hands-on experience
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {marketplaces.map((m) => (
-                <span
-                  key={m}
-                  className="rounded-lg border border-edge bg-panel px-3 py-1.5 text-sm font-medium text-soft"
-                >
-                  {m}
-                </span>
-              ))}
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-faint">
+                Platforms Managed From Real Hands-On Experience
+              </p>
+              <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono font-medium text-emerald-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Active Seller Operations
+              </span>
+            </div>
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+              {platformLogos.map((p) => {
+                const Logo = p.component;
+                return (
+                  <div
+                    key={p.name}
+                    className="group relative flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-[#090d18] p-3.5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/50 hover:bg-[#0d1326] text-center"
+                  >
+                    <div className="flex h-8 items-center justify-center">
+                      <Logo className="h-5 w-auto max-w-[70px] text-white transition-transform group-hover:scale-110" />
+                    </div>
+                    <span className="mt-2 text-xs font-bold text-white tracking-tight">
+                      {p.name}
+                    </span>
+                    <span className="mt-0.5 text-[9px] font-mono text-slate-400 line-clamp-1">
+                      {p.tag}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </Reveal>
         </div>
