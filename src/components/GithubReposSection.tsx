@@ -21,7 +21,7 @@ export function GithubReposSection() {
   const { repos, live } = useGithubRepos();
 
   return (
-    <section className="relative py-16 sm:py-24">
+    <section id="github" className="relative py-16 sm:py-24 scroll-mt-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading

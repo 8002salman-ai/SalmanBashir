@@ -4,7 +4,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function OpportunitySeats() {
   return (
-    <section id="opportunity" className="relative py-16 sm:py-24">
+    <section id="opportunity" className="relative pt-8 pb-12 sm:pt-10 sm:pb-16">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/3 top-1/2 h-[300px] w-[300px] rounded-full bg-brand-500/[0.06] blur-[120px]" />
       </div>
@@ -18,7 +18,7 @@ export function OpportunitySeats() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-2">
+        <div className="mt-8 grid gap-4 lg:grid-cols-2">
           {/* Opportunity Seats */}
           <Reveal>
             <article className="card card-hover flex h-full flex-col p-6">

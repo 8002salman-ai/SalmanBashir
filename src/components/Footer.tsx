@@ -110,16 +110,16 @@ export function Footer() {
                   <LogoMark className="h-full w-full" />
                 </span>
                 <div className="min-w-0">
-                  <span className="block font-display text-lg sm:text-xl font-black tracking-tight text-white group-hover:text-brand-300 transition-colors whitespace-nowrap">
-                    {personal.name}
+                  <span className="block font-display text-lg sm:text-xl font-black tracking-tight text-white group-hover:text-cyan-300 transition-colors whitespace-nowrap">
+                    {personal.name.toUpperCase()}
                   </span>
-                  <span className="block text-xs font-semibold text-amber-400 whitespace-nowrap">
-                    Founder & CEO · Systems Architect
+                  <span className="block text-xs font-medium text-slate-400 whitespace-nowrap">
+                    {personal.executiveSubtitle || "Entrepreneur | Systems | AI"}
                   </span>
                 </div>
               </Link>
 
-              <p className="mt-3.5 max-w-sm text-[13.5px] leading-relaxed text-zinc-400">
+              <p className="mt-3.5 max-w-sm text-[13.5px] leading-relaxed text-slate-400">
                 {personal.tagline} {personal.statement}
               </p>
 
@@ -230,8 +230,8 @@ export function Footer() {
             © {new Date().getFullYear()} <strong className="text-white">{personal.name}</strong>. All rights reserved.
           </p>
 
-          <p className="text-center text-zinc-400">
-            Built around real business problems — never hype.
+          <p className="text-center font-mono tracking-wider text-slate-400">
+            Think. Build. Scale.
           </p>
 
           <div className="flex items-center gap-3">

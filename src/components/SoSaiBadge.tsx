@@ -28,7 +28,7 @@ export function SoSaiBadge({ className }: SoSaiBadgeProps) {
   const [agentActionMessage, setAgentActionMessage] = useState<string | null>(null);
 
   // Fetch all real GitHub repositories for 8002salman-ai
-  const { repos: githubRepos } = useGithubRepos([]);
+  const { repos: githubRepos } = useGithubRepos();
 
   // Workflow cyclic ticker
   useEffect(() => {

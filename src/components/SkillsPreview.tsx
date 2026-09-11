@@ -6,7 +6,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
    linking through to the full /skills page for detail. */
 export function SkillsPreviewSection() {
   return (
-    <section className="relative py-16 sm:py-24">
+    <section className="relative pt-8 pb-12 sm:pt-10 sm:pb-16">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Reveal, Eyebrow } from "@/components/ui";
+import { Reveal } from "@/components/ui";
 import { cn } from "@/utils/cn";
 
 export function PageHero({
@@ -18,27 +18,37 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "group relative overflow-hidden pb-10 pt-24 sm:pb-14 sm:pt-32",
+        "relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16 border-b border-white/10",
         className,
       )}
     >
+      {/* Luxury Ambient Glows */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-grid mask-fade-b opacity-50" />
-        <div className="absolute left-1/2 top-[-30%] h-[420px] w-[700px] -translate-x-1/2 rounded-full bg-brand-500/12 blur-[130px] transition-colors duration-300 group-hover:bg-brand-500/20" />
+        <div className="absolute inset-0 bg-grid opacity-20" />
+        <div className="absolute left-1/2 top-[-20%] h-[380px] w-[600px] -translate-x-1/2 rounded-full bg-indigo-600/12 blur-[130px]" />
+        <div className="absolute right-1/4 top-10 h-[300px] w-[400px] rounded-full bg-blue-500/8 blur-[120px]" />
       </div>
+
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <Reveal className="relative max-w-3xl transition-transform duration-300 ease-out group-hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0">
-          <div className="pointer-events-none absolute -inset-x-6 -inset-y-4 -z-10 rounded-3xl border border-brand-500/0 transition-colors duration-300 group-hover:border-brand-500/15 motion-reduce:transition-none" />
-          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-          <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-strong sm:text-5xl">
+        <Reveal className="relative max-w-3xl">
+          {eyebrow && (
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-indigo-300 backdrop-blur-md mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              {eyebrow}
+            </div>
+          )}
+
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
             {title}
           </h1>
+
           {description && (
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+            <p className="mt-4 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-300">
               {description}
             </p>
           )}
-          {children && <div className="mt-6">{children}</div>}
+
+          {children && <div className="mt-6 flex flex-wrap gap-3">{children}</div>}
         </Reveal>
       </div>
     </section>

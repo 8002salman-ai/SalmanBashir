@@ -4,7 +4,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function TeamPreview() {
   return (
-    <section id="team-preview" className="relative py-16 sm:py-24">
+    <section id="team-preview" className="relative pt-10 pb-6 sm:pt-14 sm:pb-8">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading

@@ -20,7 +20,7 @@ export function BusinessCards() {
   };
 
   return (
-    <section id="businesses" className="relative py-16 sm:py-24">
+    <section id="businesses" className="relative pt-8 pb-8 sm:pt-10 sm:pb-10">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute right-1/4 top-1/3 h-[300px] w-[300px] rounded-full bg-gold-accent/[0.06] blur-[120px]" />
       </div>

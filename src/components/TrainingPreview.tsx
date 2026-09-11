@@ -5,7 +5,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 export function TrainingPreview({ limit }: { limit?: number }) {
   const items = limit ? trainingPreview.slice(0, limit) : trainingPreview;
   return (
-    <section id="training-preview" className="relative py-16 sm:py-24">
+    <section id="training-preview" className="relative pt-10 pb-6 sm:pt-14 sm:pb-8">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/3 top-1/2 h-[300px] w-[300px] rounded-full bg-brand-500/[0.06] blur-[120px]" />
       </div>
@@ -19,7 +19,7 @@ export function TrainingPreview({ limit }: { limit?: number }) {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((t, i) => (
             <Reveal key={t.title} delay={i * 60}>
               <article className="card card-hover flex h-full items-start gap-4 p-5">

@@ -49,30 +49,30 @@
    ============================================================ */
 :root {
   color-scheme: dark;
-  --sb-bg: #040405;
-  --sb-bg-soft: #0a0a0d;
-  --sb-panel: #0f0f13;
-  --sb-panel-strong: #16161c;
-  --sb-edge-strong: #22222b;
-  --sb-text: #f6f6f7;
-  --sb-text-soft: #e5e5e9;
-  --sb-text-muted: #9c9ca6;
-  --sb-text-faint: #6c6c76;
-  --sb-border: rgba(255, 255, 255, 0.09);
-  --sb-border-strong: rgba(255, 255, 255, 0.16);
-  --sb-panel-soft: rgba(255, 255, 255, 0.03);
-  --sb-panel-soft-strong: rgba(255, 255, 255, 0.05);
-  --sb-on-accent: #04151a;
-  --sb-grid: rgba(255, 255, 255, 0.028);
-  --sb-glow-a: rgba(103, 232, 249, 0.05);
-  --sb-glow-b: rgba(103, 232, 249, 0.035);
+  --sb-bg: #06080f;
+  --sb-bg-soft: #090d18;
+  --sb-panel: #0c1020;
+  --sb-panel-strong: #11162b;
+  --sb-edge-strong: #1c2440;
+  --sb-text: #f8fafc;
+  --sb-text-soft: #e2e8f0;
+  --sb-text-muted: #94a3b8;
+  --sb-text-faint: #64748b;
+  --sb-border: rgba(255, 255, 255, 0.08);
+  --sb-border-strong: rgba(99, 102, 241, 0.25);
+  --sb-panel-soft: rgba(255, 255, 255, 0.035);
+  --sb-panel-soft-strong: rgba(255, 255, 255, 0.06);
+  --sb-on-accent: #ffffff;
+  --sb-grid: rgba(255, 255, 255, 0.025);
+  --sb-glow-a: rgba(99, 102, 241, 0.12);
+  --sb-glow-b: rgba(34, 211, 238, 0.08);
   --sb-grad-a: #ffffff;
-  --sb-grad-b: #67e8f9;
-  --sb-grad-c: #fcd34d;
-  --sb-grad-d: #a5f3fc;
-  --sb-accent: #22d3ee;
-  --sb-accent-strong: #67e8f9;
-  --sb-gold: #fcd34d;
+  --sb-grad-b: #6366f1;
+  --sb-grad-c: #f59e0b;
+  --sb-grad-d: #38bdf8;
+  --sb-accent: #6366f1;
+  --sb-accent-strong: #818cf8;
+  --sb-gold: #f59e0b;
 }
 
 [data-theme="light"] {
@@ -376,8 +376,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border-radius: 0.75rem;
-    padding: 0.625rem 1.25rem;
+    border-radius: 9999px;
+    padding: 0.625rem 1.35rem;
     font-size: 0.875rem;
     font-weight: 600;
     line-height: 1.25rem;
@@ -390,37 +390,44 @@ body {
       transform 0.2s ease;
   }
   .btn:focus-visible {
-    outline: 2px solid var(--color-brand-400);
+    outline: 2px solid var(--sb-accent);
     outline-offset: 2px;
   }
 
   .btn-primary {
-    background-color: var(--color-brand-500);
-    color: var(--sb-on-accent);
+    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #06b6d4 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 20px -2px rgba(79, 70, 229, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
   .btn-primary:hover {
-    background-color: var(--color-brand-400);
-    box-shadow: 0 10px 30px -12px rgba(6, 182, 212, 0.55);
+    background: linear-gradient(135deg, #4338ca 0%, #2563eb 50%, #0891b2 100%);
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
+    transform: translateY(-1px);
   }
   .btn-primary:active {
     transform: translateY(0);
   }
 
   .btn-secondary {
-    border: 1px solid var(--sb-border-strong);
-    background-color: var(--sb-panel);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
     color: var(--sb-text);
   }
   .btn-secondary:hover {
-    border-color: rgba(34, 211, 238, 0.45);
-    background-color: var(--sb-panel-strong);
+    border-color: rgba(99, 102, 241, 0.45);
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    transform: translateY(-1px);
   }
 
   .btn-ghost {
     color: var(--color-accent-strong);
   }
   .btn-ghost:hover {
-    color: var(--color-accent);
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   .btn-sm {

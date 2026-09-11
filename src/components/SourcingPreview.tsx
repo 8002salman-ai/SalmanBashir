@@ -4,7 +4,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 
 export function SourcingPreview() {
   return (
-    <section id="sourcing-preview" className="relative py-16 sm:py-24">
+    <section id="sourcing-preview" className="relative pt-8 pb-12 sm:pt-10 sm:pb-16">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
@@ -15,7 +15,7 @@ export function SourcingPreview() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {sourcingPreview.map((s, i) => (
             <Reveal key={s.title} delay={i * 80}>
               <article className="card card-hover h-full p-5">

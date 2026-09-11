@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { githubRepos, type PortfolioRepo } from "@/data/content";
 
 export type GithubRepo = {
@@ -38,8 +38,10 @@ function toGithubRepo(p: PortfolioRepo): GithubRepo {
  * Automatically checks daily for new projects or new live websites.
  */
 export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
-  const [repos, setRepos] = useState<GithubRepo[]>(fallback.map(toGithubRepo));
+  const [repos, setRepos] = useState<GithubRepo[]>(() => fallback.map(toGithubRepo));
   const [live, setLive] = useState(false);
+  const fallbackRef = useRef(fallback);
+  fallbackRef.current = fallback;
 
   useEffect(() => {
     let cancelled = false;
@@ -117,8 +119,9 @@ export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
         if (!Array.isArray(data) || data.length === 0 || cancelled) return;
 
         // Map lookup for known categories and curated details
+        const fallbackList = fallbackRef.current;
         const fallbackMap = new Map<string, PortfolioRepo>();
-        fallback.forEach((f) => fallbackMap.set(f.name.toLowerCase(), f));
+        fallbackList.forEach((f) => fallbackMap.set(f.name.toLowerCase(), f));
 
         const latest: GithubRepo[] = data
           .slice()
@@ -147,7 +150,7 @@ export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
           });
 
         // Ensure any fallback coming/planned projects not yet pushed are included
-        fallback.forEach((f) => {
+        fallbackList.forEach((f) => {
           if (!latest.some((l) => l.name.toLowerCase() === f.name.toLowerCase())) {
             latest.push(toGithubRepo(f));
           }
@@ -173,7 +176,7 @@ export function useGithubRepos(fallback: PortfolioRepo[] = githubRepos) {
     return () => {
       cancelled = true;
     };
-  }, [fallback]);
+  }, []);
 
   return { repos, live };
 }

@@ -3,14 +3,15 @@ import type { IconName } from "@/components/ui";
 export const personal = {
   name: "Salman Bashir",
   monogram: "SB",
+  executiveSubtitle: "Entrepreneur | Systems | AI",
   title: "E-commerce Operations & Business Automation Consultant",
   shortTitle: "E-commerce Operations · Marketplace Systems · Automation",
-  role: "E-commerce Operations & Business Automation Consultant",
+  role: "Operator · Entrepreneur · AI Systems Builder",
   supportingIdentity:
-    "Marketplace Operator · Sourcing Specialist · Systems Builder · Trainer",
-  tagline: "Built by experience. Driven by purpose.",
+    "Founder · Operator · AI Systems Builder · Global Sourcing",
+  tagline: "Building a smarter, automated tomorrow.",
   coreMessage:
-    "I understand the operation first. Then I build the system around it.",
+    "I turn messy business operations into systems that make money, scale and run smarter.",
   supportingLine:
     "I understand how online businesses actually work — and I turn that understanding into practical systems.",
   statement:
@@ -1254,47 +1255,54 @@ export const idealClients = [
 ];
 
 export const navLinks = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Marketplace", href: "/marketplace-services" },
-  { label: "Sourcing", href: "/sourcing-freight" },
-  { label: "Systems", href: "/business-systems" },
-  { label: "Training", href: "/training" },
   { label: "Projects", href: "/projects" },
+  { label: "Services", href: "/services" },
+  { label: "AI & Automation", href: "/ai-automation" },
+  { label: "YouTube", href: "/media" },
   { label: "Contact", href: "/contact" },
 ];
 
 /* Secondary navigation shown under a "More" menu so the primary nav stays
-   uncluttered. Also linked from the footer, homepage previews and
-   related-page CTAs. */
+   uncluttered. Provides exhaustive access to every registered ecosystem route. */
 export const moreLinks = [
-  { label: "My Journey", href: "/journey" },
-  { label: "Skills", href: "/skills" },
-  { label: "Team", href: "/team" },
-  { label: "AI & Automation", href: "/ai-automation" },
-  { label: "Media", href: "/media" },
-  { label: "Credentials", href: "/credentials" },
-  { label: "Resume", href: "/resume" },
+  { label: "Marketplace Operations", href: "/marketplace-services" },
+  { label: "Sourcing & Freight", href: "/sourcing-freight" },
+  { label: "Business Systems & ERP", href: "/business-systems" },
+  { label: "Practical Training", href: "/training" },
+  { label: "Founder Journey", href: "/journey" },
+  { label: "Core Skills", href: "/skills" },
+  { label: "Credentials & Proof", href: "/credentials" },
+  { label: "Interactive Resume", href: "/resume" },
+  { label: "Executive Team", href: "/team" },
+  { label: "Community & Network", href: "/community" },
+  { label: "Business Relationships", href: "/business-relationships" },
   { label: "Fiverr Gigs", href: "/fiverr" },
 ];
 
 export const footerLinks = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
   { label: "Services", href: "/services" },
+  { label: "AI & Automation", href: "/ai-automation" },
+  { label: "YouTube & Media", href: "/media" },
   { label: "Marketplace Services", href: "/marketplace-services" },
   { label: "Sourcing & Freight", href: "/sourcing-freight" },
   { label: "Business Systems", href: "/business-systems" },
-  { label: "Training", href: "/training" },
-  { label: "Projects", href: "/projects" },
-  { label: "Journey", href: "/journey" },
-  { label: "Skills", href: "/skills" },
-  { label: "Team", href: "/team" },
-  { label: "AI & Automation", href: "/ai-automation" },
-  { label: "Media", href: "/media" },
+  { label: "Practical Training", href: "/training" },
+  { label: "Founder Journey", href: "/journey" },
+  { label: "Skills & Tech", href: "/skills" },
+  { label: "Executive Team", href: "/team" },
+  { label: "Community", href: "/community" },
+  { label: "Business Relationships", href: "/business-relationships" },
   { label: "Credentials", href: "/credentials" },
-  { label: "Fiverr Gigs", href: "/fiverr" },
+  { label: "Resume", href: "/resume" },
+  { label: "Fiverr Marketplace", href: "/fiverr" },
   { label: "Contact", href: "/contact" },
-  { label: "Privacy", href: "/privacy" },
+  { label: "Meet / Book", href: "/book" },
+  { label: "Privacy Policy", href: "/privacy" },
 ];
 
 /* Phase-1 homepage & business hub content */
@@ -1432,19 +1440,11 @@ export const audiencePaths: {
 ];
 
 export const introVideo = {
-  title: "A quick word from Salman",
+  title: "Salman Bashir — 60-Second Executive Showreel",
   description:
-    "A short introduction to how I work with marketplaces, sourcing and business systems.",
-  /* 60-second showreel: set ONE of these and the hero video button plays it.
-     - youtubeUrl: any YouTube watch/share link (e.g. https://youtu.be/XXXX)
-     - mp4Url:     a direct .mp4 file URL. The default below is drop-in ready:
-                   drop your file at public/intro-video.mp4 and it just works.
-     If the file isn't there yet (or the URL 404s), the honest "coming soon"
-     placeholder shows instead of a broken player. */
-  youtubeUrl: "https://www.youtube.com/watch?v=YOBlXCyOh28",
+    "A transparent walkthrough of multi-marketplace operations, international sourcing logistics, custom ERP automation, and real-world profit auditing.",
+  youtubeUrl: "",
   mp4Url: "/intro-video.mp4",
-  /* Poster/thumbnail shown before the video plays and as the first frame
-     of the muted hero preview. */
   posterUrl: "/images/intro-video-poster.jpg",
 };
 

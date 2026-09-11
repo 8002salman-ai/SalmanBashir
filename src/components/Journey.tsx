@@ -9,7 +9,7 @@ import { Reveal, SectionHeading, Icon } from "@/components/ui";
 export function JourneySection({ limit }: { limit?: number }) {
   const items = limit ? journeyHomePreview.slice(0, limit) : journeyHomePreview;
   return (
-    <section id="journey" className="relative py-16 sm:py-24">
+    <section id="journey" className="relative pt-10 pb-6 sm:pt-14 sm:pb-8">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/4 top-1/2 h-[320px] w-[320px] -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[120px]" />
       </div>
