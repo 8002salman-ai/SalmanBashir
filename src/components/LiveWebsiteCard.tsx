@@ -382,60 +382,89 @@ export function LiveWebsiteCard({ className }: LiveWebsiteCardProps) {
           </div>
         )}
 
-        {/* Live Website Embedded Viewport */}
-        <div
-          ref={containerRef}
-          className="relative mt-2.5 h-[320px] sm:h-[360px] lg:h-[380px] w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner"
-        >
-          {/* Loading state indicator - pointer-events-none so it NEVER blocks user clicks */}
-          {!iframeLoaded && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10 pointer-events-none">
-              <span className="h-5 w-5 animate-spin rounded-full border-2 border-brand-400 border-t-transparent" />
-              <span className="text-xs font-mono">Loading {currentSite.name} live…</span>
+        {/* Apple MacBook Pro Luxury Device Chassis */}
+        <div className="relative mt-3.5 mx-auto w-full">
+          {/* MacBook Display Lid (Top Shell) */}
+          <div className="relative rounded-t-2xl sm:rounded-t-[28px] border-2 border-slate-700/70 bg-[#0d0f18] p-2 sm:p-2.5 pb-1 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
+            {/* Top Display Bezel with FaceTime Camera & Ambient Sensor */}
+            <div className="relative flex items-center justify-center pb-2 pt-0.5">
+              <div className="flex items-center gap-1.5 rounded-full bg-[#05060b] px-3 py-0.5 border border-white/10 shadow-inner">
+                {/* Camera Lens */}
+                <span className="relative flex h-2 w-2 items-center justify-center rounded-full bg-[#171b26] ring-1 ring-white/15">
+                  <span className="h-0.5 w-0.5 rounded-full bg-emerald-400 opacity-80" />
+                </span>
+                {/* Ambient Sensor */}
+                <span className="h-1 w-1 rounded-full bg-white/20" />
+              </div>
             </div>
-          )}
 
-          {/* Embedded live website iframe - zero sandbox restriction so all clicks, links, and buttons work 100% */}
-          <iframe
-            key={`${currentSite.id}-${refreshKey}`}
-            src={previewSrc}
-            title={`${currentSite.name} Live Website Preview`}
-            loading="lazy"
-            onLoad={() => setIframeLoaded(true)}
-            style={{
-              width: `${iframeWidth}px`,
-              height: `${iframeHeight}px`,
-              transform: `scale(${scale})`,
-              transformOrigin: "top left",
-            }}
-            className={cn(
-              "border-0 transition-opacity duration-300 block pointer-events-auto",
-              iframeLoaded ? "opacity-100" : "opacity-0",
-            )}
-          />
+            {/* Retina Glass Display Screen with Inner Bezel */}
+            <div
+              ref={containerRef}
+              className="relative h-[320px] sm:h-[380px] lg:h-[420px] w-full overflow-hidden rounded-lg sm:rounded-xl border border-white/10 bg-black shadow-inner"
+            >
+              {/* Loading state indicator */}
+              {!iframeLoaded && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0d0e14] text-zinc-400 z-10 pointer-events-none">
+                  <span className="h-5 w-5 animate-spin rounded-full border-2 border-brand-400 border-t-transparent" />
+                  <span className="text-xs font-mono">Loading {currentSite.name} live…</span>
+                </div>
+              )}
 
-          {/* Overlay hover bar for quick actions */}
-          <div className="absolute top-2 right-2 flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setIsExpanded(true)}
-              className="inline-flex items-center gap-1 rounded-lg bg-black/80 backdrop-blur border border-white/20 px-2 py-1 text-[11px] font-medium text-white shadow-lg hover:bg-black transition-colors"
-            >
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-              </svg>
-              <span>Expand</span>
-            </button>
-            <a
-              href={currentSite.displayUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-400 px-2.5 py-1 text-[11px] font-bold text-black shadow-lg hover:brightness-110 transition-all"
-            >
-              <span>Visit Site</span>
-              <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45" />
-            </a>
+              {/* Embedded live website iframe */}
+              <iframe
+                key={`${currentSite.id}-${refreshKey}`}
+                src={previewSrc}
+                title={`${currentSite.name} Live Website Preview`}
+                loading="lazy"
+                onLoad={() => setIframeLoaded(true)}
+                style={{
+                  width: `${iframeWidth}px`,
+                  height: `${iframeHeight}px`,
+                  transform: `scale(${scale})`,
+                  transformOrigin: "top left",
+                }}
+                className={cn(
+                  "border-0 transition-opacity duration-300 block pointer-events-auto",
+                  iframeLoaded ? "opacity-100" : "opacity-0",
+                )}
+              />
+
+              {/* Overlay hover bar for quick actions */}
+              <div className="absolute top-2 right-2 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsExpanded(true)}
+                  className="inline-flex items-center gap-1 rounded-lg bg-black/80 backdrop-blur border border-white/20 px-2 py-1 text-[11px] font-medium text-white shadow-lg hover:bg-black transition-colors"
+                >
+                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                  </svg>
+                  <span>Expand</span>
+                </button>
+                <a
+                  href={currentSite.displayUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-400 px-2.5 py-1 text-[11px] font-bold text-black shadow-lg hover:brightness-110 transition-all"
+                >
+                  <span>Visit Site</span>
+                  <Icon name="arrow" className="h-2.5 w-2.5 -rotate-45" />
+                </a>
+              </div>
+            </div>
           </div>
+
+          {/* MacBook Lower Base Chassis & Keyboard Lip */}
+          <div className="relative mx-auto w-[103%] -left-[1.5%] h-3.5 sm:h-4.5 rounded-b-xl sm:rounded-b-2xl bg-gradient-to-b from-[#242836] via-[#161823] to-[#0a0c13] border-t border-white/20 shadow-2xl">
+            {/* Signature MacBook Display Open Groove (Thumb notch) */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1.5 sm:h-2 w-20 sm:w-28 rounded-b-md bg-[#07090f] border-b border-white/10 shadow-inner" />
+            {/* Specular front metallic edge reflection */}
+            <div className="absolute inset-x-8 bottom-0.5 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+          </div>
+
+          {/* Laptop Base Shadow / Table Surface Glow */}
+          <div className="mx-auto w-[88%] h-3.5 bg-black/60 blur-md -mt-1 rounded-full" />
         </div>
 
         {/* Site Details Bar */}

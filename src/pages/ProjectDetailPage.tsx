@@ -122,6 +122,35 @@ export function ProjectDetailPage() {
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
             {study.summary}
           </p>
+
+          {/* Live Action Bar */}
+          {(study.liveUrl || study.githubUrl) && (
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              {study.liveUrl && (
+                <a
+                  href={study.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary shadow-lg shadow-brand-500/25"
+                >
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Visit Live Website</span>
+                  <Icon name="arrow" className="h-4 w-4 -rotate-45" />
+                </a>
+              )}
+              {study.githubUrl && (
+                <a
+                  href={study.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary"
+                >
+                  <Icon name="github" className="h-4 w-4" />
+                  <span>View GitHub Repository</span>
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </section>
 

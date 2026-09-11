@@ -45,16 +45,16 @@ const CAPABILITIES = [
     href: "/business-systems",
   },
   {
-    title: "Sourcing & Trade",
+    title: "Global Export & AI Trade",
     icon: "globe" as const,
     accent: "from-emerald-500/20 to-teal-500/5",
     iconBg: "bg-emerald-500/10 text-emerald-300 border-emerald-400/30",
     description:
-      "Global supplier network and product sourcing for e-commerce and wholesale businesses.",
+      "Active exporter of Himalayan minerals & salt products, powered by AI-driven international trade logistics.",
     bullets: [
-      "Verified Factory & Supplier Sourcing",
-      "Quality Assurance & Compliance",
-      "End-to-end Freight Logistics Support",
+      "Himalayan Salt & Mineral Export (Himalayan Koh)",
+      "AI Landed-Cost & Container Volume Planner",
+      "Factory Sourcing & End-to-End Freight Logistics",
     ],
     href: "/sourcing-freight",
   },

@@ -7,20 +7,20 @@ export function ProjectsPage() {
   return (
     <>
       <Seo
-        title="Projects | Salman Bashir — E-commerce ERP, Dashboards & Systems"
-        description="Systems built around real business problems: an e-commerce ERP platform, a business operations platform, multi-marketplace operations and Google Sheets sales workspaces — described honestly."
+        title="Projects | Salman Bashir — Live E-Commerce Stores, Enterprise ERP & AI Systems"
+        description="Explore Salman Bashir's verified live production projects: LuxEdge, 8002 ERP, YouTube Video AI, Basco Sports, Himalayan Koh, and hands-on multi-channel marketplace systems with 100% verified uptime."
         path="/projects"
       />
-    <BreadcrumbJsonLd items={[{ name: "Projects", path: "/projects" }]} />
+      <BreadcrumbJsonLd items={[{ name: "Projects", path: "/projects" }]} />
       <PageHero
-        eyebrow="Projects"
+        eyebrow="Verified Production Portfolio"
         title={
           <>
-            Systems built around{" "}
-            <span className="text-gradient-brand">real business problems</span>
+            Live systems built around{" "}
+            <span className="text-gradient-brand">real business operations</span>
           </>
         }
-        description="A focused set of platforms, workflows and tools I've built from the operator's side. Every project is described honestly — no invented customers, users or performance numbers."
+        description="Every platform, storefront and automation system below is deployed live in production. Explore verified live URLs, open-source code repositories, and deep operator case studies."
       />
       <ProjectsSection />
       <GithubReposSection />

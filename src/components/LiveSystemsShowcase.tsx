@@ -8,15 +8,15 @@ export function LiveSystemsShowcase() {
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <Reveal>
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-300">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              LIVE WEBSITE / SYSTEM SHOWCASE
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-cyan-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              MACBOOK PRO DEVICE VIEW · LIVE SYSTEMS & EXPORT PORTALS
             </div>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Live Systems Built by Salman
+              Live Systems & Platforms Built by Salman
             </h2>
             <p className="mt-2 text-sm text-slate-400 max-w-2xl">
-              Interact with live production platforms, e-commerce brands, and operational systems — proving I engineer real systems rather than simply talk about AI.
+              Interact directly with live production ERPs, e-commerce brands, AI automation pipelines, and international export portals inside an interactive MacBook Pro display.
             </p>
           </Reveal>
 
